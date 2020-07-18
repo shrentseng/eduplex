@@ -1,0 +1,14 @@
+.buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-bottom: 10px;
+    justify-items: center;
+}
+
+.text-font {
+    font-size: 20px;
+    text-transform: none;
+    font-style: normal;
+    font-size: 20px;
+    line-height: 23px;
+}

@@ -1,0 +1,29 @@
+.form-center {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding: 190px;
+}
+
+.button-group {
+    position: absolute;
+    top: 700px;
+    height: 38px;
+    width: 625px;
+}
+
+.button-logIn {
+    color: #569859;
+    background-color: #D2F0D4;
+    width: 120%;
+}
+
+.button-continue {
+    color: #424242;
+    background-color: #E5E5E5;
+    width: 80%;
+}
+
+.error {
+    color: red;
+}

@@ -1,0 +1,16 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    font-family: Raleway;
+}
+
+::-webkit-scrollbar {
+    width: 0px;  /* Remove scrollbar space */
+    /* background: transparent;  Optional: just make scrollbar invisible */
+}
+
+.info {
+    font-size: large;
+}
