@@ -35,7 +35,6 @@ class MyCourse extends Component {
   }
 
   onDeleteDoc = (index) => {
-    console.log(index)
     let temp = this.state.docs;
     temp.splice(index, 1);
     this.setState({docs: temp});
