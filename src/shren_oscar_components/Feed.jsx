@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import Avatar from '@material-ui/core/Avatar';
 import Paper from '@material-ui/core/Paper';
 import bookmark from '../assets/bookmark.svg';
 import like from '../assets/like.svg';
@@ -7,26 +8,23 @@ import dislike from '../assets/dislike.svg';
 import comment from '../assets/comment.svg';
 import share from '../assets/share.svg';
 import report from '../assets/report.svg';
+import avatar from '../assets/avatar.svg';
 import CommentBoard from './CommentBoard.jsx'
 
 const styles = theme => ({
     root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-        '& > *': {
-            margin: '8px',
-            width: '1000px',
-        },
+        margin: '1em',
     },
     paper: {
-        padding: '16px',
-        marginBottom: '0px',
+        padding: "1em",
     },
     header: {
         margin: '4px',
         height: '50px',
         display: 'flex',
+    },
+    avatar: {
+        borderRadius: '50%',
     },
     bookmark: {
         height: '27px',
@@ -63,37 +61,46 @@ class Feed extends Component {
         super(props);
         this.state = {
             username: 'Shren Tsneg',
+            isExpand: false,
         };
-        this.textInput = React.createRef();
-        this.focusTextInput = this.focusTextInput.bind(this);
+    }
+    
+    onSetExpandTrue = () =>{
+        this.setState({isExpand: true})
     }
 
-    focusTextInput() {
-        this.textInput.current.focus();
-      }
+    onSetExpand = () =>{
+		if(this.state.isExpand === false){
+            this.setState({isExpand: true})
+		}
+		else {
+			this.setState({isExpand: false})
+		}
+	}
 
     render() {
         const { classes } = this.props;
 
         return (
             <div className={classes.root}>
-                <Paper className={classes.paper} elevation={3}>
+                <Paper className={classes.paper} elevation={5}>
                     <div className={classes.header}>
-                        {this.state.username}
-                        <span>Posted in Course 1</span>
-                        <img alt="" className={classes.bookmark} src={bookmark} />
+                        <Avatar className={classes.avatar} src={avatar} />
+                        <p>{this.state.username}</p>
+                        <p>Posted in Course 1</p>
+                        <img className={classes.bookmark} src={bookmark} />
                     </div>
                     <div className={classes.body}>{this.props.content}</div>
                     <div className={classes.footer}>
-                        <img alt="" className={classes.img} src={like} />
+                        <img className={classes.img} src={like} />
                         <p className={classes.img}>{this.props.upvote}</p>
-                        <img alt="" className={classes.img} src={dislike} />
-                        <img alt="" className={classes.img} src={comment} onClick={event => this.focusTextInput()}/>
-                        <img alt="" className={classes.img} src={share} />
-                        <img alt="" className={classes.report} src={report} />
+                        <img className={classes.img} src={dislike} />
+                        <img className={classes.img} src={comment} onClick={event => this.onSetExpand()}/>
+                        <img className={classes.img} src={share} />
+                        <img className={classes.report} src={report} />
                     </div>
                 </Paper>
-                <CommentBoard isFocused={this.textInput}/>
+                <CommentBoard isExpand={this.state.isExpand} setExpandTrue={this.onSetExpandTrue}/>
             </div>
         );
     }

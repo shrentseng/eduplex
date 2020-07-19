@@ -2,53 +2,45 @@ import React, { useState } from 'react';
 import Select from 'react-select'
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
-import Exclude from '../assets/Exclude.svg';
+import Avatar from '@material-ui/core/Avatar';
+import exclude from '../assets/exclude.svg';
+import anonymous from '../assets/anonymous.svg';
 
 const useStyles = makeStyles(theme => ({
     root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-        '& > *': {
-            margin: '8px',
-            width: '1000px',
-        },
+        margin: '1em',
     },
     paper: {
-        padding: "16px"
+        padding: "1em",
     },
     select: {
-        width: "90px",
-        height: "15px",
-        fontSize: "13px",
-        boxShadow: "none",
-        margin: "15px",
-        marginLeft: "auto"
+        width: '7.5em',
+        marginLeft: 'auto',
     },
     post: {
-        outlineWidth: "0px",
-        border: "none",
-        textAlign: "left",
-        fontSize: "20px",
-        width: "940px",
-        height:"73px",
-        margin: "15px",
-        backgroundColor: "#F7F7F7",
-        "&::placeholder": {
-            color: "#C4C4C4"
-          },
+        marginTop: '1em',
+        height: '6em',
+        width: '100%',
+        backgroundColor: '#F7F7F7',
+        outlineWidth: '0em',
+        border: 'none',
     },
     buttons: {
-        display: "flex"
+        display: 'flex',
+        justifyContent: 'flex-end',
+        width: '98%',
+        marginTop: '-1.6em',
     },
-    send: {
-        border: "none",
-        background: "none",
-        marginLeft: "auto"
+    anonymous: {
+        margin: '0.2em',
+        width: theme.spacing(4),
+        height: theme.spacing(4),
+        backgroundColor: 'white',
     },
     exclude: {
-        margin: '2px',
-        height: '22px',
+        margin: '0.2em',
+        width: theme.spacing(4),
+        height: theme.spacing(4),
     }
 }));
 
@@ -74,12 +66,11 @@ const Post = ({createPost}) => {
                         <Select className={classes.select} options = {options} placeholder="Select"/>
                     </div>
                     <div>
-                        <textarea className={classes.post} type="text" placeholder=" Start a discussion... " value={content} onChange={event => setContent(event.target.value)}/>
+                        <textarea className={classes.post} type="text" placeholder="Start a discussion... " value={content} onChange={event => setContent(event.target.value)}/>
                     </div>
                     <div className={classes.buttons}>
-                        <button className={classes.send} >
-                            <img alt="" className={classes.exclude} src={Exclude} onClick={event => onCreatePost(content)}/>
-                        </button>
+                        <Avatar className={classes.anonymous} src={anonymous}/>
+                        <Avatar className={classes.exclude} src={exclude} onClick={event => onCreatePost(content)}/>
                     </div>
                 </Paper>
             </div>
