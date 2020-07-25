@@ -47,7 +47,7 @@ const ReplyPost = ({createReply}) => {
     }    
     return(
             <div className={classes.root}>
-                    <TextField multiline className={classes.textArea} InputLabelProps={{shrink: false}} InputProps={{ disableUnderline: true }} type="text" placeholder="Write a comment... " value={content} onChange={event => setContent(event.target.value)}/>             
+                    <TextField multiline className={classes.textArea} InputLabelProps={{shrink: false}} type="text" placeholder="Write a comment... " value={content} onChange={event => setContent(event.target.value)}/>             
                     <img src={exclude} style={{marginTop:"10px"}} onClick={event => onCreateReply(content)}/>
             </div>
     )
