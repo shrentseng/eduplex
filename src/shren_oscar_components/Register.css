@@ -5,7 +5,7 @@
     padding: 190px;
 }
 
-.button-group {
+button.button-group {
     position: absolute;
     top: 700px;
     height: 38px;

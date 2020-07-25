@@ -117,7 +117,7 @@ class Comment extends Component{
                     {this.props.content}
                 </div>
 				<Accordion elevation={0} expanded={this.state.isExpand}>
-					<AccordionSummary id="panel2a-header" style={{textDecorationLine: "underline"}} onClick={event => this.onSetExpand()}>
+					<AccordionSummary id="panel2a-header" onClick={event => this.onSetExpand()}>
 							Reply
 					</AccordionSummary>
 					{this.renderReply()}
