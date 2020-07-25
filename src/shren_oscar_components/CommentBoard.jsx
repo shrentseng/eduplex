@@ -2,28 +2,38 @@ import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import MuiAccordion from '@material-ui/core/Accordion';
 import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
+import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
 import CommentPost from './CommentPost.jsx';
 import Comment from './Comment.jsx';
 import { Paper } from '@material-ui/core';
-
 
 const styles = theme => ({
 	root: {
 		width: '100%',
 		marginLeft: "auto",
 	},
+	paper: {
+		width: "95%",
+        marginLeft: "auto",
+	},
 	heading: {
 		fontSize: theme.typography.pxToRem(15),
 		fontWeight: theme.typography.fontWeightRegular,
 	},
 	accDetails: {
-		padding: "0px",
+		padding: "0%",
 	},
+	lineSeparate:{
+        margin: "0px",
+        marginLeft: "18px",
+        justifyContent: "center",
+        width: "96%",
+    },
 });
 
 const Accordion = withStyles({
 	root: {
+	  border: '1px solid rgba(0, 0, 0, .125)',
 	  boxShadow: 'none',
 	  '&:not(:last-child)': {
 		borderBottom: 0,
@@ -37,10 +47,11 @@ const Accordion = withStyles({
 	},
 	expanded: {},
   })(MuiAccordion);
-
-const AccordionSummary = withStyles({
+  
+  const AccordionSummary = withStyles({
 	root: {
 	  backgroundColor: 'rgba(0, 0, 0, 0)',
+	  borderBottom: '1px solid rgba(0, 0, 0, 0)',
 	  marginBottom: -1,
 	  minHeight: 56,
 	  '&$expanded': {
@@ -49,11 +60,17 @@ const AccordionSummary = withStyles({
 	},
 	content: {
 	  '&$expanded': {
-		margin: '0px',
+		margin: '12px 0',
 	  },
 	},
 	expanded: {},
   })(MuiAccordionSummary);
+  
+  const AccordionDetails = withStyles((theme) => ({
+	root: {
+	  padding: theme.spacing(2),
+	},
+  }))(MuiAccordionDetails);
 
 class CommentBoard extends Component  {
 
@@ -66,15 +83,14 @@ class CommentBoard extends Component  {
 			},
             comments: [
                 {
-                    "content": "123",
+                    "content": "this is comment",
                     "key": "0",
                 },
                 {
-                    "content": "456",
+                    "content": "this is comment too",
                     "key": "1",
                 }
 			],
-			isExpand: false,
         };
 	}
 
@@ -100,31 +116,20 @@ class CommentBoard extends Component  {
 		if(content.length !== 0){
 			let key = this.state.comments.length.toString();
 			this.setState({ comments: this.state.comments.concat([{"content": content, "key": key}])});
-			this.setState({isExpand: true})
+			this.props.setExpandTrue();
 		}
 	}
 
-	onSetExpand = () =>{
-		if(this.state.isExpand === false){
-			this.setState({isExpand: true})
-		}
-		else if(this.state.isExpand === true){
-			this.setState({isExpand: false})
-		}
-	}
-
-
-//Add expanded={this.props.isExpand} to Axccordion
 	render() {
 		const { classes } = this.props;
 		return (
 			<div className={classes.root}>
 				<Paper className={classes.paper}>
-					<CommentPost isFocused={this.props.isFocused} className={classes.heading} createComment={this.onCreateComment}/>
-					<Accordion elevation={0} expanded={this.state.isExpand}>
-						<AccordionSummary id="panel1a-header" className={classes.accSummary} style={{textDecorationLine: "underline"}} onClick={event => this.onSetExpand()}>
-							Comments
+					<Accordion elevation={0} expanded={this.props.isExpand}>
+						<AccordionSummary id="panel1a-header" >
+							<CommentPost className={classes.heading} createComment={this.onCreateComment}/>
 						</AccordionSummary>
+						<hr className={classes.lineSeparate}/>
 						{this.renderComment()}
 					</Accordion>
 				</Paper>

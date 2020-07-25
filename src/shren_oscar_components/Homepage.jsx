@@ -11,25 +11,37 @@ class Homepage extends Component {
         this.state = {
             feeds: [
                 {
+                    "username": "Shren",
                     "content": "fuck off",
-                    "upvote": 1,
-                    "downvote": 1,
-                    "key": "0"
+                    "likeCount": 1,
+                    "key": 0,
                 },
                 {
+                    "username": "Shren",
                     "content": "eat shit",
-                    "upvote": 1,
-                    "downvote": 1,
-                    "key": "1"
+                    "likeCount": 1,
+                    "key": 1,
                 },
                 {
+                    "username": "Shren",
                     "content": "suck my dick",
-                    "upvote": 1,
-                    "downvote": 1,
-                    "key": "2"
+                    "likeCount": 1,
+                    "key": 2,
                 }
             ],
         };
+    }
+
+    onHandleLikeButton = (i) => {
+        let temp = this.state.feeds
+        temp[i].likeCount ++
+        this.setState({feeds: temp })
+    }
+
+    onHandleDislikeButton = (i) => {
+        let temp = this.state.feeds
+        temp[i].likeCount --
+        this.setState({feeds: temp })
     }
 
     renderFeed() {
@@ -38,22 +50,24 @@ class Homepage extends Component {
         } else {
             return this.state.feeds.map((feed) => {
                 return <Feed
+                    username={feed.username}
                     content={feed.content}
-                    upvote={feed.upvote}
-                    downvote={feed.downvote}
+                    likeCount={feed.likeCount}
+                    index={feed.key}
                     key={feed.key}
+                    handleLikeButton={this.onHandleLikeButton}
+                    handleDislikeButton={this.onHandleDislikeButton}
                 />
             })
         }
     }
 
-    
-
     onCreatePost = (content) => {
-        let key = this.state.feeds.length.toString();
+        let key = this.state.feeds.length;
         this.setState({ feeds: [{"content": content, "upvote": 0, "downvote": 0, "key": key}].concat(this.state.feeds)});
     }
 
+    
     
 
     render() {

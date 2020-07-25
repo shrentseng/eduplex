@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
-import exclude from '../assets/Exclude.svg';
+import exclude from '../assets/exclude.svg';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -19,22 +19,17 @@ const useStyles = makeStyles(theme => ({
         marginLeft:"15px",
         paddingBottom: "0px",
         fontSize: "20px",
-        width: "93%",
+        width: "90%",
         backgroundColor: "#F7F7F7",
         "&::placeholder": {
             color: "#C4C4C4"
           },
         
     },
-    lineSeparate:{
-        margin: "0px",
-        marginLeft: "18px",
-        justifyContent: "center",
-        width: "96%",
-    },
     commentLink: {
         marginLeft: "2px",
     },
+
 }));
 
 const CommentPost = ({createComment,isFocused}) => {
@@ -48,8 +43,7 @@ const CommentPost = ({createComment,isFocused}) => {
     return(
             <div className={classes.root}>
                     <TextField multiline inputRef={isFocused} className={classes.textArea} InputLabelProps={{shrink: false}} InputProps={{ disableUnderline: true }} type="text" placeholder="Write a comment... " value={content} onChange={event => setContent(event.target.value)}/>             
-                    <img alt="" src={exclude} style={{marginTop:"10px"}} onClick={event => onCreateComment(content)}/>
-                    <hr className={classes.lineSeparate}/>
+                    <img src={exclude} onClick={event => onCreateComment(content)}/>
             </div>
     )
 }
