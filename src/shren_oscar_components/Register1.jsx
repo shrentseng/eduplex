@@ -21,21 +21,21 @@ const validate = (values) => {
     var passwordRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})");
 
     if (!values.firstName) {
-        errors.firstName = 'Requierd';
+        errors.firstName = 'Required';
     }
 
     if (!values.lastName) {
-        errors.lastName = 'Requierd';
+        errors.lastName = 'Required';
     }
 
     if (!values.email) {
-        errors.email = 'Requierd';
+        errors.email = 'Required';
     } else if (!emailRegex.test(values.email)) {
         errors.email = 'Invalid email address';
     }
 
     if (!values.password) {
-        errors.password = 'Requierd';
+        errors.password = 'Required';
     } else if (!passwordRegex.test(values.password)) {
         errors.password = 'Password must contain at least 1 lowercase, uppercase and numeric character';
     }
@@ -147,7 +147,7 @@ const Register1 = ({setStep}) => {
             </div>
             <div className="form-group row button-group">
                 <div className="col">
-                    <button className="btn button-continue" type="submit" name="submit">Continue</button>
+                    <button className="button-continue btn" type="submit" name="submit">Continue</button>
                 </div>
                 <div className="col">
                     <Link to="/SignIn">

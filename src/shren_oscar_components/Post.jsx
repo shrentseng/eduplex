@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
         marginTop: '1em',
         height: '6em',
         width: '100%',
-        backgroundColor: '#F7F7F7',
+        backgroundColor: '#f7f7f7',
         outlineWidth: '0em',
         border: 'none',
     },
