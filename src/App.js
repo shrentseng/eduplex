@@ -13,7 +13,6 @@ import Course from './course_containers/Course';
 import Profile from './profile_containers/Profile';
 import Search from './search_containers/Search';
 import MyCourse from './my_course_containers/MyCourse';
-import Upload from './shren_oscar_components/Upload';
 import './assets/bootstrap.min.css'
 import './App.css';
 
