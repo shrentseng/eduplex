@@ -11,6 +11,7 @@ const styles = theme => ({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+        marginTop: '3em',
     },
     info:{
         width: '50em',

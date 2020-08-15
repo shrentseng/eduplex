@@ -56,9 +56,6 @@ class App extends Component {
                             <Route path="/MyCourse">
                                 <MyCourse />
                             </Route>
-                            <Route path="/Upload">
-                                <Upload />
-                            </Route>
                         </Switch>
                     </div>
                 </div>
