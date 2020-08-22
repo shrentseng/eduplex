@@ -15,6 +15,7 @@ import Search from './search_containers/Search';
 import MyCourse from './my_course_containers/MyCourse';
 import './assets/bootstrap.min.css'
 import './App.css';
+import EditProfile from './shren_oscar_components/EditProfile';
 
 
 class App extends Component {
@@ -27,7 +28,7 @@ class App extends Component {
     render() {
         return (
             <Router>
-                <div>
+                <div style={{background: '#F7F7F7'}}>
                     <Navbar/>
                     <div className="wrapper">
                         <div> 
@@ -48,6 +49,9 @@ class App extends Component {
                             </Route>
                             <Route path="/Profile">
                                 <Profile />
+                            </Route>
+                            <Route path="/EditProfile">
+                                <EditProfile />
                             </Route>
                             <Route path="/Search">
                                 <Search />
