@@ -246,7 +246,7 @@ const EditProfile = () => {
                 
                 <div className={classes.personalInformation}>
                     <h1>Personal Information</h1>
-                    <StyledButton onClick={() => setIsEditing(!isEditing)}>
+                    <StyledButton onClick={() => setIsEditing(true)}>
                         Edit
                     </StyledButton>
                 </div>
@@ -262,9 +262,6 @@ const EditProfile = () => {
                     )}
                 </StyledPaper>
 
-
-
-
                 <StyledPaper>
                     <div>
                         <b>Major</b>
@@ -275,9 +272,6 @@ const EditProfile = () => {
                         <StyledTextField variant="outlined" type="text" value={tempMajor} onChange={event => setTempMajor(event.target.value)}/>
                     )}
                 </StyledPaper>
-
-
-
 
                 <StyledPaper>
                     <div>
@@ -295,7 +289,6 @@ const EditProfile = () => {
                     
                 </StyledPaper>
 
-
                 <StyledPaper>
                     <div>
                         <b>Year Attended</b>
@@ -305,7 +298,6 @@ const EditProfile = () => {
                     ) : (
                         <StyledTextField variant="outlined" type="number" value={tempYearAttended} onChange={event => setTempYearAttended(event.target.value)}/>
                     )}
-                    
                 </StyledPaper>
             </div>
             {!isEditing ? (
