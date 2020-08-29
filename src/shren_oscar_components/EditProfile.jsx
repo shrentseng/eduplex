@@ -14,12 +14,7 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionActions from '@material-ui/core/AccordionActions';
 
-import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Chip from '@material-ui/core/Chip';
-import Divider from '@material-ui/core/Divider';
-import clsx from 'clsx';
-import { red } from '@material-ui/core/colors';
 
 const StyledPaper = withStyles({
     root: {
@@ -271,7 +266,7 @@ const EditProfile = () => {
                     Edit
                 </Button>
                 
-                <Link to="/EditProfile" style={{textDecoration: 'none', marginLeft: 'auto', marginTop: '3em'}}>
+                <Link to="/Profile" style={{textDecoration: 'none', marginLeft: 'auto', marginTop: '3em'}}>
                     <Button
 
                         className={classes.backToProfile}

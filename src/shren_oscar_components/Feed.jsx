@@ -18,7 +18,8 @@ const styles = theme => ({
         margin: '1em',
     },
     paper: {
-        padding: "1em",
+        padding: '1em',
+        marginBottom: '1em',
     },
     headerItem: {
         display: 'flex',
@@ -45,7 +46,6 @@ const styles = theme => ({
         justifyContent: 'space-between',
     },
     footerItem: {
-        
         height: '1.5em',
     }
 });
@@ -96,14 +96,17 @@ class Feed extends Component {
                         <Grid item>
                             <img className={classes.footerItem} src={like} onClick={(event) => this.props.handleLikeButton(this.props.index)}/>
                         </Grid>
-                        <Grid item>
-                            <Typography>{this.props.likeCount}</Typography>
+                        <Grid item xs={1}>
+                            <span>{this.props.likeCount}</span>
                         </Grid>
                         <Grid item>
                             <img className={classes.footerItem} src={dislike} onClick={(event) => this.props.handleDislikeButton(this.props.index)}/>
                         </Grid>
                         <Grid item>
                             <img className={classes.footerItem} src={comment} onClick={this.onToggleExpand}/>
+                        </Grid>
+                        <Grid item xs={1}>
+                            <span>{this.props.commentCount}</span>
                         </Grid>
                     </Grid>
                 </Paper>
@@ -113,20 +116,4 @@ class Feed extends Component {
     }
 }
 
-export default withStyles(styles)(Feed);
-
-{/* <div className={classes.header}>
-                        <Avatar className={classes.avatar} src={avatar} />
-                        <p>{this.state.username}</p>
-                        <p>Posted in Course 1</p>
-                        <img className={classes.bookmark} src={bookmark} />
-                    </div>
-                    <div className={classes.body}>{this.props.content}</div>
-                    <div className={classes.footer}>
-                        <img className={classes.footerItem} src={like} />
-                        <p className={classes.footerItem}>{this.props.upvote}</p>
-                        <img className={classes.footerItem} src={dislike} />
-                        <img className={classes.footerItem} src={comment} onClick={event => this.onSetExpand()}/>
-                        <img className={classes.footerItem} src={share} />
-                        <img className={classes.report} src={report} />
-                    </div> */}
+export default withStyles(styles)(Feed)

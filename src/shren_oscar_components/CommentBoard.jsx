@@ -83,10 +83,12 @@ class CommentBoard extends Component  {
 			},
             comments: [
                 {
+					"username": "Oscar",
                     "content": "this is comment",
                     "key": "0",
                 },
                 {
+					"username": "Shren",
                     "content": "this is comment too",
                     "key": "1",
                 }
@@ -105,6 +107,7 @@ class CommentBoard extends Component  {
 						<Comment
 							content={comment.content}
 							key={comment.key}
+							username={comment.username}
 						/>
 					</AccordionDetails>
 				)
@@ -124,9 +127,9 @@ class CommentBoard extends Component  {
 		const { classes } = this.props;
 		return (
 			<div className={classes.root}>
-				<Paper className={classes.paper}>
-					<Accordion elevation={0} expanded={this.props.isExpand}>
-						<AccordionSummary id="panel1a-header" >
+				<Paper elevation={5} className={classes.paper}>
+					<Accordion elevation={5} expanded={this.props.isExpand}>
+						<AccordionSummary>
 							<CommentPost className={classes.heading} createComment={this.onCreateComment}/>
 						</AccordionSummary>
 						<hr className={classes.lineSeparate}/>

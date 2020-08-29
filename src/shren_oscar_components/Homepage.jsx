@@ -15,18 +15,22 @@ class Homepage extends Component {
                     "content": "fuck off",
                     "likeCount": 1,
                     "key": 0,
+                    "commentCount": 0,
                 },
                 {
                     "username": "Shren",
                     "content": "eat shit",
                     "likeCount": 1,
                     "key": 1,
+                    "commentCount": 0,
                 },
                 {
                     "username": "Shren",
                     "content": "suck my dick",
                     "likeCount": 1,
+                    "commentCount": 0,
                     "key": 2,
+                    
                 }
             ],
         };

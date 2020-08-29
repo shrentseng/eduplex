@@ -1,18 +1,26 @@
 import React, { Component } from 'react';
-import { withStyles } from '@material-ui/core/styles';
-import { makeStyles } from '@material-ui/core/styles';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
+import Avatar from '@material-ui/core/Avatar';
 import MuiAccordion from '@material-ui/core/Accordion';
 import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import ReplyPost from './ReplyPost.jsx'
 import Reply from './Reply.jsx'
+import avatar from '../assets/avatar.svg';
 
 const styles = theme => ({
     root: {
-        width: "95%",
-        padding: "4px",
-        marginLeft: "auto",
-    },
+		display: 'flex',
+		width: "95%",
+		margin: '1em',
+	},
+	avatar: {
+        borderRadius: '50%',
+	},
+	comment: {
+		display: 'flex',
+		flexDirection: 'column',
+	},
     heading: {
 		fontSize: theme.typography.pxToRem(15),
 		fontWeight: theme.typography.fontWeightRegular,
@@ -24,33 +32,39 @@ const styles = theme => ({
 
 const Accordion = withStyles({
 	root: {
-	  boxShadow: 'none',
-	  '&:not(:last-child)': {
-		borderBottom: 0,
-	  },
-	  '&:before': {
-		display: 'none',
-	  },
-	  '&$expanded': {
-		margin: 'auto',
-	  },
+		boxShadow: 'none',
+		'&:not(:last-child)': {
+			borderBottom: 0,
+		},
+		'&:before': {
+			height: '2em',
+			minHeight: '1em',
+			display: 'none',
+		},
+		'&$expanded': {
+			//margin: 'auto',
+		},
 	},
 	expanded: {},
   })(MuiAccordion);
 
 const AccordionSummary = withStyles({
 	root: {
-	  backgroundColor: 'rgba(0, 0, 0, 0)',
-	  marginBottom: -1,
-	  minHeight: 56,
-	  '&$expanded': {
-		minHeight: 56,
-	  },
+		backgroundColor: 'rgba(0, 0, 0, 0)',
+		marginBottom: -1,
+		minHeight: 0,
+		'&$expanded': {
+			minHeight: 0,
+		},
 	},
 	content: {
-	  '&$expanded': {
-		margin: '0px',
-	  },
+		marginTop: '0.4em',
+		marginBottom: 0,
+		minHeight: 0,
+		'&$expanded': {
+			margin: '0px',
+			
+		},
 	},
 	expanded: {},
   })(MuiAccordionSummary);
@@ -62,10 +76,12 @@ class Comment extends Component{
         this.state = {
             replies: [
                 {
+					"username": "Oscar",
                     "content": "123",
                     "key": "0",
                 },
                 {
+					"username": "Morris",
                     "content": "456",
                     "key": "1",
                 }
@@ -84,6 +100,7 @@ class Comment extends Component{
 					<AccordionDetails className={classes.accDetails}>
 						<Reply
 							content={reply.content}
+							username={reply.username}
 							key={reply.key}
 						/>
 					</AccordionDetails>
@@ -113,16 +130,22 @@ class Comment extends Component{
         const { classes } = this.props;
         return(
             <div className={classes.root}>
-                <div>   
-                    {this.props.content}
-                </div>
-				<Accordion elevation={0} expanded={this.state.isExpand}>
-					<AccordionSummary id="panel2a-header" onClick={event => this.onSetExpand()}>
-							Reply
-					</AccordionSummary>
-					{this.renderReply()}
-				</Accordion>
-                <ReplyPost createReply={this.onCreateReply}/>
+				<div style={{marginRight: '1em'}}>
+					<Avatar className={classes.avatar} src={avatar} />
+				</div>
+                <div>
+					<div className={classes.comment}>
+						<span>{this.props.username}</span>
+						<span>{this.props.content}</span>
+					</div>
+					<Accordion elevation={0} expanded={this.state.isExpand}>
+						<AccordionSummary onClick={event => this.onSetExpand()}>
+								Reply
+						</AccordionSummary>
+						{this.renderReply()}
+						<ReplyPost createReply={this.onCreateReply}/>
+					</Accordion>
+				</div>
             </div>
         )
     }
