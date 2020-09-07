@@ -36,7 +36,7 @@ export default function ProfileTag(user) {
                 >
                     My Rewards
                 </Button>
-                <Link to="/EditProfile">
+                <Link to="/EditProfile" style={{textDecoration: 'none'}}>
                     <Button
                         component="button"
                         disableElevation
