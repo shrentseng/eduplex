@@ -4,20 +4,10 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import Icon from '@material-ui/core/Icon';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import NewsfeedIcon from '../assets/newsfeed.svg';
 import MyCoursesIcon from '../assets/myCourses.svg';
 import { Link } from "react-router-dom";
-
-const StyledLink = withStyles({
-    root: {
-		textDecoration: 'none',
-		"&:focus, &:hover, &:visited, &:link, &:active": {
-			textDecoration: 'none',
-		},
-	},
-})(Link);
 
 const useStyles = makeStyles((theme) => ({
 	drawerPaper: {
@@ -36,6 +26,12 @@ const useStyles = makeStyles((theme) => ({
 		backgroundColor: '#e5e5e5',
 		borderRadius: '0px 25px 25px 0px',
 		},
+		'& a':{
+			textDecoration: 'none',
+			"&:focus, &:hover, &:visited, &:link, &:active": {
+				textDecoration: 'none',
+			},
+		}
 	},
 }));
 
@@ -47,8 +43,8 @@ function SideBar(props) {
 	const courseList = courses.map((course, i) => {
         return (
 			<div>
-				<ListItem button className={`${classes.nested} ${classes.button}`} style={{textDecoration: 'none'}}>
-					<StyledLink to="/Course" style={{textDecoration: 'none'}}><ListItemText primary={course} /></StyledLink>
+				<ListItem button className={`${classes.nested} ${classes.button}`}>
+					<Link to="/Course" ><ListItemText primary={course} /></Link>
 				</ListItem>
 			</div>
             
@@ -72,16 +68,14 @@ function SideBar(props) {
 								<ListItemIcon>
 									<img src={NewsfeedIcon} alt="" height="100%"/>
 								</ListItemIcon>
-								<StyledLink to="/"><ListItemText primary="Newsfeed" /></StyledLink>
+								<Link  to="/"><ListItemText primary="Newsfeed" /></Link>
 							</ListItem>
-
 							<ListItem button className={classes.button}>
 								<ListItemIcon>
 									<img src={MyCoursesIcon} alt="" height="100%"/>
 								</ListItemIcon>
-								<StyledLink to="/MyCourse"><ListItemText primary="My Courses" /></StyledLink>
+								<Link  to="/MyCourse"><ListItemText primary="My Courses" /></Link>
 							</ListItem>
-
 							<List disablePadding>
 								{courseList}
 							</List>

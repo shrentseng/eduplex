@@ -1,13 +1,12 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
+import Typography from '@material-ui/core/Typography';
 import avatar from '../assets/avatar.svg';
 
 const useStyles = makeStyles(theme => ({
     root: {
         width: "95%",
-        padding: "4px",
-        marginLeft: "auto",
         display: 'flex',
     },
     reply: {
@@ -24,8 +23,8 @@ const Reply = (props) => {
                 <Avatar className={classes.avatar} src={avatar} />
             </div>
             <div className={classes.reply}>
-                <span>{props.username}</span>
-                <span>{props.content}</span>
+                <Typography variant='h5'>{props.username}</Typography>
+                <Typography variant='body1'>{props.content}</Typography>
             </div>
         </div>
     )

@@ -33,44 +33,45 @@ const styles = theme => ({
 
 const Accordion = withStyles({
 	root: {
-	  border: '1px solid rgba(0, 0, 0, .125)',
-	  boxShadow: 'none',
-	  '&:not(:last-child)': {
-		borderBottom: 0,
-	  },
-	  '&:before': {
-		display: 'none',
-	  },
-	  '&$expanded': {
-		margin: 'auto',
-	  },
+		border: '1px solid rgba(0, 0, 0, .125)',
+		boxShadow: 'none',
+		'&:not(:last-child)': {
+			borderBottom: 0,
+		},
+		'&:before': {
+			display: 'none',
+		},
+		'&$expanded': {
+			paddingBottom: '1em',
+		},
 	},
-	expanded: {},
-  })(MuiAccordion);
+	expanded: {
+	},
+})(MuiAccordion);
   
-  const AccordionSummary = withStyles({
+const AccordionSummary = withStyles({
 	root: {
-	  backgroundColor: 'rgba(0, 0, 0, 0)',
-	  borderBottom: '1px solid rgba(0, 0, 0, 0)',
-	  marginBottom: -1,
-	  minHeight: 56,
-	  '&$expanded': {
+		backgroundColor: 'rgba(0, 0, 0, 0)',
+		borderBottom: '1px solid rgba(0, 0, 0, 0)',
+		marginBottom: -1,
 		minHeight: 56,
-	  },
+		'&$expanded': {
+			minHeight: 56,
+		},
 	},
 	content: {
-	  '&$expanded': {
-		margin: '12px 0',
-	  },
+		'&$expanded': {
+			margin: '12px 0',
+		},
 	},
 	expanded: {},
-  })(MuiAccordionSummary);
+})(MuiAccordionSummary);
   
-  const AccordionDetails = withStyles((theme) => ({
+const AccordionDetails = withStyles((theme) => ({
 	root: {
-	  padding: theme.spacing(2),
+	
 	},
-  }))(MuiAccordionDetails);
+}))(MuiAccordionDetails);
 
 class CommentBoard extends Component  {
 
@@ -108,6 +109,7 @@ class CommentBoard extends Component  {
 							content={comment.content}
 							key={comment.key}
 							username={comment.username}
+							//commentCount={this.state.comments.length}
 						/>
 					</AccordionDetails>
 				)
@@ -118,7 +120,7 @@ class CommentBoard extends Component  {
     onCreateComment = (content) => {
 		if(content.length !== 0){
 			let key = this.state.comments.length.toString();
-			this.setState({ comments: this.state.comments.concat([{"content": content, "key": key}])});
+			this.setState({ comments: this.state.comments.concat([{"username": 'Shren', "content": content, "key": key}])});
 			this.props.setExpandTrue();
 		}
 	}

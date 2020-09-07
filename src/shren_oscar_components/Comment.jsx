@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import MuiAccordion from '@material-ui/core/Accordion';
 import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
@@ -12,7 +13,7 @@ const styles = theme => ({
     root: {
 		display: 'flex',
 		width: "95%",
-		margin: '1em',
+		margin: '1em 0 0 1em',
 	},
 	avatar: {
         borderRadius: '50%',
@@ -26,7 +27,7 @@ const styles = theme => ({
 		fontWeight: theme.typography.fontWeightRegular,
 	},
 	accDetails: {
-		padding: "0px",
+		padding: "0.5em",
 	},
 });
 
@@ -42,10 +43,12 @@ const Accordion = withStyles({
 			display: 'none',
 		},
 		'&$expanded': {
-			//margin: 'auto',
+			margin: '0',
 		},
 	},
-	expanded: {},
+	expanded: {
+		margin: 0,
+	}
   })(MuiAccordion);
 
 const AccordionSummary = withStyles({
@@ -55,6 +58,7 @@ const AccordionSummary = withStyles({
 		minHeight: 0,
 		'&$expanded': {
 			minHeight: 0,
+			margin: '0',
 		},
 	},
 	content: {
@@ -62,8 +66,7 @@ const AccordionSummary = withStyles({
 		marginBottom: 0,
 		minHeight: 0,
 		'&$expanded': {
-			margin: '0px',
-			
+			margin: '0.4em 0px',
 		},
 	},
 	expanded: {},
@@ -112,7 +115,7 @@ class Comment extends Component{
     onCreateReply = (content) => {
 		if(content.length !== 0){
 			let key = this.state.replies.length.toString();
-			this.setState({ replies: this.state.replies.concat([{"content": content, "key": key}])});
+			this.setState({ replies: this.state.replies.concat([{"username": 'Shren', "content": content, "key": key}])});
 			this.setState({isExpand: true})
 		}
     }
@@ -135,8 +138,8 @@ class Comment extends Component{
 				</div>
                 <div>
 					<div className={classes.comment}>
-						<span>{this.props.username}</span>
-						<span>{this.props.content}</span>
+						<Typography variant='h5'>{this.props.username}</Typography>
+						<Typography variant='body1'>{this.props.content}</Typography>
 					</div>
 					<Accordion elevation={0} expanded={this.state.isExpand}>
 						<AccordionSummary onClick={event => this.onSetExpand()}>

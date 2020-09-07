@@ -9,10 +9,12 @@ const useStyles = makeStyles(theme => ({
         width: "100%",
         margin: "0px",
         display: "flex",
+        justifyContent: "center",
     },
     textArea: {
         margin: "10px",
         marginLeft:"15px",
+        paddingLeft: "0.1em",
         paddingBottom: "0px",
         fontSize: "20px",
         width: "90%",
@@ -20,7 +22,6 @@ const useStyles = makeStyles(theme => ({
         "&::placeholder": {
             color: "#C4C4C4"
           },
-        
     },
     commentLink: {
         marginLeft: "2px",
@@ -33,6 +34,7 @@ const CommentPost = ({createComment,isFocused}) => {
     const [content, setContent] = useState("");
 
     const onCreateComment = (content) => {
+        
         createComment(content);
         setContent("");
     }    
