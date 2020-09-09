@@ -26,13 +26,13 @@ const useStyles = makeStyles(theme => ({
         display: 'flex', 
         flexDirection: 'row-reverse',
         alignItems: 'center',
-        '& div.MuiOutlinedInput-root-65': {
+        '& div.MuiOutlinedInput-root': {
             height: '2em',
             marginLeft: '0.5em',
         },
-        '& div.MuiSelect-select-56:focus': {
+        '& div.MuiSelect-select:focus': {
             backgroundColor: '#ffffff',
-        }
+        },
     },
     
     post: {
