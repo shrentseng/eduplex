@@ -1,10 +1,9 @@
 .wrapper {
     display: grid;
-    grid-template-columns: 20% 60% 20%;
+    grid-template-columns: 20% 55% 25%;
     overflow-x: hidden;
     overflow-y: hidden;
     font-family: 'Roboto', sans-serif;
-    height: 100%vh;
 }
 html, body {
     width: 100%;

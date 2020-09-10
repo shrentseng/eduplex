@@ -11,7 +11,6 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { createMuiTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
 
 function Copyright() {
 	return (
@@ -100,25 +99,20 @@ export default function SignIn() {
 						id="password"
 						autoComplete="current-password"
 					/>
-					<ThemeProvider theme={theme}>
-						<FormControlLabel
-							control={<Checkbox value="remember" color="primary" />}
-							label="Remember me"
-						/>
-					</ThemeProvider>
-					
-					<ThemeProvider theme={theme}>
-						<Link href="/">
-							<Button
-							fullWidth
-							variant="contained"
-							className={classes.submit}
-							color="primary"
-							>
-								Sign In
-							</Button>
-						</Link>
-					</ThemeProvider>
+					<FormControlLabel
+						control={<Checkbox value="remember" color="primary" />}
+						label="Remember me"
+					/>
+					<Link href="/">
+						<Button
+						fullWidth
+						variant="contained"
+						className={classes.submit}
+						color="primary"
+						>
+							Sign In
+						</Button>
+					</Link>
 					<Grid container>
 						<Grid item xs>
 						<Link href={'./Register'} variant="body2">

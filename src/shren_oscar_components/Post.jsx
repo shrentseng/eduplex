@@ -13,6 +13,11 @@ const StyledSelect = withStyles({
         width: '7.5em',
         paddingLeft: '0.5em',
     },
+    select: {
+        '&:focus': {
+            backgroundColor: '#ffffff',
+        }
+    }
 })(Select);
 
 const useStyles = makeStyles(theme => ({
@@ -26,12 +31,13 @@ const useStyles = makeStyles(theme => ({
         display: 'flex', 
         flexDirection: 'row-reverse',
         alignItems: 'center',
-        '& div.MuiOutlinedInput-root': {
-            height: '2em',
+        '& div': {
             marginLeft: '0.5em',
+            height: '2em',
         },
-        '& div.MuiSelect-select:focus': {
-            backgroundColor: '#ffffff',
+        "& div[role='button']": {
+            height: '0em',
+            marginLeft: '0.5em',
         },
     },
     
@@ -51,14 +57,14 @@ const useStyles = makeStyles(theme => ({
     },
     anonymous: {
         margin: '0.2em',
-        width: theme.spacing(4),
-        height: theme.spacing(4),
+        width: '32px',
+        height: '32px',
         backgroundColor: 'white',
     },
     exclude: {
         margin: '0.2em',
-        width: theme.spacing(4),
-        height: theme.spacing(4),
+        width: '32px',
+        height: '32px',
     }
 }));
 
@@ -91,6 +97,7 @@ const Post = ({createPost}) => {
                             variant="outlined"
                             value={course}
                             onChange={handleSelectChange}
+                            id="StyledSelect"
                         >
                             {options.map((option, index) => (
                                 <MenuItem
