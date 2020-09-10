@@ -11,6 +11,7 @@ const styles = theme => ({
 	root: {
 		width: '100%',
 		marginLeft: "auto",
+		fontWeight: "100",
 	},
 	paper: {
 		width: "95%",

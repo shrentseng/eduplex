@@ -67,9 +67,6 @@ class Homepage extends Component {
         this.setState({ feeds: [{"content": content, "upvote": 0, "downvote": 0, "key": key}].concat(this.state.feeds)});
     }
 
-    
-    
-
     render() {
         return (
             <div>

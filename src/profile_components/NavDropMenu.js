@@ -4,6 +4,9 @@ import Menu from '@material-ui/core/Menu';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import TriangleIcon from './assets/drop_down_triangle.svg'
+import { Link } from 'react-router-dom';
+import {NavLink} from "react-router-dom";
+import CourseResults from '../shren_oscar_components/search_results/CourseResults'
 
 const options = [
     'Options',
@@ -32,7 +35,6 @@ export default function SimpleListMenu() {
   return (
     <div>
       <Button
-        ref={null}
         aria-haspopup="true"
         aria-controls="customized-menu"
         onClick={handleClickButton}
