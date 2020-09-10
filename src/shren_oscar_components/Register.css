@@ -12,18 +12,21 @@ button.button-group {
     width: 625px;
 }
 
-button.button-logIn {
+button.button-continue {
     color: #569859;
     background-color: #D2F0D4;
     width: 120%;
+    margin-top: 1em;
 }
 
-button.button-continue {
+button.button-back {
     color: #424242;
     background-color: #E5E5E5;
     width: 80%;
+    margin-top: 1em;
 }
 
 .error {
     color: red;
+    margin-top: 0.5em;
 }

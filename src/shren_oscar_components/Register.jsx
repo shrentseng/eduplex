@@ -12,25 +12,31 @@ class Register extends Component {
         
     }
 
-    onSetStep = () => {
+    onAddStep = () => {
         this.setState((state) => ({
             regStep: state.regStep + 1
+        }));
+    }
+
+    onMinusStep = () => {
+        this.setState((state) => ({
+            regStep: state.regStep -1
         }));
     }
 
     render() {
         let regForm;
         switch (this.state.regStep) {
-            case 1: regForm = <Register1 setStep={this.onSetStep}/>
+            case 1: regForm = <Register1 addStep={this.onAddStep} minusStep={this.onMinusStep}/>
             break;
             
-            case 2: regForm = <Register2 setStep={this.onSetStep}/>
+            case 2: regForm = <Register2 addStep={this.onAddStep} minusStep={this.onMinusStep}/>
             break;
 
-            case 3: regForm = <Register3 setStep={this.onSetStep}/>
+            case 3: regForm = <Register3 addStep={this.onAddStep} minusStep={this.onMinusStep}/>
             break;
 
-            default: regForm = <Register1 setStep={this.onSetStep}/>
+            default: regForm = <Register1 addStep={this.onAddStep} minusStep={this.onMinusStep}/>
         }
         return (
             <div className="form-center">

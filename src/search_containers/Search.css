@@ -1,11 +1,3 @@
-.wrapper {
-  display: grid;
-  grid-template-columns: 20% 60% 20%;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  font-family: Raleway;
-}
-
 .wrapper > * {
   width: 100%;
 }

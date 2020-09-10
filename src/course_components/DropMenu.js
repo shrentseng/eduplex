@@ -55,6 +55,7 @@ export default function SimpleListMenu() {
           lineHeight: '23px',
         }}>{options[selectedIndex]}</div>
       </Button>
+      
       <Menu
         anchorEl={anchorEl}
         keepMounted

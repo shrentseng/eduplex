@@ -83,7 +83,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Navbar = () => {
+const Navbar = ({onSearchBox}) => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -195,6 +195,7 @@ const Navbar = () => {
                                 style={{width: '100%'}}
                                 inputProps={{ 'aria-label': 'search' }}
                                 endAdornment={adornment}
+                                onChange={event => onSearchBox(event.target.value)}
                             />
                         </div>
                     </div>

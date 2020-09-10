@@ -8,19 +8,21 @@ import PlusIcon from '../assets/plus.png';
 
 const useStyles = makeStyles((theme) => ({
   
-addButton: {
-    width: 180,
-    height: 180,
-    border: '2px solid #C4C4C4',
-    boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-    textAlign: 'center',
-},
+    addButton: {
+        width: 180,
+        height: 180,
+        border: '2px solid #C4C4C4',
+        boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+        textAlign: 'center',
+    },
 
-placeholder: {
-    height: 73,
-}
+    placeholder: {
+        height: 73,
+    }
 
 }));
+
+
 
 const CardList = ({ disable, docs, deleteDoc }) => {
     const cardComponent = docs.map((name, i) => {
@@ -40,7 +42,6 @@ const CardList = ({ disable, docs, deleteDoc }) => {
         height: '670px',
         overflowY: 'scroll',
         overflowX: 'hidden',
-        padding: '0 26px',
         background: '#F7F7F7',
     };
     const classes = useStyles();

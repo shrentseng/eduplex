@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 import { useFormik } from 'formik';
+import { withStyles } from '@material-ui/core/styles';
 import './Register.css';
+import TextField from '@material-ui/core/TextField';
 
 const initialValues = {
     firstName: '',
@@ -15,10 +17,25 @@ const onSubmit = (values) => {
     console.log('Form data', values)
 }
 
+const MyTextField = withStyles({
+	root: {
+		'& label.Mui-focused': {
+			color: '#569859',
+		},
+		'& .MuiOutlinedInput-root': {
+			'&.Mui-focused fieldset': {
+				borderColor: '#569859',
+			},
+        },
+        marginTop: '1em',
+        marginBottom: '1em',
+    },
+})(TextField);
+
 const validate = (values) => {
     const errors = {};
-    var emailRegex = new RegExp("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}$", "i");
-    var passwordRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})");
+    let emailRegex = new RegExp("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}$", "i");
+    let passwordRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})");
 
     if (!values.firstName) {
         errors.firstName = 'Required';
@@ -41,13 +58,13 @@ const validate = (values) => {
     }
 
     if (values.password !== values.confirmPassword) {
-        errors.confirmPassword = 'Password does not match!'
+        errors.confirmPassword = 'Passwords did not match'
     }
     
     return errors;
 }
 
-const Register1 = ({setStep}) => {
+const Register1 = ({addStep}) => {
 
     const formik = useFormik({
         initialValues,
@@ -56,19 +73,18 @@ const Register1 = ({setStep}) => {
     })
 
     const submitForm = () => {
-        setStep();
+        addStep();
         formik.handleSubmit();
     }
 
     return (
         <form onSubmit={ submitForm }>
-            <div className="form-group row" style={{width: '625px'}}>
+            <div className="row" style={{width: '625px'}}>
                 <div className="col-6">
-                    <label htmlFor='' style={{display: 'inline-block', marginBottom: '0.5rem'}}>First Name</label>
-                    <input 
-                        type="text"
+                    <MyTextField 
+                        variant= "outlined"
                         className="form-control"
-                        placeholder="First Name"
+                        label="First Name"
                         name="firstName"
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
@@ -79,11 +95,10 @@ const Register1 = ({setStep}) => {
                     ) : null}
                 </div>
                 <div className="col-6">
-                    <label style={{display: 'inline-block', marginBottom: '0.5rem'}}>Last Name</label>
-                    <input 
-                        type="text" 
+                    <MyTextField 
+                        variant= "outlined"
                         className="form-control"
-                        placeholder="Last Name"
+                        label="Last Name"
                         name="lastName"
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
@@ -94,13 +109,13 @@ const Register1 = ({setStep}) => {
                     ) : null}
                 </div>
             </div>
-            <div className="form-group row">
+            <div className="row">
                 <div className="col">
-                    <label>Email address</label>
-                    <input 
+                    <MyTextField
+                        variant="outlined"
                         type="email" 
                         className="form-control" 
-                        placeholder="Enter email" 
+                        label="Email Address" 
                         name="email" 
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
@@ -111,13 +126,13 @@ const Register1 = ({setStep}) => {
                     ) : null}
                 </div>
             </div>
-            <div className="form-group row">
+            <div className="row">
                 <div className="col">
-                    <label>Password</label>
-                    <input 
+                    <MyTextField
+                        variant= "outlined"
                         type="password" 
                         className="form-control"
-                        placeholder="Password" 
+                        label="Password" 
                         name="password"
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
@@ -128,13 +143,13 @@ const Register1 = ({setStep}) => {
                     ) : null}
                 </div>
             </div>
-            <div className="form-group row">
+            <div className="row">
                 <div className="col">
-                    <label>Confirm Password</label>
-                    <input
+                    <MyTextField
+                        variant= "outlined"
                         type="password"
                         className="form-control"
-                        placeholder="Confirm Password"
+                        label="Confirm Password"
                         name="confirmPassword"
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
@@ -145,14 +160,14 @@ const Register1 = ({setStep}) => {
                     ) : null}
                 </div>
             </div>
-            <div className="form-group row button-group">
-                <div className="col">
-                    <button className="btn button-continue" type="submit" name="submit">Continue</button>
-                </div>
+            <div className="row">
                 <div className="col">
                     <Link to="/SignIn">
-                        <button className="btn float-right button-logIn" >Have an account? Log In</button>
+                        <button className="button-back btn" >Return to Log In</button>
                     </Link>
+                </div>
+                <div className="col">
+                        <button className="btn float-right button-continue" type="submit" name="submit">Continue</button>
                 </div>
             </div>
         </form>

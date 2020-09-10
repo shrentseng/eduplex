@@ -18,7 +18,8 @@ const styles = theme => ({
         margin: '1em',
     },
     paper: {
-        padding: "1em",
+        padding: '1em',
+        marginBottom: '1em',
     },
     headerItem: {
         display: 'flex',
@@ -26,8 +27,10 @@ const styles = theme => ({
     },
     avatar: {
         borderRadius: '50%',
+        marginRight: '0.5em',
     },
     bookmark: {
+        marginTop: '-1em',
     },
     body: {
         marginTop: '2em',
@@ -38,14 +41,13 @@ const styles = theme => ({
         whiteSpace: "pre-wrap",
     },
     footer: {
-        width: '10em',
+        width: '12em',
         height: '2em',
         marginLeft: '1em',
         alignContent: 'center',
         justifyContent: 'space-between',
     },
     footerItem: {
-        
         height: '1.5em',
     }
 });
@@ -75,35 +77,32 @@ class Feed extends Component {
             <div className={classes.root}>
                 <Paper className={classes.paper} elevation={5}>
                     <Grid container className={classes.header}>
-                        <Grid className={classes.headerItem} item xs={1}>
+                        <Grid className={classes.headerItem} item xs={4}>
                             <Avatar className={classes.avatar} src={avatar} />
+                            <Typography variant='h5' style={{marginRight: '1em'}}>{this.props.username}</Typography>
+                            <Typography variant='h6'>5 mins ago</Typography>
                         </Grid>
                         <Grid className={classes.headerItem} item xs={3}>
-                            <Typography>{this.props.username}</Typography>
-                        </Grid>
-                        <Grid className={classes.headerItem} item xs={3}>
-                            <Typography>Posted in Course 1</Typography>
-                        </Grid>
-                        <Grid className={classes.headerItem} item xs={2}>
-                            <Typography>5 mins ago</Typography>
+                            <Typography variant='h6'>Posted in {this.props.course}</Typography>
                         </Grid>
                         <Grid className={classes.headerItem} item xs={1} style={{marginLeft: 'auto'}}>
                             <img className={classes.bookmark} src={bookmark} />
                         </Grid>
                     </Grid>
-                    <Typography className={classes.body}>{this.props.content}</Typography>
+                    <Typography className={classes.body} variant='body1'>{this.props.content}</Typography>
                     <Grid container className={classes.footer}>
-                        <Grid item>
+                        <Grid item xs={2}>
                             <img className={classes.footerItem} src={like} onClick={(event) => this.props.handleLikeButton(this.props.index)}/>
                         </Grid>
-                        <Grid item>
-                            <Typography>{this.props.likeCount}</Typography>
+                        <Grid item xs={2}>
+                            <span style={{display: 'flex', justifyContent: 'center', paddingRight: '0.6em'}}>{this.props.likeCount}</span>
                         </Grid>
-                        <Grid item>
+                        <Grid item xs={2}>
                             <img className={classes.footerItem} src={dislike} onClick={(event) => this.props.handleDislikeButton(this.props.index)}/>
                         </Grid>
-                        <Grid item>
-                            <img className={classes.footerItem} src={comment} onClick={this.onToggleExpand}/>
+                        <Grid item xs={4}>
+                            <img className={classes.footerItem} style={{marginRight: '1em'}} src={comment} onClick={this.onToggleExpand}/>
+                            <Typography display='inline'>{this.props.commentCount}3</Typography>
                         </Grid>
                     </Grid>
                 </Paper>
@@ -113,20 +112,4 @@ class Feed extends Component {
     }
 }
 
-export default withStyles(styles)(Feed);
-
-{/* <div className={classes.header}>
-                        <Avatar className={classes.avatar} src={avatar} />
-                        <p>{this.state.username}</p>
-                        <p>Posted in Course 1</p>
-                        <img className={classes.bookmark} src={bookmark} />
-                    </div>
-                    <div className={classes.body}>{this.props.content}</div>
-                    <div className={classes.footer}>
-                        <img className={classes.footerItem} src={like} />
-                        <p className={classes.footerItem}>{this.props.upvote}</p>
-                        <img className={classes.footerItem} src={dislike} />
-                        <img className={classes.footerItem} src={comment} onClick={event => this.onSetExpand()}/>
-                        <img className={classes.footerItem} src={share} />
-                        <img className={classes.report} src={report} />
-                    </div> */}
+export default withStyles(styles)(Feed)

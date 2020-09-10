@@ -8,6 +8,8 @@ const useStyles = makeStyles(theme => ({
         padding: "0px",
         width: "100%",
         margin: "0px",
+        display: "flex",
+        justifyContent: "center",
     },
     paper: {
         margin: "0px",
@@ -17,9 +19,10 @@ const useStyles = makeStyles(theme => ({
     textArea: {
         margin: "10px",
         marginLeft:"15px",
+        paddingLeft: "0.1em",
         paddingBottom: "0px",
         fontSize: "20px",
-        width: "93%",
+        width: "44em",
         backgroundColor: "#F7F7F7",
         "&::placeholder": {
             color: "#C4C4C4"
@@ -46,10 +49,10 @@ const ReplyPost = ({createReply}) => {
         setContent("");
     }    
     return(
-            <div className={classes.root}>
-                    <TextField multiline className={classes.textArea} InputLabelProps={{shrink: false}} InputProps={{ disableUnderline: true }} type="text" placeholder="Write a comment... " value={content} onChange={event => setContent(event.target.value)}/>             
-                    <img src={exclude} style={{marginTop:"10px"}} onClick={event => onCreateReply(content)}/>
-            </div>
+        <div className={classes.root}>
+            <TextField multiline className={classes.textArea} InputLabelProps={{shrink: false}} InputProps={{ disableUnderline: true }} type="text" placeholder="Write a reply..." value={content} onChange={event => setContent(event.target.value)}/>             
+            <img src={exclude} onClick={event => onCreateReply(content)}/>
+        </div>
     )
 }
 

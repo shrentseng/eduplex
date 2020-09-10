@@ -1,6 +1,7 @@
 import React from 'react';
 import './ProfileTag.css';
 import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
 import RewardIcon from '../assets/reward-icon.svg';
 import Icon from '@material-ui/core/Icon';
 import SettingsIcon from '@material-ui/icons/Settings';
@@ -35,20 +36,23 @@ export default function ProfileTag(user) {
                 >
                     My Rewards
                 </Button>
-                <Button
-                    disableElevation
-                    variant='contained'
-                    size="small"
-                    style={{marginTop:'10px', backgroundColor:'#5ACA7F', width:'150px'}}
-                    startIcon = {
-                        // <Icon>
-                        //     <img src={GearIcon} alt="" height="20px"/>
-                        // </Icon>
-                        <SettingsIcon style={{ color: 'white' }}/>
-                    }
-                >
-                    <div style={{color:'white'}}>Edit Profile</div>
-                </Button>
+                <Link to="/EditProfile" style={{textDecoration: 'none'}}>
+                    <Button
+                        component="button"
+                        disableElevation
+                        variant='contained'
+                        size="small"
+                        style={{marginTop:'10px', backgroundColor:'#5ACA7F', width:'150px'}}
+                        startIcon = {
+                            // <Icon>
+                            //     <img src={GearIcon} alt="" height="20px"/>
+                            // </Icon>
+                            <SettingsIcon style={{ color: 'white' }}/>
+                        }
+                    >
+                        <div style={{color:'white'}}>Edit Profile</div>
+                    </Button>
+                </Link>
             </div>
         </div>
     )
