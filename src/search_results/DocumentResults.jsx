@@ -39,7 +39,7 @@ class DocumentResults extends Component
         });
         
         return (
-          <div>
+          <div style={{height:"100%"}}>
             <GridOrList onClickGrid={this.onClickGrid} onClickList={this.onClickList} grid={this.state.grid}/>
             <CardList disable={!this.state.grid} docs={docs}/>
             <ListView disable={this.state.grid} docs={docs}/>

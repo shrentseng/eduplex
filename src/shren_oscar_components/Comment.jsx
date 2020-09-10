@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import MuiAccordion from '@material-ui/core/Accordion';
@@ -136,7 +136,7 @@ class Comment extends Component{
 				<div style={{marginRight: '1em'}}>
 					<Avatar className={classes.avatar} src={avatar} />
 				</div>
-                <div>
+                <div style={{width:"90%"}}>
 					<div className={classes.comment}>
 						<Typography variant='h5'>{this.props.username}</Typography>
 						<Typography variant='body1'>{this.props.content}</Typography>
