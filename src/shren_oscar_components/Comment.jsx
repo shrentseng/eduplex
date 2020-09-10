@@ -136,9 +136,13 @@ class Comment extends Component{
 				<div style={{marginRight: '1em'}}>
 					<Avatar className={classes.avatar} src={avatar} />
 				</div>
-                <div style={{width:"90%"}}>
+                <div style={{width: '90%'}}>
 					<div className={classes.comment}>
-						<Typography variant='h5'>{this.props.username}</Typography>
+						<div style={{display: 'flex', alignItems: 'center'}}>
+							<Typography variant='h5'>{this.props.username}</Typography>
+							<Typography variant='h6' style={{margin: '0 0.4em'}}>•</Typography>
+							<Typography variant='h6'>{'5 min ago'}</Typography>
+						</div>
 						<Typography variant='body1'>{this.props.content}</Typography>
 					</div>
 					<Accordion elevation={0} expanded={this.state.isExpand}>

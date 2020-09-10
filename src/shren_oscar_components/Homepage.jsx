@@ -20,7 +20,10 @@ const theme = createMuiTheme({
 		body1: {
 			fontFamily: 'Roboto',
 			fontSize: '1em',
-		}
+        },
+        p: {
+            wordBreak: 'break-all',
+        }
 	}
 })
 
