@@ -3,7 +3,7 @@ import CardList from '../my_course_components/CardList';
 import { withStyles } from "@material-ui/core/styles";
 
 
-const styles = theme => ({
+const styles = (theme) => ({
 	root: {
 		marginTop: '5px',
 	},
