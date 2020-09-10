@@ -27,7 +27,7 @@ const styles = theme => ({
     },
     avatar: {
         borderRadius: '50%',
-        marginRight: '0.5em',
+        marginRight: '0.7em',
     },
     bookmark: {
         marginTop: '-1em',
@@ -77,13 +77,14 @@ class Feed extends Component {
             <div className={classes.root}>
                 <Paper className={classes.paper} elevation={5}>
                     <Grid container className={classes.header}>
-                        <Grid className={classes.headerItem} item xs={4}>
+                        <Grid className={classes.headerItem} item xs={3}>
                             <Avatar className={classes.avatar} src={avatar} />
-                            <Typography variant='h5' style={{marginRight: '1em'}}>{this.props.username}</Typography>
-                            <Typography variant='h6'>5 mins ago</Typography>
+                            <Typography variant='h5'>{this.props.username}</Typography>
                         </Grid>
                         <Grid className={classes.headerItem} item xs={3}>
-                            <Typography variant='h6'>Posted in {this.props.course}</Typography>
+                            <Typography variant='h6'>{`Posted in ${this.props.course} `}</Typography>
+                            <Typography variant='h6' style={{margin: '0 0.4em'}}>•</Typography>
+                            <Typography variant='h6'>{'5 mins ago'}</Typography>
                         </Grid>
                         <Grid className={classes.headerItem} item xs={1} style={{marginLeft: 'auto'}}>
                             <img className={classes.bookmark} src={bookmark} />

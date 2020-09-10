@@ -3,7 +3,7 @@ import {
     BrowserRouter as Router,
     Switch,
     Route
-  } from "react-router-dom";
+} from "react-router-dom";
 import './assets/bootstrap.min.css'
 import './App.css';
 import Register from './shren_oscar_components/Register';
@@ -12,7 +12,7 @@ import SignIn from './shren_oscar_components/SignIn';
 import Homepage from './shren_oscar_components/Homepage';
 import SideBar from './shared_components/SideBar';
 import Course from './course_containers/Course';
-import Profile from './profile_containers/Profile';
+import Profile from './profile/Profile';
 import Search from './search_containers/Search';
 import MyCourse from './my_course_containers/MyCourse';
 import CourseResults from './search_results/CourseResults'
@@ -21,6 +21,7 @@ import DocumentResults from './search_results/DocumentResults'
 
 
 class App extends Component {
+
     constructor() {
         super()
         this.state = {
@@ -28,7 +29,7 @@ class App extends Component {
         }
     }
 
-    onSearch = (content) =>
+    onSearch = (content,index) =>
     {
         this.setState(
             {

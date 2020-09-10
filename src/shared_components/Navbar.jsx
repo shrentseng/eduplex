@@ -17,7 +17,7 @@ import SimpleListMenu from './NavDropMenu';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import { InputAdornment } from '@material-ui/core';
 import Hidden from '@material-ui/core/Hidden';
-import { Link } from 'react-router-dom';
+import { Link, useHistory} from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#E5E5E5',
         height: '36px',
         marginLeft: '1px',
-        width: '73%',
+        width: '75%',
     },
     searchIcon: {
         height: '36px',
@@ -87,6 +87,9 @@ const Navbar = ({onSearchBox}) => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+    const [listIndex, setListIndex] = React.useState(0);
+    const [searchBox, setSearchBox] = React.useState("");
+    const history = useHistory();
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -107,6 +110,30 @@ const Navbar = ({onSearchBox}) => {
     const handleMobileMenuOpen = event => {
         setMobileMoreAnchorEl(event.currentTarget);
     };
+
+    const handleListIndex = (index) => {
+        setListIndex(index);
+    }
+
+    const handleSearchBox = (content) => {
+        setSearchBox(content);
+    }
+
+    const handleRoute = () => {
+        onSearchBox(searchBox)
+        if(listIndex === 1)
+        {
+            history.push("/DocumentResults")
+        }
+        else if(listIndex === 2)
+        {
+            history.push("/CourseResults")
+        }
+        else if(listIndex === 3)
+        {
+            history.push("/")
+        }
+    }
 
     const menuId = "primary-search-account-menu";
     const renderMenu = (
@@ -157,14 +184,8 @@ const Navbar = ({onSearchBox}) => {
       </Menu>
     );
     const adornmentIcon = (
-    <IconButton className={classes.iconButton}>
-        <Link to="/Search">
-            <SearchIcon fontSize="small"
-            classes={{
-                searchIcon: classes.searchIcon,
-            }}
-            />
-        </Link>
+    <IconButton>
+            <SearchIcon fontSize="small" onClick={handleRoute}/>
     </IconButton>
     );
     const adornment = (
@@ -184,7 +205,7 @@ const Navbar = ({onSearchBox}) => {
                         </Link>
                     </div>
                     <div style={{display: 'flex', justifyContent:'flex-start'}}>
-                        <SimpleListMenu className={classes.DropMenu}/>
+                        <SimpleListMenu className={classes.DropMenu} setIndex={handleListIndex}/>
                         <div className={classes.search}>
                             <InputBase
                                 placeholder="Search..."
@@ -195,7 +216,7 @@ const Navbar = ({onSearchBox}) => {
                                 style={{width: '100%'}}
                                 inputProps={{ 'aria-label': 'search' }}
                                 endAdornment={adornment}
-                                onChange={event => onSearchBox(event.target.value)}
+                                onChange={event => handleSearchBox(event.target.value)}
                             />
                         </div>
                     </div>

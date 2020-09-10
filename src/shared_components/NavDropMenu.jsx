@@ -1,7 +1,4 @@
 import React from 'react';
-import {
-  useHistory,
-} from "react-router-dom";
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import Button from '@material-ui/core/Button';
@@ -15,10 +12,9 @@ const options = [
     'Discussion'
 ];
 
-export default function SimpleListMenu() {
+export default function SimpleListMenu({setIndex}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
-  const history = useHistory();
 
   const handleClickButton = (event) => {
     setAnchorEl(event.currentTarget);
@@ -27,18 +23,7 @@ export default function SimpleListMenu() {
   const handleMenuItemClick = (index) => {
     setSelectedIndex(index);
     setAnchorEl(null);
-    if(index === 1)
-    {
-      history.push("/DocumentResults");
-    }
-    else if(index === 2)
-    {
-      history.push("/CourseResults");
-    }
-    else if(index === 3)
-    {
-      history.push("");
-    }
+    setIndex(index);
   };
 
   const handleClose = () => {
