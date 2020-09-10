@@ -1,33 +1,9 @@
 import React, { Component } from 'react';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
+import { theme_homepage } from '../shared_components/theme';
 import './Homepage.css';
-import Feed from './Feed.jsx';
-import Post from './Post.jsx';
-
-const theme = createMuiTheme({
-	typography: {
-		h5: {
-			fontFamily: 'Roboto',
-			color: '#365E7D',
-			fontWeight: 500,
-			fontSize: '1.25em',
-        },
-        h6: {
-            fontFamily: 'Roboto',
-            color: '#5A5A5A',
-            fontSize: '0.75em',
-        },
-		body1: {
-			fontFamily: 'Roboto',
-			fontSize: '1em',
-        },
-        p: {
-            wordBreak: 'break-all',
-        }
-	}
-})
-
-
+import Feeds from './Feeds';
+import Post from './Post';
 
 class Homepage extends Component {
     constructor(props) {
@@ -63,38 +39,38 @@ class Homepage extends Component {
         };
     }
 
-    onHandleLikeButton = (key) => {
-        let temp = this.state.feeds
-        let index = temp.findIndex(feed => feed.key === key) // because key doesn't equal to index
-        temp[index].likeCount ++
-        this.setState({feeds: temp })
-    }
+    // onHandleLikeButton = (key) => {
+    //     let temp = this.state.feeds
+    //     let index = temp.findIndex(feed => feed.key === key) // because key doesn't equal to index
+    //     temp[index].likeCount ++
+    //     this.setState({feeds: temp })
+    // }
 
-    onHandleDislikeButton = (key) => {
-        let temp = this.state.feeds
-        let index = temp.findIndex(feed => feed.key === key)
-        temp[index].likeCount --
-        this.setState({feeds: temp })
-    }
+    // onHandleDislikeButton = (key) => {
+    //     let temp = this.state.feeds
+    //     let index = temp.findIndex(feed => feed.key === key)
+    //     temp[index].likeCount --
+    //     this.setState({feeds: temp })
+    // }
 
-    renderFeed() {
-        if (this.state.feeds.length === 0) {
-            return <div>No Feed</div>
-        } else {
-            return this.state.feeds.map((feed) => {
-                return <Feed
-                    username={feed.username}
-                    content={feed.content}
-                    likeCount={feed.likeCount}
-                    index={feed.key}
-                    key={feed.key}
-                    course={feed.course}
-                    handleLikeButton={this.onHandleLikeButton}
-                    handleDislikeButton={this.onHandleDislikeButton}
-                />
-            })
-        }
-    }
+    // renderFeed() {
+    //     if (this.state.feeds.length === 0) {
+    //         return <div>No Feed</div>
+    //     } else {
+    //         return this.state.feeds.map((feed) => {
+    //             return <Feed
+    //                 username={feed.username}
+    //                 content={feed.content}
+    //                 likeCount={feed.likeCount}
+    //                 index={feed.key}
+    //                 key={feed.key}
+    //                 course={feed.course}
+    //                 handleLikeButton={this.onHandleLikeButton}
+    //                 handleDislikeButton={this.onHandleDislikeButton}
+    //             />
+    //         })
+    //     }
+    // }
 
     onCreatePost = (content, course) => {
         let key = this.state.feeds.length;
@@ -103,10 +79,10 @@ class Homepage extends Component {
 
     render() {
         return (
-            <ThemeProvider theme={theme}>
+            <ThemeProvider theme={theme_homepage}>
                 <div>
                     <Post createPost={this.onCreatePost}/>
-                    {this.renderFeed()}
+                    <Feeds feeds={this.state.feeds} />
                 </div>
             </ThemeProvider>
         );

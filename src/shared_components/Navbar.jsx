@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
         paddingLeft: '20px',
     },
     selectEmpty: {
-        marginTop: theme.spacing(2),
+        marginTop: 'theme.spacing(2)',
     },
     Toolbar: {
         display: 'grid',
@@ -67,8 +67,8 @@ const useStyles = makeStyles((theme) => ({
     sectionDesktop: {
         display: 'none',
         [theme.breakpoints.up('md')]: {
-        display: 'flex',
-        marginLeft: 'auto',
+            display: 'flex',
+            marginLeft: 'auto',
         },
         paddingRight: '90px',
     },
@@ -153,35 +153,35 @@ const Navbar = ({onSearchBox}) => {
 
     const mobileMenuId = "primary-search-account-menu-mobile";
     const renderMobileMenu = (
-      <Menu
-        anchorEl={mobileMoreAnchorEl}
-        anchorOrigin={{ vertical: "top", horizontal: "right" }}
-        id={mobileMenuId}
-        keepMounted
-        transformOrigin={{ vertical: "top", horizontal: "right" }}
-        open={isMobileMenuOpen}
-        onClose={handleMobileMenuClose}
-      >
-        <MenuItem>
-          <IconButton aria-label="show 11 new notifications" color="inherit">
-            <Badge badgeContent={11} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
-          <p>Notifications</p>
-        </MenuItem>
-        <MenuItem onClick={handleProfileMenuOpen}>
-          <IconButton
-            aria-label="account of current user"
-            aria-controls="primary-search-account-menu"
-            aria-haspopup="true"
-            color="inherit"
-          >
-            <AccountCircle />
-          </IconButton>
-          <p>Profile</p>
-        </MenuItem>
-      </Menu>
+		<Menu
+			anchorEl={mobileMoreAnchorEl}
+			anchorOrigin={{ vertical: "top", horizontal: "right" }}
+			id={mobileMenuId}
+			keepMounted
+			transformOrigin={{ vertical: "top", horizontal: "right" }}
+			open={isMobileMenuOpen}
+			onClose={handleMobileMenuClose}
+		>
+			<MenuItem>
+			<IconButton aria-label="show 11 new notifications" color="inherit">
+				<Badge badgeContent={11} color="secondary">
+				<NotificationsIcon />
+				</Badge>
+			</IconButton>
+			<p>Notifications</p>
+			</MenuItem>
+			<MenuItem onClick={handleProfileMenuOpen}>
+			<IconButton
+				aria-label="account of current user"
+				aria-controls="primary-search-account-menu"
+				aria-haspopup="true"
+				color="inherit"
+			>
+				<AccountCircle />
+			</IconButton>
+			<p>Profile</p>
+			</MenuItem>
+		</Menu>
     );
     const adornmentIcon = (
     <IconButton>
@@ -241,11 +241,11 @@ const Navbar = ({onSearchBox}) => {
                         </div>
                         <div className={classes.sectionMobile}>
                             <IconButton
-                            aria-label="show more"
-                            aria-controls={mobileMenuId}
-                            aria-haspopup="true"
-                            onClick={handleMobileMenuOpen}
-                            color="inherit"
+								aria-label="show more"
+								aria-controls={mobileMenuId}
+								aria-haspopup="true"
+								onClick={handleMobileMenuOpen}
+								color="inherit"
                             >
                             <MoreIcon />
                             </IconButton>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { NavLink } from "react-router-dom";
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -7,7 +8,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import NewsfeedIcon from '../assets/newsfeed.svg';
 import MyCoursesIcon from '../assets/myCourses.svg';
-import { NavLink } from "react-router-dom";
+
 
 const useStyles = makeStyles({
 	root: {
@@ -85,7 +86,6 @@ function SideBar(props) {
 		<div>
 			<Drawer
 				classes={{
-					
 					paper: classes.drawerPaper,
 				}}
 				variant="permanent"
