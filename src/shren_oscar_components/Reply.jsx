@@ -23,7 +23,11 @@ const Reply = (props) => {
                 <Avatar className={classes.avatar} src={avatar} />
             </div>
             <div className={classes.reply}>
-                <Typography variant='h5'>{props.username}</Typography>
+                <div style={{display: 'flex', alignItems: 'center'}}>
+                    <Typography variant='h5'>{props.username}</Typography>
+                    <Typography variant='h6' style={{margin: '0 0.4em'}}>•</Typography>
+                    <Typography variant='h6'>{'5 min ago'}</Typography>
+                </div>
                 <Typography variant='body1'>{props.content}</Typography>
             </div>
         </div>

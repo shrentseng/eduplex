@@ -83,7 +83,7 @@ class Feed extends Component {
                         </Grid>
                         <Grid className={classes.headerItem} item xs={3}>
                             <Typography variant='h6'>{`Posted in ${this.props.course} `}</Typography>
-                            <span style={{margin: '0 0.4em'}}>•</span>
+                            <Typography variant='h6' style={{margin: '0 0.4em'}}>•</Typography>
                             <Typography variant='h6'>{'5 mins ago'}</Typography>
                         </Grid>
                         <Grid className={classes.headerItem} item xs={1} style={{marginLeft: 'auto'}}>
