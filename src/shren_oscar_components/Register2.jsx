@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
 import './Register.css';
 import Select from '@material-ui/core/Select'
 import InputLabel from '@material-ui/core/InputLabel'
