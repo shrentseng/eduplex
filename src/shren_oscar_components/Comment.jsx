@@ -1,5 +1,6 @@
+
 import React, { Component } from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
 import MuiAccordion from '@material-ui/core/Accordion';
@@ -49,7 +50,7 @@ const Accordion = withStyles({
 	expanded: {
 		margin: 0,
 	}
-  })(MuiAccordion);
+})(MuiAccordion);
 
 const AccordionSummary = withStyles({
 	root: {
