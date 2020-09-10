@@ -49,7 +49,7 @@ const Accordion = withStyles({
 	expanded: {
 		margin: 0,
 	}
-  })(MuiAccordion);
+})(MuiAccordion);
 
 const AccordionSummary = withStyles({
 	root: {
