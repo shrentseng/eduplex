@@ -40,11 +40,11 @@ class App extends Component {
     render() {
         return (
             <Router>
-                <div style={{background: '#F7F7F7'}}>
+                <div style={{background: '#E5E5E5'}}>
                     <Navbar onSearchBox={this.onSearch}/>
                     <div className="wrapper">
-                        <div> 
-                            <SideBar/>
+                        <div > 
+                            <SideBar />
                         </div>
                         <Switch>
                             <Route exact path="/">

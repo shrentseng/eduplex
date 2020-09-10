@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
+import { useFormik } from 'formik';
 import RewardIcon from '../assets/reward-icon.svg';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -13,11 +14,7 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionActions from '@material-ui/core/AccordionActions';
 
-import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Chip from '@material-ui/core/Chip';
-import Divider from '@material-ui/core/Divider';
-import clsx from 'clsx';
 
 const StyledPaper = withStyles({
     root: {
@@ -99,6 +96,13 @@ const useStyles = makeStyles(theme => ({
         background: '#FFFFFF',
         border: '1px solid #C4C4C4',
     },
+    formikInput: {
+        width: '25em',
+        marginTop: '1.5em',
+    },
+    formikError: {
+        color: '#ff0000',
+    },
     personalInformation: {
         display: 'flex',
         alignItems: 'center', 
@@ -116,8 +120,6 @@ const useStyles = makeStyles(theme => ({
     cancel: {
         color: '#5A5A5A',
         backgroundColor: '#E5E5E5',
-       
-
     },
     save: {
         color: '#FFFFFF',
@@ -131,7 +133,7 @@ const EditProfile = () => {
 
     const classes = useStyles();
 
-    const [email, setemail] = useState('lspss94076@gmail.com');
+    const [email, setEmail] = useState('lspss94076@gmail.com');
 
     const [university, setUniversity] = useState('UCLA');
     const [tempUniversity, setTempUniversity] = useState(university);
@@ -151,7 +153,10 @@ const EditProfile = () => {
 
     const [isEditing, setIsEditing] = useState(false);
 
-    const submitChanges = () => {
+    const [isEmailAccExpanded, setIsEmailAccExpanded] = useState(false);
+    const [isPasswordAccExpanded, setIsPasswordAccExpanded] = useState(false);
+
+    const submitPersonalInformation = () => {
         if (tempUniversity) 
             setUniversity(tempUniversity)
         if (tempMajor)
@@ -163,7 +168,7 @@ const EditProfile = () => {
         setIsEditing(!isEditing)
     }
 
-    const handleCancel = () => {
+    const cancelPersonalInformation = () => {
         setTempUniversity(university)
         setTempMajor(major)
         setTempMinor(minor)
@@ -171,6 +176,86 @@ const EditProfile = () => {
         setIsEditing(!isEditing)
     }
 
+
+    const cancelEmail = () => {
+        setIsEmailAccExpanded(false)
+        formikEmail.values.email = ''
+        formikEmail.errors.email = false
+    }
+
+    const submitEmail = () => {
+        setEmail(formikEmail.values.email)
+        cancelEmail()
+    }
+
+    const cancelPassword = () => {
+        setIsPasswordAccExpanded(false)
+        formikPassword.values.old = ''
+        formikPassword.values.new = ''
+        formikPassword.values.confirm = ''
+        formikPassword.touched.old = false
+        formikPassword.errors.old = false
+        formikPassword.touched.new = false
+        formikPassword.errors.new = false
+        formikPassword.touched.confirm = false
+        formikPassword.errors.confirm = false
+    }
+
+    const submitPassword = () => {
+        cancelPassword()
+        //update password
+    }
+
+    const formikEmail = useFormik({
+        initialValues: {
+            email: '',
+        },
+        onSubmit: values => {
+            console.log('Form data', values)
+        },
+        validate: values => {
+            let errors = {}
+            var emailRegex = new RegExp("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}$", "i");
+            if (!values.email) {
+                errors.email = 'Required'
+            } else if (!emailRegex.test(values.email)) {
+                errors.email = 'Invalid email address';
+            }
+            return errors
+        }
+    })
+
+    const formikPassword = useFormik({
+        initialValues: {
+            old: '',
+            new: '',
+            confirm: '',
+        },
+        onSubmit: values => {
+            console.log('Form data', values)
+        },
+        validate: values => {
+            let errors = {}
+            let passwordRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})")
+
+            if (!values.old) {
+                errors.old = 'Required'
+            }
+
+            if (!values.new) {
+                errors.new = 'Required'
+            } else if (!passwordRegex.test(values.new)) {
+                errors.new = 'Password must contain at least 1 lowercase, uppercase and numeric character'
+            }
+
+            if (!values.confirm) {
+                errors.confirm = 'Required'
+            } else if (values.new !== values.confirm) {
+                errors.confirm = 'Passwords did not match'
+            }
+            return errors
+        }
+    })
 
     return (
         <div className='root'>
@@ -181,7 +266,7 @@ const EditProfile = () => {
                     Edit
                 </Button>
                 
-                <Link to="/EditProfile" style={{textDecoration: 'none', marginLeft: 'auto', marginTop: '3em'}}>
+                <Link to="/Profile" style={{textDecoration: 'none', marginLeft: 'auto', marginTop: '3em'}}>
                     <Button
 
                         className={classes.backToProfile}
@@ -195,46 +280,137 @@ const EditProfile = () => {
                     </Button>
                 </Link>
             </div>
-            
-
-
 
             <div>
                 <h1>Account</h1>
-                
-                <StyledAccordion>
-                    <AccordionSummary expandIcon={<ExpandMoreIcon />}  style={{padding: '0px'}}>
+                <StyledAccordion expanded={isEmailAccExpanded}>
+                    <AccordionSummary expandIcon={<ExpandMoreIcon />}  style={{padding: '0px'}} onClick={() => setIsEmailAccExpanded(!isEmailAccExpanded)}>
                         <b>Email Address</b><span style={{paddingLeft: '20px'}} />{email}
                     </AccordionSummary>
                     
-                    
-                    <AccordionDetails>
-                        <div>
-                        </div>
+                    <AccordionDetails style={{paddingTop: '0px', paddingBottom: '0px'}}>
+                        <form>
+                            <TextField
+                                name="email"
+                                label="New Email"
+                                type="email"
+                                placeholder="New Email"
+                                variant="outlined"
+                                onChange={formikEmail.handleChange}
+                                value={formikEmail.values.email}
+                                className={classes.formikInput}
+                                size="small"
+                                error={formikEmail.errors.email}
+                            />
+                            {formikEmail.errors.email ? <div className={classes.formikError}>{formikEmail.errors.email}</div> : null}
+                        </form>
                     </AccordionDetails>
-
-                    <AccordionActions>
-                        <Button size="small">Cancel</Button>
-                        <Button size="small">
+                        
+                    <AccordionActions style={{paddingBottom: '2em'}}>
+                        <Button 
+                            variant="contained" 
+                            size="large" 
+                            className={classes.cancel}
+                            onClick={cancelEmail}
+                        >
+                            Cancel
+                        </Button>
+                        <Button
+                            variant="contained"
+                            size="large"
+                            className={classes.save}
+                            startIcon={<SaveIcon />}
+                            onClick={submitEmail}
+                            disabled={!(formikEmail.isValid && formikEmail.dirty)}
+                        >
                             Save
                         </Button>
                     </AccordionActions>
                 </StyledAccordion>
 
-                <StyledAccordion>
-                    <AccordionSummary expandIcon={<ExpandMoreIcon />}  style={{padding: '0px'}}>
+                <StyledAccordion expanded={isPasswordAccExpanded}>
+                    <AccordionSummary expandIcon={<ExpandMoreIcon />}  style={{padding: '0px'}} onClick={() => setIsPasswordAccExpanded(!isPasswordAccExpanded)}>
                         <b>Change Password</b>
                     </AccordionSummary>
                     
                     
-                    <AccordionDetails>
-                        <div>
-                        </div>
+                    <AccordionDetails style={{paddingTop: '0px', paddingBottom: '0px'}}>
+                        <form onSubmit={formikPassword.handleSubmit}>
+                            <div>
+                                <TextField
+                                    name="old"
+                                    label="Old Password"
+                                    type="password"
+                                    placeholder="Old Password"
+                                    variant="outlined"
+                                    onChange={formikPassword.handleChange}
+                                    onBlur={formikPassword.handleBlur}
+                                    value={formikPassword.values.old}
+                                    className={classes.formikInput}
+                                    size="small"
+                                    error={formikPassword.touched.old && formikPassword.errors.old}
+                                />
+                                {formikPassword.touched.old && formikPassword.errors.old ? (
+                                    <div className={classes.formikError}>{formikPassword.errors.old}</div>  
+                                ) : <div></div>}
+                            </div>
+                            <div>
+                                <TextField
+                                    name="new"
+                                    label="New Password"
+                                    type="password"
+                                    placeholder="New Password"
+                                    variant="outlined"
+                                    onChange={formikPassword.handleChange}
+                                    onBlur={formikPassword.handleBlur}
+                                    value={formikPassword.values.new}
+                                    className={classes.formikInput}
+                                    size="small"
+                                    error={formikPassword.touched.new && formikPassword.errors.new}
+                                />
+                                {formikPassword.touched.new && formikPassword.errors.new ? (
+                                    <div className={classes.formikError}>{formikPassword.errors.new}</div> 
+                                ) : <div></div>}
+                            </div>
+                            <div>
+                                <TextField
+                                    name="confirm"
+                                    label="Confirm Password"
+                                    type="password"
+                                    placeholder="Confirm Password"
+                                    variant="outlined"
+                                    onChange={formikPassword.handleChange}
+                                    onBlur={formikPassword.handleBlur}
+                                    value={formikPassword.values.confirm}
+                                    className={classes.formikInput}
+                                    size="small"
+                                    error={formikPassword.touched.confirm && formikPassword.errors.confirm}
+                                />
+                                {formikPassword.touched.confirm && formikPassword.errors.confirm ? (
+                                    <div className={classes.formikError}>{formikPassword.errors.confirm}</div>
+                                ) : <div></div>}
+                            </div>
+                            
+                        </form>
                     </AccordionDetails>
 
-                    <AccordionActions>
-                        <Button size="small">Cancel</Button>
-                        <Button size="small">
+                    <AccordionActions style={{paddingBottom: '2em'}}>
+                        <Button 
+                            variant="contained" 
+                            size="large" 
+                            className={classes.cancel}
+                            onClick={cancelPassword}
+                        >
+                            Cancel
+                        </Button>
+                        <Button
+                            variant="contained"
+                            size="large"
+                            className={classes.save}
+                            startIcon={<SaveIcon />}
+                            onClick={submitPassword}
+                            disabled={!(formikPassword.isValid && formikPassword.dirty)}
+                        >
                             Save
                         </Button>
                     </AccordionActions>
@@ -284,9 +460,6 @@ const EditProfile = () => {
                     ) : (
                         <StyledTextField variant="outlined" type="text" value={tempMinor} onChange={event => setTempMinor(event.target.value)}/>
                     )}
-
-
-                    
                 </StyledPaper>
 
                 <StyledPaper>
@@ -309,7 +482,7 @@ const EditProfile = () => {
                         variant="contained" 
                         size="large" 
                         className={classes.cancel}
-                        onClick={handleCancel}
+                        onClick={cancelPersonalInformation}
                     >
                         Cancel
                     </Button>
@@ -318,7 +491,7 @@ const EditProfile = () => {
                         size="large"
                         className={classes.save}
                         startIcon={<SaveIcon />}
-                        onClick={submitChanges}
+                        onClick={submitPersonalInformation}
                     >
                         Save
                     </Button>

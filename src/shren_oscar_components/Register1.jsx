@@ -34,8 +34,8 @@ const MyTextField = withStyles({
 
 const validate = (values) => {
     const errors = {};
-    var emailRegex = new RegExp("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}$", "i");
-    var passwordRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})");
+    let emailRegex = new RegExp("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}$", "i");
+    let passwordRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})");
 
     if (!values.firstName) {
         errors.firstName = 'Required';
@@ -58,7 +58,7 @@ const validate = (values) => {
     }
 
     if (values.password !== values.confirmPassword) {
-        errors.confirmPassword = 'Password does not match!'
+        errors.confirmPassword = 'Passwords did not match'
     }
     
     return errors;

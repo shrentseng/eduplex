@@ -235,9 +235,3 @@ const Navbar = () => {
 }
 
 export default Navbar;
-
-/*
-<Button className={classes.upload} href={Upload}>
-    Upload
-</Button>
-*/
