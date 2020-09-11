@@ -11,7 +11,7 @@ import Navbar from './common/Nav&Side/Navbar';
 import SignIn from './pages/loginSignup/SignIn';
 import Homepage from './pages/homepage/Homepage';
 import SideBar from './common/Nav&Side/SideBar';
-import Course from './course_containers/Course';
+import Course from './pages/course/Course';
 import Profile from './pages/profile/Profile';
 import Search from './search_containers/Search';
 import MyCourse from './pages/my_courses/MyCourses';
@@ -25,6 +25,7 @@ class App extends Component {
         super()
         this.state = {
             searchBox: "",
+            courses: [ "Course 1", "Course 2" ],
         }
     }
 
@@ -40,7 +41,7 @@ class App extends Component {
                         <Navbar onSearchBox={this.onSearch}/>
                         <div className="wrapper">
                             <div > 
-                                <SideBar />
+                                <SideBar courses={this.state.courses} />
                             </div>
                             <Switch>
                                 <Route exact path="/">
@@ -52,9 +53,11 @@ class App extends Component {
                                 <Route path="/Register">
                                     <Register />
                                 </Route>
-                                <Route path="/Course">
-                                    <Course />
-                                </Route>
+                                {this.state.courses.map((course) => (
+                                    <Route path={`/${course.split(" ").join("")}`}>
+                                        <Course course={course} />
+                                    </Route>
+                                ))}
                                 <Route path="/Profile">
                                     <Profile />
                                 </Route>

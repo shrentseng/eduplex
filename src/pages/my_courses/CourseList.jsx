@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { makeStyles } from "@material-ui/core/styles";
-import Course from './Course';
+import CourseCard from './CourseCard';
 import Card from "@material-ui/core/Card";
 import CardActionArea from '@material-ui/core/CardActionArea';
 import Grid from '@material-ui/core/Grid';
@@ -30,7 +30,6 @@ const useStyles = makeStyles(() => ({
     placeholder: {
         height: 73,
     }
-
 }));
 
 function CourseList() {
@@ -73,7 +72,7 @@ function CourseList() {
     const cardComponent = courses.map((course, i) => {
         return (
             <Grid item key={i}>
-                <Course
+                <CourseCard
                     courseTitle={course.title}
                     courseNumber={course.number}
                     deleteCourse={onDeleteCourse}

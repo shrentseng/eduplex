@@ -85,4 +85,15 @@ export const theme_my_courses = createMuiTheme({
 	}
 });
 
+export const theme_course = createMuiTheme({
+	typography: {
+		h2: {
+			fontFamily: 'Raleway',
+			color: '#000000',
+			fontSize: '2em',
+			fontWeight: '600',
+		},
+	}
+});
+
 export default { theme_homepage, theme_profile };

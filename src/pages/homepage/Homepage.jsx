@@ -2,8 +2,8 @@ import React, { Component, createRef } from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { theme_homepage } from '../../common/theme';
 import './Homepage.css';
-import Feeds from '../../common/feeds/Feeds';
-import Post from '../../common/feeds/Post';
+import Feeds from './Feeds';
+import Post from './Post';
 
 class Homepage extends Component {
     constructor(props) {

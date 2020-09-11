@@ -32,7 +32,7 @@ const useStyles = makeStyles(() => ({
 	},
 }));
 
-function Course(props) {
+function CourseCard(props) {
 	const classes = useStyles();
     const [isShown, setIsShown] = useState(false);
     
@@ -61,5 +61,5 @@ function Course(props) {
     );
 }
 
-export default Course;
+export default CourseCard;
 

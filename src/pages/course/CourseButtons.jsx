@@ -4,13 +4,12 @@ import { NavLink, useHistory } from 'react-router-dom';
 import Select from 'react-select';
 import Button from '@material-ui/core/Button';
 import Typography from "@material-ui/core/Typography";
-import './PostButtons.css';
 
 const useStyles = makeStyles({
     buttons: {
         height: '2.25rem',
         display: 'grid',
-        gridTemplateColumns: '1fr 1fr 1fr',
+        gridTemplateColumns: '1fr 1fr',
         marginTop: '10px',
     },
     select: {
@@ -70,42 +69,32 @@ const options = [
     { value: '6', label: 'Others' },
 ]
 
-function ProfileButtons() {
+function CourseButtons({ course }) {
     const classes = useStyles();
     const [selected, setSelected] = useState(null);
     const history = useHistory();
-
+    const courseURL = course.split(" ").join("");
     const handleSelectChange = (option) => {
         console.log(option);
         setSelected(option);
-        history.push("/Profile/Uploaded")
+        history.push(`/${courseURL}/Documents`)
     }
-
+    
     return (
         <div className={classes.buttons}>
-            <NavLink exact to="/Profile" className={classes.link} activeClassName={classes.active}>
+            <NavLink exact to={`/${courseURL}/Discussion`} className={classes.link} activeClassName={classes.active}>
                 <StyledButton
                     disableElevation
                     variant='contained'
                     size="small"
                 >
-                    <Typography variant="h3">My Posts</Typography>
+                    <Typography variant="h3">Discussion</Typography>
                 </StyledButton>
             </NavLink>
             
             <Select className={classes.select} onChange={value => handleSelectChange(value)} options={options} />
-            
-            <NavLink to="/Profile/Saved" className={classes.link} activeClassName={classes.active}>
-                <StyledButton
-                    disableElevation
-                    variant='contained'
-                    size="small"
-                >
-                    <Typography variant="h3">Saved Documents</Typography>
-                </StyledButton>
-            </NavLink>
         </div>
     )
 }
 
-export default ProfileButtons;
+export default CourseButtons;

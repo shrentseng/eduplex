@@ -63,16 +63,15 @@ const useStyles = makeStyles({
 	}
 });
 
-function SideBar(props) {
+function SideBar({ courses }) {
 	const classes = useStyles();
-	const [courses, setCourses] = useState(['Course 1', 'Course 2']);
 
 	//fecth courses data
 
 	const courseList = courses.map((course, i) => {
         return (
 			<div>
-				<NavLink exact activeClassName={classes.active} to={course.split(" ").join("")}>
+				<NavLink  activeClassName={classes.active} to={course.split(" ").join("")}>
 					<ListItem button className={`${classes.nested} ${classes.button}`}>
 						<ListItemText primary={course} className={classes.text}/>
 					</ListItem>
