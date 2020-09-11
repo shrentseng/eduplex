@@ -11,9 +11,9 @@ class Course extends Component {
 	constructor() {
 		super();
 		this.state = {
-		docs: [],
-		grid: true,
-		searchField: ""
+			docs: [],
+			grid: true,
+			searchField: ""
 		};
 		this.onClickGrid = this.onClickGrid.bind(this);
 		this.onClickList = this.onClickList.bind(this);

@@ -4,7 +4,7 @@ import CustomizedCard from './Card';
 import Card from "@material-ui/core/Card";
 import CardActionArea from '@material-ui/core/CardActionArea';
 import Grid from '@material-ui/core/Grid';
-import PlusIcon from '../assets/plus.png';
+import PlusIcon from '../../assets/plus.png';
 
 const useStyles = makeStyles((theme) => ({
   

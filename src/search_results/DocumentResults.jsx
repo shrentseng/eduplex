@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import CardList from '../profile_components/CardList';
-import ListView from '../profile_components/ListView';
-import GridOrList from '../profile_components/GridOrList';
+import CardList from '../common/documents/CardList';
+import ListView from '../common/documents/ListView';
+import GridOrList from '../common/documents/GridOrList';
 
 class DocumentResults extends Component
 {
