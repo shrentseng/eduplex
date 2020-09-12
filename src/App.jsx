@@ -40,7 +40,7 @@ class App extends Component {
         return (
                 <Router>
                     <div style={{background: '#F7F7F7'}}>
-                        <Navbar onSearchBox={this.onSearch}/>
+                        <Navbar />
                         <div className="wrapper">
                             <ThemeProvider theme={theme_sidebar}>
                                 <SideBar courses={this.state.courses} />
