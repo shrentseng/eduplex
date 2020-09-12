@@ -6,18 +6,20 @@ import {
 } from "react-router-dom";
 import './assets/bootstrap.min.css'
 import './App.css';
-import Register from './shren_oscar_components/Register';
-import Navbar from './shared_components/Navbar';
-import SignIn from './shren_oscar_components/SignIn';
-import Homepage from './shren_oscar_components/Homepage';
-import SideBar from './shared_components/SideBar';
-import Course from './course_containers/Course';
-import Profile from './profile/Profile';
+import Register from './pages/loginSignup/Register';
+import Navbar from './common/Nav&Side/Navbar';
+import SignIn from './pages/loginSignup/SignIn';
+import Homepage from './pages/homepage/Homepage';
+import SideBar from './common/Nav&Side/SideBar';
+import Course from './pages/course/Course';
+import Profile from './pages/profile/Profile';
 import Search from './search_containers/Search';
-import MyCourse from './my_course_containers/MyCourse';
+import MyCourse from './pages/my_courses/MyCourses';
 import CourseResults from './search_results/CourseResults'
-import EditProfile from './shren_oscar_components/EditProfile';
+import EditProfile from './pages/profile/EditProfile';
 import DocumentResults from './search_results/DocumentResults'
+import { ThemeProvider } from '@material-ui/core/styles';
+import { theme_sidebar } from './common/theme';
 
 class App extends Component {
 
@@ -25,28 +27,24 @@ class App extends Component {
         super()
         this.state = {
             searchBox: "",
+            courses: [ "Course 1", "Course 2" ],
         }
     }
 
     onSearch = (content,index) =>
     {
-        this.setState(
-            {
-                searchBox: content,
-            }
-        )
+        this.setState({ searchBox: content })
     }
 
     render() {
         return (
-            
                 <Router>
-                    <div style={{background: '#E5E5E5'}}>
+                    <div style={{background: '#F7F7F7'}}>
                         <Navbar onSearchBox={this.onSearch}/>
                         <div className="wrapper">
-                            <div > 
-                                <SideBar />
-                            </div>
+                            <ThemeProvider theme={theme_sidebar}>
+                                <SideBar courses={this.state.courses} />
+                            </ThemeProvider>
                             <Switch>
                                 <Route exact path="/">
                                     <Homepage />
@@ -57,9 +55,11 @@ class App extends Component {
                                 <Route path="/Register">
                                     <Register />
                                 </Route>
-                                <Route path="/Course">
-                                    <Course />
-                                </Route>
+                                {this.state.courses.map((course) => (
+                                    <Route path={`/${course.split(" ").join("")}`}>
+                                        <Course course={course} />
+                                    </Route>
+                                ))}
                                 <Route path="/Profile">
                                     <Profile />
                                 </Route>
@@ -69,7 +69,7 @@ class App extends Component {
                                 <Route path="/Search">
                                     <Search />
                                 </Route>
-                                <Route path="/MyCourse">
+                                <Route path="/MyCourses">
                                     <MyCourse />
                                 </Route>
                                 <Route path="/CourseResults">
