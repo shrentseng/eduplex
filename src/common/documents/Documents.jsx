@@ -7,6 +7,7 @@ function Documents() {
 
     const [documents, setDocuments] = useState([]);
     const [grid, setGrid ] = useState(true);
+    
     useEffect(() => {
         fetch('https://jsonplaceholder.typicode.com/albums')
 		.then(response => response.json())

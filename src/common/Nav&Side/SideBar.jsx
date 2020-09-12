@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { NavLink } from "react-router-dom";
+import { makeStyles } from '@material-ui/core/styles';
+import Typography from "@material-ui/core/Typography";
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
 import NewsfeedIcon from '../../assets/newsfeed.svg';
 import MyCoursesIcon from '../../assets/myCourses.svg';
-
 
 const useStyles = makeStyles({
 	root: {
@@ -37,43 +36,37 @@ const useStyles = makeStyles({
 				backgroundColor: '#71BA75',
 			},
 		},
-		'& div > div > span': {
-			color: 'white',  //not working
-		}
+		'& h2, & h3': {
+			fontFamily: 'Raleway',
+			color: '#FFFFFF',
+			fontWeight: '700',
+			fontSize: '1.375rem',
+		},
 	},
 	nested: {
 		paddingLeft: '90px',
 	},
 	button: {
+		transition: 'none',
 		'&:active, &:hover, &.active:hover': {
 			backgroundColor: '#f7f7f7',
 			borderRadius: '0px 25px 25px 0px',
 		},
-		'&.MuiListItem-button': {
-			transition: 'none',
-		},
 	},
-	text: {
-		'& span.MuiTypography-body1': {
-			fontFamily: 'Raleway',
-			color: '#5A5A5A',
-			fontWeight: '500',
-			fontSize: '1.4em',
-		},
-	}
 });
 
 function SideBar({ courses }) {
 	const classes = useStyles();
-
 	//fecth courses data
 
-	const courseList = courses.map((course, i) => {
+	const courseList = courses.map((course) => {
         return (
 			<div>
-				<NavLink  activeClassName={classes.active} to={course.split(" ").join("")}>
+				<NavLink activeClassName={classes.active} to={`/${course.split(" ").join("")}`}>
 					<ListItem button className={`${classes.nested} ${classes.button}`}>
-						<ListItemText primary={course} className={classes.text}/>
+						<Typography variant="h3">
+							{course}
+						</Typography>
 					</ListItem>
 				</NavLink>
 			</div>
@@ -82,7 +75,7 @@ function SideBar({ courses }) {
     });
 
 	return (
-		<div>
+		<div className={classes.root}>
 			<Drawer
 				classes={{
 					paper: classes.drawerPaper,
@@ -98,7 +91,9 @@ function SideBar({ courses }) {
 								<ListItemIcon>
 									<img src={NewsfeedIcon} alt="" height="100%"/>
 								</ListItemIcon>
-								<ListItemText primary="Newsfeed" className={classes.text}/>
+								<Typography variant="h2">
+									Newsfeed
+								</Typography>
 							</ListItem>
 						</NavLink>
 						<NavLink  to="/MyCourses" exact activeClassName={classes.active}>
@@ -106,7 +101,9 @@ function SideBar({ courses }) {
 								<ListItemIcon>
 									<img src={MyCoursesIcon} alt="" height="100%"/>
 								</ListItemIcon>
-								<ListItemText primary="My Courses" className={classes.text}/>
+								<Typography variant="h2">
+									My Courses
+								</Typography>
 							</ListItem>
 						</NavLink>
 						<List disablePadding>

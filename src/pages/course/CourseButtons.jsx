@@ -1,21 +1,22 @@
-import React , { useState } from 'react';
+import React , { useState, useEffect } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink, useHistory, useLocation } from 'react-router-dom';
 import Select from 'react-select';
 import Button from '@material-ui/core/Button';
 import Typography from "@material-ui/core/Typography";
+import { buttonActiveFont } from '../../common/styles';
 
 const useStyles = makeStyles({
     buttons: {
+        width: 'calc(100% - 2rem)',
         height: '2.25rem',
         display: 'grid',
         gridTemplateColumns: '1fr 1fr',
-        marginTop: '10px',
+        margin: '1rem 0 1rem 1rem',
     },
     select: {
         height: '2.25rem',
         backgroundColor: '#FFFFFF',
-        width:'98%',
         '& .css-yk16xz-control': {
             minHeight: '0px',
             height: '2.25rem',
@@ -27,9 +28,24 @@ const useStyles = makeStyles({
             fontSize: '1rem',
             fontWeight: '400',
         },
+        '& .css-1pahdxg-control, & .css-1pahdxg-control:hover': {
+            borderColor: '#E5E5E5',
+            boxShadow: 'none',
+        },
         '&:focus': {
             outline: 'none',
         },
+    },
+    selectActive: {
+        '& .css-yk16xz-control': {
+            backgroundColor: '#71BA75',
+        },
+        '& .css-1pahdxg-control, & .css-1pahdxg-control:hover': {
+            borderColor: '#E5E5E5',
+            backgroundColor: '#71BA75',
+            boxShadow: 'none',
+        },
+        '& .css-1uccc91-singleValue': buttonActiveFont,
     },
     link: {
         textDecoration: 'none',
@@ -44,6 +60,7 @@ const useStyles = makeStyles({
 				backgroundColor: '#71BA75',
 			},
         },
+        '& h3': buttonActiveFont,
     },
 
 })
@@ -57,6 +74,7 @@ const StyledButton = withStyles({
         '&:focus': {
             outline: 'none',
         },
+        textTransform: 'none',
     },
 })(Button)
 
@@ -69,20 +87,31 @@ const options = [
     { value: '6', label: 'Others' },
 ]
 
-function CourseButtons({ course }) {
+function CourseButtons({ course, pathname }) {
     const classes = useStyles();
-    const [selected, setSelected] = useState(null);
-    const history = useHistory();
+    let history = useHistory();
+    let location = useLocation();
+    const [selectClassName, setSelectClassName] = useState(null);
     const courseURL = course.split(" ").join("");
+
+    useEffect(() => {
+        if (location.pathname === `/${courseURL}/Documents`) {
+            setSelectClassName(classes.selectActive)
+            console.log('selected')
+        } else {
+            setSelectClassName(null)
+            console.log('null')
+        }
+    }, [history, location])
+
+
     const handleSelectChange = (option) => {
-        console.log(option);
-        setSelected(option);
         history.push(`/${courseURL}/Documents`)
     }
     
     return (
         <div className={classes.buttons}>
-            <NavLink exact to={`/${courseURL}/Discussion`} className={classes.link} activeClassName={classes.active}>
+            <NavLink exact to={`/${courseURL}`} className={classes.link} activeClassName={classes.active}>
                 <StyledButton
                     disableElevation
                     variant='contained'
@@ -92,7 +121,7 @@ function CourseButtons({ course }) {
                 </StyledButton>
             </NavLink>
             
-            <Select className={classes.select} onChange={value => handleSelectChange(value)} options={options} />
+            <Select className={`${classes.select} ${selectClassName}`} onChange={value => handleSelectChange(value)} options={options} />
         </div>
     )
 }

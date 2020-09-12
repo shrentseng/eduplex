@@ -18,6 +18,8 @@ import MyCourse from './pages/my_courses/MyCourses';
 import CourseResults from './search_results/CourseResults'
 import EditProfile from './pages/profile/EditProfile';
 import DocumentResults from './search_results/DocumentResults'
+import { ThemeProvider } from '@material-ui/core/styles';
+import { theme_sidebar } from './common/theme';
 
 class App extends Component {
 
@@ -40,9 +42,9 @@ class App extends Component {
                     <div style={{background: '#F7F7F7'}}>
                         <Navbar onSearchBox={this.onSearch}/>
                         <div className="wrapper">
-                            <div > 
+                            <ThemeProvider theme={theme_sidebar}>
                                 <SideBar courses={this.state.courses} />
-                            </div>
+                            </ThemeProvider>
                             <Switch>
                                 <Route exact path="/">
                                     <Homepage />

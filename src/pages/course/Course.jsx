@@ -1,14 +1,7 @@
-import React, { useState } from 'react';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route
-} from "react-router-dom";
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import React from 'react';
+import { Route, Switch } from "react-router";
+import { makeStyles } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/core/styles';
-import { NavLink, useHistory } from 'react-router-dom';
-import Select from 'react-select';
-import Button from '@material-ui/core/Button';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import Typography from "@material-ui/core/Typography";
 import { theme_homepage, theme_course } from '../../common/theme';
@@ -24,6 +17,7 @@ const useStyles = makeStyles(() => ({
     join: {
         display: 'flex',
         alignItems: 'center',
+        margin: '1rem 0',
     },
     select: {
         height: '2.25rem',
@@ -46,18 +40,6 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
-const StyledButton = withStyles({
-    root: {
-        height: '2.25rem',
-        backgroundColor: '#FFFFFF',
-        border: '1px solid #E5E5E5',
-        width:'98%',
-        '&:focus': {
-            outline: 'none',
-        },
-    },
-})(Button)
-
 const options = [
     { value: '1', label: 'Documents' },
     { value: '2', label: 'Lecture Notes' },
@@ -69,33 +51,25 @@ const options = [
 
 function Course({ course }) {
     const classes = useStyles();
-    const history = useHistory();
-    const [selected, setSelected] = useState(null);
-
-    const handleSelectChange = (option) => {
-        console.log(option);
-        setSelected(option);
-        history.push("/Profile/Uploaded")
-    }
+    const courseURL = course.split(" ").join("");
 
     return (
         <ThemeProvider theme={theme_course}>
             <div className={classes.root}>
                 <Typography variant="h2">{course}</Typography>
                 <div className={classes.join}>
-                    <AddCircleOutlineIcon />
-                    <Typography variant="h2">Join Course</Typography>
+                    <AddCircleOutlineIcon style={{color: '#0088D7'}} />
+                    <Typography variant="h4">Join Course</Typography>
                 </div>
                 <CourseButtons course={course} />
-                
                 <Switch>
-                    <Route path={`/${course.split(" ").join("")}/Discussion`}>
+                    <Route exact path={`/${courseURL}`}>
                         <SearchBox />
 						<ThemeProvider theme={theme_homepage}>
                             <Homepage />
 						</ThemeProvider>
 					</Route>
-					<Route path={`/${course.split(" ").join("")}/Documents`}>
+					<Route path={`/${courseURL}/Documents`}>
                         <SearchBox />
 						<Document />
 					</Route>

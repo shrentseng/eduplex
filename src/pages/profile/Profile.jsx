@@ -15,49 +15,21 @@ class Profile extends Component {
 	constructor() {
 		super();
 			this.state = {
-				docs: [],
 				grid: true,
 				searchField: "",
 			};
-		this.onClickGrid = this.onClickGrid.bind(this);
-		this.onClickList = this.onClickList.bind(this);
-		this.onChangeSearch = this.onChangeSearch.bind(this);
-	}
-
-	// componentDidMount() {
-	// 	fetch('https://jsonplaceholder.typicode.com/albums')
-	// 	.then(response => response.json())
-	// 	.then(docs => this.setState({docs}));
-	// }
-	
-	onClickGrid() {
-		this.setState(state => ({
-			grid: true
-		}));
-	}
-
-	onClickList() {
-		this.setState(state => ({
-			grid: false
-		}));
-	}
-
-	onChangeSearch(newValue) {
-		this.setState(state => ({
-			searchField: newValue
-		}))
 	}
 
 	render() {
-		const searchField = this.state.searchField;
-		const docs = this.state.docs.filter(doc => {
-			return doc.title.toLowerCase().includes(searchField.toLowerCase());
-		});
-		
+		// const searchField = this.state.searchField;
+		// const docs = this.state.docs.filter(doc => {
+		// 	return doc.title.toLowerCase().includes(searchField.toLowerCase());
+		// });
+
 		return (
 			<div>
 				<ThemeProvider theme={theme_profile}>
-					<ProfileTag/>
+					<ProfileTag />
 					<ProfileButtons />
 				</ThemeProvider>
 				

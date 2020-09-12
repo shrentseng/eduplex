@@ -1,10 +1,10 @@
-import React , { useState } from 'react';
+import React , { useState, useEffect } from 'react';
+import { NavLink, useHistory, useLocation } from 'react-router-dom';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
-import { NavLink, useHistory } from 'react-router-dom';
 import Select from 'react-select';
 import Button from '@material-ui/core/Button';
 import Typography from "@material-ui/core/Typography";
-import './PostButtons.css';
+import { buttonActiveFont } from '../../common/styles';
 
 const useStyles = makeStyles({
     buttons: {
@@ -28,9 +28,24 @@ const useStyles = makeStyles({
             fontSize: '1rem',
             fontWeight: '400',
         },
+        '& .css-1pahdxg-control, & .css-1pahdxg-control:hover': {
+            borderColor: '#E5E5E5',
+            boxShadow: 'none',
+        },
         '&:focus': {
             outline: 'none',
         },
+    },
+    selectActive: {
+        '& .css-yk16xz-control': {
+            backgroundColor: '#71BA75',
+        },
+        '& .css-1pahdxg-control, & .css-1pahdxg-control:hover': {
+            borderColor: '#E5E5E5',
+            backgroundColor: '#71BA75',
+            boxShadow: 'none',
+        },
+        '& .css-1uccc91-singleValue': buttonActiveFont,
     },
     link: {
         textDecoration: 'none',
@@ -38,13 +53,14 @@ const useStyles = makeStyles({
             textDecoration: 'none',
         },
     },
-    active: {
+    buttonActive: {
         '& button': {
 			backgroundColor: '#71BA75',
 			'&:active, &:hover, &.active:hover': {
 				backgroundColor: '#71BA75',
 			},
         },
+        '& h3': buttonActiveFont,
     },
 
 })
@@ -58,6 +74,7 @@ const StyledButton = withStyles({
         '&:focus': {
             outline: 'none',
         },
+        textTransform: 'none',
     },
 })(Button)
 
@@ -72,18 +89,25 @@ const options = [
 
 function ProfileButtons() {
     const classes = useStyles();
-    const [selected, setSelected] = useState(null);
-    const history = useHistory();
+    let history = useHistory();
+    let location = useLocation();
+    const [selectClassName, setSelectClassName] = useState(null);
 
-    const handleSelectChange = (option) => {
-        console.log(option);
-        setSelected(option);
+    useEffect(() => {
+        if (location.pathname === "/Profile/Uploaded") {
+            setSelectClassName(classes.selectActive)
+        } else {
+            setSelectClassName(null)
+        }
+    }, [location])
+    
+    const handleSelectChange = () => {
         history.push("/Profile/Uploaded")
     }
 
     return (
         <div className={classes.buttons}>
-            <NavLink exact to="/Profile" className={classes.link} activeClassName={classes.active}>
+            <NavLink exact to="/Profile" className={classes.link} activeClassName={classes.buttonActive}>
                 <StyledButton
                     disableElevation
                     variant='contained'
@@ -93,9 +117,9 @@ function ProfileButtons() {
                 </StyledButton>
             </NavLink>
             
-            <Select className={classes.select} onChange={value => handleSelectChange(value)} options={options} />
+            <Select className={`${classes.select} ${selectClassName}`} onChange={value => handleSelectChange(value)} options={options} />
             
-            <NavLink to="/Profile/Saved" className={classes.link} activeClassName={classes.active}>
+            <NavLink to="/Profile/Saved" className={classes.link} activeClassName={classes.buttonActive}>
                 <StyledButton
                     disableElevation
                     variant='contained'

@@ -1,5 +1,22 @@
 import { createMuiTheme } from '@material-ui/core/styles'
 
+export const theme_sidebar = createMuiTheme({
+	typography: {
+		h2: {
+			fontFamily: 'Raleway',
+			color: '#5A5A5A',
+			fontWeight: '500',
+			fontSize: '1.5em',
+		},
+		h3: {
+			fontFamily: 'Raleway',
+			color: '#5A5A5A',
+			fontWeight: '400',
+			fontSize: '1.375em',
+		},
+	}
+})
+
 export const theme_homepage = createMuiTheme({
 	typography: {
 		h5: {
@@ -90,10 +107,20 @@ export const theme_course = createMuiTheme({
 		h2: {
 			fontFamily: 'Raleway',
 			color: '#000000',
-			fontSize: '2em',
+			fontSize: '2rem',
 			fontWeight: '600',
+		},
+		h3: {
+			fontFamily: 'Raleway',
+			color: '#111111',
+			fontSize: '1rem',
+			fontWeight: '400',
+		},
+		h4: {
+			fontFamily: 'Roboto',
+			color: '#0088D7',
+			fontSize: '1rem',
+			fontWeight: '400',
 		},
 	}
 });
-
-export default { theme_homepage, theme_profile };
