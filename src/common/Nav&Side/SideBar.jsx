@@ -17,7 +17,7 @@ const useStyles = makeStyles({
 		background: '#F7F7F7',
 		width: '15%',
 		minWidth: '180px',
-		marginTop: '75px',
+		marginTop: '4.7rem',
 		border: '0px'
 	},
 	list: {

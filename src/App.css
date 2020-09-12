@@ -4,6 +4,7 @@
     overflow-x: hidden;
     overflow-y: hidden;
     font-family: 'Roboto', sans-serif;
+    margin-top: 4rem;
 }
 html, body {
     width: 100%;

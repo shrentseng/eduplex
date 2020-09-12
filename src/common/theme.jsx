@@ -48,13 +48,13 @@ export const theme_profile = createMuiTheme({
 		h1: {
 			fontFamily: 'Raleway',
 			color: '#000000',
-			fontSize: '2.25em',
+			fontSize: '2.25rem',
 			fontWeight: '600',
 		},
 		h2: {
 			fontFamily: 'Roboto',
 			color: '#365E7D',
-			fontSize: '1.125em',
+			fontSize: '1.125rem',
 			fontWeight: '400',
 		},
 		h3: {
@@ -66,7 +66,7 @@ export const theme_profile = createMuiTheme({
 		h4: {
 			fontFamily: 'Roboto',
 			color: '#000000',
-			fontSize: '1.125em',
+			fontSize: '1.125rem',
 			fontWeight: '400',
 		},
 	}
