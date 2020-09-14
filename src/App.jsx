@@ -6,6 +6,8 @@ import {
 } from "react-router-dom";
 import './assets/bootstrap.min.css'
 import './App.css';
+import { ThemeProvider } from '@material-ui/core/styles';
+import { theme_document_upload, theme_sidebar, theme_homepage } from './common/theme';
 import Register from './pages/loginSignup/Register';
 import Navbar from './common/Nav&Side/Navbar';
 import SignIn from './pages/loginSignup/SignIn';
@@ -18,11 +20,9 @@ import MyCourse from './pages/my_courses/MyCourses';
 import CourseResults from './search_results/CourseResults'
 import EditProfile from './pages/profile/EditProfile';
 import DocumentResults from './search_results/DocumentResults'
-import { ThemeProvider } from '@material-ui/core/styles';
-import { theme_sidebar } from './common/theme';
+import DocumentUpload from './pages/upload/DocumentUpload';
 
 class App extends Component {
-
     constructor() {
         super()
         this.state = {
@@ -38,50 +38,57 @@ class App extends Component {
 
     render() {
         return (
-                <Router>
-                    <div style={{background: '#F7F7F7'}}>
-                        <Navbar />
-                        <div className="wrapper">
-                            <ThemeProvider theme={theme_sidebar}>
-                                <SideBar courses={this.state.courses} />
-                            </ThemeProvider>
-                            <Switch>
-                                <Route exact path="/">
+            <Router>
+                <div style={{background: '#F7F7F7'}}>
+                    <Navbar />
+                    <div className="wrapper">
+                        <ThemeProvider theme={theme_sidebar}>
+                            <SideBar courses={this.state.courses} />
+                        </ThemeProvider>
+                        <Switch>
+                            <Route exact path="/">
+                                <ThemeProvider theme={theme_homepage}>
                                     <Homepage />
+                                </ThemeProvider>
+                            </Route>
+                            <Route path="/SignIn">
+                                <SignIn />
+                            </Route>
+                            <Route path="/Register">
+                                <Register />
+                            </Route>
+                            {this.state.courses.map((course) => (
+                                <Route path={`/${course.split(" ").join("")}`}>
+                                    <Course course={course} />
                                 </Route>
-                                <Route path="/SignIn">
-                                    <SignIn />
-                                </Route>
-                                <Route path="/Register">
-                                    <Register />
-                                </Route>
-                                {this.state.courses.map((course) => (
-                                    <Route path={`/${course.split(" ").join("")}`}>
-                                        <Course course={course} />
-                                    </Route>
-                                ))}
-                                <Route path="/Profile">
-                                    <Profile />
-                                </Route>
-                                <Route path="/EditProfile">
-                                    <EditProfile />
-                                </Route>
-                                <Route path="/Search">
-                                    <Search />
-                                </Route>
-                                <Route path="/MyCourses">
-                                    <MyCourse />
-                                </Route>
-                                <Route path="/CourseResults">
-                                    <CourseResults keyWords={this.state.searchBox}/>
-                                </Route>
-                                <Route path="/DocumentResults">
-                                    <DocumentResults keyWords={this.state.searchBox}/>
-                                </Route>
-                            </Switch>
-                        </div>
+                            ))}
+                            <Route path="/Profile">
+                                <Profile />
+                            </Route>
+                            <Route path="/EditProfile">
+                                <EditProfile />
+                            </Route>
+                            <Route path="/Search">
+                                <Search />
+                            </Route>
+                            <Route path="/MyCourses">
+                                <MyCourse />
+                            </Route>
+                            <Route path="/CourseResults">
+                                <CourseResults keyWords={this.state.searchBox}/>
+                            </Route>
+                            <Route path="/DocumentResults">
+                                <DocumentResults keyWords={this.state.searchBox}/>
+                            </Route>
+                            <Route path="/DocumentUpload">
+                                <ThemeProvider theme={theme_document_upload}>
+                                    <DocumentUpload />
+                                </ThemeProvider>
+                            </Route>
+                        </Switch>
                     </div>
-                </Router>
+                </div>
+            </Router>
         );
     }
 }

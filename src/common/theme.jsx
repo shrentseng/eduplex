@@ -124,3 +124,26 @@ export const theme_course = createMuiTheme({
 		},
 	}
 });
+
+export const theme_document_upload = createMuiTheme({
+	typography: {
+		h2: {
+			fontFamily: 'Roboto',
+			color: '#000000',
+			fontSize: '2.25rem',
+			fontWeight: '500',
+		},
+		h3: {
+			fontFamily: 'Roboto',
+			color: '#000000',
+			fontSize: '1rem',
+			fontWeight: '500',
+		},
+		h4: {
+			fontFamily: 'Roboto',
+			color: '#365E7D',
+			fontSize: '1.125rem',
+			fontWeight: '400',
+		},
+	}
+});

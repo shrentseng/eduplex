@@ -24,6 +24,16 @@ const useStyles = makeStyles(() => ({
 		height: '3.7rem',
 		display: 'flex',
 		backgroundColor: '#FFFFFF',
+		'& a':{
+            fontFamily: 'Roboto',
+            color: '#5A5A5A',
+            fontSize: '1rem',
+            fontWeight: '400',
+			textDecoration: 'none',
+			"&:focus, &:hover, &:visited, &:link, &:active": {
+				textDecoration: 'none',
+			},
+		}
 	},
 	grid: {
 		height: '100%',
@@ -107,11 +117,6 @@ const useStyles = makeStyles(() => ({
 		color: '#909090',
 		margin: '0 1rem',
 	},
-	avatar: {
-		height: '2.125rem',
-		width: '2.125rem',
-		margin: '0 2rem 0 1rem',
-	},
 }));
 
 const options = [
@@ -122,7 +127,6 @@ const options = [
 
 function Navbar() {
 	const classes = useStyles();
-
 	
     return (
         <AppBar className={classes.root}>
@@ -148,21 +152,17 @@ function Navbar() {
                 </Grid>
                 <Grid lg={4} className={classes.rightStuffs}>
                     {/* //upload & noti & profile */}
-					
-					<Button
-						variant="contained"
-						className={classes.uploadButton}
-						startIcon={<CloudUploadIcon />}
-					>
-						Upload
-					</Button>
+					<Link to="/DocumentUpload">
+						<Button
+							variant="contained"
+							className={classes.uploadButton}
+							startIcon={<CloudUploadIcon />}
+						>
+							Upload
+						</Button>
+					</Link>
 					<NotificationsIcon className={classes.notificationsIcon} />
-					{/* <Avatar 
-						className={classes.avatar}
-						
-					/> */}
-					<AvatarNavbar className={classes.avatar} />
-					
+					<AvatarNavbar />
                 </Grid>
             </Grid>
         </AppBar>

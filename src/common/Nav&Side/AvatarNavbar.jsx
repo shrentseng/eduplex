@@ -10,17 +10,23 @@ import avatar from '../../assets/avatar.svg';
 
 const useStyles = makeStyles(() => ({
     root: {
-		margin: '0 2rem 0 1rem',
+        margin: '0 2rem 0 1rem',
+        cursor: 'pointer',
     },
 	avatar: {
 		padding: 0,
-		margin: 0,
+		margin: '2px',
 		minHeight: 0,
 		minWidth: 0,
-        backgroundColor: 'red',
-        height: '2.125rem',
-		width: '2.125rem',
-		borderRadius: '50%',
+        backgroundColor: '#FFFFFF',
+        height: 'calc(2.125rem + 2px)',
+		width: 'calc(2.125rem + 2px)',
+        borderRadius: '50%',
+        boxSizing: 'content-box',
+        '&:hover': {
+            
+            border: '2px solid red',
+        },
     },
     accountMenu: {
         marginTop: '1rem',
