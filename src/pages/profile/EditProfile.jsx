@@ -193,7 +193,7 @@ const EditProfile = () => {
             email: '',
         },
         onSubmit: values => {
-            console.log('Form data', values)
+            //console.log('Form data', values)
         },
         validate: values => {
             let errors = {}
@@ -214,7 +214,7 @@ const EditProfile = () => {
             confirm: '',
         },
         onSubmit: values => {
-            console.log('Form data', values)
+            //console.log('Form data', values)
         },
         validate: values => {
             let errors = {}

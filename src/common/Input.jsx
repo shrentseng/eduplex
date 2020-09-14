@@ -5,7 +5,6 @@ import React, { useState } from 'react';
 function Input({ placeholder, width, height, valueIn }) {
     const [value, setValue] = useState(valueIn);
     const style = {
-        margin: '0.5rem 1rem',
         border: '1px solid #E5E5E5',
         borderRadius: '5px 5px 5px 5px',
         outline: 'none',
@@ -26,8 +25,7 @@ function Input({ placeholder, width, height, valueIn }) {
             placeholder={placeholder} 
             onChange={handleChange}
         />
-
-    )
+    );
 }
 
 export default Input;

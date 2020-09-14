@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import { withRouter } from "react-router";
 import {
     BrowserRouter as Router,
     Switch,
-    Route
+    Route,
 } from "react-router-dom";
 import './assets/bootstrap.min.css'
-import './App.css';
+//import './App.css';
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { theme_document_upload, theme_sidebar, theme_homepage } from './common/theme';
 import Register from './pages/loginSignup/Register';
@@ -22,13 +24,31 @@ import EditProfile from './pages/profile/EditProfile';
 import DocumentResults from './search_results/DocumentResults'
 import DocumentUpload from './pages/upload/DocumentUpload';
 
+
+const styles = {
+    root: {
+        display: 'flex',
+        backgroundColor: '#F7F7F7',
+    },
+    main: {
+        display: 'flex',
+        marginTop: '3.7rem', //height of navbar
+    },
+    sidebar: {
+    },
+    page: {
+    },
+};
+
 class App extends Component {
+
     constructor() {
         super()
         this.state = {
             searchBox: "",
             courses: [ "Course 1", "Course 2" ],
         }
+        
     }
 
     onSearch = (content,index) =>
@@ -37,14 +57,19 @@ class App extends Component {
     }
 
     render() {
+	    const { classes } = this.props;
         return (
-            <Router>
-                <div style={{background: '#F7F7F7'}}>
-                    <Navbar />
-                    <div className="wrapper">
-                        <ThemeProvider theme={theme_sidebar}>
-                            <SideBar courses={this.state.courses} />
-                        </ThemeProvider>
+            <div className={classes.root}>
+                <Navbar />
+                <div className={classes.main} id="main">
+                    <div className={classes.sidebar} id="sidebar">
+                        {(this.props.location.pathname !== "/DocumentUpload") &&
+                            <ThemeProvider theme={theme_sidebar}>
+                                <SideBar courses={this.state.courses} />
+                            </ThemeProvider>
+                        }
+                    </div>
+                    <div className={classes.page} id="page"> 
                         <Switch>
                             <Route exact path="/">
                                 <ThemeProvider theme={theme_homepage}>
@@ -88,9 +113,9 @@ class App extends Component {
                         </Switch>
                     </div>
                 </div>
-            </Router>
+            </div>
         );
     }
 }
 
-export default App;
+export default withRouter(withStyles(styles)(App));

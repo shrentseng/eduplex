@@ -12,7 +12,7 @@ import Document from '../../common/documents/Documents';
 
 const useStyles = makeStyles(() => ({
     root: {
-		marginTop: '2rem',
+		margin: '2rem',
     },
     join: {
         display: 'flex',

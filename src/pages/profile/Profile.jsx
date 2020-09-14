@@ -27,7 +27,7 @@ class Profile extends Component {
 		// });
 
 		return (
-			<div>
+			<div style={{margin: '2rem'}}>
 				<ThemeProvider theme={theme_profile}>
 					<ProfileTag />
 					<ProfileButtons />

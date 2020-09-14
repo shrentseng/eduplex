@@ -46,8 +46,7 @@ const useStyles = makeStyles(() => ({
 	search: {
 		display: 'flex',
 		alignItems: 'center',
-		position: 'relative',
-		paddingLeft: '0.5rem',
+		justifyContent: 'center',
 	},
 	select: {
 		'& .react-select__control, & .react-select__control:hover': {
@@ -66,9 +65,6 @@ const useStyles = makeStyles(() => ({
 			fontSize: '1rem',
 			fontWeight: '400',
 		},
-		'& .react-select__value-container': {
-			position: 'static',
-		},
 		'& .react-select__indicator-separator': {
 			display: 'none',
 		},
@@ -82,7 +78,7 @@ const useStyles = makeStyles(() => ({
 	input: {
 		height: '2.25rem',
 		width: '34rem',
-		paddingRight: '3rem',
+		paddingRight: '2.8rem',
 		backgroundColor: '#F7F7F7',
 		border: '#F7F7F7',
 		marginLeft: '2px',
@@ -92,8 +88,8 @@ const useStyles = makeStyles(() => ({
 	SearchIcon: {
 		color: '#8B8B8B',
 		height: '1.5rem',
-		position: 'absolute',
-		left: '40.5rem',
+		position: 'relative',
+		right: '2.2rem',
 	},
 	rightStuffs: {
 		display: 'flex',

@@ -24,8 +24,7 @@ const useStyles = makeStyles(() => ({
         borderRadius: '50%',
         boxSizing: 'content-box',
         '&:hover': {
-            
-            border: '2px solid red',
+            boxShadow: '0 0 5px 3px #909090',
         },
     },
     accountMenu: {
@@ -87,7 +86,6 @@ function AvatarNavbar() {
 
     }
     const handleProfileMenuOpen = (event) => {
-        console.log(event.currentTarget);
         setAnchorEl(event.currentTarget);
     };
 
