@@ -7,7 +7,7 @@ import { theme_homepage, theme_my_courses } from '../../common/theme';
 
 const styles = () => ({
 	root: {
-		marginTop: '2rem',
+		margin: '2rem',
 	},
 	title: {
 		fontSize: '26px',

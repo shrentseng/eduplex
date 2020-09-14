@@ -91,7 +91,7 @@ const Feeds = forwardRef((props, ref) => {
     )
 })
 
-export default Feeds
+export default Feeds;
 
 
 // import React, { Component } from 'react';

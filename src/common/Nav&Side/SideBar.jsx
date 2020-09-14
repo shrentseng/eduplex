@@ -11,14 +11,8 @@ import MyCoursesIcon from '../../assets/myCourses.svg';
 
 const useStyles = makeStyles({
 	root: {
-		
-	},
-	drawerPaper: {
-		background: '#F7F7F7',
-		width: '15%',
-		minWidth: '180px',
-		marginTop: '4.7rem',
-		border: '0px'
+		width: '18rem',
+		marginTop: '1.5rem',
 	},
 	list: {
 		'& a':{
@@ -76,43 +70,34 @@ function SideBar({ courses }) {
 
 	return (
 		<div className={classes.root}>
-			<Drawer
-				classes={{
-					paper: classes.drawerPaper,
-				}}
-				variant="permanent"
-				open
-			>
-				<div>
-					<div className={classes.toolbar} />
-					<List className={classes.list}>
-						<NavLink to="/" exact activeClassName={classes.active}>
-							<ListItem button className={classes.button}>
-								<ListItemIcon>
-									<img src={NewsfeedIcon} alt="" height="100%"/>
-								</ListItemIcon>
-								<Typography variant="h2">
-									Newsfeed
-								</Typography>
-							</ListItem>
-						</NavLink>
-						<NavLink  to="/MyCourses" exact activeClassName={classes.active}>
-							<ListItem button className={classes.button}>
-								<ListItemIcon>
-									<img src={MyCoursesIcon} alt="" height="100%"/>
-								</ListItemIcon>
-								<Typography variant="h2">
-									My Courses
-								</Typography>
-							</ListItem>
-						</NavLink>
-						<List disablePadding>
-							{courseList}
-						</List>
-					</List>
-				</div>
-			</Drawer>
+			<div className={classes.toolbar} />
+			<List className={classes.list}>
+				<NavLink to="/" exact activeClassName={classes.active}>
+					<ListItem button className={classes.button}>
+						<ListItemIcon>
+							<img src={NewsfeedIcon} alt="" height="100%"/>
+						</ListItemIcon>
+						<Typography variant="h2">
+							Newsfeed
+						</Typography>
+					</ListItem>
+				</NavLink>
+				<NavLink  to="/MyCourses" exact activeClassName={classes.active}>
+					<ListItem button className={classes.button}>
+						<ListItemIcon>
+							<img src={MyCoursesIcon} alt="" height="100%"/>
+						</ListItemIcon>
+						<Typography variant="h2">
+							My Courses
+						</Typography>
+					</ListItem>
+				</NavLink>
+				<List disablePadding>
+					{courseList}
+				</List>
+			</List>
 		</div>
+		
 	);
 }
 

@@ -193,7 +193,7 @@ const EditProfile = () => {
             email: '',
         },
         onSubmit: values => {
-            console.log('Form data', values)
+            //console.log('Form data', values)
         },
         validate: values => {
             let errors = {}
@@ -214,7 +214,7 @@ const EditProfile = () => {
             confirm: '',
         },
         onSubmit: values => {
-            console.log('Form data', values)
+            //console.log('Form data', values)
         },
         validate: values => {
             let errors = {}
@@ -316,7 +316,6 @@ const EditProfile = () => {
                         <b>Change Password</b>
                     </AccordionSummary>
                     
-                    
                     <AccordionDetails style={{paddingTop: '0px', paddingBottom: '0px'}}>
                         <form onSubmit={formikPassword.handleSubmit}>
                             <div>
@@ -400,9 +399,7 @@ const EditProfile = () => {
                 </StyledAccordion>
             </div>
 
-
             <div>
-                
                 <div className={classes.personalInformation}>
                     <h1>Personal Information</h1>
                     <StyledButton onClick={() => setIsEditing(true)}>
@@ -436,8 +433,6 @@ const EditProfile = () => {
                     <div>
                         <b>Minor</b>
                     </div>
-
-
                     {!isEditing ? (
                         <div>{minor}</div>
                     ) : (
@@ -456,10 +451,8 @@ const EditProfile = () => {
                     )}
                 </StyledPaper>
             </div>
-            {!isEditing ? (
-                <>
-                </>
-            ) : (
+            {!isEditing ? (null) : 
+            (
                 <div className={classes.saveCancelButtons}>
                     <Button 
                         variant="contained" 

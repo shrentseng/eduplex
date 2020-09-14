@@ -97,10 +97,8 @@ function CourseButtons({ course, pathname }) {
     useEffect(() => {
         if (location.pathname === `/${courseURL}/Documents`) {
             setSelectClassName(classes.selectActive)
-            console.log('selected')
         } else {
             setSelectClassName(null)
-            console.log('null')
         }
     }, [history, location])
 
