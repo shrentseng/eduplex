@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Select from 'react-select'
 import { makeStyles } from '@material-ui/core/styles';
@@ -117,13 +117,38 @@ const useStyles = makeStyles(() => ({
 }));
 
 const options = [
-	{ value: '1', label: 'Course' },
-    { value: '2', label: 'Document' },
-    { value: '3', label: 'Discussion' },
+	{ value: 0, label: 'Course' },
+    { value: 1, label: 'Document' },
+    { value: 2, label: 'Discussion' },
 ]
 
-function Navbar() {
+function Navbar({ onSearch }) {
 	const classes = useStyles();
+	let history = useHistory();
+
+	const [selected, setSelected] = useState();
+	const [searchValue, setSearchValue] = useState("");
+
+	const handleSearch = () => {
+		if (selected === 0) {
+			history.push("/CourseResults")
+		} else if (selected === 1) {
+			history.push("/Documents/Results")
+		} else if (selected === 2) {
+			history.push("/")
+		}
+		
+		onSearch(searchValue)
+	}
+	const handleSelectChange = (event) => {
+		setSelected(event.value)
+	}
+
+	const handleSearchChange = (event) => {
+		setSearchValue(event.target.value)
+	}
+
+	
 	
     return (
         <AppBar className={classes.root}>
@@ -142,10 +167,16 @@ function Navbar() {
 						options={options} 
 						classNamePrefix="react-select"
 						isSearchable={false}
+						onChange={handleSelectChange}
 					/>
 					{/* //search */}
-					<input className={classes.input} placeholder="Search" />
-					<SearchIcon className={classes.SearchIcon} />
+					<input 
+						className={classes.input} 
+						placeholder="Search" 
+						value={searchValue} 
+						onChange={handleSearchChange} 
+					/>
+					<SearchIcon className={classes.SearchIcon} onClick={handleSearch}/>
                 </Grid>
                 <Grid md={3} className={classes.rightStuffs}>
                     {/* //upload & noti & profile */}

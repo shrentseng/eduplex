@@ -15,7 +15,7 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
-function SearchBox({ searchChange }) {
+function SearchBox() {
     const classes = useStyles();
 
     return (
