@@ -11,8 +11,9 @@ const useStyles = makeStyles(theme => ({
     root: {
         display:'flex',
         flexDirection:'row',
-        width:'45rem',
+        width:'50rem',
         margin:'0.5rem',
+        marginBottom:'1rem',
     },
     grid:{
         display:'flex',
@@ -39,14 +40,14 @@ const Document = (props) => {
 
     return(
         <div className={classes.root}>
-            <Paper elevation={2} style={{width:"100%"}}>
+            <Paper elevation={3} style={{width:"100%"}}>
                 <div className={classes.grid}>
                     <Grid sm={2} >
                         <img src={DocPic} />
                     </Grid>
                     <Grid sm={10} className={classes.text}>
                         <div className={classes.title}>
-                            <Typography >
+                            <Typography style={{fontWeight:600}}>
                                 {props.title}
                             </Typography>
                             <img src={Download} style={{marginLeft:"auto", marginRight:'1rem'}} onClick={handleDownload}/>
@@ -66,7 +67,7 @@ const Document = (props) => {
                         </div>
                         <div style={{marginTop:"auto"}}>
                             <Typography>
-                                {props.academicQ} {props.academicY}
+                                {props.academicTerm} {props.academicYear}
                             </Typography>
                         </div>
                     </Grid>
