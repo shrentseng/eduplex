@@ -41,7 +41,6 @@ const styles = theme => ({
         whiteSpace: "pre-wrap",
     },
     footer: {
-        //width: '12em',
         height: '2em',
         marginLeft: '1em',
         alignContent: 'center',
