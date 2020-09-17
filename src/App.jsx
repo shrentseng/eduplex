@@ -23,9 +23,6 @@ import EditProfile from './pages/profile/EditProfile';
 import DocumentResults from './search_results/DocumentResults'
 import DocumentUpload from './pages/upload/DocumentUpload';
 
-
-import Grid from '@material-ui/core/Grid';
-
 const styles = {
     root: {
         display: 'flex',

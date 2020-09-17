@@ -1,28 +1,25 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Course from './Course.jsx';
-import { Button } from '@material-ui/core';
+import FindCourse from './FindCourse.jsx';
+import { Typography} from '@material-ui/core';
+import Filter from './Filter.jsx';
 
 const styles = theme => ({
-
-    title:{
-        margin:'0.5em',
-        marginTop:'1em',
+    root:{
+        marginLeft:'4rem',
     },
-    addCourse:
-    {
-        marginLeft:'0.5em',
+    search:{
+        margin:'0.5rem',
+        fontSize:'1.8em',
+        fontWeight:'500',
     },
-    add:
-    {
-        height:'3.5em',
-        width:'10em',
-        margin:'0.5em',
-        backgroundColor:"#0088D7",
-        "&:hover": {
-            backgroundColor: "#0088D7"
-        },
-    }
+    noCourse:{
+        margin:'1.5rem',
+        textAlign:"center",
+        color:'#7C7C7C',
+        fontSize:'1.5em',
+    },
 });
 
 class CourseResults extends Component
@@ -67,6 +64,42 @@ class CourseResults extends Component
                     "description": "Introduction to Scandanavian Culture",
                     "joined":0,
                     "key": 5,
+                },
+                {
+                    "coursename": "PHYSICS 1B",
+                    "description": "Intro to Physics",
+                    "joined":0,
+                    "key": 6,
+                },
+                {
+                    "coursename": "STATS 13",
+                    "description": "Intro to Statistics",
+                    "joined":0,
+                    "key": 7,
+                },
+                {
+                    "coursename": "SCAND 60",
+                    "description": "Introduction to Scandanavian Culture",
+                    "joined":0,
+                    "key": 8,
+                },
+                {
+                    "coursename": "PHYSICS 1C",
+                    "description": "Intro to Physics",
+                    "joined":0,
+                    "key": 9,
+                },
+                {
+                    "coursename": "STATS 20",
+                    "description": "Intro to R Programming",
+                    "joined":0,
+                    "key": 10,
+                },
+                {
+                    "coursename": "SCAND 60W",
+                    "description": "Introduction to Scandanavian Culture",
+                    "joined":0,
+                    "key": 11,
                 }
             ],
         };
@@ -76,7 +109,11 @@ class CourseResults extends Component
     {
         const { classes } = this.props;
         if (courseList.length === 0) {
-            return <div className={classes.title}>No Courses Found</div>
+            return (
+                <div>
+                    <Typography className={classes.noCourse}>No Courses Found</Typography>
+                </div>
+            )
         }
         else {
             return courseList.map((details) => {
@@ -97,20 +134,18 @@ class CourseResults extends Component
         });
         const { classes } = this.props;
         return(
-            <div>
-                <div className={classes.title}>
-                Search Results
+            <div className={classes.root}>
+                <div>
+                    <Typography className={classes.search}>Search Results</Typography>
+                </div>
+                <div>
+                    <Filter />
                 </div>
                 <div>
                     {this.renderCourse(courseList)}
                 </div>
-                <div className={classes.title}>
-                    Didn't Find Your Course?
-                </div>
-                <div className={classes.addCourse}>
-                    <input style={{width:"30em", height:"2.5em", border:"none"}} placeholder="Course Name (Enter full course name)"></input>
-                    <input style={{marginLeft:"0.5em", width:"13.5em", height:"2.5em", border:"none"}} placeholder="Course ID"></input>
-                    <Button className={classes.add} style={{marginLeft:"1em"}}>Add</Button>
+                <div>
+                    <FindCourse />
                 </div>
             </div>
         );

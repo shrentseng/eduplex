@@ -19,20 +19,22 @@ const useStyles = makeStyles(theme => ({
         height:'3.5em',
         width:'10em',
         margin:'0.5em',
-        backgroundColor:"#0088D7",
-        "&:hover": {
-            backgroundColor: "#0088D7"
-        },
     }
 }));
 
 const Course = (props) => {
-
+    const [join, setJoin] = React.useState("Join");
+    const [color, setColor] = React.useState("#0088D7")
     const classes = useStyles();
+
+    const handleJoin = () =>{
+        setJoin("Joined");
+        setColor("#C4C4C4");
+    }
 
     return(
         <div className={classes.root}>
-            <Paper className={classes.course}>
+            <Paper elevation={0} className={classes.course}>
                 <Typography className="col-3" style={{margin:'1em'}}>
                     {props.coursename}
                 </Typography>
@@ -40,8 +42,8 @@ const Course = (props) => {
                     {props.description}
                 </Typography>
             </Paper>
-            <Button className={classes.join}>
-                Join
+            <Button className={classes.join} style={{backgroundColor:color,"&:hover": {backgroundColor:color}}}onClick={handleJoin}>
+                {join}
             </Button>
         </div>
     );
