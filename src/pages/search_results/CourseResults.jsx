@@ -31,18 +31,21 @@ class CourseResults extends Component
                 {
                     "coursename": "COMSCI 180",
                     "description": "Complex Programming",
+                    "university": "UCLA",
                     "joined":0,
                     "key": 0,
                 },
                 {
                     "coursename": "PSYCH 115",
                     "description": "Behavioral Neuroscience",
+                    "university": "Berkeley",
                     "joined":0,
                     "key": 1,
                 },
                 {
                     "coursename": "COMSCI 32",
                     "description": "Introduction to Programming",
+                    "university": "Berkeley",
                     "joined":0,
                     "key": 2,
                 },
@@ -50,54 +53,63 @@ class CourseResults extends Component
                 {
                     "coursename": "PHYSICS 1A",
                     "description": "Intro to Physics",
+                    "university": "UCI",
                     "joined":0,
                     "key": 3,
                 },
                 {
                     "coursename": "STATS 10",
                     "description": "Intro to Statistics",
+                    "university": "UCLA",
                     "joined":0,
                     "key": 4,
                 },
                 {
                     "coursename": "SCAND 50",
                     "description": "Introduction to Scandanavian Culture",
+                    "university": "UCLA",
                     "joined":0,
                     "key": 5,
                 },
                 {
                     "coursename": "PHYSICS 1B",
                     "description": "Intro to Physics",
+                    "university": "UCI",
                     "joined":0,
                     "key": 6,
                 },
                 {
                     "coursename": "STATS 13",
                     "description": "Intro to Statistics",
+                    "university": "UCI",
                     "joined":0,
                     "key": 7,
                 },
                 {
                     "coursename": "SCAND 60",
                     "description": "Introduction to Scandanavian Culture",
+                    "university": "UCLA",
                     "joined":0,
                     "key": 8,
                 },
                 {
                     "coursename": "PHYSICS 1C",
                     "description": "Intro to Physics",
+                    "university": "Berkeley",
                     "joined":0,
                     "key": 9,
                 },
                 {
                     "coursename": "STATS 20",
                     "description": "Intro to R Programming",
+                    "university": "Berkeley",
                     "joined":0,
                     "key": 10,
                 },
                 {
                     "coursename": "SCAND 60W",
                     "description": "Introduction to Scandanavian Culture",
+                    "university": "",
                     "joined":0,
                     "key": 11,
                 }
@@ -128,9 +140,12 @@ class CourseResults extends Component
 
     render()
     {
-        //const searchField = this.props.searchValue;
+        const searchField = this.props.searchValue;
         const courseList = this.state.courses.filter(course => {
-          	return course.coursename.toLowerCase().includes(this.props.searchValue.toLowerCase());
+              return (
+                  (course.coursename.toLowerCase().includes(searchField.toLowerCase())) ||
+                  (course.description.toLowerCase().includes(searchField.toLowerCase()))
+                  );
         });
         const { classes } = this.props;
         return(

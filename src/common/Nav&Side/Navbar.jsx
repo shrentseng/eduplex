@@ -134,7 +134,7 @@ function Navbar({ onSearch }) {
 		if (selected === 0) {
 			history.push("/CourseResults")
 		} else if (selected === 1) {
-			history.push("/Documents/Results")
+			history.push("/DocumentResults")
 		} else if (selected === 2) {
 			history.push("/")
 		}
