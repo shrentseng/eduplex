@@ -8,7 +8,7 @@ import { theme_homepage, theme_course } from '../../common/theme';
 import SearchBox from '../../common/SearchBox';
 import Homepage from '../homepage/Homepage';
 import CourseButtons from './CourseButtons';
-import Document from '../../common/documents/Documents';
+import Document from '../../common/documents_old/Documents';
 
 const useStyles = makeStyles(() => ({
     root: {
