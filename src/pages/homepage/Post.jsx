@@ -22,7 +22,7 @@ const StyledSelect = withStyles({
 
 const useStyles = makeStyles(theme => ({
     root: {
-        margin: '1em',
+        margin: '1em 0',
     },
     paper: {
         padding: "1em",

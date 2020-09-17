@@ -47,6 +47,7 @@ const useStyles = makeStyles(() => ({
 		display: 'flex',
 		alignItems: 'center',
 		justifyContent: 'center',
+		paddingRight: '1rem',
 	},
 	select: {
 		'& .react-select__control, & .react-select__control:hover': {
@@ -127,14 +128,14 @@ function Navbar() {
     return (
         <AppBar className={classes.root}>
             <Grid className={classes.grid}>
-                <Grid lg={2} className={classes.logo}>
+                <Grid md={3} className={classes.logo}>
                     {/* //logo */}
                     <Link to="/">
                         <img src={Logo} alt=''/>
                         <img src={LogoWord} alt=''/>
                     </Link>
                 </Grid>
-                <Grid lg={6} className={classes.search}>
+                <Grid md={6} className={classes.search}>
                     {/* //select */}
 					<Select 
 						className={classes.select} 
@@ -146,7 +147,7 @@ function Navbar() {
 					<input className={classes.input} placeholder="Search" />
 					<SearchIcon className={classes.SearchIcon} />
                 </Grid>
-                <Grid lg={4} className={classes.rightStuffs}>
+                <Grid md={3} className={classes.rightStuffs}>
                     {/* //upload & noti & profile */}
 					<Link to="/DocumentUpload">
 						<Button
