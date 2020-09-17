@@ -6,7 +6,6 @@ import {
     Route,
 } from "react-router-dom";
 import './assets/bootstrap.min.css'
-//import './App.css';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { theme_document_upload, theme_sidebar, theme_homepage } from './common/theme';
@@ -28,14 +27,18 @@ const styles = {
     root: {
         display: 'flex',
         backgroundColor: '#F7F7F7',
+        width: '-webkit-fill-available',
     },
     main: {
         display: 'flex',
+        width: '-webkit-fill-available',
         marginTop: '3.7rem', //height of navbar
     },
     sidebar: {
+        width: '20%',
     },
     page: {
+        width: '80%',
     },
 };
 
@@ -60,14 +63,13 @@ class App extends Component {
         return (
             <div className={classes.root}>
                 <Navbar />
-                <div className={classes.main} id="main">
-                    <div className={classes.sidebar} id="sidebar">
-                        {(this.props.location.pathname !== "/DocumentUpload") &&
+                <div container className={classes.main} id="main">
+                    {(this.props.location.pathname !== "/DocumentUpload") &&
+                        <div className={classes.sidebar} id="sidebar">
                             <ThemeProvider theme={theme_sidebar}>
                                 <SideBar courses={this.state.courses} />
                             </ThemeProvider>
-                        }
-                    </div>
+                        </div>}
                     <div className={classes.page} id="page"> 
                         <Switch>
                             <Route exact path="/">

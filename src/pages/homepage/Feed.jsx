@@ -15,7 +15,7 @@ import CommentBoard from './CommentBoard.jsx'
 
 const styles = theme => ({
     root: {
-        margin: '1em',
+        margin: '1em 0',
     },
     paper: {
         padding: '1em',
@@ -41,7 +41,6 @@ const styles = theme => ({
         whiteSpace: "pre-wrap",
     },
     footer: {
-        width: '12em',
         height: '2em',
         marginLeft: '1em',
         alignContent: 'center',
