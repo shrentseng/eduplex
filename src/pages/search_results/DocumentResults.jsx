@@ -110,9 +110,8 @@ class DocumentResults extends Component
       render() {
         const { classes } = this.props;
 
-        const searchField = this.props.keyWords;
         const docs = this.state.docs.filter(doc => {
-            return doc.title.toLowerCase().includes(searchField.toLowerCase());
+            return doc.title.toLowerCase().includes(this.props.searchValue.toLowerCase());
         });
         
         return (

@@ -15,8 +15,10 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
-function SearchBox() {
+function SearchBox({ searchFunc }) {
     const classes = useStyles();
+    
+
 
     return (
         <div className={classes.root}>

@@ -54,9 +54,11 @@ const useStyles = makeStyles(() => ({
 function DocumentUpload() {
     const classes = useStyles();
     const [formData, setFormData] = useState({
+        username: '',
         university: '',
         course: '',
         title: '',
+        academicTerm: '',
         academicYear: '',
         category: '',
         description: '',

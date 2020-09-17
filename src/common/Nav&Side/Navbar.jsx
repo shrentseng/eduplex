@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Select from 'react-select'
 import { makeStyles } from '@material-ui/core/styles';
@@ -129,6 +129,7 @@ function Navbar({ onSearch }) {
 	const [selected, setSelected] = useState();
 	const [searchValue, setSearchValue] = useState("");
 
+
 	const handleSearch = () => {
 		if (selected === 0) {
 			history.push("/CourseResults")
@@ -146,6 +147,10 @@ function Navbar({ onSearch }) {
 
 	const handleSearchChange = (event) => {
 		setSearchValue(event.target.value)
+	}
+
+	const searchFunc = (event) => {
+
 	}
 
 	
