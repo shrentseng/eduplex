@@ -13,6 +13,12 @@ const styles = theme => ({
       fontSize:'1.8em',
       fontWeight:'500',
     },
+    noDocument:{
+        margin:'1.5rem',
+        textAlign:"center",
+        color:'#7C7C7C',
+        fontSize:'1.5em',
+    },
 });
 
 class DocumentResults extends Component
@@ -25,8 +31,8 @@ class DocumentResults extends Component
                 "univserity": "UCLA",
                 "course": "PHYSICS 101",
                 "title": "Theory of Relativity",
-                "academicQ": "Spring",
-                "academicY": 2020,
+                "academicTerm": "Spring",
+                "academicYear": 2020,
                 "category": "Essay",
                 "description": "A theory developed by Albert Einstein–the greatest scienctist.",
                 "key": 0,
@@ -36,8 +42,8 @@ class DocumentResults extends Component
                 "univserity": "UCLA",
                 "course": "PHYSICS 101",
                 "title": "Theory of Relativity",
-                "academicQ": "Spring",
-                "academicY": 2020,
+                "academicTerm": "Spring",
+                "academicYear": 2020,
                 "category": "Essay",
                 "description": "A theory developed by Albert Einstein–the greatest scienctist.",
                 "key": 1,
@@ -47,8 +53,8 @@ class DocumentResults extends Component
                 "univserity": "UCLA",
                 "course": "PHYSICS 101",
                 "title": "Theory of Relativity",
-                "academicQ": "Spring",
-                "academicY": 2020,
+                "academicTerm": "Spring",
+                "academicYear": 2020,
                 "category": "Essay",
                 "description": "A theory developed by Albert Einstein–the greatest scienctist.",
                 "key": 2,
@@ -58,19 +64,19 @@ class DocumentResults extends Component
                 "univserity": "UCLA",
                 "course": "PHYSICS 101",
                 "title": "Theory of Relativity",
-                "academicQ": "Spring",
-                "academicY": 2020,
+                "academicTerm": "Spring",
+                "academicYear": 2020,
                 "category": "Essay",
                 "description": "A theory developed by Albert Einstein–the greatest scienctist.",
                 "key": 3,
             },
             {
-                "username": "Jim Corey",
+                "username": "Brad Pitt",
                 "univserity": "UCLA",
                 "course": "PHYSICS 101",
                 "title": "Theory of Relativity",
-                "academicQ": "Spring",
-                "academicY": 2020,
+                "academicTerm": "Spring",
+                "academicYear": 2020,
                 "category": "Essay",
                 "description": "A theory developed by Albert Einstein–the greatest scienctist.",
                 "key": 4,
@@ -80,14 +86,14 @@ class DocumentResults extends Component
         };
     }
 
-    renderCourse(docs)
+    renderDoc(docs)
     {
         const { classes } = this.props;
         console.log(docs);
         if (docs.length === 0) {
             return (
                 <div>
-                    <Typography className={classes.noCourse}>No Courses Found</Typography>
+                    <Typography className={classes.noDocument}>No Documents Found</Typography>
                 </div>
             )
         }
@@ -98,8 +104,8 @@ class DocumentResults extends Component
                     university={details.univserity}
                     course={details.course}
                     title={details.title}
-                    academicQ={details.academicQ}
-                    academicY={details.academicY}
+                    academicTerm={details.academicTerm}
+                    academicYear={details.academicYear}
                     category={details.category}
                     description={details.description}
                     key={details.key}
@@ -112,7 +118,11 @@ class DocumentResults extends Component
 
         const searchField = this.props.searchValue;
         const docs = this.state.docs.filter(doc => {
-            return doc.title.toLowerCase().includes(searchField.toLowerCase());
+            return (
+                (doc.title.toLowerCase().includes(searchField.toLowerCase())) || 
+                (doc.username.toLowerCase().includes(searchField.toLowerCase())) ||
+                (doc.description.toLowerCase().includes(searchField.toLowerCase()))
+            );
         });
         
         return (
@@ -124,7 +134,7 @@ class DocumentResults extends Component
                   <Filter />
               </div>
               <div>
-                  {this.renderCourse(docs)}
+                  {this.renderDoc(docs)}
               </div>
           </div>
         );
