@@ -22,7 +22,6 @@ import CourseResults from './pages/search_results/CourseResults'
 import EditProfile from './pages/profile/EditProfile';
 import DocumentResults from './pages/search_results/DocumentResults'
 import DocumentUpload from './pages/upload/DocumentUpload';
-import Upload from './shren_oscar_components/Upload';
 
 const styles = {
     root: {
@@ -111,9 +110,6 @@ class App extends Component {
                                 <ThemeProvider theme={theme_document_upload}>
                                     <DocumentUpload />
                                 </ThemeProvider>
-                            </Route>
-                            <Route path="/Upload">               
-                                    <Upload />
                             </Route>
                         </Switch>
                     </div>
