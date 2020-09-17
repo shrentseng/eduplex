@@ -40,14 +40,6 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
-const options = [
-    { value: '1', label: 'Documents' },
-    { value: '2', label: 'Lecture Notes' },
-    { value: '3', label: 'Assignments' },
-    { value: '4', label: 'Past Exams' },
-    { value: '5', label: 'Essays' },
-    { value: '6', label: 'Others' },
-]
 
 function Course({ course }) {
     const classes = useStyles();
