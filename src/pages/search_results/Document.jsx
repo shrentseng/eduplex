@@ -3,9 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import { Typography } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
-
-import DocPic from '../../assets/Document.svg';
-import Download from '../../assets/download.svg';
+import DocPic from '../assets/Document.svg';
+import Download from '../assets/download.svg';
 
 const useStyles = makeStyles(theme => ({
     root: {
