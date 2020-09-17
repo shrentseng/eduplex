@@ -18,9 +18,9 @@ import Course from './pages/course/Course';
 import Profile from './pages/profile/Profile';
 import Search from './search_containers/Search';
 import MyCourse from './pages/my_courses/MyCourses';
-import CourseResults from './search_results/CourseResults'
+import CourseResults from './pages/search_results/CourseResults'
 import EditProfile from './pages/profile/EditProfile';
-import DocumentResults from './search_results/DocumentResults'
+import DocumentResults from './pages/search_results/DocumentResults'
 import DocumentUpload from './pages/upload/DocumentUpload';
 
 const styles = {
@@ -47,23 +47,23 @@ class App extends Component {
     constructor() {
         super()
         this.state = {
-            searchBox: "",
+            searchValue: "",
             courses: [ "Course 1", "Course 2" ],
         }
         
     }
 
-    onSearch = (content,index) =>
+    onSearch = (content) =>
     {
-        this.setState({ searchBox: content })
+        this.setState({ searchValue: content })
     }
 
     render() {
 	    const { classes } = this.props;
         return (
             <div className={classes.root}>
-                <Navbar />
-                <div container className={classes.main} id="main">
+                <Navbar onSearch={this.onSearch}/>
+                <div className={classes.main} id="main">
                     {(this.props.location.pathname !== "/DocumentUpload") &&
                         <div className={classes.sidebar} id="sidebar">
                             <ThemeProvider theme={theme_sidebar}>
@@ -83,8 +83,8 @@ class App extends Component {
                             <Route path="/Register">
                                 <Register />
                             </Route>
-                            {this.state.courses.map((course) => (
-                                <Route path={`/${course.split(" ").join("")}`}>
+                            {this.state.courses.map((course, i) => (
+                                <Route key={i} path={`/${course.split(" ").join("")}`}>
                                     <Course course={course} />
                                 </Route>
                             ))}
@@ -101,10 +101,10 @@ class App extends Component {
                                 <MyCourse />
                             </Route>
                             <Route path="/CourseResults">
-                                <CourseResults keyWords={this.state.searchBox}/>
+                                <CourseResults searchValue={this.state.searchValue}/>
                             </Route>
                             <Route path="/DocumentResults">
-                                <DocumentResults keyWords={this.state.searchBox}/>
+                                <DocumentResults searchValue={this.state.searchValue}/>
                             </Route>
                             <Route path="/DocumentUpload">
                                 <ThemeProvider theme={theme_document_upload}>

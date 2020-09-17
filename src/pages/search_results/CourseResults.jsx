@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
+import { Typography} from '@material-ui/core';
 import Course from './Course.jsx';
 import FindCourse from './FindCourse.jsx';
-import { Typography} from '@material-ui/core';
 import Filter from './Filter.jsx';
 
 const styles = theme => ({
@@ -128,9 +128,9 @@ class CourseResults extends Component
 
     render()
     {
-        const searchField = this.props.keyWords;
+        //const searchField = this.props.searchValue;
         const courseList = this.state.courses.filter(course => {
-          return course.coursename.toLowerCase().includes(searchField.toLowerCase());
+          	return course.coursename.toLowerCase().includes(this.props.searchValue.toLowerCase());
         });
         const { classes } = this.props;
         return(
