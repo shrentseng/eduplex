@@ -10,20 +10,13 @@ import DeleteIcon from "@material-ui/icons/Delete";
 
 const useStyles = makeStyles(() => ({
 	card: {
-		display: 'flex',
-		alignItems: 'center',
+		display: 'grid',
+		placeItems: 'center',
 		width: '11.25rem',
 		height: '11.25rem',
 		border: '2px solid #C4C4C4',
 		boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
 		position: 'relative',
-	},
-	content: {
-		display: 'flex',
-		flexDirection: 'column',
-		alignItems: 'center',
-		width: '100%',
-		padding: '24px 0px',
 	},
 	deleteButton: {
 		position: 'absolute',
@@ -42,18 +35,14 @@ function CourseCard(props) {
                 onMouseEnter={() => setIsShown(true)}
                 onMouseLeave={() => setIsShown(false)}
 			>		
-
 				{isShown && (
 					<IconButton className={classes.deleteButton} onClick={(event) => { props.deleteCourse(props.index) }}>
 						<DeleteIcon fontSize="small"/>
 					</IconButton>
 				)}
-				<CardContent className={classes.content}>
+				<CardContent>
 					<Typography variant="h5">
 						{props.courseTitle}
-					</Typography>
-					<Typography variant="h5">
-						{props.courseNumber}
 					</Typography>
 				</CardContent>
             </Card>

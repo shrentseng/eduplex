@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
         paddingLeft: "0.1em",
         paddingBottom: "0px",
         fontSize: "20px",
-        width: "44em",
+        width: "100%",
         backgroundColor: "#F7F7F7",
         "&::placeholder": {
             color: "#C4C4C4"

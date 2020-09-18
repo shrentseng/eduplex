@@ -10,7 +10,7 @@ import avatar from '../../assets/avatar.svg';
 
 const useStyles = makeStyles(() => ({
     root: {
-        margin: '0 2rem 0 1rem',
+        margin: '0 0.5rem 0 0.5rem',
         cursor: 'pointer',
     },
 	avatar: {

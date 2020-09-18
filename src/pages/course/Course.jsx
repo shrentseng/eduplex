@@ -5,14 +5,14 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import Typography from "@material-ui/core/Typography";
 import { theme_homepage, theme_course } from '../../common/theme';
-import SearchBox from '../../common/SearchBox';
+import Input from '../../common/Input';
 import Homepage from '../homepage/Homepage';
 import CourseButtons from './CourseButtons';
 import Document from '../../common/documents_old/Documents';
 
 const useStyles = makeStyles(() => ({
     root: {
-		margin: '2rem',
+		margin: '2rem 1rem',
     },
     join: {
         display: 'flex',
@@ -38,6 +38,14 @@ const useStyles = makeStyles(() => ({
             outline: 'none',
         },
     },
+    search: {
+        width: 'calc(100% - 2rem)',
+        height: '2rem',
+        margin: '0 1rem',
+        border: '1px solid #E5E5E5',
+        borderRadius: '5px 5px 5px 5px',
+        outline: 'none',
+    },
 }));
 
 
@@ -56,13 +64,13 @@ function Course({ course }) {
                 <CourseButtons course={course} />
                 <Switch>
                     <Route exact path={`/${courseURL}`}>
-                        <SearchBox />
+                        <input className={classes.search} placeholder='Search in Discussion' />
 						<ThemeProvider theme={theme_homepage}>
                             <Homepage />
 						</ThemeProvider>
 					</Route>
 					<Route path={`/${courseURL}/Documents`}>
-                        <SearchBox />
+                        <input className={classes.search} placeholder='Search in Documents' />
 						<Document />
 					</Route>
 				</Switch>
