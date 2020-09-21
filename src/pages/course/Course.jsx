@@ -8,7 +8,7 @@ import { theme_homepage, theme_course } from '../../common/theme';
 import Input from '../../common/Input';
 import Homepage from '../homepage/Homepage';
 import CourseButtons from './CourseButtons';
-import Document from '../../common/documents_old/Documents';
+import Documents from '../../common/documents/Documents';
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -71,7 +71,7 @@ function Course({ course }) {
 					</Route>
 					<Route path={`/${courseURL}/Documents`}>
                         <input className={classes.search} placeholder='Search in Documents' />
-						<Document />
+						<Documents />
 					</Route>
 				</Switch>
             </div>
