@@ -24,6 +24,7 @@ import DocumentResults from './pages/search_results/DocumentResults'
 import DocumentUpload from './pages/upload/DocumentUpload';
 import DocumentPreview from './pages/preview/DocumentPreview'
 
+
 const styles = {
     root: {
         display: 'flex',
@@ -39,7 +40,7 @@ const styles = {
         width: '20%',
     },
     page: {
-        width: '80%',
+        width: '60%',
     },
 };
 
@@ -112,6 +113,7 @@ class App extends Component {
                                     <DocumentUpload />
                                 </ThemeProvider>
                             </Route>
+
                             <Route path="/DocumentPreview">
                                 <DocumentPreview />
                             </Route>
