@@ -39,7 +39,7 @@ const styles = {
         width: '20%',
     },
     page: {
-        width: '80%',
+        width: '60%',
     },
 };
 

@@ -1,24 +1,25 @@
 import React, { useState } from 'react';
+import { makeStyles, withStyles } from '@material-ui/core/styles';
+import Select from 'react-select';
 import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
+//import Select from '@material-ui/core/Select';
 import Paper from '@material-ui/core/Paper';
 import Typography from "@material-ui/core/Typography";
-import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import exclude from '../../assets/exclude.svg';
 import anonymous from '../../assets/anonymous.svg';
 
-const StyledSelect = withStyles({
-    root: {
-        width: '7.5em',
-        paddingLeft: '0.5em',
-    },
-    select: {
-        '&:focus': {
-            backgroundColor: '#ffffff',
-        }
-    }
-})(Select);
+// const StyledSelect = withStyles({
+//     root: {
+//         width: '7.5em',
+//         paddingLeft: '0.5em',
+//     },
+//     select: {
+//         '&:focus': {
+//             backgroundColor: '#ffffff',
+//         }
+//     }
+// })(Select);
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -27,20 +28,32 @@ const useStyles = makeStyles(theme => ({
     paper: {
         padding: "1em",
     },
-    selectDiv: {
+    courseDiv: {
         display: 'flex', 
         flexDirection: 'row-reverse',
         alignItems: 'center',
-        '& div': {
-            marginLeft: '0.5em',
-            height: '2em',
+    },
+    select: {
+        height: '2.25rem',
+        width: '12rem',
+        marginLeft: '0.5rem',
+        backgroundColor: '#FFFFFF',
+        '& .css-yk16xz-control': {
+            minHeight: '0px',
+            height: '2.25rem',
+            borderColor: '#E5E5E5',
         },
-        "& div[role='button']": {
-            height: '0em',
-            marginLeft: '0.5em',
+        '& .css-1wa3eu0-placeholder, & .css-1uccc91-singleValue': {
+            fontFamily: 'Roboto',
+            color: '#111111',
+            fontSize: '1rem',
+            fontWeight: '400',
+        },
+        '& .css-1pahdxg-control, & .css-1pahdxg-control:hover': {
+            borderColor: '#E5E5E5',
+            boxShadow: 'none',
         },
     },
-    
     post: {
         marginTop: '1em',
         height: '6em',
@@ -69,9 +82,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const options = [
-    { value: 'Course 1', label: 'Course 1' },
-    { value: 'Course 2', label: 'Course 2' },
-    { value: 'Course 3', label: 'Course 3' },
+    { value: 0, label: 'Course 1' },
+    { value: 1, label: 'Course 2' },
+    { value: 2, label: 'Course 3' },
 ]
 
 const Post = ( {createPost} ) => {
@@ -91,29 +104,21 @@ const Post = ( {createPost} ) => {
     }
 
     const handleSelectChange = (event) => {
-        setCourse(event.target.value);
+        setCourse(event.value);
     }
 
     return(
             <div className={classes.root}>
                 <Paper className={classes.paper} elevation={5}>
-                    <div className={classes.selectDiv}>
-                        <StyledSelect
-                            variant="outlined"
-                            value={course}
+                    <div className={classes.courseDiv}>
+                        <Select
+                            className={classes.select}
+                            classNamePrefix="react-select"
+                            options={options}
                             onChange={handleSelectChange}
-                            id="StyledSelect"
                         >
-                            {options.map((option, index) => (
-                                <MenuItem
-                                    key={index}
-                                    value={option.value}
-                                >
-                                    {option.label}
-                                </MenuItem>
-                            ))}
-                        </StyledSelect>
-                        <Typography>Post in  </Typography>
+                        </Select>
+                        <Typography>Post in</Typography>
                     </div>
                     
                     <div>
