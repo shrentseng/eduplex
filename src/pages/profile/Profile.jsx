@@ -6,7 +6,7 @@ import {
     Route
 } from "react-router-dom";
 import Feeds from '../homepage/Feeds';
-import Document from '../../common/documents/Documents';
+import Document from '../../common/documents_old/Documents';
 import ProfileTag from './ProfileTag';
 import ProfileButtons from './ProfileButtons';
 import { theme_homepage, theme_profile } from '../../common/theme';

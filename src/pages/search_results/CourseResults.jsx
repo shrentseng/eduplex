@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { Typography} from '@material-ui/core';
-import Course from './Course.jsx';
+import Courses from './Courses.jsx';
 import FindCourse from './FindCourse.jsx';
 import Filter from './Filter.jsx';
 
@@ -128,14 +128,8 @@ class CourseResults extends Component
             )
         }
         else {
-            return courseList.map((details) => {
-                return <Course
-                    coursename={details.coursename}
-                    description={details.description}
-                    joined={details.joined}
-                    key={details.key}
-                />
-        })}
+            return <Courses courses={courseList}/>
+        }
     }
 
     render()

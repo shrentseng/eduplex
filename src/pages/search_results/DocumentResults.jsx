@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
-import Document from './Document.jsx';
+import Documents from './Documents.jsx';
 import Filter from './Filter.jsx';
 
 const styles = theme => ({
@@ -89,7 +89,6 @@ class DocumentResults extends Component
     renderDoc(docs)
     {
         const { classes } = this.props;
-        console.log(docs);
         if (docs.length === 0) {
             return (
                 <div>
@@ -98,19 +97,8 @@ class DocumentResults extends Component
             )
         }
         else {
-            return docs.map((details) => {
-                return <Document
-                    username={details.username}
-                    university={details.univserity}
-                    course={details.course}
-                    title={details.title}
-                    academicTerm={details.academicTerm}
-                    academicYear={details.academicYear}
-                    category={details.category}
-                    description={details.description}
-                    key={details.key}
-                />
-        })}
+            return <Documents documents={docs}/>
+        }
     }
     
       render() {
