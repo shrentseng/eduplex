@@ -156,7 +156,7 @@ function Navbar({ onSearch }) {
 	
 	
     return (
-        <AppBar className={classes.root}>
+        <AppBar elevation={1} className={classes.root}>
             <Grid className={classes.grid}>
                 <Grid md={3} className={classes.logo}>
                     {/* //logo */}
