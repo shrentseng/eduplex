@@ -79,12 +79,11 @@ const StyledButton = withStyles({
 })(Button)
 
 const options = [
-    { value: '1', label: 'Documents' },
-    { value: '2', label: 'Lecture Notes' },
-    { value: '3', label: 'Assignments' },
-    { value: '4', label: 'Past Exams' },
-    { value: '5', label: 'Essays' },
-    { value: '6', label: 'Others' },
+    { value: '0', label: 'Lecture Notes' },
+    { value: '1', label: 'Assignments' },
+    { value: '2', label: 'Past Exams' },
+    { value: '3', label: 'Essays' },
+    { value: '4', label: 'Others' },
 ]
 
 function CourseButtons({ course, pathname }) {
@@ -119,7 +118,12 @@ function CourseButtons({ course, pathname }) {
                 </StyledButton>
             </NavLink>
             
-            <Select className={`${classes.select} ${selectClassName}`} onChange={value => handleSelectChange(value)} options={options} />
+            <Select 
+                className={`${classes.select} ${selectClassName}`}
+                onChange={value => handleSelectChange(value)} 
+                options={options}
+                placeholder="Documents"
+            />
         </div>
     )
 }
