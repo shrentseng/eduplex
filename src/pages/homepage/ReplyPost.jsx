@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
-import exclude from '../../assets/exclude.svg';
+import exclude from '../../assets/Exclude.svg';
 
 const useStyles = makeStyles(theme => ({
     root: {
