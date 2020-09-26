@@ -155,7 +155,6 @@ function Navbar({ onSearch }) {
 	}
 
 	
-	
     return (
         <AppBar className={classes.root}>
             <div className={classes.grid}>

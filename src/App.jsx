@@ -22,6 +22,8 @@ import CourseResults from './pages/search_results/CourseResults'
 import EditProfile from './pages/profile/EditProfile';
 import DocumentResults from './pages/search_results/DocumentResults'
 import DocumentUpload from './pages/upload/DocumentUpload';
+import DocumentPreview from './pages/preview/DocumentPreview'
+
 
 const styles = {
     root: {
@@ -63,7 +65,7 @@ class App extends Component {
             <div className={classes.root}>
                 <Navbar onSearch={this.onSearch}/>
                 <div className={classes.main} id="main">
-                    {(this.props.location.pathname !== "/DocumentUpload") &&
+                    {(this.props.location.pathname !== "/DocumentUpload") && (this.props.location.pathname !== "/DocumentPreview") && 
                         <div className={classes.sidebar} id="sidebar">
                             <ThemeProvider theme={theme_sidebar}>
                                 <SideBar courses={this.state.courses} />
@@ -109,6 +111,10 @@ class App extends Component {
                                 <ThemeProvider theme={theme_document_upload}>
                                     <DocumentUpload />
                                 </ThemeProvider>
+                            </Route>
+
+                            <Route path="/DocumentPreview">
+                                <DocumentPreview />
                             </Route>
                         </Switch>
                     </div>
