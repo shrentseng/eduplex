@@ -80,9 +80,7 @@ class DocumentResults extends Component
                 "category": "Essay",
                 "description": "A theory developed by Albert Einstein–the greatest scienctist.",
                 "key": 4,
-            },
-
-            ]
+            },]
         };
     }
 

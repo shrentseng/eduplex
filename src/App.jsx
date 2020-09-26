@@ -29,18 +29,17 @@ const styles = {
     root: {
         display: 'flex',
         backgroundColor: '#F7F7F7',
-        width: '-webkit-fill-available',
+        width: '100%',
     },
     main: {
-        display: 'flex',
-        width: '-webkit-fill-available',
+        display: 'grid',
+        gridTemplateColumns: 'minmax(14rem, 20%) minmax(27rem, 5fr) 1fr',
+        width: '100%',
         marginTop: '3.7rem', //height of navbar
     },
     sidebar: {
-        width: '20%',
     },
     page: {
-        width: '60%',
     },
 };
 

@@ -34,11 +34,11 @@ const useStyles = makeStyles({
 			fontFamily: 'Raleway',
 			color: '#FFFFFF',
 			fontWeight: '700',
-			fontSize: '1.375rem',
+			fontSize: ' 1.1rem',
 		},
 	},
 	nested: {
-		paddingLeft: '90px',
+		paddingLeft: '4.5rem',
 	},
 	button: {
 		transition: 'none',
@@ -47,6 +47,10 @@ const useStyles = makeStyles({
 			borderRadius: '0px 25px 25px 0px',
 		},
 	},
+	icon: {
+		minWidth: 0,
+		marginRight: '1rem',
+	}
 });
 
 function SideBar({ courses }) {
@@ -74,7 +78,7 @@ function SideBar({ courses }) {
 			<List className={classes.list}>
 				<NavLink to="/" exact activeClassName={classes.active}>
 					<ListItem button className={classes.button}>
-						<ListItemIcon>
+						<ListItemIcon className={classes.icon}>
 							<img src={NewsfeedIcon} alt="" height="100%"/>
 						</ListItemIcon>
 						<Typography variant="h2">
@@ -84,7 +88,7 @@ function SideBar({ courses }) {
 				</NavLink>
 				<NavLink  to="/MyCourses" exact activeClassName={classes.active}>
 					<ListItem button className={classes.button}>
-						<ListItemIcon>
+						<ListItemIcon className={classes.icon}>
 							<img src={MyCoursesIcon} alt="" height="100%"/>
 						</ListItemIcon>
 						<Typography variant="h2">
