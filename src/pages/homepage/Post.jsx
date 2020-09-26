@@ -6,7 +6,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Paper from '@material-ui/core/Paper';
 import Typography from "@material-ui/core/Typography";
 import Avatar from '@material-ui/core/Avatar';
-import exclude from '../../assets/exclude.svg';
+import exclude from '../../assets/Exclude.svg';
 import anonymous from '../../assets/anonymous.svg';
 
 // const StyledSelect = withStyles({
