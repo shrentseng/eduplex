@@ -8,6 +8,7 @@ const useStyles = makeStyles({
     root: {
         display: 'flex',
         flexWrap: 'wrap',
+        marginTop: '1rem',
     },
 })
 
