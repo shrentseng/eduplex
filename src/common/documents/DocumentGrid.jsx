@@ -6,17 +6,34 @@ import GetAppIcon from '@material-ui/icons/GetApp';
 const useStyles = makeStyles({
     root: {
         margin: '1rem',
+        '& h5': {
+            color: '#504F4F',
+            fontWeight: '500',
+        },
+        '& h6': {
+            color: '#504F4F',
+        }
     },
     preview: {
+        display: 'grid',
+        placeItems: 'center',
         height: '11rem',
         width: '8.5rem',
-        backgroundColor: 'red',
+        backgroundColor: '#FFFFFF',
+        boxShadow: '2px 2px 6px grey',
+        border: 'solid 0.7px #C4C4C4',
+        marginBottom: '1rem',
         '&:hover': {
-            backgroundColor: '#EBEBEB',
-            display: 'grid',
-            placeItems: 'center',
+            backgroundColor: '#C4C4C4',
+            opacity: '0.8',
         },
-    }
+    },
+    previewButton: {
+        borderRadius: '5px 5px',
+        backgroundColor: '#FFFFFF',
+        marginBottom: '1rem',
+        border: 'none',
+    },
 })
 
 function DocumentsGrid({ document }) {
@@ -32,7 +49,14 @@ function DocumentsGrid({ document }) {
                 onMouseLeave={() => setIsHovered(!isHovered)}
             >
                 {isHovered ? 
-                    <GetAppIcon /> : null
+                    <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+                        <button className={classes.previewButton}>
+                            <span>Preview</span>
+                        </button>
+                        <GetAppIcon />
+                        <span style={{margin: '0 auto'}}>{'3'}</span>
+                    </div> 
+                    : null
                 }
             </div>
             {/* document title */}
