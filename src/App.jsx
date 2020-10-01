@@ -6,7 +6,7 @@ import {
     Route,
 } from "react-router-dom";
 import './assets/bootstrap.min.css'
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { theme_document_upload, theme_sidebar, theme_homepage } from './common/theme';
 import Register from './pages/loginSignup/Register';
@@ -23,7 +23,6 @@ import EditProfile from './pages/profile/EditProfile';
 import DocumentResults from './pages/search_results/DocumentResults'
 import DocumentUpload from './pages/upload/DocumentUpload';
 import DocumentPreview from './pages/preview/DocumentPreview'
-
 
 const styles = {
     root: {
@@ -112,7 +111,6 @@ class App extends Component {
                                     <DocumentUpload />
                                 </ThemeProvider>
                             </Route>
-
                             <Route path="/DocumentPreview">
                                 <DocumentPreview />
                             </Route>
