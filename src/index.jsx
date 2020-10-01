@@ -9,7 +9,6 @@ import { theme_root } from './common/theme';
 
 import { BrowserRouter } from 'react-router-dom';
 
-
 ReactDOM.render(
 	<React.StrictMode>
 		<BrowserRouter>

@@ -38,13 +38,13 @@ export const theme_sidebar = createMuiTheme({
 			fontFamily: 'Raleway',
 			color: '#5A5A5A',
 			fontWeight: '500',
-			fontSize: '1.5em',
+			fontSize: '1.2em',
 		},
 		h3: {
 			fontFamily: 'Raleway',
 			color: '#5A5A5A',
 			fontWeight: '400',
-			fontSize: '1.375em',
+			fontSize: '1.1em',
 		},
 	}
 })

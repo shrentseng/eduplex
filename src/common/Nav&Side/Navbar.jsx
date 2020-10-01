@@ -5,7 +5,6 @@ import { makeStyles } from '@material-ui/core/styles';
 
 
 import AppBar from '@material-ui/core/AppBar';
-import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
 import Avatar from '@material-ui/core/Avatar';
@@ -22,7 +21,6 @@ import AvatarNavbar from './AvatarNavbar';
 const useStyles = makeStyles(() => ({
     root: {
 		height: '3.7rem',
-		display: 'flex',
 		backgroundColor: '#FFFFFF',
 		'& a':{
             fontFamily: 'Roboto',
@@ -37,17 +35,19 @@ const useStyles = makeStyles(() => ({
 	},
 	grid: {
 		height: '100%',
-		display: 'flex',
-		alignItems: 'center',
+		display: 'grid',
+		gridTemplateColumns: '150px 6fr minmax(18rem, 1fr)',
+		placeItems: 'center',
 	},
     logo: {
-		marginLeft: '2rem',
+		'& a': {
+			display: 'flex',
+		},
 	},
 	search: {
 		display: 'flex',
-		alignItems: 'center',
-		justifyContent: 'center',
-		paddingRight: '1rem',
+		width: '90%',
+		placeItems: 'center',
 	},
 	select: {
 		'& .react-select__control, & .react-select__control:hover': {
@@ -78,7 +78,8 @@ const useStyles = makeStyles(() => ({
 	},
 	input: {
 		height: '2.25rem',
-		width: '34rem',
+		width: 'inherit',
+		minWidth: '10rem',
 		paddingRight: '2.8rem',
 		backgroundColor: '#F7F7F7',
 		border: '#F7F7F7',
@@ -102,7 +103,7 @@ const useStyles = makeStyles(() => ({
 		height: '2.5rem',
 		color: '#FFFFFF',
 		backgroundColor: '#71BA75',
-		margin: '0 1rem',
+		margin: '0 0.5rem',
 		outline: 'none !important',
 		'&:hover': {
 			backgroundColor: '#71BA75',
@@ -112,7 +113,7 @@ const useStyles = makeStyles(() => ({
 		height: '2.125rem',
 		width: '2.125rem',
 		color: '#909090',
-		margin: '0 1rem',
+		margin: '0 0.5rem',
 	},
 }));
 
@@ -154,18 +155,17 @@ function Navbar({ onSearch }) {
 	}
 
 	
-	
     return (
         <AppBar className={classes.root}>
-            <Grid className={classes.grid}>
-                <Grid md={3} className={classes.logo}>
+            <div className={classes.grid}>
+                <div className={classes.logo}>
                     {/* //logo */}
                     <Link to="/">
-                        <img src={Logo} alt=''/>
-                        <img src={LogoWord} alt=''/>
+                        <img style={{height: '24px'}} src={Logo} alt=''/>
+                        <img style={{height: '24px'}} src={LogoWord} alt=''/>
                     </Link>
-                </Grid>
-                <Grid md={6} className={classes.search}>
+                </div>
+                <div className={classes.search}>
                     {/* //select */}
 					<Select 
 						className={classes.select} 
@@ -182,8 +182,8 @@ function Navbar({ onSearch }) {
 						onChange={handleSearchChange} 
 					/>
 					<SearchIcon className={classes.SearchIcon} onClick={handleSearch}/>
-                </Grid>
-                <Grid md={3} className={classes.rightStuffs}>
+                </div>
+                <div className={classes.rightStuffs}>
                     {/* //upload & noti & profile */}
 					<Link to="/DocumentUpload">
 						<Button
@@ -196,8 +196,8 @@ function Navbar({ onSearch }) {
 					</Link>
 					<NotificationsIcon className={classes.notificationsIcon} />
 					<AvatarNavbar />
-                </Grid>
-            </Grid>
+                </div>
+            </div>
         </AppBar>
     )
 }

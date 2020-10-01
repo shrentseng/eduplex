@@ -8,10 +8,6 @@ import IconButton from '@material-ui/core/IconButton';
 import Icon from '@material-ui/core/Icon';
 import DehazeIcon from '@material-ui/icons/Dehaze';
 import AppsIcon from '@material-ui/icons/Apps';
-import ListIcon from '../../assets/list-icon.svg'
-import GridIcon from '../../assets/grid-icon.svg'
-import ListIconBlur from '../../assets/list-icon-blur.svg'
-import GridIconBlur from '../../assets/grid-icon-blur.svg'
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -66,14 +62,7 @@ function GridOrList({ onClickGrid, onClickList, grid }) {
 		setSortby(event.target.value);
 	}
 
-    var gridIcon, listIcon;
-    if (grid) {
-        gridIcon=GridIcon;
-        listIcon=ListIconBlur;
-    } else {
-        gridIcon=GridIconBlur;
-        listIcon=ListIcon;
-    }
+    
     return (
         <div className={classes.root}>
             <IconButton onClick={onClickGrid} disableFocusRipple disableRipple>

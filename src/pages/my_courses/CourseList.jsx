@@ -37,28 +37,23 @@ function CourseList() {
     const classes = useStyles();
     const [courses, setCourses] = useState([
         {
-            'title': 'Math',
-            'number': '170E',
+            'title': 'Math 170E',
             'key': 0,
         },
         {
-            'title': 'Math',
-            'number': '170S',
+            'title': 'Math 170S',
             'key': 1,
         },
         {
-            'title': 'Computer Science',
-            'number': '180',
+            'title': 'Computer Science 180',
             'key': 2,
         },
         {
-            'title': 'Computer Science',
-            'number': '35L',
+            'title': 'Computer Science 35L',
             'key': 3,
         },
         {
-            'title': 'History',
-            'number': '101A',
+            'title': 'History 101A',
             'key': 4,
         },
     ]);

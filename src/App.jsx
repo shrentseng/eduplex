@@ -6,7 +6,7 @@ import {
     Route,
 } from "react-router-dom";
 import './assets/bootstrap.min.css'
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { theme_document_upload, theme_sidebar, theme_homepage } from './common/theme';
 import Register from './pages/loginSignup/Register';
@@ -22,23 +22,23 @@ import CourseResults from './pages/search_results/CourseResults'
 import EditProfile from './pages/profile/EditProfile';
 import DocumentResults from './pages/search_results/DocumentResults'
 import DocumentUpload from './pages/upload/DocumentUpload';
+import DocumentPreview from './pages/preview/DocumentPreview'
 
 const styles = {
     root: {
         display: 'flex',
         backgroundColor: '#F7F7F7',
-        width: '-webkit-fill-available',
+        width: '100%',
     },
     main: {
-        display: 'flex',
-        width: '-webkit-fill-available',
+        display: 'grid',
+        gridTemplateColumns: 'minmax(14rem, 20%) minmax(27rem, 5fr) 1fr',
+        width: '100%',
         marginTop: '3.7rem', //height of navbar
     },
     sidebar: {
-        width: '20%',
     },
     page: {
-        width: '60%',
     },
 };
 
@@ -64,7 +64,7 @@ class App extends Component {
             <div className={classes.root}>
                 <Navbar onSearch={this.onSearch}/>
                 <div className={classes.main} id="main">
-                    {(this.props.location.pathname !== "/DocumentUpload") &&
+                    {(this.props.location.pathname !== "/DocumentUpload") && (this.props.location.pathname !== "/DocumentPreview") && 
                         <div className={classes.sidebar} id="sidebar">
                             <ThemeProvider theme={theme_sidebar}>
                                 <SideBar courses={this.state.courses} />
@@ -110,6 +110,9 @@ class App extends Component {
                                 <ThemeProvider theme={theme_document_upload}>
                                     <DocumentUpload />
                                 </ThemeProvider>
+                            </Route>
+                            <Route path="/DocumentPreview">
+                                <DocumentPreview />
                             </Route>
                         </Switch>
                     </div>
