@@ -10,12 +10,10 @@ import Menu from '@material-ui/core/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import Button from '@material-ui/core/Button';
 import './Navbar.css';
 import Logo from '../static/logo.png';
 import SimpleListMenu from './NavDropMenu';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import Upload from '../shren_oscar_components/Upload'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -235,9 +233,3 @@ const Navbar = () => {
 }
 
 export default Navbar;
-
-/*
-<Button className={classes.upload} href={Upload}>
-    Upload
-</Button>
-*/

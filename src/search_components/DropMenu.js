@@ -3,7 +3,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
-import TriangleIcon from '../static/triangle-drop.svg'
+import TriangleIcon from '../assets/triangle-drop.svg'
 
 const options = [
   'Search By:',
