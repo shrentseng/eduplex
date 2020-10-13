@@ -49,6 +49,7 @@ class App extends Component {
         this.state = {
             searchValue: "",
             courses: [ "Course 1", "Course 2" ],
+            test: [],
         }
         
     }
