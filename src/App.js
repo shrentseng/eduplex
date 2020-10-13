@@ -13,6 +13,7 @@ import Course from './course_containers/Course';
 import Profile from './profile_containers/Profile';
 import Search from './search_containers/Search';
 import MyCourse from './my_course_containers/MyCourse';
+import EduPoints from '/vanessa_components/EduPoints';
 import './assets/bootstrap.min.css'
 import './App.css';
 import EditProfile from './shren_oscar_components/EditProfile';
@@ -58,6 +59,9 @@ class App extends Component {
                             </Route>
                             <Route path="/MyCourse">
                                 <MyCourse />
+                            </Route>
+                            <Route path="/EduPoints">
+                                <EduPoints />
                             </Route>
                         </Switch>
                     </div>
