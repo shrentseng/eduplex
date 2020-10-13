@@ -2,6 +2,7 @@
   "name": "eduplex",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://54.187.93.205:3000",
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
