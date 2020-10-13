@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function EduPoints() {
+function EduPoints() {
     const classes = useStyles();
     return (
         <div className={classes.title}> 
@@ -21,3 +21,5 @@ export default function EduPoints() {
         
     );
 }
+
+export default EduPoints;

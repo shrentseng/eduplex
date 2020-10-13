@@ -22,7 +22,8 @@ import CourseResults from './pages/search_results/CourseResults'
 import EditProfile from './pages/profile/EditProfile';
 import DocumentResults from './pages/search_results/DocumentResults'
 import DocumentUpload from './pages/upload/DocumentUpload';
-import DocumentPreview from './pages/preview/DocumentPreview'
+import DocumentPreview from './pages/preview/DocumentPreview';
+import EduPoints from './pages/edupoints/EduPoints';
 
 const styles = {
     root: {
@@ -69,7 +70,8 @@ class App extends Component {
                             <ThemeProvider theme={theme_sidebar}>
                                 <SideBar courses={this.state.courses} />
                             </ThemeProvider>
-                        </div>}
+                        </div>
+                    }
                     <div className={classes.page} id="page"> 
                         <Switch>
                             <Route exact path="/">
@@ -113,6 +115,9 @@ class App extends Component {
                             </Route>
                             <Route path="/DocumentPreview">
                                 <DocumentPreview />
+                            </Route>
+                            <Route path="/EduPoints">
+                                <EduPoints />
                             </Route>
                         </Switch>
                     </div>
