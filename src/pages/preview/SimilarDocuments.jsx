@@ -1,31 +1,25 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles';
-import { Paper } from '@material-ui/core'
+import SimpleDoc from './SimpleDocument.jsx'
 
-const useStyles = makeStyles(() => ({
-    root:{
-        display: "grid",
-        gridTemplateColumns:"25%",
-    },
-}))
+const documents = [
+    {"docName":"Theory of Relativity"},
+    {"docName":"Pride and Prejudice"},
+    {"docName":"Alexander the Great"},
+    {"docName":"Calculus III"}
+]
 
+const renderDoc = () =>{
+    return documents.map((details) => {
+        return <SimpleDoc
+            name={details.docName}
+            />
+    })
+}
 const SimilarDocuments = () => {
-    const classes = useStyles();
 
     return(
-        <div className={classes.root}>
-            <Paper>
-                Document
-            </Paper>
-            <Paper>
-                Document
-            </Paper>
-            <Paper>
-                Document
-            </Paper>
-            <Paper>
-                Document
-            </Paper>
+        <div>
+            {renderDoc()}
         </div>
     )
 }

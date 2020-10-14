@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Select from 'react-select';
-import MenuItem from '@material-ui/core/MenuItem';
 //import Select from '@material-ui/core/Select';
 import Paper from '@material-ui/core/Paper';
 import Typography from "@material-ui/core/Typography";

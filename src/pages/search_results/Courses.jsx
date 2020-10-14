@@ -12,4 +12,4 @@ const Courses = (props) => {
     })
 }
 
-export default Courses
+export default Courses;

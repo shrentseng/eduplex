@@ -3,11 +3,13 @@ import {makeStyles} from "@material-ui/core/styles"
 import { Button, Paper, Typography } from '@material-ui/core'
 import DocumentComment from './DocumentComment.jsx'
 import SimilarDocuments from './SimilarDocuments.jsx'
+import PDFViewer from './PDFViewer.jsx'
+import PDFJSBackend from './PDFJs.jsx'
 
 const useStyles = makeStyles(() => ({
     root:{
         display: "grid",
-        gridTemplateColumns:"25%",
+        gridTemplateColumns:"20%",
         gridTemplateRows:"8% 8% 8% 5% 14% 6% auto",
         width: "100vw",
         height: "100vh",
@@ -111,6 +113,12 @@ const useStyles = makeStyles(() => ({
         gridColumnEnd:"2",
         gridRowStart:"7",
         gridRowEnd:"8",
+    },
+    pdf:{
+        gridColumnStart:"2",
+        gridColumnEnd:"3",
+        gridRowStart:"2",
+        gridRowEnd:"8",
     }
     
 }))
@@ -183,8 +191,8 @@ const DocumentPreview = () => {
                         <Typography style={{marginTop:"0.5rem", fontSize:"0.7em", fontWeight:600, color:"#747474"}}>
                             Helpful?
                         </Typography>
-                        <Button style={{height:"2em", marginLeft: "1em", border: "solid 1px", borderColor:"#C4C4C4", borderRadius:3}}>Yes</Button>
-                        <Button style={{height:"2em", marginLeft: "1em", border: "solid 1px", borderColor:"#C4C4C4", borderRadius:3}}>No</Button>
+                        <Button style={{width:"6em", height:"2em", marginLeft: "2em", border: "solid 1px", borderColor:"#C4C4C4", borderRadius:3}}>Yes</Button>
+                        <Button style={{width:"6em", height:"2em", marginLeft: "1em", border: "solid 1px", borderColor:"#C4C4C4", borderRadius:3}}>No</Button>
                     </div>
                 </Paper>
             </div>
@@ -199,6 +207,11 @@ const DocumentPreview = () => {
                     </Typography>
                     <SimilarDocuments/>
                 </Paper>
+            </div>
+            <div className={classes.pdf}>
+                <PDFViewer 
+                    backend={PDFJSBackend}
+                    src='/myPDF.pdf'/>
             </div>
         </div>
     )

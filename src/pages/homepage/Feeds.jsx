@@ -3,12 +3,11 @@ import Feed from './Feed';
 
 const Feeds = forwardRef((props, ref) => {
     const [feeds, setFeeds] = useState([]);
-
     useEffect(() => {
         let temp = [
             {
                 "username": "Shren",
-                "content": "fuck off",
+                "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor repellendus, laboriosam sit rerum, reiciendis adipisci placeat odit cumque ad, accusantium ducimus at quam harum fugit molestiae aliquid cupiditate explicabo provident?",
                 "likeCount": 1,
                 "key": 0,
                 "commentCount": 0,
@@ -16,7 +15,7 @@ const Feeds = forwardRef((props, ref) => {
             },
             {
                 "username": "Shren",
-                "content": "eat shit",
+                "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor repellendus, laboriosam sit rerum, reiciendis adipisci placeat odit cumque ad, accusantium ducimus at quam harum fugit molestiae aliquid cupiditate explicabo provident?",
                 "likeCount": 1,
                 "key": 1,
                 "commentCount": 0,
@@ -24,7 +23,7 @@ const Feeds = forwardRef((props, ref) => {
             },
             {
                 "username": "Shren",
-                "content": "suck my dick",
+                "content": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor repellendus, laboriosam sit rerum, reiciendis adipisci placeat odit cumque ad, accusantium ducimus at quam harum fugit molestiae aliquid cupiditate explicabo provident?",
                 "likeCount": 1,
                 "commentCount": 0,
                 "key": 2,
