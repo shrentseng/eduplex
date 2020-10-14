@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import { useFormik } from 'formik';
@@ -166,6 +166,20 @@ const EditProfile = () => {
     }
 
     const submitEmail = () => {
+        fetch('/profile/edit', {
+            method: "PUT",
+            headers: { 
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                    userID: 1,
+                    Email: formikEmail.values.email,
+                })
+            }
+        ).then(() => {
+            //handle error
+        })
+
         setEmail(formikEmail.values.email)
         cancelEmail()
     }

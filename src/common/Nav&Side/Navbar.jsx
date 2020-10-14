@@ -2,15 +2,9 @@ import React, { useState, useRef } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Select from 'react-select'
 import { makeStyles } from '@material-ui/core/styles';
-
-
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
-import Avatar from '@material-ui/core/Avatar';
-
-
-
 import Logo from '../../assets/epimg.svg';
 import LogoWord from '../../assets/EduPlex.svg';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';

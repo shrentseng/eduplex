@@ -16,13 +16,13 @@ import Homepage from './pages/homepage/Homepage';
 import SideBar from './common/Nav&Side/SideBar';
 import Course from './pages/course/Course';
 import Profile from './pages/profile/Profile';
-import Search from './search_containers/Search';
 import MyCourse from './pages/my_courses/MyCourses';
 import CourseResults from './pages/search_results/CourseResults'
 import EditProfile from './pages/profile/EditProfile';
 import DocumentResults from './pages/search_results/DocumentResults'
 import DocumentUpload from './pages/upload/DocumentUpload';
-import DocumentPreview from './pages/preview/DocumentPreview'
+import DocumentPreview from './pages/preview/DocumentPreview';
+import EduPoints from './pages/edupoints/EduPoints';
 
 const styles = {
     root: {
@@ -36,10 +36,6 @@ const styles = {
         width: '100%',
         marginTop: '3.7rem', //height of navbar
     },
-    sidebar: {
-    },
-    page: {
-    },
 };
 
 class App extends Component {
@@ -50,7 +46,6 @@ class App extends Component {
             searchValue: "",
             courses: [ "Course 1", "Course 2" ],
         }
-        
     }
 
     onSearch = (content) =>
@@ -69,7 +64,8 @@ class App extends Component {
                             <ThemeProvider theme={theme_sidebar}>
                                 <SideBar courses={this.state.courses} />
                             </ThemeProvider>
-                        </div>}
+                        </div>
+                    }
                     <div className={classes.page} id="page"> 
                         <Switch>
                             <Route exact path="/">
@@ -94,9 +90,6 @@ class App extends Component {
                             <Route path="/EditProfile">
                                 <EditProfile />
                             </Route>
-                            <Route path="/Search">
-                                <Search />
-                            </Route>
                             <Route path="/MyCourses">
                                 <MyCourse />
                             </Route>
@@ -113,6 +106,9 @@ class App extends Component {
                             </Route>
                             <Route path="/DocumentPreview">
                                 <DocumentPreview />
+                            </Route>
+                            <Route path="/EduPoints">
+                                <EduPoints />
                             </Route>
                         </Switch>
                     </div>

@@ -6,7 +6,7 @@ import {
     Route
 } from "react-router-dom";
 import Feeds from '../homepage/Feeds';
-import Document from '../../common/documents_old/Documents';
+import Document from '../../common/documents/Documents';
 import ProfileTag from './ProfileTag';
 import ProfileButtons from './ProfileButtons';
 import { theme_homepage, theme_profile } from '../../common/theme';
@@ -14,10 +14,27 @@ import { theme_homepage, theme_profile } from '../../common/theme';
 class Profile extends Component {
 	constructor() {
 		super();
-			this.state = {
-				grid: true,
-				searchField: "",
-			};
+		this.state = {
+			grid: true,
+			searchField: "",
+			firstName: "",
+			lastName: "",
+			university: "",
+		};
+	}
+	
+	componentDidMount() {
+		fetch('/profile/edit?userID=1')
+		.then(response => response.json())
+        .then(
+			(result) => {
+				this.setState({
+					firstName: result.FirstName,
+					lastName: result.LastName,
+					university: result.University,
+				})
+			}
+		);
 	}
 
 	render() {
@@ -29,7 +46,11 @@ class Profile extends Component {
 		return (
 			<div style={{margin: '2rem'}}>
 				<ThemeProvider theme={theme_profile}>
-					<ProfileTag />
+					<ProfileTag 
+						firstName={this.state.firstName} 
+						lastName={this.state.lastName} 
+						university={this.state.university} 
+					/>
 					<ProfileButtons />
 				</ThemeProvider>
 				

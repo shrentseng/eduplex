@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
-import './ProfileTag.css';
+//import './ProfileTag.css';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import RewardIcon from '../../assets/reward-icon.svg';
@@ -16,6 +16,7 @@ import Trophy from '../../assets/trophy.svg';
 
 const useStyles = makeStyles({
     root: {
+        display: 'flex',
         margin: '2.5rem 0em',
         '& button': {
             outline: 'none',
@@ -26,6 +27,15 @@ const useStyles = makeStyles({
         maxWidth: '180px',
         width: '100%',
         height: 'auto',
+    },
+    leftSection: {
+        marginRight: '3rem',
+    },
+    rightSection: {
+        marginLeft: 'auto',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-end',
     },
     editProfileButton: {
         backgroundColor:'#FFFFFF',
@@ -68,20 +78,20 @@ const useStyles = makeStyles({
 });
 
 
-function ProfileTag(user) {
+function ProfileTag(props) {
     const classes = useStyles();
 
     return (
-        <Grid container className={classes.root}>
-            <Grid item xs={3}>
+        <div className={classes.root}>
+            <div className={classes.leftSection}>
                 <Avatar className={classes.avatar} src="https://i.pinimg.com/736x/d8/9b/25/d89b25dc0b942bb0ca51c4a8800dde95.jpg" />
-            </Grid>
-            <Grid item xs={5}>
-                <Typography variant="h1">Username</Typography>
-                <Typography variant="h2" style={{margin: '0.3rem 0'}}>University of California, Los Angeles</Typography>
+            </div>
+            <div>
+                <Typography variant="h1">{props.firstName} {props.lastName}</Typography>
+                <Typography variant="h2" style={{margin: '0.3rem 0'}}>{props.university}</Typography>
                 <Typography variant="h4">Major and Minor<br></br>Since Fall 2019</Typography>
-            </Grid >
-            <Grid item xs={4}>
+            </div >
+            <div className={classes.rightSection}>
                 <Link to="/EditProfile" style={{textDecoration: 'none', float: 'right'}}>
                     <Button
                         component="button"
@@ -107,9 +117,9 @@ function ProfileTag(user) {
                         <span>{'3'}</span>
                     </div>
                 </Paper>
-            </Grid>
+            </div>
 
-        </Grid>
+        </div>
     )
 }
 
