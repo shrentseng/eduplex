@@ -117,7 +117,6 @@ const Post = ( {createPost} ) => {
                             onChange={handleSelectChange}
                         >
                         </Select>
-                        <Typography>Post in</Typography>
                     </div>
                     
                     <div>

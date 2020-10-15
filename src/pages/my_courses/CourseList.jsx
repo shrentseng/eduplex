@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { makeStyles } from "@material-ui/core/styles";
 import CourseCard from './CourseCard';
 import Card from "@material-ui/core/Card";
@@ -8,9 +9,6 @@ import PlusIcon from '../../assets/plus.png';
 
 const useStyles = makeStyles(() => ({
     root: {
-        height: '670px',
-        overflowY: 'scroll',
-        overflowX: 'hidden',
         background: '#F7F7F7',
         '& button': {
             outline: 'none',
@@ -89,12 +87,14 @@ function CourseList() {
             >
                 {cardComponent}
                 <Grid item>
-                    <CardActionArea>
-                        <Card className={classes.card}>
-                            <div className={classes.placeholder}></div>
-                            <img src={PlusIcon} alt="" height="35px"/>
-                        </Card>
-                    </CardActionArea>
+                    <Link to="/CourseResults">
+                        <CardActionArea>
+                            <Card className={classes.card}>
+                                <div className={classes.placeholder}></div>
+                                <img src={PlusIcon} alt="" height="35px"/>
+                            </Card>
+                        </CardActionArea>
+                    </Link>
                 </Grid>
             </Grid>
         </div>

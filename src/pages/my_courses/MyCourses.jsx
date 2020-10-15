@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { withStyles, makeStyles } from "@material-ui/core/styles";
+import React, { useState } from 'react';
+import { makeStyles } from "@material-ui/core/styles";
 import { ThemeProvider } from '@material-ui/core/styles';
 import CardList from './CourseList';
 import Typography from '@material-ui/core/Typography';
-import { theme_homepage, theme_my_courses } from '../../common/theme';
+import { theme_my_courses } from '../../common/theme';
 
-const styles = () => ({
+const useStyles = makeStyles(() => ({
 	root: {
 		margin: '2rem',
 	},
@@ -16,48 +16,33 @@ const styles = () => ({
 		marginBottom: '24px',
 	},
 	college:{
-		marginBottom: '20px',
+		marginBottom: '2rem',
 	}
-});
+}));
 
-class MyCourses extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			college: 'University of California, Los Angeles',
-		};
-  	}
+function MyCourses() {
+	const classes = useStyles();
+	const [colleges, setColleges] = useState(['University of California, Los Angeles', 'University of California, Berkeley']);
 
-	// componentDidMount() {
-	// 	fetch('https://jsonplaceholder.typicode.com/albums')
-	// 	.then(response => response.json())
-	// 	.then(courses => this.setState({courses: courses.splice(0, 5)}));
-	// }
-
-	// onDeleteCourse = (index) => {
-	// 	let temp = this.state.courses;
-	// 	temp.splice(index, 1);
-	// 	this.setState({courses: temp});
-	// }
-	
-	render() {
-		const { classes } = this.props;
-		// const courses = this.state.courses.filter(course => {
-		// 	return course.title.toLowerCase().includes(searchField.toLowerCase());
-		// });
-
-		return (
-			<ThemeProvider theme={theme_my_courses}>
-				<div className={classes.root}>
-					<Typography variant="h2">My Courses</Typography>
-					<div>
-						<Typography variant="h3">{this.state.college}</Typography>
-						<CardList />
-					</div>
+	const renderColleges = () => {
+		return colleges.map((college) => {
+			return (
+				<div className={classes.college}>
+					<Typography variant="h3">{college}</Typography>
+					<CardList />
 				</div>
-			</ThemeProvider>
-		);
+			)
+		})
 	}
+
+	return (
+		<ThemeProvider theme={theme_my_courses}>
+			<div className={classes.root}>
+				<Typography variant="h2">My Courses</Typography>
+				{renderColleges()}
+			</div>
+		</ThemeProvider>
+	);
 }
 
-export default withStyles(styles)(MyCourses);;
+export default MyCourses;

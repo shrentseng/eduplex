@@ -61,7 +61,7 @@ const useStyles = makeStyles(() => ({
 
 const menuList = [
     {
-        title: 'Upgrade',
+        title: 'EduPoints',
     },
     {
         title: 'Profile',

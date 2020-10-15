@@ -155,8 +155,8 @@ function Navbar({ onSearch }) {
                 <div className={classes.logo}>
                     {/* //logo */}
                     <Link to="/">
-                        <img style={{height: '24px'}} src={Logo} alt=''/>
-                        <img style={{height: '24px'}} src={LogoWord} alt=''/>
+                        <img style={{height: '24px', margin: '0.25rem'}} src={Logo} alt=''/>
+                        <img style={{height: '24px', margin: '0.25rem'}} src={LogoWord} alt=''/>
                     </Link>
                 </div>
                 <div className={classes.search}>

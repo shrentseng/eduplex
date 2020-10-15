@@ -18,12 +18,13 @@ const styles = theme => ({
         margin: '1em 0',
     },
     paper: {
-        padding: '1em',
+        padding: '1.25em',
         marginBottom: '1em',
+        display: 'grid',
+        gridTemplateRows: '3rem auto 2rem', 
     },
-    headerItem: {
+    header: {
         display: 'flex',
-        alignItems: 'center',
     },
     avatar: {
         borderRadius: '50%',
@@ -33,16 +34,14 @@ const styles = theme => ({
         marginTop: '-1em',
     },
     body: {
-        marginTop: '2em',
-        marginBottom: '2em',
-        marginLeft: '1em',
-        marginRight: '1em',
+        margin: '0.5rem 0',
         minHeight: '3em',
         whiteSpace: "pre-wrap",
     },
     footer: {
+        display: 'flex',
         height: '2em',
-        marginLeft: '1em',
+        width: '10rem',
         alignContent: 'center',
         justifyContent: 'space-between',
     },
@@ -75,36 +74,40 @@ class Feed extends Component {
         return (
             <div className={classes.root}>
                 <Paper className={classes.paper} elevation={5}>
-                    <Grid container className={classes.header}>
-                        <Grid className={classes.headerItem} item xs={3}>
+                    <div className={classes.header}>
+                        <div>
+                            {/* avatar */}
                             <Avatar className={classes.avatar} src={avatar} />
-                            <Typography variant='h5'>{this.props.username}</Typography>
-                        </Grid>
-                        <Grid className={classes.headerItem} item xs={3}>
+                        </div>
+                        <div style={{display: 'flex', flexDirection: 'column'}}>
+                            <div style={{display: 'flex', alignItems: 'center'}}>
+                                {/* username */}
+                                <Typography variant='h5'>{this.props.username}</Typography>
+                                {/* date */}
+                                <Typography variant='h6' style={{margin: '0 0.4em'}}>•</Typography>
+                                <Typography variant='h6'>{'5 mins ago'}</Typography>
+                            </div>
+                            {/* posted in */}
                             <Typography variant='h6'>{`Posted in ${this.props.course} `}</Typography>
-                            <Typography variant='h6' style={{margin: '0 0.4em'}}>•</Typography>
-                            <Typography variant='h6'>{'5 mins ago'}</Typography>
-                        </Grid>
-                        <Grid className={classes.headerItem} item xs={1} style={{marginLeft: 'auto'}}>
+                        </div>
+                        {/* <div className={classes.headerItem} style={{marginLeft: 'auto'}}>
                             <img className={classes.bookmark} src={bookmark} />
-                        </Grid>
-                    </Grid>
+                        </div> */}
+                    </div>
                     <Typography className={classes.body} variant='body1'>{this.props.content}</Typography>
-                    <Grid container className={classes.footer}>
-                        <Grid item xs={2}>
-                            <img className={classes.footerItem} src={like} onClick={(event) => this.props.handleLikeButton(this.props.index)}/>
-                        </Grid>
-                        <Grid item xs={2}>
-                            <span style={{display: 'flex', justifyContent: 'center', paddingRight: '0.6em'}}>{this.props.likeCount}</span>
-                        </Grid>
-                        <Grid item xs={2}>
-                            <img className={classes.footerItem} src={dislike} onClick={(event) => this.props.handleDislikeButton(this.props.index)}/>
-                        </Grid>
-                        <Grid item xs={4}>
+                    <div className={classes.footer}>
+                        <div>
+                            <img className={classes.footerItem} style={{marginRight: '1em'}} src={like} onClick={(event) => this.props.handleLikeButton(this.props.index)}/>
+                            <Typography display='inline'>{this.props.likeCount}</Typography>
+                        </div>
+                        <div>
                             <img className={classes.footerItem} style={{marginRight: '1em'}} src={comment} onClick={this.onToggleExpand}/>
                             <Typography display='inline'>{this.props.commentCount}3</Typography>
-                        </Grid>
-                    </Grid>
+                        </div>
+                        <div>
+                            <img className={classes.footerItem} src={share}/>
+                        </div>
+                    </div>
                 </Paper>
                 <CommentBoard isExpand={this.state.isExpand} setExpandTrue={this.onSetExpandTrue}/>
             </div>
