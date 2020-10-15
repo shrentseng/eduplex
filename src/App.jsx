@@ -32,7 +32,7 @@ const styles = {
     },
     main: {
         display: 'grid',
-        gridTemplateColumns: 'minmax(14rem, 20%) minmax(27rem, 5fr) 1fr',
+        gridTemplateColumns: 'minmax(14rem, 16%) minmax(27rem, 1500px)',
         width: '100%',
         marginTop: '3.7rem', //height of navbar
     },

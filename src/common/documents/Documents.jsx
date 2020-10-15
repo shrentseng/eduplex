@@ -157,7 +157,7 @@ function Documents() {
             </div>
             {/* render documents */}
             <div>
-                {isGrid ? <DocumentsGrid documents={documents} /> : <DocumentsList />}
+                {isGrid ? <DocumentsGrid documents={documents} /> : <DocumentsList documents={documents} />}
             </div>
 
         </div>

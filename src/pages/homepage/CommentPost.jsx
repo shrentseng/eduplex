@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
+import Avatar from '@material-ui/core/Avatar';
 import exclude from '../../assets/Exclude.svg';
+import avatar from '../../assets/avatar.svg';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -12,12 +14,9 @@ const useStyles = makeStyles(theme => ({
         justifyContent: "center",
     },
     textArea: {
-        margin: "10px",
-        marginLeft:"15px",
-        paddingLeft: "0.1em",
-        paddingBottom: "0px",
         fontSize: "20px",
-        width: "90%",
+        width: "100%",
+        margin: '0 1rem',
         backgroundColor: "#F7F7F7",
         "&::placeholder": {
             color: "#C4C4C4"
@@ -40,6 +39,7 @@ const CommentPost = ({createComment,isFocused}) => {
     }    
     return(
         <div className={classes.root}>
+            <Avatar className={classes.avatar} src={avatar} />
             <TextField multiline inputRef={isFocused} className={classes.textArea} InputLabelProps={{shrink: false}} InputProps={{ disableUnderline: true }} type="text" placeholder="Write a comment... " value={content} onChange={event => setContent(event.target.value)}/>             
             <img src={exclude} onClick={event => onCreateComment(content)}/>
         </div>

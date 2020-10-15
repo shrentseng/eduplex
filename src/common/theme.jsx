@@ -109,7 +109,7 @@ export const theme_my_courses = createMuiTheme({
 		h2: {
 			fontFamily: 'Raleway',
 			color: '#000000',
-			fontSize: '2em',
+			fontSize: '1.75em',
 			fontWeight: '600',
 		},
 		h3: {
@@ -117,7 +117,7 @@ export const theme_my_courses = createMuiTheme({
 			color: '#504F4F',
 			fontSize: '1.25em',
 			fontWeight: '700',
-			margin: '2rem 0',
+			margin: '1rem 0',
 		},
 		h4: {
 			fontFamily: 'Raleway',
@@ -182,6 +182,29 @@ export const theme_document_upload = createMuiTheme({
 			color: '#000000',
 			fontSize: '1.25rem',
 			fontWeight: '500',
+		},
+	}
+});
+
+export const theme_leaderboard = createMuiTheme({
+	typography: {
+		h2: {
+			fontFamily: 'Raleway',
+			color: '#FFFFFF',
+			fontSize: '1rem',
+			fontWeight: '600',
+		},
+		h3: {
+			fontFamily: 'Roboto',
+			color: '#5A5A5A',
+			fontSize: '0.9375rem',
+			fontWeight: '500',
+		},
+		h4: {
+			fontFamily: 'Roboto',
+			color: '#ADADAD',
+			fontSize: '0.625rem',
+			fontWeight: '400',
 		},
 	}
 });

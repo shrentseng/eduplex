@@ -12,7 +12,8 @@ import Documents from '../../common/documents/Documents';
 
 const useStyles = makeStyles(() => ({
     root: {
-		margin: '2rem 1rem',
+        margin: '2rem 1rem',
+        maxWidth: '1200px',
     },
     join: {
         display: 'flex',
@@ -40,8 +41,8 @@ const useStyles = makeStyles(() => ({
     },
     search: {
         width: 'calc(100% - 2rem)',
-        height: '2rem',
-        margin: '0 1rem',
+        height: '2.25rem',
+        margin: 0,
         border: '1px solid #E5E5E5',
         borderRadius: '5px 5px 5px 5px',
         outline: 'none',

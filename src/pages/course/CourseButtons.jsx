@@ -12,7 +12,7 @@ const useStyles = makeStyles({
         height: '2.25rem',
         display: 'grid',
         gridTemplateColumns: '1fr 1fr',
-        margin: '1rem 0 1rem 1rem',
+        marginBottom: '1rem',
     },
     select: {
         height: '2.25rem',

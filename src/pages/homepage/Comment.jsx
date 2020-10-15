@@ -148,7 +148,7 @@ class Comment extends Component{
 					</div>
 					<Accordion elevation={0} expanded={this.state.isExpand}>
 						<AccordionSummary onClick={event => this.onSetExpand()}>
-								Reply
+							<Typography variant='h5'>Reply</Typography>
 						</AccordionSummary>
 						{this.renderReply()}
 						<ReplyPost createReply={this.onCreateReply}/>
