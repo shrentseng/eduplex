@@ -8,7 +8,6 @@ import { buttonActiveFont } from '../../common/styles';
 
 const useStyles = makeStyles({
     buttons: {
-        width: 'calc(100% - 2rem)',
         height: '2.25rem',
         display: 'grid',
         gridTemplateColumns: '1fr 1fr',

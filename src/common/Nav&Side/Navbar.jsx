@@ -30,7 +30,7 @@ const useStyles = makeStyles(() => ({
 	grid: {
 		height: '100%',
 		display: 'grid',
-		gridTemplateColumns: '150px 6fr minmax(18rem, 1fr)',
+		gridTemplateColumns: '200px 6fr minmax(18rem, 1fr)',
 		placeItems: 'center',
 	},
     logo: {
@@ -41,6 +41,7 @@ const useStyles = makeStyles(() => ({
 	search: {
 		display: 'flex',
 		width: '90%',
+		maxWidth: '1000px',
 		placeItems: 'center',
 	},
 	select: {
@@ -155,8 +156,8 @@ function Navbar({ onSearch }) {
                 <div className={classes.logo}>
                     {/* //logo */}
                     <Link to="/">
-                        <img style={{height: '24px', margin: '0.25rem'}} src={Logo} alt=''/>
-                        <img style={{height: '24px', margin: '0.25rem'}} src={LogoWord} alt=''/>
+                        <img style={{height: '28px', margin: '0.25rem'}} src={Logo} alt=''/>
+                        <img style={{height: '28px', margin: '0.25rem'}} src={LogoWord} alt=''/>
                     </Link>
                 </div>
                 <div className={classes.search}>

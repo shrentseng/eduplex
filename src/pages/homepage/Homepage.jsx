@@ -6,8 +6,8 @@ import RightPanel from '../../common/leaderboard/RightPanel';
 
 const useStyles = makeStyles(() => ({
     root: {
-        display: 'grid',
-        gridTemplateColumns: '5fr 1fr',
+        display: 'flex',
+        maxWidth: '1200px',
         margin: '2rem',
     },
 }));
@@ -25,7 +25,6 @@ function Homepage() {
                 <Post createPost={onCreatePost} />
                 <Feeds ref={createPostRef} />
             </div>
-            <RightPanel />
         </div>
     )
 }
