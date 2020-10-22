@@ -12,7 +12,7 @@ import trophy5 from '../../assets/trophy5.svg';
 
 const useStyles = makeStyles(() => ({
 	root: {
-		margin: '2rem',
+        margin: '2rem 2rem 1rem 2rem',
     },
     title: {
         display: 'flex',

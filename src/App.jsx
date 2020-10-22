@@ -8,7 +8,7 @@ import {
 import './assets/bootstrap.min.css'
 import { withStyles } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/core/styles';
-import { theme_document_upload, theme_sidebar, theme_homepage } from './common/theme';
+import { theme_document_upload, theme_sidebar, theme_homepage, theme_leaderboard } from './common/theme';
 import Register from './pages/loginSignup/Register';
 import Navbar from './common/Nav&Side/Navbar';
 import SignIn from './pages/loginSignup/SignIn';
@@ -23,6 +23,7 @@ import DocumentResults from './pages/search_results/DocumentResults'
 import DocumentUpload from './pages/upload/DocumentUpload';
 import DocumentPreview from './pages/preview/DocumentPreview';
 import EduPoints from './pages/edupoints/EduPoints';
+import RightPannel from './common/leaderboard/RightPanel';
 
 const styles = {
     root: {
@@ -32,7 +33,7 @@ const styles = {
     },
     main: {
         display: 'grid',
-        gridTemplateColumns: 'minmax(14rem, 16%) minmax(27rem, 1500px)',
+        gridTemplateColumns: 'minmax(14rem, 1fr) minmax(27rem, 6fr) minmax(18rem, 2fr)',
         width: '100%',
         marginTop: '3.7rem', //height of navbar
     },
@@ -112,6 +113,13 @@ class App extends Component {
                             </Route>
                         </Switch>
                     </div>
+                    {(this.props.location.pathname == "/") && 
+                        <div id="rightPannel">
+                            <ThemeProvider theme={theme_leaderboard}>
+                                <RightPannel />   
+                            </ThemeProvider>
+                        </div>
+                    }
                 </div>
             </div>
         );

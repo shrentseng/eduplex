@@ -18,8 +18,8 @@ const styles = theme => ({
         margin: '1em 0',
     },
     paper: {
-        padding: '1.25em',
-        marginBottom: '1em',
+        padding: '1.25rem 1.25rem 1rem 1.25rem',
+        marginBottom: '1rem',
         display: 'grid',
         gridTemplateRows: '3rem auto 2rem', 
     },
@@ -34,14 +34,14 @@ const styles = theme => ({
         marginTop: '-1em',
     },
     body: {
-        margin: '0.5rem 0',
+        margin: '1rem 0',
         minHeight: '3em',
         whiteSpace: "pre-wrap",
     },
     footer: {
         display: 'flex',
         height: '2em',
-        width: '10rem',
+        width: '15rem',
         alignContent: 'center',
         justifyContent: 'space-between',
     },
@@ -99,6 +99,10 @@ class Feed extends Component {
                         <div>
                             <img className={classes.footerItem} style={{marginRight: '1em'}} src={like} onClick={(event) => this.props.handleLikeButton(this.props.index)}/>
                             <Typography display='inline'>{this.props.likeCount}</Typography>
+                        </div>
+                        <div>
+                            <img className={classes.footerItem} style={{marginRight: '1em'}} src={dislike} onClick={(event) => this.props.handleLikeButton(this.props.index)}/>
+                            <Typography display='inline'>3</Typography>
                         </div>
                         <div>
                             <img className={classes.footerItem} style={{marginRight: '1em'}} src={comment} onClick={this.onToggleExpand}/>

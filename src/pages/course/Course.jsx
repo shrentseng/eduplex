@@ -12,7 +12,7 @@ import Documents from '../../common/documents/Documents';
 
 const useStyles = makeStyles(() => ({
     root: {
-        margin: '2rem 1rem',
+        margin: '2rem',
         maxWidth: '1200px',
     },
     join: {
@@ -23,7 +23,7 @@ const useStyles = makeStyles(() => ({
     select: {
         height: '2.25rem',
         backgroundColor: '#FFFFFF',
-        width:'98%',
+        width:'100%',
         '& .css-yk16xz-control': {
             minHeight: '0px',
             height: '2.25rem',
@@ -40,9 +40,9 @@ const useStyles = makeStyles(() => ({
         },
     },
     search: {
-        width: 'calc(100% - 2rem)',
+        width: 'calc(100% - 4rem)',
         height: '2.25rem',
-        margin: 0,
+        margin: '0 2rem',
         border: '1px solid #E5E5E5',
         borderRadius: '5px 5px 5px 5px',
         outline: 'none',
@@ -57,12 +57,14 @@ function Course({ course }) {
     return (
         <ThemeProvider theme={theme_course}>
             <div className={classes.root}>
-                <Typography variant="h2">{course}</Typography>
-                <div className={classes.join}>
-                    <AddCircleOutlineIcon style={{color: '#0088D7'}} />
-                    <Typography variant="h4">Join Course</Typography>
+                <div style={{margin: '2rem',}}>
+                    <Typography variant="h2">{course}</Typography>
+                    <div className={classes.join}>
+                        <AddCircleOutlineIcon style={{color: '#0088D7'}} />
+                        <Typography variant="h4">Join Course</Typography>
+                    </div>
+                    <CourseButtons course={course} /> 
                 </div>
-                <CourseButtons course={course} />
                 <Switch>
                     <Route exact path={`/${courseURL}`}>
                         <input className={classes.search} placeholder='Search in Discussion' />

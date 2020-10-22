@@ -7,7 +7,7 @@ import { theme_my_courses } from '../../common/theme';
 
 const useStyles = makeStyles(() => ({
 	root: {
-		margin: '2rem',
+		margin: '2rem 2rem 0rem 4rem',
 	},
 	title: {
 		fontSize: '26px',

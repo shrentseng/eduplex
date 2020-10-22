@@ -12,7 +12,8 @@ import MyCoursesIcon from '../../assets/myCourses.svg';
 const useStyles = makeStyles({
 	root: {
 		width: '14rem',
-		marginTop: '1.5rem',
+		position: 'fixed',
+		top: '5rem',
 	},
 	list: {
 		'& a':{
