@@ -5,7 +5,6 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import Typography from "@material-ui/core/Typography";
 import { theme_homepage, theme_course } from '../../common/theme';
-import Input from '../../common/Input';
 import Homepage from '../homepage/Homepage';
 import CourseButtons from './CourseButtons';
 import Documents from '../../common/documents/Documents';
