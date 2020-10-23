@@ -57,7 +57,9 @@ const useStyles = makeStyles((theme) => ({
 	},
 	submit: {
 		margin: theme.spacing(3, 0, 2),
-	}
+		backgroundColor:"#71BA75",
+		color:"#FFFFFF",
+	},
 }));
 
 const theme = createMuiTheme({
@@ -74,7 +76,7 @@ export default function SignIn() {
 		<Container component="main" maxWidth="xs">
 			<CssBaseline />
 			<div className={classes.paper}>
-				<Typography component="h1" variant="h5">
+				<Typography component="h1" variant="h5" style={{color:"#000000"}}>
 					Sign In
 				</Typography>
 				<form className={classes.form} noValidate>
@@ -100,7 +102,7 @@ export default function SignIn() {
 						autoComplete="current-password"
 					/>
 					<FormControlLabel
-						control={<Checkbox value="remember" color="primary" />}
+						control={<Checkbox value="remember" color="#71BA75" />}
 						label="Remember me"
 					/>
 					<Link href="/">
@@ -108,19 +110,18 @@ export default function SignIn() {
 						fullWidth
 						variant="contained"
 						className={classes.submit}
-						color="primary"
 						>
 							Sign In
 						</Button>
 					</Link>
 					<Grid container>
 						<Grid item xs>
-						<Link href={'./Register'} variant="body2">
+						<Link variant="body2" style={{color:"#000000"}}>
 							Forgot password?
 						</Link>
 						</Grid>
 						<Grid item>
-						<Link href={'./Register'} variant="body2">
+						<Link href={'./Register'} variant="body2" style={{color:"#000000"}}>
 							{"Don't have an account? Sign Up"}
 						</Link>
 						</Grid>

@@ -11,7 +11,7 @@ import { withStyles } from '@material-ui/core/styles';
 
 const MySelect = withStyles({
 	root: {
-        
+        backgroundColor:"#FFFFFF"
     },
     marginTop: '1em',
 })(Select);
