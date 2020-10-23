@@ -3,9 +3,9 @@ import { makeStyles, withStyles } from '@material-ui/core/styles';
 //import './ProfileTag.css';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
-import RewardIcon from '../../assets/reward-icon.svg';
+
 import Icon from '@material-ui/core/Icon';
-import Grid from '@material-ui/core/Grid';
+
 import Paper from '@material-ui/core/Paper';
 import Avatar from '@material-ui/core/Avatar';
 import SettingsIcon from '@material-ui/icons/Settings';
@@ -13,6 +13,7 @@ import Typography from "@material-ui/core/Typography";
 import Divider from '@material-ui/core/Divider';
 import Dollar from '../../assets/dollar.svg';
 import Trophy from '../../assets/trophy.svg';
+import Help from '../../assets/help.svg';
 
 const useStyles = makeStyles({
     root: {
@@ -55,25 +56,41 @@ const useStyles = makeStyles({
     },
     paper: {
         display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
         float: 'right',
-        width: '14.375rem',
-        height: '6.625rem',
+        width: '17rem',
+        height: '5.25rem',
         padding: '0.75rem 1.25rem',
+        border: '1px solid #E5E5E5',
+        '& > div': {
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            '& img': {
+                height: '0.75rem',
+                width: '0.75rem',
+            },
+        },
+        '& div > div': {
+            '& span': {
+                fontFamily: 'Raleway',
+                fontWeight: '700',
+                fontSize: '0.7rem',
+                paddingLeft: '0.2rem',
+                color: '#0088D7',
+            },
+            // '& span:nth-child(4n+2)': {
+            // },
+        },
         '& span': {
-            fontFamily: 'Roboto',
             fontWeight: '700',
-            fontSize: '1.25em',
+            fontFamily: 'Raleway',
+            fontSize: '1.5rem',
+            color: '#000000',
         },
-        '& span:nth-child(4n+2)': {
-            paddingLeft: '0.75rem',
-            color: '#0088D7',
-        },
-        '& span:nth-child(4n+3)': {
-            float: 'right',
-            color: '#5A5A5A',
-        },
+    },
+    divider: {
+        borderRight: '2px solid #E5E5E5',
     },
 });
 
@@ -108,13 +125,29 @@ function ProfileTag(props) {
                 </Link>
                 <Paper className={classes.paper}>
                     <div>
-                        <img src={Dollar}></img>
-                        <span>EduPoints</span>
+                        <div>
+                            <img src={Dollar}></img>
+                            <span>EduPoints</span>
+                        </div>
                         <span>{'1234'}</span>
-                        <Divider style={{margin: '6px 0px'}}/>
-                        <img src={Trophy}></img>
-                        <span>Level</span>
+                    </div>
+                    <div className={classes.divider} />
+                    <div>
+                        {/* <Divider orientation="vertical" style={{margin: '6px 0px'}} /> */}
+                        <div>
+                            <img src={Trophy}></img>
+                            <span>Level</span>
+                        </div>
                         <span>{'3'}</span>
+                    </div>
+                    <div className={classes.divider}/>
+                    <div>
+                        {/* <Divider orientation="vertical" style={{margin: '6px 0px'}} /> */}
+                        <div>
+                            <img src={Help}></img>
+                            <span>Karma</span>
+                        </div>
+                        <span>{'5'}</span>
                     </div>
                 </Paper>
             </div>
@@ -124,28 +157,3 @@ function ProfileTag(props) {
 }
 
 export default ProfileTag;
-
-{/* <div className="wrapper">
-            <img src="https://i.pinimg.com/736x/d8/9b/25/d89b25dc0b942bb0ca51c4a8800dde95.jpg" alt="Avatar" style={imgStyle}/>
-            <div className="info">
-                <Typography variant="h4">Username</Typography>
-                <Typography className="sub-info">Major and Minor</Typography>
-                <Typography>Since Fall 2019</Typography>
-            </div>
-            <div className="left">
-                <Link to="/EditProfile" style={{textDecoration: 'none'}}>
-                    <Button
-                        component="button"
-                        disableElevation
-                        variant='contained'
-                        size="small"
-                        style={{marginTop:'10px', backgroundColor:'#5ACA7F', width:'150px'}}
-                        startIcon = {
-                            <SettingsIcon style={{ color: 'white' }}/>
-                        }
-                    >
-                        <div style={{color:'white'}}>Edit Profile</div>
-                    </Button>
-                </Link>
-            </div>
-        </div> */}
