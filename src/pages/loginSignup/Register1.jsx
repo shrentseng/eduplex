@@ -27,6 +27,7 @@ const MyTextField = withStyles({
 				borderColor: '#569859',
 			},
         },
+        backgroundColor:"#FFFFFF",
         marginTop: '1em',
         marginBottom: '1em',
     },
@@ -83,9 +84,9 @@ const Register1 = ({addStep}) => {
                 <div className="col-6">
                     <MyTextField 
                         variant= "outlined"
-                        className="form-control"
                         label="First Name"
                         name="firstName"
+                        style={{width: '100%'}}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         value={formik.values.firstName}
@@ -97,9 +98,9 @@ const Register1 = ({addStep}) => {
                 <div className="col-6">
                     <MyTextField 
                         variant= "outlined"
-                        className="form-control"
                         label="Last Name"
                         name="lastName"
+                        style={{width: '100%'}}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         value={formik.values.lastName}
@@ -114,9 +115,9 @@ const Register1 = ({addStep}) => {
                     <MyTextField
                         variant="outlined"
                         type="email" 
-                        className="form-control" 
                         label="Email Address" 
                         name="email" 
+                        style={{width: '100%'}}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         value={formik.values.email}
@@ -131,9 +132,9 @@ const Register1 = ({addStep}) => {
                     <MyTextField
                         variant= "outlined"
                         type="password" 
-                        className="form-control"
                         label="Password" 
                         name="password"
+                        style={{width: '100%'}}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         value={formik.values.password}
@@ -148,9 +149,9 @@ const Register1 = ({addStep}) => {
                     <MyTextField
                         variant= "outlined"
                         type="password"
-                        className="form-control"
                         label="Confirm Password"
                         name="confirmPassword"
+                        style={{width: '100%'}}
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         value={formik.values.confirmPassword}

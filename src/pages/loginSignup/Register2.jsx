@@ -9,7 +9,15 @@ import { withStyles } from '@material-ui/core/styles';
 
 const MySelect = withStyles({
 	root: {
-        
+        '& label.Mui-focused': {
+			color: '#569859',
+		},
+		'& .MuiOutlinedInput-root': {
+			'&.Mui-focused Select': {
+				borderColor: '#569859',
+			},
+		},
+        backgroundColor:"#FFFFFF",
     },
     marginTop: '1em',
 })(Select);
@@ -20,7 +28,7 @@ const Register2 = ({addStep, minusStep}) => {
         <form style={{width:'625px'}}>
             <FormControl variant='outlined' style={{width:'100%', marginBottom:'1em'}}>
                 <InputLabel  id="demo-simple-select-label">Name of University</InputLabel>
-                <MySelect label="Name of University">
+                <MySelect label="Name of University" >
                     <MenuItem value="">
                         <em>None</em>
                     </MenuItem>
