@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Register1 from './Register1';
 import Register2 from './Register2';
 import Register3 from './Register3';
+import SignIn from './SignIn';
 import './Register.css';
 
 class Register extends Component {
@@ -35,7 +36,7 @@ class Register extends Component {
 
             case 3: regForm = <Register3 addStep={this.onAddStep} minusStep={this.onMinusStep}/>
             break;
-
+            
             default: regForm = <Register1 addStep={this.onAddStep} minusStep={this.onMinusStep}/>
         }
         return (
