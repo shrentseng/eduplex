@@ -83,6 +83,7 @@ const Register1 = ({addStep}) => {
             <div className="row" style={{width: '625px'}}>
                 <div className="col-6">
                     <MyTextField 
+                        required
                         variant= "outlined"
                         label="First Name"
                         name="firstName"
@@ -97,6 +98,7 @@ const Register1 = ({addStep}) => {
                 </div>
                 <div className="col-6">
                     <MyTextField 
+                        required
                         variant= "outlined"
                         label="Last Name"
                         name="lastName"
@@ -113,6 +115,7 @@ const Register1 = ({addStep}) => {
             <div className="row">
                 <div className="col">
                     <MyTextField
+                        required
                         variant="outlined"
                         type="email" 
                         label="Email Address" 
@@ -130,6 +133,7 @@ const Register1 = ({addStep}) => {
             <div className="row">
                 <div className="col">
                     <MyTextField
+                        required
                         variant= "outlined"
                         type="password" 
                         label="Password" 
@@ -147,6 +151,7 @@ const Register1 = ({addStep}) => {
             <div className="row">
                 <div className="col">
                     <MyTextField
+                        required
                         variant= "outlined"
                         type="password"
                         label="Confirm Password"
