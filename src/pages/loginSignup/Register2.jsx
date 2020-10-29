@@ -9,29 +9,58 @@ import { withStyles } from '@material-ui/core/styles';
 
 const MySelect = withStyles({
 	root: {
-        
+        '& label.Mui-focused': {
+			color: '#569859',
+		},
+		'& .MuiOutlinedInput-root': {
+			'&.Mui-focused Select': {
+				borderColor: '#569859',
+			},
+		},
+        backgroundColor:"#FFFFFF",
     },
     marginTop: '1em',
 })(Select);
 
 
 const Register2 = ({addStep, minusStep}) => {
+    const [university, setUniversity] = React.useState("None");
+    const [major, setMajor] = React.useState("None");
+    const [minor, setMinor] = React.useState("None");
+
+    const handleUniversity = (event) => {
+        setUniversity(event.target.value);
+    }
+
+    const handleMajor= (event) => {
+        setMajor(event.target.value);
+    }
+
+    const handleMinor= (event) => {
+        setMinor(event.target.value);
+    }
+
+    const handleSubmit= () => {
+        if(university !== "None" && major !== "None")
+            addStep();
+    }
+
     return (
         <form style={{width:'625px'}}>
-            <FormControl variant='outlined' style={{width:'100%', marginBottom:'1em'}}>
+            <FormControl required variant='outlined' style={{width:'100%', marginBottom:'1em'}}>
                 <InputLabel  id="demo-simple-select-label">Name of University</InputLabel>
-                <MySelect label="Name of University">
-                    <MenuItem value="">
+                <MySelect label="Name of University" onChange={handleUniversity}>
+                    <MenuItem value={"None"}>
                         <em>None</em>
                     </MenuItem>
-                    <MenuItem value={10}>UCLA</MenuItem>
-                    <MenuItem value={20}>Berkeley</MenuItem>
-                    <MenuItem value={30}>USC</MenuItem>
+                    <MenuItem value={"UCLA"}>UCLA</MenuItem>
+                    <MenuItem value={"Berkeley"}>Berkeley</MenuItem>
+                    <MenuItem value={"USC"}>USC</MenuItem>
                 </MySelect>
             </FormControl>
-            <FormControl className="col-5" variant='outlined'>
+            <FormControl required className="col-5" variant='outlined'>
                 <InputLabel  id="demo-simple-select-label">Major</InputLabel>
-                <MySelect label="Major">
+                <MySelect required label="Major" onChange={handleMajor}>
                     <MenuItem value="">
                         <em>None</em>
                     </MenuItem>
@@ -42,7 +71,7 @@ const Register2 = ({addStep, minusStep}) => {
             </FormControl>
             <FormControl className="col-6" variant='outlined' style={{marginLeft:'3.2em',}}>
                 <InputLabel  id="demo-simple-select-label">Minor (Optional)</InputLabel>
-                <MySelect label="Minor (Optional)">
+                <MySelect label="Minor (Optional)" onChange={handleMinor}>
                     <MenuItem value="">
                         <em>None</em>
                     </MenuItem>
@@ -56,7 +85,7 @@ const Register2 = ({addStep, minusStep}) => {
                         <button className="btn button-back" type="submit" onClick={minusStep}>Back</button>
                 </div>
                 <div className="col">
-                        <button className="btn float-right button-continue" type="submit" onClick={addStep}>Continue</button>
+                        <button className="btn float-right button-continue" type="submit" onClick={handleSubmit}>Continue</button>
                 </div>
             </div>
         </form>
