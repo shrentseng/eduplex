@@ -4,18 +4,10 @@ import { Typography } from '@material-ui/core';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
-import Input from '../../common/Input';
-
 
 const useStyles = makeStyles(() => ({
     root: {
         width: '100vw',
-        '& input::placeholder': {
-			fontFamily: 'Roboto',
-			color: '#9A9A9A',
-			fontSize: '1.125rem',
-			fontWeight: '400',
-		},
     },
     upper: {
         display: 'flex',
@@ -23,7 +15,7 @@ const useStyles = makeStyles(() => ({
         alignItems: 'center',
         marginTop: '1.5rem',
         '& *': {
-            margin: '1rem 0',
+            margin: '0.5rem 0',
         }
     },
     lower: {
@@ -33,6 +25,20 @@ const useStyles = makeStyles(() => ({
         '& form': {
             marginTop: '1.5rem',
             width: '62rem',
+            '& input': {
+                margin: '0.25rem 0 0.5rem 0',
+                width: '100%',
+                height: '2.5rem',
+                border: '1px solid #E5E5E5',
+                borderRadius: '5px 5px 5px 5px',
+                outline: 'none',
+		    },
+            '& input::placeholder': {
+		    	fontFamily: 'Roboto',
+		    	color: '#9A9A9A',
+		    	fontSize: '1.125rem',
+		    	fontWeight: '400',
+            },
         },
         '& h5': {
             marginTop: '0.5rem',
@@ -79,15 +85,15 @@ function DocumentUpload() {
             <div className={classes.lower}>
                 <form>
                     <Typography variant="h5">University</Typography>
-                    <Input placeholder="Enter the university name" value={formData.university}/>
+                    <input placeholder="Enter the university name" value={formData.university}/>
                     <Typography variant="h5">Last name</Typography>
-                    <Input placeholder="Enter the course name" value={formData.course}/>
+                    <input placeholder="Enter the course name" value={formData.course}/>
                     <Typography variant="h5">Title</Typography>
-                    <Input placeholder="Title" value={formData.title}/>
+                    <input placeholder="Title" value={formData.title}/>
                     <Typography variant="h5">Academic Year</Typography>
-                    <Input placeholder="Academic Year" value={formData.academicYear}/>
+                    <input placeholder="Academic Year" value={formData.academicYear}/>
                     <Typography variant="h5">Category</Typography>
-                    <Input placeholder="Category" value={formData.category}/>
+                    <input placeholder="Category" value={formData.category}/>
                     <Typography variant="h5">Description</Typography>
                     <textarea 
                         className={classes.description}

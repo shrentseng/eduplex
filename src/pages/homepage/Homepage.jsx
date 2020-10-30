@@ -1,31 +1,49 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import { makeStyles} from '@material-ui/core/styles';
 import Feeds from './Feeds';
 import Post from './Post';
-import RightPanel from '../../common/leaderboard/RightPanel';
+import FeedsContext from '../../context/feedsContext';
+import feedsReducer from '../../context/feedsReducer';
+import { ADD_FEED, FETCH_SUCCESS, FETCH_FAILURE, HANDLE_DISLIKE, HANDLE_LIKE } from '../../context/type';
 
 const useStyles = makeStyles(() => ({
     root: {
         display: 'flex',
-        maxWidth: '1200px',
+        maxWidth: '1100px',
         margin: '2rem',
+        display: 'flex',
+        flexDirection: 'column',
     },
 }));
 
-function Homepage() {
+const Homepage = () => {
     const classes = useStyles();
-    const createPostRef = useRef();
+    const [state, dispatch] = feedsReducer()
 
-    const onCreatePost = (content, course) => {
-        createPostRef.current.createPost(content, course);
-    }
+    useEffect(() => {
+        fetch('https://my-json-server.typicode.com/shrentseng/my_json_server/Posts')
+        .then(response => response.json())
+		.then(data => {
+            dispatch({type: FETCH_SUCCESS, payload: data})
+        })
+        .catch(error =>
+            dispatch({type: FETCH_FAILURE})
+		);
+    }, [])
+    
     return (
-        <div className={classes.root}>
-            <div>
-                <Post createPost={onCreatePost} />
-                <Feeds ref={createPostRef} />
+        <FeedsContext.Provider 
+            value={{
+                feeds: state.feeds,
+                dispatch
+            }}
+        >
+            <div className={classes.root}>
+                    <Post />
+                    <Feeds />
             </div>
-        </div>
+        </FeedsContext.Provider>
+
     )
 }
 
