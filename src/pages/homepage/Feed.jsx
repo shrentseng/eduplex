@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import React, { useState, useContext } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -13,7 +13,10 @@ import report from '../../assets/report.svg';
 import avatar from '../../assets/avatar.svg';
 import CommentBoard from './CommentBoard.jsx'
 
-const styles = theme => ({
+import FeedsContext from '../../context/feedsContext';
+import { HANDLE_DISLIKE, HANDLE_LIKE } from '../../context/type';
+
+const useStyles = makeStyles(() => ({
     root: {
         margin: '1em 0',
     },
@@ -48,75 +51,67 @@ const styles = theme => ({
     footerItem: {
         height: '1.5em',
     }
-});
+}));
 
-class Feed extends Component {
+const Feed = (props) => {
+    const classes = useStyles();
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            isExpand: false,
-        };
-    }
+    const feedsContext = useContext(FeedsContext);
+    const [isExpand, setIsExpand] = useState(false);
     
-    onSetExpandTrue = () => {
-        this.setState({isExpand: true})
+    const onSetExpandTrue = () => {
+        setIsExpand(true)
     }
 
-    onToggleExpand = () => {
-        this.setState(state => ({
-            isExpand: !state.isExpand
-        }));
+    const onToggleExpand = () => {
+        setIsExpand(!isExpand)
     }
-    
-    render() {
-        const { classes } = this.props;
-        return (
-            <div className={classes.root}>
-                <Paper className={classes.paper} elevation={5}>
-                    <div className={classes.header}>
-                        <div>
-                            {/* avatar */}
-                            <Avatar className={classes.avatar} src={avatar} />
-                        </div>
-                        <div style={{display: 'flex', flexDirection: 'column'}}>
-                            <div style={{display: 'flex', alignItems: 'center'}}>
-                                {/* username */}
-                                <Typography variant='h5'>{this.props.username}</Typography>
-                                {/* date */}
-                                <Typography variant='h6' style={{margin: '0 0.4em'}}>•</Typography>
-                                <Typography variant='h6'>{'5 mins ago'}</Typography>
-                            </div>
-                            {/* posted in */}
-                            <Typography variant='h6'>{`Posted in ${this.props.course} `}</Typography>
-                        </div>
-                        {/* <div className={classes.headerItem} style={{marginLeft: 'auto'}}>
-                            <img className={classes.bookmark} src={bookmark} />
-                        </div> */}
+
+    return (
+        <div className={classes.root}>
+            <Paper className={classes.paper} elevation={5}>
+                <div className={classes.header}>
+                    <div>
+                        {/* avatar */}
+                        <Avatar className={classes.avatar} src={avatar} />
                     </div>
-                    <Typography className={classes.body} variant='body1'>{this.props.content}</Typography>
-                    <div className={classes.footer}>
-                        <div>
-                            <img className={classes.footerItem} style={{marginRight: '1em'}} src={like} onClick={(event) => this.props.handleLikeButton(this.props.index)}/>
-                            <Typography display='inline'>{this.props.likeCount}</Typography>
+                    <div style={{display: 'flex', flexDirection: 'column'}}>
+                        <div style={{display: 'flex', alignItems: 'center'}}>
+                            {/* username */}
+                            <Typography variant='h5'>{props.username}</Typography>
+                            {/* date */}
+                            <Typography variant='h6' style={{margin: '0 0.4em'}}>•</Typography>
+                            <Typography variant='h6'>{'5 mins ago'}</Typography>
                         </div>
-                        <div>
-                            <img className={classes.footerItem} style={{marginRight: '1em'}} src={dislike} onClick={(event) => this.props.handleLikeButton(this.props.index)}/>
-                            <Typography display='inline'>3</Typography>
-                        </div>
-                        <div>
-                            <img className={classes.footerItem} style={{marginRight: '1em'}} src={comment} onClick={this.onToggleExpand}/>
-                            <Typography display='inline'>{this.props.commentCount}3</Typography>
-                        </div>
-                        <div>
-                            <img className={classes.footerItem} src={share}/>
-                        </div>
+                        {/* posted in */}
+                        <Typography variant='h6'>{`Posted in ${props.course} `}</Typography>
                     </div>
-                </Paper>
-                <CommentBoard isExpand={this.state.isExpand} setExpandTrue={this.onSetExpandTrue}/>
-            </div>
-        );
-    }
+                    {/* <div className={classes.headerItem} style={{marginLeft: 'auto'}}>
+                        <img className={classes.bookmark} src={bookmark} />
+                    </div> */}
+                </div>
+                <Typography className={classes.body} variant='body1'>{props.content}</Typography>
+                <div className={classes.footer}>
+                    <div>
+                        <img className={classes.footerItem} style={{marginRight: '1em'}} src={like} onClick={() => feedsContext.dispatch({type: HANDLE_LIKE, payload: props.id})} />
+                        <Typography display='inline'>{props.likeCount}</Typography>
+                    </div>
+                    <div>
+                        <img className={classes.footerItem} style={{marginRight: '1em'}} src={dislike} onClick={() => feedsContext.dispatch({type: HANDLE_DISLIKE, payload: props.id})} />
+                        <Typography display='inline'>{props.dislikeCount}</Typography>
+                    </div>
+                    <div>
+                        <img className={classes.footerItem} style={{marginRight: '1em'}} src={comment} onClick={onToggleExpand} />
+                        <Typography display='inline'>{props.commentCount}</Typography>
+                    </div>
+                    <div>
+                        <img className={classes.footerItem} src={share}/>
+                    </div>
+                </div>
+            </Paper>
+            <CommentBoard isExpand={isExpand} setExpandTrue={onSetExpandTrue}/>
+        </div>
+    );
 }
 
-export default withStyles(styles)(Feed)
+export default Feed;

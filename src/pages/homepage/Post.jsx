@@ -1,24 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Select from 'react-select';
-//import Select from '@material-ui/core/Select';
 import Paper from '@material-ui/core/Paper';
 import Typography from "@material-ui/core/Typography";
 import Avatar from '@material-ui/core/Avatar';
 import exclude from '../../assets/Exclude.svg';
 import anonymous from '../../assets/anonymous.svg';
+import FeedsContext from '../../context/feedsContext';
+import { ADD_FEED } from '../../context/type';
 
-// const StyledSelect = withStyles({
-//     root: {
-//         width: '7.5em',
-//         paddingLeft: '0.5em',
-//     },
-//     select: {
-//         '&:focus': {
-//             backgroundColor: '#ffffff',
-//         }
-//     }
-// })(Select);
+
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -81,25 +72,42 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const options = [
-    { value: 0, label: 'Course 1' },
-    { value: 1, label: 'Course 2' },
-    { value: 2, label: 'Course 3' },
+    { value: 1, label: 'Course 1' },
+    { value: 2, label: 'Course 2' },
+    { value: 3, label: 'Course 3' },
 ]
 
 const Post = ( {createPost} ) => {
+    
+    const feedsContext = useContext(FeedsContext);
+    
     const classes = useStyles();
     const [content, setContent] = useState("");
     const [course, setCourse] = useState("");
 
+
+
     const onCreatePost = (content, course) => {
         if (content && course) {
-            createPost(content, course);
+            feedsContext.dispatch({
+                type: ADD_FEED,
+                payload: {
+                    PostID: 1,
+                    Likes: 0,
+                    Unlikes: 0,
+                    Message: content,
+                    CourseName: "dummy", //need fetch
+                    CourseID: course,
+                    FirstName: "Shren",
+                    LastName: "Tseng",
+                    UserID: 1,
+                    ChildComments: []
+            }})
             setContent("");
             setCourse("");
         } else {
             alert("Post cannot be empty!!\nPlease choose a course you want to post!!");
         }
-        
     }
 
     const handleSelectChange = (event) => {
