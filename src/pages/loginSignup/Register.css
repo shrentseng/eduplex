@@ -1,3 +1,7 @@
+form {
+    width: 37.5rem;
+}
+
 .form-center {
     position: relative;
     display: flex;

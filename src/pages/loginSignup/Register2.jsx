@@ -1,95 +1,167 @@
-import React from 'react';
-import './Register.css';
-import Select from '@material-ui/core/Select'
-import InputLabel from '@material-ui/core/InputLabel'
-import FormControl from '@material-ui/core/FormControl'
-import MenuItem from '@material-ui/core/MenuItem'
-import { withStyles } from '@material-ui/core/styles';
-
+import React from "react";
+import "./Register.css";
+import Select from "@material-ui/core/Select";
+import InputLabel from "@material-ui/core/InputLabel";
+import FormControl from "@material-ui/core/FormControl";
+import MenuItem from "@material-ui/core/MenuItem";
+import { withStyles } from "@material-ui/core/styles";
+import { useFormik } from "formik";
 
 const MySelect = withStyles({
-	root: {
-        '& label.Mui-focused': {
-			color: '#569859',
-		},
-		'& .MuiOutlinedInput-root': {
-			'&.Mui-focused Select': {
-				borderColor: '#569859',
-			},
-		},
-        backgroundColor:"#FFFFFF",
+    root: {
+        "& label.Mui-focused": {
+            color: "#569859",
+        },
+        "& .MuiOutlinedInput-root": {
+            "&.Mui-focused Select": {
+                borderColor: "#569859",
+            },
+        },
+        backgroundColor: "#FFFFFF",
     },
-    marginTop: '1em',
 })(Select);
 
+const validate = (values) => {
+    const errors = {};
+    if (!values.university) {
+        errors.university = "Required";
+    }
+    if (!values.major) {
+        errors.major = "Required";
+    }
+    return errors;
+};
 
-const Register2 = ({addStep, minusStep}) => {
-    const [university, setUniversity] = React.useState("None");
-    const [major, setMajor] = React.useState("None");
-    const [minor, setMinor] = React.useState("None");
+const Register2 = ({ addStep, minusStep }) => {
+    const formik = useFormik({
+        initialValues: {
+            university: "",
+            major: "",
+            minor: "",
+        },
+        validate,
+        onSubmit: (values) => {
+            console.log(values);
+            //do fetch
+            addStep();
+        },
+    });
+    // const [university, setUniversity] = React.useState("None");
+    // const [major, setMajor] = React.useState("None");
+    // const [minor, setMinor] = React.useState("None");
 
     const handleUniversity = (event) => {
-        setUniversity(event.target.value);
-    }
+        //setUniversity(event.target.value);
+        formik.handleChange(event);
+    };
 
-    const handleMajor= (event) => {
-        setMajor(event.target.value);
-    }
+    const handleMajor = (event) => {
+        //setMajor(event.target.value);
+        formik.handleChange(event);
+    };
 
-    const handleMinor= (event) => {
-        setMinor(event.target.value);
-    }
-
-    const handleSubmit= () => {
-        if(university !== "None" && major !== "None")
-            addStep();
-    }
+    const handleMinor = (event) => {
+        //setMinor(event.target.value);
+    };
 
     return (
-        <form style={{width:'625px'}}>
-            <FormControl required variant='outlined' style={{width:'100%', marginBottom:'1em'}}>
-                <InputLabel  id="demo-simple-select-label">Name of University</InputLabel>
-                <MySelect label="Name of University" onChange={handleUniversity}>
-                    <MenuItem value={"None"}>
-                        <em>None</em>
+        <form style={{ width: "625px" }} onSubmit={formik.handleSubmit}>
+            <FormControl
+                variant="outlined"
+                style={{ width: "100%", marginBottom: "1em" }}
+            >
+                <InputLabel>Name of University</InputLabel>
+                <MySelect
+                    label="Name of University"
+                    onChange={handleUniversity}
+                    onBlur={formik.handleBlur}
+                    //value={university}
+                    name="university"
+                >
+                    <MenuItem value={"UCLA"} key={1}>
+                        UCLA
                     </MenuItem>
-                    <MenuItem value={"UCLA"}>UCLA</MenuItem>
-                    <MenuItem value={"Berkeley"}>Berkeley</MenuItem>
-                    <MenuItem value={"USC"}>USC</MenuItem>
+                    <MenuItem value={"Berkeley"} key={2}>
+                        Berkeley
+                    </MenuItem>
+                    <MenuItem value={"USC"} key={3}>
+                        USC
+                    </MenuItem>
                 </MySelect>
+                {formik.touched.university && formik.errors.university ? (
+                    <div className="error">{formik.errors.university}</div>
+                ) : null}
             </FormControl>
-            <FormControl required className="col-5" variant='outlined'>
-                <InputLabel  id="demo-simple-select-label">Major</InputLabel>
-                <MySelect required label="Major" onChange={handleMajor}>
-                    <MenuItem value="">
-                        <em>None</em>
+            <FormControl className="col-5" variant="outlined">
+                <InputLabel>Major</InputLabel>
+                <MySelect
+                    label="Major"
+                    onChange={handleMajor}
+                    onBlur={formik.handleBlur}
+                    //value={major}
+                    name="major"
+                >
+                    <MenuItem value={10} key={1}>
+                        Math
                     </MenuItem>
-                    <MenuItem value={10}>Math</MenuItem>
-                    <MenuItem value={20}>Biology</MenuItem>
-                    <MenuItem value={30}>Literature</MenuItem>
+                    <MenuItem value={20} key={2}>
+                        Biology
+                    </MenuItem>
+                    <MenuItem value={30} key={3}>
+                        Literature
+                    </MenuItem>
                 </MySelect>
+                {formik.touched.major && formik.errors.major ? (
+                    <div className="error">{formik.errors.major}</div>
+                ) : null}
             </FormControl>
-            <FormControl className="col-6" variant='outlined' style={{marginLeft:'3.2em',}}>
-                <InputLabel  id="demo-simple-select-label">Minor (Optional)</InputLabel>
-                <MySelect label="Minor (Optional)" onChange={handleMinor}>
-                    <MenuItem value="">
+            <FormControl
+                className="col-6"
+                variant="outlined"
+                style={{ marginLeft: "3.2em" }}
+            >
+                <InputLabel>Minor (Optional)</InputLabel>
+                <MySelect
+                    label="Minor (Optional)"
+                    onChange={handleMinor}
+                    //value={minor}
+                    name="minor"
+                >
+                    <MenuItem value="" key={0}>
                         <em>None</em>
                     </MenuItem>
-                    <MenuItem value={10}>Stats</MenuItem>
-                    <MenuItem value={20}>Math</MenuItem>
-                    <MenuItem value={30}>Music</MenuItem>
+                    <MenuItem value={10} key={1}>
+                        Stats
+                    </MenuItem>
+                    <MenuItem value={20} key={2}>
+                        Math
+                    </MenuItem>
+                    <MenuItem value={30} key={3}>
+                        Music
+                    </MenuItem>
                 </MySelect>
             </FormControl>
             <div className=" row button-group">
                 <div className="col">
-                        <button className="btn button-back" type="submit" onClick={minusStep}>Back</button>
+                    <button
+                        className="btn button-back"
+                        type="submit"
+                        onClick={minusStep}
+                    >
+                        Back
+                    </button>
                 </div>
                 <div className="col">
-                        <button className="btn float-right button-continue" type="submit" onClick={handleSubmit}>Continue</button>
+                    <button
+                        className="btn float-right button-continue"
+                        type="submit"
+                    >
+                        Continue
+                    </button>
                 </div>
             </div>
         </form>
-    )
-}
+    );
+};
 
 export default Register2;
