@@ -24,6 +24,7 @@ import DocumentUpload from './pages/upload/DocumentUpload';
 import DocumentPreview from './pages/preview/DocumentPreview';
 import EduPoints from './pages/edupoints/EduPoints';
 import RightPannel from './common/leaderboard/RightPanel';
+import AddCourse from './pages/course/AddCourse'
 import UserProvider from './context/user/UserProvider';
 
 const styles = {
@@ -120,6 +121,17 @@ class App extends Component {
                                 <ThemeProvider theme={theme_leaderboard}>
                                     <RightPannel />   
                                 </ThemeProvider>
+                            </Route>
+                            <Route path="/DocumentPreview">
+                                <DocumentPreview />
+                            </Route>
+                            <Route path="/EduPoints">
+                                <EduPoints />
+                            </Route>
+                            <Route path="/AddCourse">
+                                <AddCourse searchValue={this.state.searchValue}/>
+                            </Route>
+                        </Switch>
                             </div>
                         }
                     </div>
