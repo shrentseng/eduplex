@@ -112,14 +112,22 @@ class App extends Component {
                                 <EduPoints />
                             </Route>
                         </Switch>
-                    </div>
-                    {(this.props.location.pathname == "/") && 
-                        <div id="rightPannel">
-                            <ThemeProvider theme={theme_leaderboard}>
-                                <RightPannel />   
-                            </ThemeProvider>
                         </div>
-                    }
+                        {(this.props.location.pathname == "/") && 
+                            <div id="rightPannel">
+                                <Route>
+                                    <ThemeProvider theme={theme_leaderboard}>
+                                        <RightPannel />   
+                                    </ThemeProvider>
+                                </Route>
+                                <Route path="/DocumentPreview">
+                                    <DocumentPreview />
+                                </Route>
+                                <Route path="/EduPoints">
+                                    <EduPoints />
+                                </Route>
+                            </div>
+                        }
                 </div>
             </div>
         );
