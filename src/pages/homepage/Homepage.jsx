@@ -1,10 +1,9 @@
-import React, { useEffect, useReducer } from 'react';
-import { makeStyles} from '@material-ui/core/styles';
-import Feeds from './Feeds';
-import Post from './Post';
-import FeedsContext from '../../context/feedsContext';
-import feedsReducer from '../../context/feedsReducer';
-import { ADD_FEED, FETCH_SUCCESS, FETCH_FAILURE, HANDLE_DISLIKE, HANDLE_LIKE } from '../../context/type';
+import React, { useEffect, useReducer } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Feeds from "./Feeds";
+import Post from "./Post";
+import FeedsProvider from "../../context/feed/FeedsProvider";
+import FeedsContext from "../../context/feed/feedsContext";
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -18,19 +17,11 @@ const useStyles = makeStyles(() => ({
 
 const Homepage = () => {
     const classes = useStyles();
-    const [state, dispatch] = feedsReducer()
-
+    const feedsContext = useContext(FeedsContext);
     useEffect(() => {
-        fetch('https://my-json-server.typicode.com/shrentseng/my_json_server/Posts')
-        .then(response => response.json())
-		.then(data => {
-            dispatch({type: FETCH_SUCCESS, payload: data})
-        })
-        .catch(error =>
-            dispatch({type: FETCH_FAILURE})
-		);
-    }, [])
-    
+        feedsContext.getFeeds();
+    }, []);
+
     return (
         <FeedsContext.Provider 
             value={{
@@ -39,8 +30,8 @@ const Homepage = () => {
             }}
         >
             <div className={classes.root}>
-                    <Post />
-                    <Feeds />
+                <Post />
+                <Feeds feeds={feedsContext.feeds} />
             </div>
         </FeedsContext.Provider>
 

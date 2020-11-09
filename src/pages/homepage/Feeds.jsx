@@ -6,6 +6,12 @@ const Feeds = (props) => {
 
     //useContext
     const feedsContext = useContext(FeedsContext);
+
+
+    useEffect(() => {
+        
+    }, [props.feeds]);
+
     const renderFeeds = (feeds) => {
         if (feeds.length === 0) {
             return <div>No Feed</div>
@@ -25,11 +31,7 @@ const Feeds = (props) => {
         }
     }
 
-    return (
-        <div>
-            {renderFeeds(feedsContext.feeds)}
-        </div>
-    )
-}
+    return <div>{renderFeeds(props.feeds)}</div>;
+};
 
 export default Feeds;
