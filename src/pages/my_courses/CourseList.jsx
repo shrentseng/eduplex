@@ -87,7 +87,7 @@ function CourseList() {
             >
                 {cardComponent}
                 <Grid item>
-                    <Link to="/CourseResults">
+                    <Link to="/AddCourse">
                         <CardActionArea>
                             <Card className={classes.card}>
                                 <div className={classes.placeholder}></div>

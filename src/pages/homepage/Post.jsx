@@ -7,6 +7,8 @@ import Avatar from '@material-ui/core/Avatar';
 import exclude from '../../assets/Exclude.svg';
 import anonymous from '../../assets/anonymous.svg';
 import FeedsContext from '../../context/feed/feedsContext';
+import { ADD_FEED } from '../../context/feed/type';
+
 
 
 
