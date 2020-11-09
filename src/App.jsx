@@ -24,7 +24,6 @@ import DocumentUpload from './pages/upload/DocumentUpload';
 import DocumentPreview from './pages/preview/DocumentPreview';
 import EduPoints from './pages/edupoints/EduPoints';
 import RightPannel from './common/leaderboard/RightPanel';
-import UserProvider from './context/user/UserProvider';
 
 const styles = {
     root: {
@@ -58,73 +57,71 @@ class App extends Component {
     render() {
 	    const { classes } = this.props;
         return (
-            <UserProvider>
-                <div className={classes.root}>
-                    <Navbar onSearch={this.onSearch}/>
-                    <div className={classes.main} id="main">
-                        {(this.props.location.pathname !== "/DocumentUpload") && (this.props.location.pathname !== "/DocumentPreview") && 
-                            <div className={classes.sidebar} id="sidebar">
-                                <ThemeProvider theme={theme_sidebar}>
-                                    <SideBar courses={this.state.courses} />
-                                </ThemeProvider>
-                            </div>
-                        }
-                        <div className={classes.page} id="page"> 
-                            <Switch>
-                                <Route exact path="/">
-                                    <ThemeProvider theme={theme_homepage}>
-                                        <Homepage />
-                                    </ThemeProvider>
-                                </Route>
-                                <Route path="/SignIn">
-                                    <SignIn />
-                                </Route>
-                                <Route path="/Register">
-                                    <Register />
-                                </Route>
-                                {this.state.courses.map((course, i) => (
-                                    <Route key={i} path={`/${course.split(" ").join("")}`}>
-                                        <Course course={course} />
-                                    </Route>
-                                ))}
-                                <Route path="/Profile">
-                                    <Profile />
-                                </Route>
-                                <Route path="/EditProfile">
-                                    <EditProfile />
-                                </Route>
-                                <Route path="/MyCourses">
-                                    <MyCourse />
-                                </Route>
-                                <Route path="/CourseResults">
-                                    <CourseResults searchValue={this.state.searchValue}/>
-                                </Route>
-                                <Route path="/DocumentResults">
-                                    <DocumentResults searchValue={this.state.searchValue}/>
-                                </Route>
-                                <Route path="/DocumentUpload">
-                                    <ThemeProvider theme={theme_document_upload}>
-                                        <DocumentUpload />
-                                    </ThemeProvider>
-                                </Route>
-                                <Route path="/DocumentPreview">
-                                    <DocumentPreview />
-                                </Route>
-                                <Route path="/EduPoints">
-                                    <EduPoints />
-                                </Route>
-                            </Switch>
+            <div className={classes.root}>
+                <Navbar onSearch={this.onSearch}/>
+                <div className={classes.main} id="main">
+                    {(this.props.location.pathname !== "/DocumentUpload") && (this.props.location.pathname !== "/DocumentPreview") && 
+                        <div className={classes.sidebar} id="sidebar">
+                            <ThemeProvider theme={theme_sidebar}>
+                                <SideBar courses={this.state.courses} />
+                            </ThemeProvider>
                         </div>
-                        {(this.props.location.pathname == "/") && 
-                            <div id="rightPannel">
-                                <ThemeProvider theme={theme_leaderboard}>
-                                    <RightPannel />   
+                    }
+                    <div className={classes.page} id="page"> 
+                        <Switch>
+                            <Route exact path="/">
+                                <ThemeProvider theme={theme_homepage}>
+                                    <Homepage />
                                 </ThemeProvider>
-                            </div>
-                        }
+                            </Route>
+                            <Route path="/SignIn">
+                                <SignIn />
+                            </Route>
+                            <Route path="/Register">
+                                <Register />
+                            </Route>
+                            {this.state.courses.map((course, i) => (
+                                <Route key={i} path={`/${course.split(" ").join("")}`}>
+                                    <Course course={course} />
+                                </Route>
+                            ))}
+                            <Route path="/Profile">
+                                <Profile />
+                            </Route>
+                            <Route path="/EditProfile">
+                                <EditProfile />
+                            </Route>
+                            <Route path="/MyCourses">
+                                <MyCourse />
+                            </Route>
+                            <Route path="/CourseResults">
+                                <CourseResults searchValue={this.state.searchValue}/>
+                            </Route>
+                            <Route path="/DocumentResults">
+                                <DocumentResults searchValue={this.state.searchValue}/>
+                            </Route>
+                            <Route path="/DocumentUpload">
+                                <ThemeProvider theme={theme_document_upload}>
+                                    <DocumentUpload />
+                                </ThemeProvider>
+                            </Route>
+                            <Route path="/DocumentPreview">
+                                <DocumentPreview />
+                            </Route>
+                            <Route path="/EduPoints">
+                                <EduPoints />
+                            </Route>
+                        </Switch>
                     </div>
+                    {(this.props.location.pathname == "/") && 
+                        <div id="rightPannel">
+                            <ThemeProvider theme={theme_leaderboard}>
+                                <RightPannel />   
+                            </ThemeProvider>
+                        </div>
+                    }
                 </div>
-            </UserProvider>
+            </div>
         );
     }
 }
