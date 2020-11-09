@@ -24,7 +24,7 @@ class Profile extends Component {
 	}
 	
 	componentDidMount() {
-		fetch('/profile/edit?userID=1')
+		fetch('/profile?userID=1')
 		.then(response => response.json())
         .then(
 			(result) => {
@@ -58,7 +58,7 @@ class Profile extends Component {
 				<Switch>
 					<Route exact path="/Profile">
 						<ThemeProvider theme={theme_homepage}>
-							<Feeds />
+							{/* <Feeds /> */}
 						</ThemeProvider>
 					</Route>
 					<Route path="/Profile/Uploaded">

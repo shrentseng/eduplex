@@ -7,9 +7,8 @@ const Feeds = (props) => {
     const feedsContext = useContext(FeedsContext);
 
     useEffect(() => {
-        //console.log(feedsContext);
-        feedsContext.getFeeds();
-    }, []);
+        
+    }, [props.feeds]);
 
     const renderFeeds = (feeds) => {
         if (feeds.length === 0) {
@@ -32,7 +31,7 @@ const Feeds = (props) => {
         }
     };
 
-    return <div>{renderFeeds(feedsContext.feeds)}</div>;
+    return <div>{renderFeeds(props.feeds)}</div>;
 };
 
 export default Feeds;

@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Feeds from "./Feeds";
 import Post from "./Post";
 import FeedsProvider from "../../context/feed/FeedsProvider";
+import FeedsContext from "../../context/feed/feedsContext";
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -16,14 +17,16 @@ const useStyles = makeStyles(() => ({
 
 const Homepage = () => {
     const classes = useStyles();
-
-    useEffect(() => {}, []);
+    const feedsContext = useContext(FeedsContext);
+    useEffect(() => {
+        feedsContext.getFeeds();
+    }, []);
 
     return (
         <FeedsProvider>
             <div className={classes.root}>
                 <Post />
-                <Feeds />
+                <Feeds feeds={feedsContext.feeds} />
             </div>
         </FeedsProvider>
     );

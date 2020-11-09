@@ -83,17 +83,12 @@ const Post = ({ createPost }) => {
 
     const onCreatePost = (content, course) => {
         if (content && course) {
+            //console.log(course)
             feedsContext.addFeed({
-                PostID: 1,
-                Likes: 0,
-                Unlikes: 0,
-                Message: content,
-                CourseName: "dummy", //need fetch
-                CourseID: course,
-                FirstName: "Shren",
-                LastName: "Tseng",
-                UserID: 1,
-                ChildComments: [],
+                postID: -1,
+                message: content,
+                courseID: course,
+                userID: 1,
             });
             setContent("");
             setCourse("");
