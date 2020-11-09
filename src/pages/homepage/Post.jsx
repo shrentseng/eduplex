@@ -9,9 +9,6 @@ import anonymous from '../../assets/anonymous.svg';
 import FeedsContext from '../../context/feed/feedsContext';
 import { ADD_FEED } from '../../context/feed/type';
 
-
-
-
 const useStyles = makeStyles(theme => ({
     root: {
         margin: '1em 0',
