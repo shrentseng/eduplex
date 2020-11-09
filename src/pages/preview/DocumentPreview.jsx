@@ -4,7 +4,7 @@ import SideBar from './SideBar.jsx'
 import Head from './Head.jsx'
 import PDFViewer from './PDFViewer.jsx'
 import PDFJSBackend from './PDFJs.jsx' 
-import { Button,Typography } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 
 const useStyles = makeStyles(() => ({
     root:{
@@ -93,9 +93,9 @@ const DocumentPreview = () => {
                 />
             </div>
             <div className={classes.pdf} style={{gridColumnStart:pdfColumn}}>
-                <Button className={classes.collapseExtend} onClick={event => setColumn(event)}>
+                <Typography className={classes.collapseExtend} onClick={event => setColumn(event)}>
                     {arrow}
-                </Button>
+                </Typography>
             </div>
         </div>
     )

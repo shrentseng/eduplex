@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
     },
     currentUni:{
         margin:'0.5rem',
-        marginBottom:'1rem',
+        marginBottom:'2rem',
         fontSize:'0.9em',
         color:'#504F4F',
     },
