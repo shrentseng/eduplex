@@ -91,10 +91,16 @@ const Post = ( {createPost} ) => {
 
             //console.log(course)
             feedsContext.addFeed({
-                postID: -1,
-                message: content,
-                courseID: course,
-                userID: 1,
+                PostID: -1,
+                Message: content,
+                CourseID: course,
+                UserID: 1,
+                FirstName: 'Shren',
+                LastName: 'Tseng',
+                CourseName: course,
+                ChildComments: [],
+                Likes: 0,
+                Dislikes: 0,
             });
             setContent("");
             setCourse("");

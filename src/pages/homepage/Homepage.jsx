@@ -17,10 +17,6 @@ const useStyles = makeStyles(() => ({
 
 const Homepage = () => {
     const classes = useStyles();
-    const feedsContext = useContext(FeedsContext);
-    // useEffect(() => {
-    //     feedsContext.getFeeds();
-    // }, []);
 
     return (
         <FeedsProvider>

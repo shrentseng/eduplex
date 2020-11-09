@@ -15,7 +15,6 @@ const useStyles = makeStyles({
 function DocumentsGrid({ documents }) {
     const classes = useStyles();
     const renderDocuments = (documents) => {
-        //console.log(documents);
         if (documents.length === 0) {
             return <div>No Feed</div>
         } else {

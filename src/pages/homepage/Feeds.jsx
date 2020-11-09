@@ -5,16 +5,17 @@ import FeedsContext from "../../context/feed/feedsContext";
 const Feeds = (props) => {
     //useContext
     const feedsContext = useContext(FeedsContext);
-    console.log(feedsContext)
+    
     useEffect(() => {
         feedsContext.getFeeds();
+        
     }, []);
 
     const renderFeeds = (feeds) => {
         if (feeds.length === 0) {
             return <div>No Feed</div>;
         } else {
-            return feeds.map((feed) => {
+            return feeds.slice(0).reverse().map((feed) => {
                 return (
                     <Feed
                         username={feed.FirstName + " " + feed.LastName}

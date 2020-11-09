@@ -1,8 +1,5 @@
 import { useReducer } from "react";
 
-
-
-
 const setFeeds = (my_feeds, state) => {
     return {
         ...state,
@@ -62,7 +59,19 @@ const handleDislike = (id, state) => {
     };
 };
 
-const addComment = (id, state) => {};
+const addComment = (data, state) => {
+    let newFeeds = state.feeds.map((feed) => {
+        if (feed.postID == data.id) {
+            let newFeed = { ...feed };
+            newFeed.comment = [...newFeed.comment, data.Comment];
+        }
+        return feed;
+    });
+    return {
+        ...state,
+        feeds: newFeeds,
+    };
+};
 
 const addReply = (id, state) => {};
 

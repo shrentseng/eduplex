@@ -41,7 +41,6 @@ const Register2 = ({ addStep, minusStep }) => {
         },
         validate,
         onSubmit: (values) => {
-            console.log(values);
             //do fetch
             addStep();
         },
