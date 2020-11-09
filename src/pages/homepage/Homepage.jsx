@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect, useReducer, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Feeds from "./Feeds";
 import Post from "./Post";
@@ -18,22 +18,17 @@ const useStyles = makeStyles(() => ({
 const Homepage = () => {
     const classes = useStyles();
     const feedsContext = useContext(FeedsContext);
-    useEffect(() => {
-        feedsContext.getFeeds();
-    }, []);
+    // useEffect(() => {
+    //     feedsContext.getFeeds();
+    // }, []);
 
     return (
-        <FeedsContext.Provider 
-            value={{
-                feeds: state.feeds,
-                dispatch
-            }}
-        >
+        <FeedsProvider>
             <div className={classes.root}>
                 <Post />
-                <Feeds feeds={feedsContext.feeds} />
+                <Feeds />
             </div>
-        </FeedsContext.Provider>
+        </FeedsProvider>
 
     )
 }
