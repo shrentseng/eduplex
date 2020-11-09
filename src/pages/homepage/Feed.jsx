@@ -12,8 +12,8 @@ import share from '../../assets/share.svg';
 import report from '../../assets/report.svg';
 import avatar from '../../assets/avatar.svg';
 import CommentBoard from './CommentBoard.jsx'
-
 import FeedsContext from '../../context/feed/feedsContext';
+import { HANDLE_DISLIKE, HANDLE_LIKE } from '../../context/feed/type';
 
 const useStyles = makeStyles(() => ({
     root: {

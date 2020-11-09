@@ -1,6 +1,6 @@
 import React, { useReducer } from "react";
 import UserContext from "./userContext";
-import userReduer from "./userReducer";
+import userReducer from "./userReducer";
 
 const UserProvider = (props) => {
     const initialState = {
@@ -8,7 +8,7 @@ const UserProvider = (props) => {
         loading: true,
     };
 
-    const [state, dispatch] = useReducer(userReduer, initialState);
+    const [state, dispatch] = useReducer(userReducer, initialState);
 
     const login = async () => {
         try {
