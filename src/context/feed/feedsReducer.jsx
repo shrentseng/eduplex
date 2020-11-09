@@ -1,25 +1,7 @@
 import { useReducer } from "react";
 
 
-// const initialState = {
-//     feeds: []
-// }
 
-// const fetchSuccess = (my_feeds, state) => {
-//     return {
-//         ...state,
-//         feeds: my_feeds,
-//         error: ''
-//     }
-// }
-
-// const fetchFailure = (state) => {
-//     return {
-//         ...state,
-//         feeds: [],
-//         error: 'Something went wrong!!'
-//     }
-// }
 
 const setFeeds = (my_feeds, state) => {
     return {
