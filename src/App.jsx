@@ -24,6 +24,7 @@ import DocumentUpload from './pages/upload/DocumentUpload';
 import DocumentPreview from './pages/preview/DocumentPreview';
 import EduPoints from './pages/edupoints/EduPoints';
 import RightPannel from './common/leaderboard/RightPanel';
+import AddCourse from './pages/course/AddCourse'
 
 const styles = {
     root: {
@@ -110,6 +111,9 @@ class App extends Component {
                             </Route>
                             <Route path="/EduPoints">
                                 <EduPoints />
+                            </Route>
+                            <Route path="/AddCourse">
+                                <AddCourse searchValue={this.state.searchValue}/>
                             </Route>
                         </Switch>
                     </div>
