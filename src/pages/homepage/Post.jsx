@@ -6,8 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import Avatar from '@material-ui/core/Avatar';
 import exclude from '../../assets/Exclude.svg';
 import anonymous from '../../assets/anonymous.svg';
-import FeedsContext from '../../context/feedsContext';
-import { ADD_FEED } from '../../context/type';
+import FeedsContext from '../../context/feed/feedsContext';
 
 
 
@@ -99,6 +98,7 @@ const Post = ( {createPost} ) => {
             });
             setContent("");
             setCourse("");
+            alert("Submit Successful");
         } else {
             alert("Post cannot be empty!!\nPlease choose a course you want to post!!");
         }

@@ -13,8 +13,7 @@ import report from '../../assets/report.svg';
 import avatar from '../../assets/avatar.svg';
 import CommentBoard from './CommentBoard.jsx'
 
-import FeedsContext from '../../context/feedsContext';
-import { HANDLE_DISLIKE, HANDLE_LIKE } from '../../context/type';
+import FeedsContext from '../../context/feed/feedsContext';
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -93,11 +92,11 @@ const Feed = (props) => {
                 <Typography className={classes.body} variant='body1'>{props.content}</Typography>
                 <div className={classes.footer}>
                     <div>
-                        <img className={classes.footerItem} style={{marginRight: '1em'}} src={like} onClick={() => feedsContext.dispatch({type: HANDLE_LIKE, payload: props.id})} />
+                        <img className={classes.footerItem} style={{marginRight: '1em'}} src={like} onClick={() => feedsContext.handleLike(props.id)} />
                         <Typography display='inline'>{props.likeCount}</Typography>
                     </div>
                     <div>
-                        <img className={classes.footerItem} style={{marginRight: '1em'}} src={dislike} onClick={() => feedsContext.dispatch({type: HANDLE_DISLIKE, payload: props.id})} />
+                        <img className={classes.footerItem} style={{marginRight: '1em'}} src={dislike} onClick={() => feedsContext.handleDislike(props.id)} />
                         <Typography display='inline'>{props.dislikeCount}</Typography>
                     </div>
                     <div>
