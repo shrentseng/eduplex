@@ -114,24 +114,24 @@ class App extends Component {
                                 <Route path="/EduPoints">
                                     <EduPoints />
                                 </Route>
+                                <Route path="/AddCourse">
+                                    <AddCourse searchValue={this.state.searchValue}/>
+                                </Route>
                             </Switch>
                         </div>
                         {(this.props.location.pathname == "/") && 
                             <div id="rightPannel">
-                                <ThemeProvider theme={theme_leaderboard}>
-                                    <RightPannel />   
-                                </ThemeProvider>
-                            </Route>
-                            <Route path="/DocumentPreview">
-                                <DocumentPreview />
-                            </Route>
-                            <Route path="/EduPoints">
-                                <EduPoints />
-                            </Route>
-                            <Route path="/AddCourse">
-                                <AddCourse searchValue={this.state.searchValue}/>
-                            </Route>
-                        </Switch>
+                                <Route>
+                                    <ThemeProvider theme={theme_leaderboard}>
+                                        <RightPannel />   
+                                    </ThemeProvider>
+                                </Route>
+                                <Route path="/DocumentPreview">
+                                    <DocumentPreview />
+                                </Route>
+                                <Route path="/EduPoints">
+                                    <EduPoints />
+                                </Route>
                             </div>
                         }
                     </div>
