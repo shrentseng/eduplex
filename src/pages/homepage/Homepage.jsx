@@ -23,17 +23,12 @@ const Homepage = () => {
     // }, []);
 
     return (
-        <FeedsContext.Provider 
-            value={{
-                feeds: state.feeds,
-                dispatch
-            }}
-        >
+        <FeedsProvider>
             <div className={classes.root}>
                 <Post />
                 <Feeds />
             </div>
-        </FeedsContext.Provider>
+        </FeedsProvider>
 
     )
 }
