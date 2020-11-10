@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Register.css";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -6,6 +6,7 @@ import FormControl from "@material-ui/core/FormControl";
 import MenuItem from "@material-ui/core/MenuItem";
 import { withStyles } from "@material-ui/core/styles";
 import { useFormik } from "formik";
+import RegisterContext from "../../context/register/registerContext";
 
 const MySelect = withStyles({
     root: {
@@ -33,6 +34,7 @@ const validate = (values) => {
 };
 
 const Register2 = ({ addStep, minusStep }) => {
+    const registerContext = useContext(RegisterContext);
     const formik = useFormik({
         initialValues: {
             university: "",
@@ -41,7 +43,10 @@ const Register2 = ({ addStep, minusStep }) => {
         },
         validate,
         onSubmit: (values) => {
-            //do fetch
+            registerContext.dispatch({
+                type: "SET_REGISTER2",
+                payload: values,
+            });
             addStep();
         },
     });
@@ -74,7 +79,7 @@ const Register2 = ({ addStep, minusStep }) => {
                     label="Name of University"
                     onChange={handleUniversity}
                     onBlur={formik.handleBlur}
-                    //value={university}
+                    //value={formik.university}
                     name="university"
                 >
                     <MenuItem value={"UCLA"} key={1}>
@@ -100,13 +105,13 @@ const Register2 = ({ addStep, minusStep }) => {
                     //value={major}
                     name="major"
                 >
-                    <MenuItem value={10} key={1}>
+                    <MenuItem value={"10"} key={1}>
                         Math
                     </MenuItem>
-                    <MenuItem value={20} key={2}>
+                    <MenuItem value={"20"} key={2}>
                         Biology
                     </MenuItem>
-                    <MenuItem value={30} key={3}>
+                    <MenuItem value={"30"} key={3}>
                         Literature
                     </MenuItem>
                 </MySelect>
@@ -129,13 +134,13 @@ const Register2 = ({ addStep, minusStep }) => {
                     <MenuItem value="" key={0}>
                         <em>None</em>
                     </MenuItem>
-                    <MenuItem value={10} key={1}>
+                    <MenuItem value={"10"} key={1}>
                         Stats
                     </MenuItem>
-                    <MenuItem value={20} key={2}>
+                    <MenuItem value={"20"} key={2}>
                         Math
                     </MenuItem>
-                    <MenuItem value={30} key={3}>
+                    <MenuItem value={"30"} key={3}>
                         Music
                     </MenuItem>
                 </MySelect>

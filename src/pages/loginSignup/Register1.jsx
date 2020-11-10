@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext, useReducer } from "react";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import { withStyles } from "@material-ui/core/styles";
 import "./Register.css";
 import TextField from "@material-ui/core/TextField";
+import RegisterContext from "../../context/register/registerContext";
 
 const MyTextField = withStyles({
     root: {
@@ -53,8 +54,7 @@ const validate = (values) => {
         errors.password = "Required";
     } else if (!passwordRegex.test(values.password)) {
         errors.password =
-            
-        "Password must contains at leats 8 characters, at least 1 lowercase, uppercase and numeric character";
+            "Password must contains at leats 8 characters, at least 1 lowercase, uppercase and numeric character";
     }
     if (values.password !== values.confirmPassword) {
         errors.confirmPassword = "Passwords did not match";
@@ -62,13 +62,16 @@ const validate = (values) => {
     return errors;
 };
 
-
 const Register1 = ({ addStep }) => {
+    const registerContext = useContext(RegisterContext);
     const formik = useFormik({
         initialValues,
         validate,
         onSubmit: (values) => {
-            //save to backend
+            registerContext.dispatch({
+                type: "SET_REGISTER1",
+                payload: values,
+            });
             addStep();
         },
     });

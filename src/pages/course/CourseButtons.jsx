@@ -98,7 +98,7 @@ function CourseButtons({ course, pathname }) {
         } else {
             setSelectClassName(null)
         }
-    }, [history, location])
+    }, [history, location, classes.selectActive, courseURL])
 
 
     const handleSelectChange = (option) => {

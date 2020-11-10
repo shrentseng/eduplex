@@ -58,9 +58,9 @@ function SideBar({ courses }) {
 	const classes = useStyles();
 	//fecth courses data
 
-	const courseList = courses.map((course) => {
+	const courseList = courses.map((course, i) => {
         return (
-			<div>
+			<div key={i}>
 				<NavLink activeClassName={classes.active} to={`/${course.split(" ").join("")}`}>
 					<ListItem button className={`${classes.nested} ${classes.button}`}>
 						<Typography variant="h3">
