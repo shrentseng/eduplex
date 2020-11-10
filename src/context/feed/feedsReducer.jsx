@@ -36,6 +36,7 @@ const handleLike = (id, state) => {
         }
         return feed;
     });
+    
     return {
         ...state,
         feeds: newFeeds,

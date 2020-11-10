@@ -29,4 +29,5 @@ const RegisterProvider = (props) => {
         </RegisterContext.Provider>
     );
 };
+
 export default RegisterProvider;

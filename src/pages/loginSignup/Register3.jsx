@@ -26,7 +26,6 @@ const Register3 = ({ minusStep }) => {
     const handleSubmit = () => {
         registerContext.dispatch({ type: "SET_REGISTER3", payload: course })
         registerContext.createAccount()
-
     };
 
     return (

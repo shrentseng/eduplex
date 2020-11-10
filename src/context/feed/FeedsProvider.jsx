@@ -18,13 +18,6 @@ const FeedsProvider = (props) => {
                 .then((result) => {
                     dispatch({ type: "SET_FEEDS", payload: result });
                 });
-
-            // const res = await fetch(
-            //     "https://my-json-server.typicode.com/shrentseng/my_json_server/Posts"
-            // );
-            // const data = await res.json();
-            // dispatch({ type: "REQUEST_FINISHED" });
-            // dispatch({ type: "SET_FEEDS", payload: data });
         } catch (err) {
             console.log("get feeds");
             console.log(err);
@@ -47,10 +40,9 @@ const FeedsProvider = (props) => {
         }).then((res) => {
             if (res.status == 201) {
                 dispatch({ type: "ADD_FEED", payload: new_feed });
+            } else {
+                console.log(res.status);
             }
-            else {
-                console.log(res.status)
-            } 
         });
     };
 
@@ -66,7 +58,7 @@ const FeedsProvider = (props) => {
                     userID: 1,
                     postID: id,
                     undo: 0,
-                })
+                }),
             }).then((res) => {
                 console.log(res);
                 console.log(id);
@@ -112,4 +104,5 @@ const FeedsProvider = (props) => {
         </FeedsContext.Provider>
     );
 };
+
 export default FeedsProvider;

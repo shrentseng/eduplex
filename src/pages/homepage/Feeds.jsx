@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useContext } from "react";
 import Feed from "./Feed";
 import FeedsContext from "../../context/feed/feedsContext";
@@ -32,7 +31,6 @@ const Feeds = (props) => {
             });
         }
     };
-
     return <div>{renderFeeds(feedsContext.feeds)}</div>;
 };
 

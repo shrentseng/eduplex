@@ -19,13 +19,10 @@ const Homepage = () => {
     const classes = useStyles();
 
     return (
-        <FeedsProvider>
-            <div className={classes.root}>
-                <Post />
-                <Feeds />
-            </div>
-        </FeedsProvider>
-
+        <div className={classes.root}>
+            <Post />
+            <Feeds />
+        </div>
     )
 }
 

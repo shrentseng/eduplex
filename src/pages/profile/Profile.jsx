@@ -58,7 +58,7 @@ class Profile extends Component {
 				<Switch>
 					<Route exact path="/Profile">
 						<ThemeProvider theme={theme_homepage}>
-							{/* <Feeds /> */}
+							<Feeds />
 						</ThemeProvider>
 					</Route>
 					<Route path="/Profile/Uploaded">
