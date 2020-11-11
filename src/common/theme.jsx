@@ -183,6 +183,11 @@ export const theme_document_upload = createMuiTheme({
 			fontSize: '1.25rem',
 			fontWeight: '500',
 		},
+		h6: { //for text in dropzone
+			fontFamily: 'Raleway',
+			color: '#000000',
+			fontSize: '1.5rem',
+		}
 	}
 });
 
