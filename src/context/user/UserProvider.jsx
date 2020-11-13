@@ -4,7 +4,7 @@ import userReducer from "./userReducer";
 
 const UserProvider = (props) => {
     const initialState = {
-        userID: null,
+        userID: 1,
         loading: true,
     };
 

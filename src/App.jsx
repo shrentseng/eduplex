@@ -129,9 +129,9 @@ class App extends Component {
                                         <DocumentUpload />
                                     </ThemeProvider>
                                 </Route>
-                                <Route path="/DocumentPreview">
+                                {/* <Route path="/DocumentPreview">
                                     <DocumentPreview />
-                                </Route>
+                                </Route> */}
                                 <Route path="/EduPoints">
                                     <EduPoints />
                                 </Route>
