@@ -13,7 +13,7 @@ const FeedsProvider = (props) => {
     const getFeeds = async () => {
         try {
             dispatch({ type: "SENDING_REQUEST" });
-            fetch('/home/feed?userID=1')
+            fetch('')
             .then(res => res.json())
             .then(
                 (result) => {

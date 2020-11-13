@@ -22,7 +22,7 @@ const useStyles = makeStyles(() => ({
 
 function MyCourses() {
 	const classes = useStyles();
-	const [colleges, setColleges] = useState(['University of California, Los Angeles', 'University of California, Berkeley']);
+	const [colleges, setColleges] = useState(['University of California, Los Angeles']);
 
 	const renderColleges = () => {
 		return colleges.map((college) => {
