@@ -59,7 +59,6 @@ function SideBar({ courses }) {
 	const classes = useStyles();
 	//fecth courses data
 	const courseContext = useContext(CourseContext)
-	console.log(courseContext);
 
 	const courseList = (myCourses) => {
 		if (myCourses.length === 0) {
@@ -68,7 +67,7 @@ function SideBar({ courses }) {
             return myCourses.map((course, i) => {
                 return (
 					<div key={i}>
-						<NavLink activeClassName={classes.active} to={`/${course.number}`}>
+						<NavLink activeClassName={classes.active} to={`/Courses/${course.title}`}>
 							<ListItem button className={`${classes.nested} ${classes.button}`}>
 								<Typography variant="h3">
 									{course.title}

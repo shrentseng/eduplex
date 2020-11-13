@@ -29,6 +29,7 @@ import AddCourse from "./pages/my_courses/AddCourse";
 import FeedsProvider from "./context/feed/FeedsProvider";
 import UserProvider from "./context/user/UserProvider";
 import CourseProvider from "./context/course/CourseProvider";
+import Courses from "./pages/course/Courses";
 
 const styles = {
     root: {
@@ -66,12 +67,18 @@ class App extends Component {
                     <div className={classes.root}>
                         <Navbar onSearch={this.onSearch} />
                         <div className={classes.main} id="main">
-                            {this.props.location.pathname !== "/DocumentUpload" &&
+                            {this.props.location.pathname !==
+                                "/DocumentUpload" &&
                                 this.props.location.pathname !==
                                     "/DocumentPreview" && (
-                                    <div className={classes.sidebar} id="sidebar">
+                                    <div
+                                        className={classes.sidebar}
+                                        id="sidebar"
+                                    >
                                         <ThemeProvider theme={theme_sidebar}>
-                                                <SideBar courses={this.state.courses} />
+                                            <SideBar
+                                                courses={this.state.courses}
+                                            />
                                         </ThemeProvider>
                                     </div>
                                 )}
@@ -90,16 +97,9 @@ class App extends Component {
                                     <Route path="/Register">
                                         <Register />
                                     </Route>
-                                    {this.state.courses.map((course, i) => (
-                                        <Route
-                                            key={i}
-                                            path={`/${course.split(" ").join("")}`}
-                                        >
-                                            <FeedsProvider>
-                                                <Course course={course} />
-                                            </FeedsProvider>
-                                        </Route>
-                                    ))}
+                                    <Route path="/Courses">
+                                        <Courses />
+                                    </Route>
                                     <Route path="/Profile">
                                         <FeedsProvider>
                                             <Profile />
@@ -109,15 +109,15 @@ class App extends Component {
                                         <EditProfile />
                                     </Route>
                                     <Route path="/MyCourses">
-                                            <MyCourse />
+                                        <MyCourse />
                                     </Route>
                                     <Route path="/AddCourse">
-                                            <AddCourse />
+                                        <AddCourse />
                                     </Route>
                                     <Route path="/CourseResults">
-                                            <CourseResults
-                                                searchValue={this.state.searchValue}
-                                            />
+                                        <CourseResults
+                                            searchValue={this.state.searchValue}
+                                        />
                                     </Route>
                                     <Route path="/DocumentResults">
                                         <DocumentResults
@@ -142,7 +142,9 @@ class App extends Component {
                             {this.props.location.pathname == "/" && (
                                 <div id="rightPannel">
                                     <Route>
-                                        <ThemeProvider theme={theme_leaderboard}>
+                                        <ThemeProvider
+                                            theme={theme_leaderboard}
+                                        >
                                             <RightPannel />
                                         </ThemeProvider>
                                     </Route>
