@@ -73,7 +73,6 @@ const Documents = () => {
     };
 
     return (
-        <DocumentsProvider>
             <div className={classes.root}>
                 {/* upper section */}
                 <div className={classes.upper}>
@@ -104,7 +103,6 @@ const Documents = () => {
                     <DocumentsView isGrid={isGrid} />
                 </div>
             </div>
-        </DocumentsProvider>
     );
 };
 

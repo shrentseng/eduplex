@@ -109,6 +109,10 @@ const DocumentsProvider = (props) => {
         console.log(id)
     }
 
+    const downloadDocument = async () => {
+        //fetch document
+    }
+
     return (
         <DocumentsContext.Provider
             value={{
@@ -117,6 +121,7 @@ const DocumentsProvider = (props) => {
                 getDocuments: getDocuments,
                 addDocument: addDocument,
                 setCurrentDocument: setCurrentDocument,
+                downloadDocument: downloadDocument,
             }}
         >
             {props.children}
