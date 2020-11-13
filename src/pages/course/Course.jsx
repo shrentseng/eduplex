@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Route, Switch } from "react-router";
 import { makeStyles } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -8,6 +8,7 @@ import { theme_homepage, theme_course } from '../../common/theme';
 import Homepage from '../homepage/Homepage';
 import CourseButtons from './CourseButtons';
 import Documents from '../../common/documents/Documents';
+import CourseContext from '../../context/course/courseContext'
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -49,29 +50,32 @@ const useStyles = makeStyles(() => ({
 }));
 
 
-function Course({ course }) {
+const Course = (props) => {
     const classes = useStyles();
-    const courseURL = course.split(" ").join("");
+    const courseContext = useContext(CourseContext)
+    console.log(props)
+    const courseURL = props.course;
+    console.log(courseURL)
 
     return (
         <ThemeProvider theme={theme_course}>
             <div className={classes.root}>
                 <div style={{margin: '2rem',}}>
-                    <Typography variant="h2">{course}</Typography>
+                    <Typography variant="h2">{props.course}</Typography>
                     <div className={classes.join}>
                         <AddCircleOutlineIcon style={{color: '#0088D7'}} />
                         <Typography variant="h4">Join Course</Typography>
                     </div>
-                    <CourseButtons course={course} /> 
+                    <CourseButtons course={props.course} /> 
                 </div>
                 <Switch>
-                    <Route exact path={`/${courseURL}`}>
+                    <Route exact path={`/Courses/${courseURL}`}>
                         <input className={classes.search} placeholder='Search in Discussion' />
 						<ThemeProvider theme={theme_homepage}>
                             <Homepage />
 						</ThemeProvider>
 					</Route>
-					<Route path={`/${courseURL}/Documents`}>
+					<Route path={`/Courses/${courseURL}/Documents`}>
                         <input className={classes.search} placeholder='Search in Documents' />
 						<Documents />
 					</Route>
