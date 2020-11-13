@@ -144,7 +144,7 @@ class Comment extends Component{
 							<Typography variant='h6' style={{margin: '0 0.4em'}}>•</Typography>
 							<Typography variant='h6'>{'5 min ago'}</Typography>
 						</div>
-						<Typography variant='body1'>{this.props.content}</Typography>
+						<Typography variant='body1'>{this.props.context}</Typography>
 					</div>
 					<Accordion elevation={0} expanded={this.state.isExpand}>
 						<AccordionSummary onClick={event => this.onSetExpand()}>

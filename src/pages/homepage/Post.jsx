@@ -7,7 +7,7 @@ import Avatar from '@material-ui/core/Avatar';
 import exclude from '../../assets/Exclude.svg';
 import anonymous from '../../assets/anonymous.svg';
 import FeedsContext from '../../context/feed/feedsContext';
-import { ADD_FEED } from '../../context/feed/type';
+import UserContext from '../../context/user/userContext'
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -76,7 +76,7 @@ const options = [
 ]
 
 const Post = ( {createPost} ) => {
-    
+    const userContext = useContext(UserContext) 
     const feedsContext = useContext(FeedsContext);
     
     const classes = useStyles();
@@ -87,19 +87,18 @@ const Post = ( {createPost} ) => {
 
     const onCreatePost = (content, course) => {
         if (content && course) {
-
             //console.log(course)
             feedsContext.addFeed({
                 PostID: -1,
                 Message: content,
                 CourseID: course,
-                UserID: 1,
+                UserID: userContext.userID,
                 FirstName: 'Shren',
                 LastName: 'Tseng',
                 CourseName: course,
                 ChildComments: [],
                 Likes: 0,
-                Dislikes: 0,
+                Unlikes: 0,
             });
             setContent("");
             setCourse("");
