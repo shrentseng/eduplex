@@ -13,6 +13,7 @@ const useStyles = makeStyles(() => ({
         gridTemplateRows:"8% 8% 8% 5% 14% 6%",
         width: "100vw",
         height: "100vh",
+        minHeight: "100vh",
         background: "#FFFFFF",
     },
     head:{

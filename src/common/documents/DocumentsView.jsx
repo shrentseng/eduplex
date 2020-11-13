@@ -1,5 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Router, Route, Switch, useLocation, useHistory } from "react-router-dom";
+import {
+    Router,
+    Route,
+    Switch,
+    useLocation,
+    useHistory,
+} from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import DocumentGrid from "./DocumentGrid";
 import DocumentList from "./DocumentList";
@@ -16,23 +22,20 @@ const useStyles = makeStyles({
 
 function DocumentsGrid({ isGrid }) {
     const classes = useStyles();
+    let location = useLocation();
     const View = isGrid ? DocumentGrid : DocumentList;
 
     const documentsContext = useContext(DocumentsContext);
     const [documents, setDocuments] = useState([]);
-    const viewURL = "/^((?!DocumentPreview).)*$"
-    let location = useLocation();
+    const previewRegex = new RegExp("/.*DocumentPreview.*");
+    const isPreviewing = false//previewRegex.test(location.pathname) ? true : false;
 
     const previewURL = `${location.pathname}/DocumentPreview`;
-    console.log(previewURL);
 
     useEffect(() => {
         setDocuments(documentsContext.documents);
     }, []);
 
-    const handleDocumentPreview = (id) => {
-        documentsContext.setCurrentDocument(id);
-    };
 
     const renderDocuments = (documents) => {
         if (documents.length === 0) {
@@ -40,23 +43,20 @@ function DocumentsGrid({ isGrid }) {
         } else {
             return documents.map((document) => {
                 return (
-                    // <Link to="/DocumentPreview" onClick={handleDocumentPreview(document.key)}>
                     <View document={document} previewURL={previewURL} />
-                    // {/* </Link> */}
                 );
             });
         }
     };
 
     return (
-        <Switch>
-            <Route path={viewURL}>
+        <div>
+            {isPreviewing ? (
                 <DocumentPreview />
-            </Route>
-            <Route exact path={`${location.pathname}`}>
+            ) : (
                 <div className={classes.root}>{renderDocuments(documents)}</div>
-            </Route>
-        </Switch>
+            )}
+        </div>
     );
 }
 
