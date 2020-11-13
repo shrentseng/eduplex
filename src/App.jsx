@@ -5,7 +5,6 @@ import "./assets/bootstrap.min.css";
 import { withStyles } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/core/styles";
 import {
-<<<<<<< HEAD
     theme_document_upload,
     theme_sidebar,
     theme_homepage,
@@ -29,33 +28,6 @@ import RightPannel from "./common/leaderboard/RightPanel";
 import AddCourse from "./pages/my_courses/AddCourse";
 import FeedsProvider from "./context/feed/FeedsProvider";
 import UserProvider from "./context/user/UserProvider";
-=======
-    BrowserRouter as Router,
-    Switch,
-    Route,
-} from "react-router-dom";
-import './assets/bootstrap.min.css'
-import { withStyles } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/core/styles';
-import { theme_document_upload, theme_sidebar, theme_homepage, theme_leaderboard } from './common/theme';
-import Register from './pages/loginSignup/Register';
-import Navbar from './common/Nav&Side/Navbar';
-import SignIn from './pages/loginSignup/SignIn';
-import Homepage from './pages/homepage/Homepage';
-import SideBar from './common/Nav&Side/SideBar';
-import Course from './pages/course/Course';
-import Profile from './pages/profile/Profile';
-import MyCourse from './pages/my_courses/MyCourses';
-import CourseResults from './pages/search_results/CourseResults'
-import EditProfile from './pages/profile/EditProfile';
-import DocumentResults from './pages/search_results/DocumentResults'
-import DocumentUpload from './pages/upload/DocumentUpload';
-import DocumentPreview from './pages/preview/DocumentPreview';
-import EduPoints from './pages/edupoints/EduPoints';
-import RightPannel from './common/leaderboard/RightPanel';
-import AddCourse from './pages/my_courses/AddCourse';
-import CourseProvider from './context/course/CourseProvider'
->>>>>>> ee80cd7b918bb5fde45bda1cbe5d669bef5f9ccf
 
 const styles = {
     root: {
@@ -163,47 +135,7 @@ class App extends Component {
                                 <Route path="/EduPoints">
                                     <EduPoints />
                                 </Route>
-<<<<<<< HEAD
                             </Switch>
-=======
-                            ))}
-                            <Route path="/Profile">
-                                <Profile />
-                            </Route>
-                            <Route path="/EditProfile">
-                                <EditProfile />
-                            </Route>
-                            <Route path="/MyCourses">
-                                <CourseProvider>
-                                    <MyCourse />    
-                                </CourseProvider>
-                            </Route>
-                            <Route path="/AddCourse">
-                                <CourseProvider>
-                                    <AddCourse />    
-                                </CourseProvider>
-                            </Route>
-                            <Route path="/CourseResults">
-                                <CourseProvider>
-                                    <CourseResults searchValue={this.state.searchValue}/>
-                                </CourseProvider>
-                            </Route>
-                            <Route path="/DocumentResults">
-                                <DocumentResults searchValue={this.state.searchValue}/>
-                            </Route>
-                            <Route path="/DocumentUpload">
-                                <ThemeProvider theme={theme_document_upload}>
-                                    <DocumentUpload />
-                                </ThemeProvider>
-                            </Route>
-                            <Route path="/DocumentPreview">
-                                <DocumentPreview />
-                            </Route>
-                            <Route path="/EduPoints">
-                                <EduPoints />
-                            </Route>
-                        </Switch>
->>>>>>> ee80cd7b918bb5fde45bda1cbe5d669bef5f9ccf
                         </div>
                         {this.props.location.pathname == "/" && (
                             <div id="rightPannel">
