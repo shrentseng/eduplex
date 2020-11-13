@@ -62,105 +62,101 @@ class App extends Component {
         const { classes } = this.props;
         return (
             <UserProvider>
-                <div className={classes.root}>
-                    <Navbar onSearch={this.onSearch} />
-                    <div className={classes.main} id="main">
-                        {this.props.location.pathname !== "/DocumentUpload" &&
-                            this.props.location.pathname !==
-                                "/DocumentPreview" && (
-                                <div className={classes.sidebar} id="sidebar">
-                                    <ThemeProvider theme={theme_sidebar}>
-                                        <SideBar courses={this.state.courses} />
-                                    </ThemeProvider>
-                                </div>
-                            )}
-                        <div className={classes.page} id="page">
-                            <Switch>
-                                <Route exact path="/">
-                                    <ThemeProvider theme={theme_homepage}>
+                <CourseProvider>
+                    <div className={classes.root}>
+                        <Navbar onSearch={this.onSearch} />
+                        <div className={classes.main} id="main">
+                            {this.props.location.pathname !== "/DocumentUpload" &&
+                                this.props.location.pathname !==
+                                    "/DocumentPreview" && (
+                                    <div className={classes.sidebar} id="sidebar">
+                                        <ThemeProvider theme={theme_sidebar}>
+                                                <SideBar courses={this.state.courses} />
+                                        </ThemeProvider>
+                                    </div>
+                                )}
+                            <div className={classes.page} id="page">
+                                <Switch>
+                                    <Route exact path="/">
+                                        <ThemeProvider theme={theme_homepage}>
+                                            <FeedsProvider>
+                                                <Homepage />
+                                            </FeedsProvider>
+                                        </ThemeProvider>
+                                    </Route>
+                                    <Route path="/SignIn">
+                                        <SignIn />
+                                    </Route>
+                                    <Route path="/Register">
+                                        <Register />
+                                    </Route>
+                                    {this.state.courses.map((course, i) => (
+                                        <Route
+                                            key={i}
+                                            path={`/${course.split(" ").join("")}`}
+                                        >
+                                            <FeedsProvider>
+                                                <Course course={course} />
+                                            </FeedsProvider>
+                                        </Route>
+                                    ))}
+                                    <Route path="/Profile">
                                         <FeedsProvider>
-                                            <Homepage />
-                                        </FeedsProvider>
-                                    </ThemeProvider>
-                                </Route>
-                                <Route path="/SignIn">
-                                    <SignIn />
-                                </Route>
-                                <Route path="/Register">
-                                    <Register />
-                                </Route>
-                                {this.state.courses.map((course, i) => (
-                                    <Route
-                                        key={i}
-                                        path={`/${course.split(" ").join("")}`}
-                                    >
-                                        <FeedsProvider>
-                                            <Course course={course} />
+                                            <Profile />
                                         </FeedsProvider>
                                     </Route>
-                                ))}
-                                <Route path="/Profile">
-                                    <FeedsProvider>
-                                        <Profile />
-                                    </FeedsProvider>
-                                </Route>
-                                <Route path="/EditProfile">
-                                    <EditProfile />
-                                </Route>
-                                <Route path="/MyCourses">
-                                    <CourseProvider>
-                                        <MyCourse />
-                                    </CourseProvider>
-                                </Route>
-                                <Route path="/AddCourse">
-                                    <CourseProvider>
-                                        <AddCourse />
-                                    </CourseProvider>
-                                </Route>
-                                <Route path="/CourseResults">
-                                    <CourseProvider>
-                                        <CourseResults
+                                    <Route path="/EditProfile">
+                                        <EditProfile />
+                                    </Route>
+                                    <Route path="/MyCourses">
+                                            <MyCourse />
+                                    </Route>
+                                    <Route path="/AddCourse">
+                                            <AddCourse />
+                                    </Route>
+                                    <Route path="/CourseResults">
+                                            <CourseResults
+                                                searchValue={this.state.searchValue}
+                                            />
+                                    </Route>
+                                    <Route path="/DocumentResults">
+                                        <DocumentResults
                                             searchValue={this.state.searchValue}
                                         />
-                                    </CourseProvider>
-                                </Route>
-                                <Route path="/DocumentResults">
-                                    <DocumentResults
-                                        searchValue={this.state.searchValue}
-                                    />
-                                </Route>
-                                <Route path="/DocumentUpload">
-                                    <ThemeProvider
-                                        theme={theme_document_upload}
-                                    >
-                                        <DocumentUpload />
-                                    </ThemeProvider>
-                                </Route>
-                                {/* <Route path="/DocumentPreview">
-                                    <DocumentPreview />
-                                </Route> */}
-                                <Route path="/EduPoints">
-                                    <EduPoints />
-                                </Route>
-                            </Switch>
-                        </div>
-                        {this.props.location.pathname == "/" && (
-                            <div id="rightPannel">
-                                <Route>
-                                    <ThemeProvider theme={theme_leaderboard}>
-                                        <RightPannel />
-                                    </ThemeProvider>
-                                </Route>
-                                <Route path="/DocumentPreview">
-                                    <DocumentPreview />
-                                </Route>
-                                <Route path="/EduPoints">
-                                    <EduPoints />
-                                </Route>
+                                    </Route>
+                                    <Route path="/DocumentUpload">
+                                        <ThemeProvider
+                                            theme={theme_document_upload}
+                                        >
+                                            <DocumentUpload />
+                                        </ThemeProvider>
+                                    </Route>
+                                    {/* <Route path="/DocumentPreview">
+                                        <DocumentPreview />
+                                    </Route> */}
+                                    <Route path="/EduPoints">
+                                        <EduPoints />
+                                    </Route>
+                                </Switch>
                             </div>
-                        )}
+                            {this.props.location.pathname == "/" && (
+                                <div id="rightPannel">
+                                    <Route>
+                                        <ThemeProvider theme={theme_leaderboard}>
+                                            <RightPannel />
+                                        </ThemeProvider>
+                                    </Route>
+                                    <Route path="/DocumentPreview">
+                                        <DocumentPreview />
+                                    </Route>
+                                    <Route path="/EduPoints">
+                                        <EduPoints />
+                                    </Route>
+                                </div>
+                            )}
+                        </div>
                     </div>
-                </div>
+                </CourseProvider>
             </UserProvider>
         );
     }

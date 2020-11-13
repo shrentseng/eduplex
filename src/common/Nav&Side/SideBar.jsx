@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { NavLink } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from "@material-ui/core/Typography";
@@ -8,6 +8,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import NewsfeedIcon from '../../assets/newsfeed.svg';
 import MyCoursesIcon from '../../assets/myCourses.svg';
+import CourseContext from '../../context/course/courseContext';
 
 const useStyles = makeStyles({
 	root: {
@@ -57,21 +58,28 @@ const useStyles = makeStyles({
 function SideBar({ courses }) {
 	const classes = useStyles();
 	//fecth courses data
+	const courseContext = useContext(CourseContext)
+	console.log(courseContext);
 
-	const courseList = courses.map((course, i) => {
-        return (
-			<div key={i}>
-				<NavLink activeClassName={classes.active} to={`/${course.split(" ").join("")}`}>
-					<ListItem button className={`${classes.nested} ${classes.button}`}>
-						<Typography variant="h3">
-							{course}
-						</Typography>
-					</ListItem>
-				</NavLink>
-			</div>
-            
-        )
-    });
+	const courseList = (myCourses) => {
+		if (myCourses.length === 0) {
+            return null;
+        } else {
+            return myCourses.map((course, i) => {
+                return (
+					<div key={i}>
+						<NavLink activeClassName={classes.active} to={`/${course.number}`}>
+							<ListItem button className={`${classes.nested} ${classes.button}`}>
+								<Typography variant="h3">
+									{course.title}
+								</Typography>
+							</ListItem>
+						</NavLink>
+					</div>
+				)
+            });
+        }
+	}
 
 	return (
 		<div className={classes.root}>
@@ -98,7 +106,7 @@ function SideBar({ courses }) {
 					</ListItem>
 				</NavLink>
 				<List disablePadding>
-					{courseList}
+					{courseList(courseContext.myCourses)}
 				</List>
 			</List>
 		</div>

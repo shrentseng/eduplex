@@ -13,11 +13,14 @@ const FeedsProvider = (props) => {
     const getFeeds = async () => {
         try {
             dispatch({ type: "SENDING_REQUEST" });
-            fetch("/home/feed?userID=1")
-                .then((res) => res.json())
-                .then((result) => {
-                    dispatch({ type: "SET_FEEDS", payload: result });
-                });
+            fetch('/home/feed?userID=1')
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    dispatch({type: "SET_FEEDS", payload: result})
+                    console.log(result)
+                }
+            );
         } catch (err) {
             console.log("get feeds");
             console.log(err);
