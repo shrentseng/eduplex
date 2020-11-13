@@ -1,4 +1,3 @@
-
 export default class PDFJs{
     init = (source, element) => {
         const iframe = document.createElement('iframe');
