@@ -17,19 +17,12 @@ const useStyles = makeStyles(() => ({
 
 const Homepage = () => {
     const classes = useStyles();
-    const feedsContext = useContext(FeedsContext);
-    // useEffect(() => {
-    //     feedsContext.getFeeds();
-    // }, []);
 
     return (
-        <FeedsProvider>
-            <div className={classes.root}>
-                <Post />
-                <Feeds />
-            </div>
-        </FeedsProvider>
-
+        <div className={classes.root}>
+            <Post />
+            <Feeds />
+        </div>
     )
 }
 

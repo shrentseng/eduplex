@@ -99,7 +99,7 @@ function ProfileButtons() {
         } else {
             setSelectClassName(null)
         }
-    }, [location])
+    }, [location, classes.selectActive])
     
     const handleSelectChange = () => {
         history.push("/Profile/Uploaded")

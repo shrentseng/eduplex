@@ -77,7 +77,7 @@ const menuList = [
     },
 ]
 
-function AvatarNavbar() {
+const AvatarNavbar = () => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const isMenuOpen = Boolean(anchorEl);
@@ -110,7 +110,7 @@ function AvatarNavbar() {
             </div>
             <hr />
             {menuList.map((item, i) => (
-                <Link to={`/${item.title}`}>
+                <Link to={`/${item.title}`} key={i}>
                     <MenuItem onClick={handleMenuClose} key={i}>{item.title}</MenuItem>
                 </Link>
             ))}
