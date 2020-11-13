@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { makeStyles } from "@material-ui/core/styles";
 import CourseCard from './CourseCard';
@@ -6,6 +6,8 @@ import Card from "@material-ui/core/Card";
 import CardActionArea from '@material-ui/core/CardActionArea';
 import Grid from '@material-ui/core/Grid';
 import PlusIcon from '../../assets/plus.png';
+import CourseContext from "../../context/course/courseContext";
+
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -33,36 +35,15 @@ const useStyles = makeStyles(() => ({
 function CourseList() {
 
     const classes = useStyles();
-    const [courses, setCourses] = useState([
-        {
-            'title': 'Math 170E',
-            'key': 0,
-        },
-        {
-            'title': 'Math 170S',
-            'key': 1,
-        },
-        {
-            'title': 'Computer Science 180',
-            'key': 2,
-        },
-        {
-            'title': 'Computer Science 35L',
-            'key': 3,
-        },
-        {
-            'title': 'History 101A',
-            'key': 4,
-        },
-    ]);
+    const courseContext = useContext(CourseContext);
 
     const onDeleteCourse = (index) => {
-        let temp = [...courses];
+        /*let temp = [...courses];
         temp.splice(index, 1);
-        setCourses(temp);
+        setCourses(temp);*/
     }
 
-    const cardComponent = courses.map((course, i) => {
+    const cardComponent = courseContext.myCourses.map((course, i) => {
         return (
             <Grid item key={i}>
                 <CourseCard

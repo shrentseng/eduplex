@@ -1,33 +1,5 @@
 import { useReducer } from "react";
 
-
-// const initialState = {
-//     feeds: []
-// }
-
-// const fetchSuccess = (my_feeds, state) => {
-//     return {
-//         ...state,
-//         feeds: my_feeds,
-//         error: ''
-//     }
-// }
-
-// const fetchFailure = (state) => {
-//     return {
-//         ...state,
-//         feeds: [],
-//         error: 'Something went wrong!!'
-//     }
-// }
-
-const setFeeds = (my_feeds, state) => {
-    return {
-        ...state,
-        feeds: my_feeds,
-    };
-};
-
 const sendingRequest = (state) => {
     return {
         ...state,
@@ -42,22 +14,22 @@ const requestFinished = (state) => {
     };
 };
 
-const addFeed = (feed, state) => {
-    const newFeeds = [...state.feeds, feed];
-    return {
+const addingCourse = (course, state) => {
+    const newCourse = [...state.myCourses, course];
+    return{
         ...state,
-        feeds: newFeeds,
-    };
-};
+        myCourses: newCourse,
+    }
+}
 
 const reducer = (state, action) => {
     switch (action.type) {
-        case "SET_FEEDS":
-            return setFeeds(action.payload, state);
         case "SENDING_REQUEST":
             return sendingRequest(state);
         case "REQUEST_FINISHED":
             return requestFinished(state);
+        case "ADDING_COURSE":
+            return addingCourse(action.payload, state);
         default:
             return state;
     }

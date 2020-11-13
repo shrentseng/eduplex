@@ -1,84 +1,63 @@
 import React, { useReducer } from "react";
-import FeedsContext from "./feedsContext";
-import feedsReducer from "./feedsReducer";
+import courseContext from "./courseContext";
+import courseReducer from "./courseReducer";
 
 const CourseProvider = (props) => {
+
     const initialState = {
-        feeds: [],
-        loading: true,
-    };
+        courses:[
+            {
+                "coursename": "COMSCI 180",
+                "description": "Complex Programming",
+                "university": "UCLA",
+                "joined":0,
+                "key": 0,
+            },
+            {
+                "coursename": "PSYCH 115",
+                "description": "Behavioral Neuroscience",
+                "university": "Berkeley",
+                "joined":0,
+                "key": 1,
+            },
+        ],
+        myCourses:[],
+        loading:false,
+    }
+    const [state, dispatch] = useReducer(courseReducer, initialState);
 
-    const [state, dispatch] = useReducer(feedsReducer, initialState);
-
-    const getFeeds = async () => {
+    const getCourses = async () => {
         try {
             dispatch({ type: "SENDING_REQUEST" });
-            fetch('/home/feed?userID=1')
+            fetch('')
             .then(res => res.json())
             .then(
                 (result) => {
-                    dispatch({type: "SET_FEEDS", payload: result})
+                    dispatch({type: "SET_COURSES", payload: result})
                     console.log(result)
-                }
-            );
-
-            // const res = await fetch(
-            //     "https://my-json-server.typicode.com/shrentseng/my_json_server/Posts"
-            // );
-            // const data = await res.json();
-            // dispatch({ type: "REQUEST_FINISHED" });
-            // dispatch({ type: "SET_FEEDS", payload: data });
-        } catch (err) {
-            console.log('get feeds')
+                });
+        }
+        catch(err){
+            console.log('get courses')
             console.log(err);
         }
-    };
-
-    const addFeed = async (new_feed) => {
-
-        fetch('/home/feed', {
-            method: "POST",
-            headers: { 
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(new_feed)
-        }).then((res) => {
-            console.log(res)
-        })
-    };
-
-    const handleLike = async (id) => {
-        try { 
-            dispatch({ type: "HANDLE_LIKE", payload: id});
-            //fetch POST
-        } catch (err) { 
-            console.log('handle like')
-            console.log(err)
-        }
-    }
-    const handleDislike = async (id) => {
-        try { 
-            dispatch({ type: "HANDLE_DISLIKE", payload: id});
-            //fetch POST
-        } catch (err) { 
-            console.log('handle like')
-            console.log(err)
-        }
     }
 
-    return (
-        <FeedsContext.Provider
+    const addCourse = async(add_course) => {
+        dispatch({type: "ADDING_COURSE", payload: add_course});
+    }
+
+    return(
+        <courseContext.Provider 
             value={{
-                feeds: state.feeds,
-                loading: state.loading,
-                getFeeds: getFeeds,
-                addFeed: addFeed,
-                handleLike: handleLike,
-                handleDislike: handleDislike,
+                courses: state.courses,
+                myCourses: state.myCourses,
+                getCourse: getCourses,
+                addCourse: addCourse,
             }}
         >
             {props.children}
-        </FeedsContext.Provider>
-    );
+        </courseContext.Provider>
+    )
 };
 export default CourseProvider;

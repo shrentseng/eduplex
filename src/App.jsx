@@ -25,6 +25,7 @@ import DocumentPreview from './pages/preview/DocumentPreview';
 import EduPoints from './pages/edupoints/EduPoints';
 import RightPannel from './common/leaderboard/RightPanel';
 import AddCourse from './pages/my_courses/AddCourse';
+import CourseProvider from './context/course/CourseProvider'
 
 const styles = {
     root: {
@@ -93,13 +94,19 @@ class App extends Component {
                                 <EditProfile />
                             </Route>
                             <Route path="/MyCourses">
-                                <MyCourse />
+                                <CourseProvider>
+                                    <MyCourse />    
+                                </CourseProvider>
                             </Route>
                             <Route path="/AddCourse">
-                                <AddCourse />
+                                <CourseProvider>
+                                    <AddCourse />    
+                                </CourseProvider>
                             </Route>
                             <Route path="/CourseResults">
-                                <CourseResults searchValue={this.state.searchValue}/>
+                                <CourseProvider>
+                                    <CourseResults searchValue={this.state.searchValue}/>
+                                </CourseProvider>
                             </Route>
                             <Route path="/DocumentResults">
                                 <DocumentResults searchValue={this.state.searchValue}/>
