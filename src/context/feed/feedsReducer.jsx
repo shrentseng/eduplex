@@ -58,14 +58,17 @@ const handleDislike = (id, state) => {
     };
 };
 
-const addComment = (data, state) => {
+const addComment = (comment, state) => {
     let newFeeds = state.feeds.map((feed) => {
-        if (feed.postID === data.id) {
+        if (feed.PostID === comment.PostID) {
+            console.log(comment.Message)
             let newFeed = { ...feed };
-            newFeed.comment = [...newFeed.comment, data.Comment];
+            newFeed.ChildComments = [...newFeed.ChildComments, comment];
+            return newFeed;
         }
         return feed;
     });
+    console.log(newFeeds)
     return {
         ...state,
         feeds: newFeeds,

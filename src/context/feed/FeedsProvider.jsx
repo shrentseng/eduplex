@@ -42,11 +42,11 @@ const FeedsProvider = (props) => {
             body: JSON.stringify(feedForDb),
         }).then((res) => {
             if (res.status == 201) {
-                dispatch({ type: "ADD_FEED", payload: new_feed });
             } else {
                 console.log(res.status);
             }
         });
+        dispatch({ type: "ADD_FEED", payload: new_feed });
     };
 
     const handleLike = async (id) => {
@@ -81,13 +81,15 @@ const FeedsProvider = (props) => {
         }
     };
 
-    const addComment = async (data) => {
+    const addComment = async (comment) => {
         try {
+            dispatch({type: "ADD_COMMENT", payload: comment})
         } catch (err) {}
     };
 
-    const addReply = async (data) => {
+    const addReply = async (reply) => {
         try {
+            dispatch({type: "ADD_REPLY", payload: reply})
         } catch (err) {}
     };
 
@@ -101,6 +103,7 @@ const FeedsProvider = (props) => {
                 handleLike: handleLike,
                 handleDislike: handleDislike,
                 addComment: addComment,
+                addReply: addReply,
             }}
         >
             {props.children}
