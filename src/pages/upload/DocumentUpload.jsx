@@ -83,7 +83,7 @@ const useStyles = makeStyles(() => ({
 
 const DocumentUpload = () => {
     const classes = useStyles();
-    const userContext = useContext(UserContext)
+    const userContext = useContext(UserContext);
     const documentsContext = useContext(DocumentsContext);
     const [formData, setFormData] = useState({
         username: "",
@@ -111,20 +111,19 @@ const DocumentUpload = () => {
     ));
 
     const handleSubmit = () => {
-        console.log(acceptedFiles);
-        documentsContext.uploadDocument({
-            userID: userContext.userID,
-            title: "test",
-            courseID: 0,
-            universityID: 0,
-            academicYear: 2010,
-            semester: "Fall",
-            type: "assignment",
-            description: "testing",
-            anonymous: 0,
-            fileName: acceptedFiles.name,
-            originalFile: acceptedFiles
-        });
+        console.log(acceptedFiles[0]);
+        const formData = new FormData();
+        formData.append("originalFile", acceptedFiles[0]);
+        formData.append("userID", userContext.userID);
+        formData.append("title", "test");
+        formData.append("courseID", "0");
+        formData.append("universityID", "0");
+        formData.append("academicYear", "2010");
+        formData.append("semester", "Fall");
+        formData.append("type", "assignment");
+        formData.append("description", "testing");
+        formData.append("anonymous", "0");
+        documentsContext.uploadDocument(formData);
         //fetch POST
     };
 

@@ -11,14 +11,16 @@ function Courses() {
         if (myCourses.length === 0) {
             return null;
         } else {
-            return myCourses.map((course, i) => {
-                return (
-                    <Route key={i} path={`/Courses/${course.title}`}>
-                        <FeedsProvider>
-                            <Course course={course.title} />
-                        </FeedsProvider>
-                    </Route>
-                );
+            return myCourses.map((university, i) => {
+                return university.Courses.map((course,i)=>{
+                    return (
+                        <Route key={i} path={`/Courses/${course.CourseNumber}`}>
+                            <FeedsProvider>
+                                <Course course={course.CourseNumber} />
+                            </FeedsProvider>
+                        </Route>
+                    );
+                })
             });
         }
     };
