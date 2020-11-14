@@ -33,7 +33,7 @@ const UserProvider = (props) => {
     return (
         <UserContext.Provider
             value={{
-                user: state.user,
+                userID: state.userID,
                 loading: state.loading,
                 signIn: signIn,
             }}

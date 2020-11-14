@@ -42,7 +42,7 @@ function CourseCard(props) {
 				)}
 				<CardContent>
 					<Typography variant="h5">
-						{props.courseTitle}
+						{props.CourseNumber}
 					</Typography>
 				</CardContent>
             </Card>

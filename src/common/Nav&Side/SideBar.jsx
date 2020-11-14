@@ -70,7 +70,7 @@ function SideBar({ courses }) {
 						<NavLink activeClassName={classes.active} to={`/Courses/${course.title}`}>
 							<ListItem button className={`${classes.nested} ${classes.button}`}>
 								<Typography variant="h3">
-									{course.title}
+									{myCourses.CourseNumber}
 								</Typography>
 							</ListItem>
 						</NavLink>

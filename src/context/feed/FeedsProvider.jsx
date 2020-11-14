@@ -42,11 +42,11 @@ const FeedsProvider = (props) => {
             body: JSON.stringify(feedForDb),
         }).then((res) => {
             if (res.status == 201) {
+                dispatch({ type: "ADD_FEED", payload: new_feed });
             } else {
                 console.log(res.status);
             }
         });
-        dispatch({ type: "ADD_FEED", payload: new_feed });
     };
 
     const handleLike = async (id) => {

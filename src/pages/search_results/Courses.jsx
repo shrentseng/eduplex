@@ -1,15 +1,17 @@
-import React from "react"
-import Course from "./Course.jsx"
+import React from "react";
+import Course from "./Course.jsx";
 
-const Courses = (props) => {
-    return props.courses.map((details) => {
-        return <Course
-            coursename={details.coursename}
-            description={details.description}
-            joined={details.joined}
-            key={details.key}
+const Courses = ({ courses }) => {
+    return courses.map((course) => {
+        return (
+            <Course
+                CourseName={course.CourseName}
+                CourseNumber={course.CourseNumber}
+                key={course.CourseID}
+                CourseID={course.CourseID}
             />
-    })
-}
+        );
+    });
+};
 
 export default Courses;

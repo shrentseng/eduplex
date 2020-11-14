@@ -8,7 +8,6 @@ const Feeds = (props) => {
     
     useEffect(() => {
         feedsContext.getFeeds();
-        
     }, []);
 
     const renderFeeds = (feeds) => {
