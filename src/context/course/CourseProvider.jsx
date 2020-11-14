@@ -7,15 +7,15 @@ const CourseProvider = (props) => {
     const initialState = {
         courses:[
             {
-                "coursename": "COMSCI 180",
-                "description": "Complex Programming",
-                "university": "UCLA",
+                "coursename": "Complex Programming",
+                "coursenumber": "COMSCI 180",
+                "universityID": 1,
                 "key": 0,
             },
             {
-                "coursename": "PSYCH 115",
-                "coursenumber": "Behavioral Neuroscience",
-                "university": "Berkeley",
+                "coursename": "Behavioral Neuroscience",
+                "coursenumber": "PSYCH 115",
+                "universityID": 2,
                 "key": 1,
             },
         ],
