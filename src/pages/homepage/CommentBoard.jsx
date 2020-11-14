@@ -79,6 +79,7 @@ const CommentBoard = (props) => {
 
     useEffect(() => {
         //fetch props.PostID
+        feedsContext.getCommentsByPostID(props.PostID);
         setComments(
             feedsContext.feeds.find((feed) => feed.PostID === props.PostID)
                 .ChildComments

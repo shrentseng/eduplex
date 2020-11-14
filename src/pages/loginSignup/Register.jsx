@@ -26,7 +26,7 @@ class Register extends Component {
 
     render() {
         let regForm;
-        switch (3) {
+        switch (this.state.regStep) {
             case 1:
                 regForm = (
                     <Register1

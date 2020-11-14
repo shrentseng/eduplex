@@ -113,6 +113,23 @@ const DocumentsProvider = (props) => {
         //fetch document
     }
 
+    const uploadDocument = async (document) => {
+        try {
+            fetch('upload', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(document)
+            }).then((res) => {
+                console.log(res)
+            })
+        } catch (err) {
+            console.log("uploadDocument")
+            console.log(err)
+        }
+    }
+
     return (
         <DocumentsContext.Provider
             value={{
@@ -122,6 +139,7 @@ const DocumentsProvider = (props) => {
                 addDocument: addDocument,
                 setCurrentDocument: setCurrentDocument,
                 downloadDocument: downloadDocument,
+                uploadDocument: uploadDocument,
             }}
         >
             {props.children}

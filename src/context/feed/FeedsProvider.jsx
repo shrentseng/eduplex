@@ -81,11 +81,17 @@ const FeedsProvider = (props) => {
         }
     };
 
+    const getCommentsByPostID = async (PostID) => {
+        
+    }
+
     const addComment = async (comment) => {
         try {
             dispatch({type: "ADD_COMMENT", payload: comment})
         } catch (err) {}
     };
+
+    
 
     const addReply = async (reply) => {
         try {
@@ -104,6 +110,8 @@ const FeedsProvider = (props) => {
                 handleDislike: handleDislike,
                 addComment: addComment,
                 addReply: addReply,
+                getCommentsByPostID: getCommentsByPostID,
+
             }}
         >
             {props.children}
