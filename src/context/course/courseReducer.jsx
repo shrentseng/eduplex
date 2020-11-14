@@ -1,5 +1,3 @@
-import { useReducer } from "react";
-
 const sendingRequest = (state) => {
     return {
         ...state,
@@ -14,13 +12,27 @@ const requestFinished = (state) => {
     };
 };
 
-const addingCourse = (course, state) => {
-    const newCourse = [...state.myCourses, course];
-    return{
+const setCourses = (courses, state) => {
+    return {
         ...state,
-        myCourses: newCourse,
+        courses: courses,
     }
 }
+
+const setMyCourses = (my_courses, state) => {
+    return {
+        ...state,
+        myCourses: my_courses,
+    };
+};
+
+const addCourse = (course, state) => {
+    const newCourse = [...state.myCourses, course];
+    return {
+        ...state,
+        myCourses: newCourse,
+    };
+};
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -28,8 +40,12 @@ const reducer = (state, action) => {
             return sendingRequest(state);
         case "REQUEST_FINISHED":
             return requestFinished(state);
-        case "ADDING_COURSE":
-            return addingCourse(action.payload, state);
+        case "ADD_COURSE":
+            return addCourse(action.payload, state);
+        case "SET_MY_COURSES":
+            return setMyCourses(action.payload, state);
+        case "SET_COURSES":
+            return setCourses(action.payload, state);
         default:
             return state;
     }

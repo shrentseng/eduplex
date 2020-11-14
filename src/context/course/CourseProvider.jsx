@@ -3,59 +3,75 @@ import courseContext from "./courseContext";
 import courseReducer from "./courseReducer";
 
 const CourseProvider = (props) => {
-
     const initialState = {
-        courses:[
-            {
-                "coursename": "Complex Programming",
-                "coursenumber": "COMSCI 180",
-                "universityID": 1,
-                "key": 0,
-            },
-            {
-                "coursename": "Behavioral Neuroscience",
-                "coursenumber": "PSYCH 115",
-                "universityID": 2,
-                "key": 1,
-            },
-        ],
-        myCourses:[],
-        loading:false,
-    }
+        courses: [],
+        myCourses: [],
+        loading: false,
+    };
     const [state, dispatch] = useReducer(courseReducer, initialState);
 
-    const getCourses = async () => {
+    const getMyCourses = async () => {
         try {
             dispatch({ type: "SENDING_REQUEST" });
-            fetch('')
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    dispatch({type: "SET_COURSES", payload: result})
-                    console.log(result)
+            fetch("mycourse?userID=1") //id
+                .then((res) => res.json())
+                .then((result) => {
+                    dispatch({ type: "SET_MY_COURSES", payload: result });
                 });
+        } catch (err) {
+            console.log("get courses");
+            console.log(err);
         }
-        catch(err){
-            console.log('get courses')
+    };
+
+    const getCoursesByUniversity = async (UniversityID) => {
+        try {
+            dispatch({ type: "SENDING_REQUEST" });
+            fetch(`mycourse/addCourse?userID=1&universityID=4`)
+                .then((res) => res.json())
+                .then((result) => {
+                    dispatch({ type: "SET_COURSES", payload: result });
+                });
+        } catch (err) {
+            console.log("get courses");
             console.log(err);
         }
     }
 
-    const addCourse = async(add_course) => {
-        dispatch({type: "ADDING_COURSE", payload: add_course});
-    }
+    const addCourse = async (course) => {
+        try {
+            dispatch({ type: "SENDING_REQUEST" });
+            fetch("mycourse", {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(course),
+            }).then((res) => {
+                if (res.status == 201) {
+                    dispatch({ type: "ADD_COURSE", payload: course });
+                } else {
+                    console.log(res.status);
+                }
+            });
+        } catch (err) {
+            console.log("add courses");
+            console.log(err);
+        }
+    };
 
-    return(
-        <courseContext.Provider 
+    return (
+        <courseContext.Provider
             value={{
                 courses: state.courses,
                 myCourses: state.myCourses,
-                getCourse: getCourses,
+                getMyCourses: getMyCourses,
                 addCourse: addCourse,
+                getCoursesByUniversity: getCoursesByUniversity,
             }}
         >
             {props.children}
         </courseContext.Provider>
-    )
+    );
 };
 export default CourseProvider;
