@@ -8,14 +8,14 @@ const CourseProvider = (props) => {
         courses:[
             {
                 "coursename": "Complex Programming",
-                "description": "COMSCI 180",
-                "university": "UCLA",
+                "coursenumber": "COMSCI 180",
+                "universityID": 1,
                 "key": 0,
             },
             {
                 "coursename": "Behavioral Neuroscience",
                 "coursenumber": "PSYCH 115",
-                "university": "Berkeley",
+                "universityID": 2,
                 "key": 1,
             },
         ],

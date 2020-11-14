@@ -5,8 +5,8 @@ const Courses = (props) => {
     return props.courses.map((details) => {
         return <Course
             coursename={details.coursename}
-            description={details.description}
-            joined={details.joined}
+            coursenumber={details.coursenumber}
+            universityID={details.universityID}
             key={details.key}
             />
     })

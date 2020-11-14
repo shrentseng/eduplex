@@ -31,7 +31,8 @@ const Course = (props) => {
 
     const course = {
         "title":props.coursename,
-        "number":props.description,
+        "number":props.coursenumber,
+        "university":props.university,
         "key":props.key,
     }
 
@@ -63,10 +64,10 @@ const Course = (props) => {
         <div className={classes.root}>
             <Paper elevation={0} className={classes.course}>
                 <Typography className="col-3" style={{margin:'1em'}}>
-                    {props.coursename}
+                    {props.coursenumber}
                 </Typography>
                 <Typography style={{margin:'1em'}}>
-                    {props.description}
+                    {props.coursename}
                 </Typography>
             </Paper>
             <Button className={classes.join} style={{backgroundColor:color,"&:hover": {backgroundColor:color}}} onClick={handleJoin}>
