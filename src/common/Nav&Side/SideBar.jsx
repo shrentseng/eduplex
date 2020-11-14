@@ -67,7 +67,7 @@ function SideBar({ courses }) {
             return myCourses.map((course, i) => {
                 return (
 					<div key={i}>
-						<NavLink activeClassName={classes.active} to={`/Courses/${course.title}`}>
+						<NavLink activeClassName={classes.active} to={`/Courses/${course.number}`}>
 							<ListItem button className={`${classes.nested} ${classes.button}`}>
 								<Typography variant="h3">
 									{myCourses.CourseNumber}

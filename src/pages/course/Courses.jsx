@@ -13,9 +13,9 @@ function Courses() {
         } else {
             return myCourses.map((course, i) => {
                 return (
-                    <Route key={i} path={`/Courses/${course.title}`}>
+                    <Route key={i} path={`/Courses/${course.number}`}>
                         <FeedsProvider>
-                            <Course course={course.title} />
+                            <Course course={course.number} />
                         </FeedsProvider>
                     </Route>
                 );
