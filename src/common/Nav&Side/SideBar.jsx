@@ -64,21 +64,26 @@ function SideBar({ courses }) {
 		if (myCourses.length === 0) {
             return null;
         } else {
-            return myCourses.map((course, i) => {
-                return (
-					<div key={i}>
-						<NavLink activeClassName={classes.active} to={`/Courses/${course.number}`}>
-							<ListItem button className={`${classes.nested} ${classes.button}`}>
-								<Typography variant="h3">
-									{myCourses.CourseNumber}
-								</Typography>
-							</ListItem>
-						</NavLink>
-					</div>
-				)
-            });
-        }
+            return myCourses.map((university, i) => {
+				return university.Courses.map((course,i)=>{
+					return (
+						<div key={i}>
+							<NavLink activeClassName={classes.active} to={`/Courses/${course.CourseNumber}`}>
+								<ListItem button className={`${classes.nested} ${classes.button}`}>
+									<Typography variant="h3">
+										{course.CourseNumber}
+									</Typography>
+								</ListItem>
+							</NavLink>
+						</div>
+					)
+				})
+			}
+		)
 	}
+}
+
+
 
 	return (
 		<div className={classes.root}>
