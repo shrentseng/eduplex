@@ -31,7 +31,6 @@ function MyCourses() {
     useEffect(() => {
         courseContext.getMyCourses(userContext.userID);
     }, []);
-    console.log(courseContext.myCourses)
 
 	const renderColleges = () => {
 		return courseContext.myCourses.map((university) => {
