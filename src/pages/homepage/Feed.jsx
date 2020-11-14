@@ -77,38 +77,38 @@ const Feed = (props) => {
                     <div style={{display: 'flex', flexDirection: 'column'}}>
                         <div style={{display: 'flex', alignItems: 'center'}}>
                             {/* username */}
-                            <Typography variant='h5'>{props.username}</Typography>
+                            <Typography variant='h5'>{props.Username}</Typography>
                             {/* date */}
                             <Typography variant='h6' style={{margin: '0 0.4em'}}>•</Typography>
                             <Typography variant='h6'>{'5 mins ago'}</Typography>
                         </div>
                         {/* posted in */}
-                        <Typography variant='h6'>{`Posted in ${props.course} `}</Typography>
+                        <Typography variant='h6'>{`Posted in ${props.CourseName} `}</Typography>
                     </div>
                     {/* <div className={classes.headerItem} style={{marginLeft: 'auto'}}>
                         <img className={classes.bookmark} src={bookmark} />
                     </div> */}
                 </div>
-                <Typography className={classes.body} variant='body1'>{props.content}</Typography>
+                <Typography className={classes.body} variant='body1'>{props.Message}</Typography>
                 <div className={classes.footer}>
                     <div>
                         <img className={classes.footerItem} style={{marginRight: '1em'}} src={like} onClick={() => feedsContext.handleLike(props.id)} />
-                        <Typography display='inline'>{props.likeCount}</Typography>
+                        <Typography display='inline'>{props.Likes}</Typography>
                     </div>
                     <div>
                         <img className={classes.footerItem} style={{marginRight: '1em'}} src={dislike} onClick={() => feedsContext.handleDislike(props.id)} />
-                        <Typography display='inline'>{props.dislikeCount}</Typography>
+                        <Typography display='inline'>{props.Unlikes}</Typography>
                     </div>
                     <div>
                         <img className={classes.footerItem} style={{marginRight: '1em'}} src={comment} onClick={onToggleExpand} />
-                        <Typography display='inline'>{props.commentCount}</Typography>
+                        <Typography display='inline'>{props.ChildComments.length}</Typography>
                     </div>
                     <div>
                         <img className={classes.footerItem} src={share}/>
                     </div>
                 </div>
             </Paper>
-            <CommentBoard isExpand={isExpand} setExpandTrue={onSetExpandTrue}/>
+            <CommentBoard PostID={props.PostID} isExpand={isExpand} setExpandTrue={onSetExpandTrue}/>
         </div>
     );
 }

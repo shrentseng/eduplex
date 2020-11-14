@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Route, Switch, useLocation, useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import GetAppIcon from "@material-ui/icons/GetApp";
+import DocumentsContext from "../../context/document/documentsContext";
 
 const useStyles = makeStyles({
     root: {
@@ -39,16 +40,19 @@ const useStyles = makeStyles({
 
 function DocumentsGrid({ document, previewURL }) {
     const classes = useStyles();
+
     let location = useLocation();
     let history = useHistory();
+    const documentsContext = useContext(DocumentsContext);
     const [isHovered, setIsHovered] = useState(false);
 
     useEffect(() => {
 
     }, [location, history])
 
-    const handleDocumentPreview = () => {
-        history.push(previewURL);
+    const handleDocumentPreview = (id) => {
+        history.push("/DocumentPreview");
+        documentsContext.setCurrentDocument(id);
     };
 
     return (
@@ -68,7 +72,7 @@ function DocumentsGrid({ document, previewURL }) {
                         }}
                     >
                         <button
-                            onClick={handleDocumentPreview}
+                            onClick={(e) =>handleDocumentPreview(document.key)}
                             className={classes.previewButton}
                         >
                             <span>Preview</span>

@@ -26,9 +26,11 @@ import DocumentPreview from "./pages/preview/DocumentPreview";
 import EduPoints from "./pages/edupoints/EduPoints";
 import RightPannel from "./common/leaderboard/RightPanel";
 import AddCourse from "./pages/my_courses/AddCourse";
-import FeedsProvider from "./context/feed/FeedsProvider";
+import Courses from "./pages/course/Courses";
 import UserProvider from "./context/user/UserProvider";
+import FeedsProvider from "./context/feed/FeedsProvider";
 import CourseProvider from "./context/course/CourseProvider";
+import DocumentsProvider from "./context/document/DocumentsProvider";
 
 const styles = {
     root: {
@@ -53,109 +55,117 @@ class App extends Component {
             courses: ["Course 1", "Course 2"],
         };
     }
-
     onSearch = (content) => {
         this.setState({ searchValue: content });
     };
 
     render() {
         const { classes } = this.props;
+        const hasSidebarReg = new RegExp("/(DocumentPreview|DocumentUpload)");
+        const hasSidebar = !hasSidebarReg.test(this.props.location.pathname);
+
         return (
             <UserProvider>
                 <CourseProvider>
-                    <div className={classes.root}>
-                        <Navbar onSearch={this.onSearch} />
-                        <div className={classes.main} id="main">
-                            {this.props.location.pathname !== "/DocumentUpload" &&
-                                this.props.location.pathname !==
-                                    "/DocumentPreview" && (
-                                    <div className={classes.sidebar} id="sidebar">
+                    <DocumentsProvider>
+                        <div className={classes.root}>
+                            <Navbar onSearch={this.onSearch} />
+                            <div className={classes.main} id="main">
+                                {hasSidebar && (
+                                    <div
+                                        className={classes.sidebar}
+                                        id="sidebar"
+                                    >
                                         <ThemeProvider theme={theme_sidebar}>
-                                                <SideBar courses={this.state.courses} />
+                                            <SideBar
+                                                courses={this.state.courses}
+                                            />
                                         </ThemeProvider>
                                     </div>
                                 )}
-                            <div className={classes.page} id="page">
-                                <Switch>
-                                    <Route exact path="/">
-                                        <ThemeProvider theme={theme_homepage}>
+                                <div className={classes.page} id="page">
+                                    <Switch>
+                                        <Route exact path="/">
+                                            <ThemeProvider
+                                                theme={theme_homepage}
+                                            >
+                                                <FeedsProvider>
+                                                    <Homepage />
+                                                </FeedsProvider>
+                                            </ThemeProvider>
+                                        </Route>
+                                        <Route path="/SignIn">
+                                            <SignIn />
+                                        </Route>
+                                        <Route path="/Register">
+                                            <Register />
+                                        </Route>
+                                        <Route path="/Courses">
+                                            <Courses />
+                                        </Route>
+                                        <Route path="/Profile">
                                             <FeedsProvider>
-                                                <Homepage />
-                                            </FeedsProvider>
-                                        </ThemeProvider>
-                                    </Route>
-                                    <Route path="/SignIn">
-                                        <SignIn />
-                                    </Route>
-                                    <Route path="/Register">
-                                        <Register />
-                                    </Route>
-                                    {this.state.courses.map((course, i) => (
-                                        <Route
-                                            key={i}
-                                            path={`/${course.split(" ").join("")}`}
-                                        >
-                                            <FeedsProvider>
-                                                <Course course={course} />
+                                                <Profile />
                                             </FeedsProvider>
                                         </Route>
-                                    ))}
-                                    <Route path="/Profile">
-                                        <FeedsProvider>
-                                            <Profile />
-                                        </FeedsProvider>
-                                    </Route>
-                                    <Route path="/EditProfile">
-                                        <EditProfile />
-                                    </Route>
-                                    <Route path="/MyCourses">
+                                        <Route path="/EditProfile">
+                                            <EditProfile />
+                                        </Route>
+                                        <Route path="/MyCourses">
                                             <MyCourse />
-                                    </Route>
-                                    <Route path="/AddCourse">
+                                        </Route>
+                                        <Route path="/AddCourse">
                                             <AddCourse />
-                                    </Route>
-                                    <Route path="/CourseResults">
+                                        </Route>
+                                        <Route path="/CourseResults">
                                             <CourseResults
-                                                searchValue={this.state.searchValue}
+                                                searchValue={
+                                                    this.state.searchValue
+                                                }
                                             />
-                                    </Route>
-                                    <Route path="/DocumentResults">
-                                        <DocumentResults
-                                            searchValue={this.state.searchValue}
-                                        />
-                                    </Route>
-                                    <Route path="/DocumentUpload">
-                                        <ThemeProvider
-                                            theme={theme_document_upload}
-                                        >
-                                            <DocumentUpload />
-                                        </ThemeProvider>
-                                    </Route>
-                                    {/* <Route path="/DocumentPreview">
-                                        <DocumentPreview />
-                                    </Route> */}
-                                    <Route path="/EduPoints">
-                                        <EduPoints />
-                                    </Route>
-                                </Switch>
-                            </div>
-                            {this.props.location.pathname == "/" && (
-                                <div id="rightPannel">
-                                    <Route>
-                                        <ThemeProvider theme={theme_leaderboard}>
-                                            <RightPannel />
-                                        </ThemeProvider>
-                                    </Route>
-                                    <Route path="/DocumentPreview">
-                                        <DocumentPreview />
-                                    </Route>
-                                    <Route path="/EduPoints">
-                                        <EduPoints />
-                                    </Route>
+                                        </Route>
+                                        <Route path="/DocumentResults">
+                                            <DocumentResults
+                                                searchValue={
+                                                    this.state.searchValue
+                                                }
+                                            />
+                                        </Route>
+                                        <Route path="/DocumentUpload">
+                                            <ThemeProvider
+                                                theme={theme_document_upload}
+                                            >
+                                                <DocumentUpload />
+                                            </ThemeProvider>
+                                        </Route>
+                                        <Route path="/DocumentPreview">
+                                            <DocumentPreview />
+                                        </Route>
+                                        <Route path="/EduPoints">
+                                            <EduPoints />
+                                        </Route>
+                                    </Switch>
                                 </div>
-                            )}
+                                {this.props.location.pathname == "/" && (
+                                    <div id="rightPannel">
+                                        <Route>
+                                            <ThemeProvider
+                                                theme={theme_leaderboard}
+                                            >
+                                                <RightPannel />
+                                            </ThemeProvider>
+                                        </Route>
+                                        <Route path="/DocumentPreview">
+                                            <DocumentPreview />
+                                        </Route>
+                                        <Route path="/EduPoints">
+                                            <EduPoints />
+                                        </Route>
+                                    </div>
+                                )}
+                            </div>
                         </div>
-                    </div>
+                    </DocumentsProvider>
                 </CourseProvider>
             </UserProvider>
         );

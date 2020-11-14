@@ -18,14 +18,14 @@ const Feeds = (props) => {
             return feeds.slice(0).reverse().map((feed) => {
                 return (
                     <Feed
-                        username={feed.FirstName + " " + feed.LastName}
-                        content={feed.Message}
-                        likeCount={feed.Likes}
-                        dislikeCount={feed.Unlikes}
-                        commentCount={feed.ChildComments.length}
+                        Username={feed.FirstName + " " + feed.LastName}
+                        Message={feed.Message}
+                        Likes={feed.Likes}
+                        Unlikes={feed.Unlikes}
+                        ChildComments={feed.ChildComments}
                         key={feed.PostID}
-                        id={feed.PostID}
-                        course={feed.CourseName}
+                        PostID={feed.PostID}
+                        CourseName={feed.CourseName}
                     />
                 );
             });
