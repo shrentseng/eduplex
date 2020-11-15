@@ -6,59 +6,64 @@ const DocumentsProvider = (props) => {
     const initialState = {
         documents: [
             {
-                "username": "Jim Corey",
-                "univserity": "UCLA",
-                "course": "PHYSICS 101",
-                "title": "Theory of Relativity",
-                "academicTerm": "Spring",
-                "academicYear": 2020,
-                "category": "Essay",
-                "description": "A theory developed by Albert Einstein–the greatest scienctist.",
-                "key": 0,
+                username: "Jim Corey",
+                univserity: "UCLA",
+                course: "PHYSICS 101",
+                title: "Theory of Relativity",
+                academicTerm: "Spring",
+                academicYear: 2020,
+                category: "Essay",
+                description:
+                    "A theory developed by Albert Einstein–the greatest scienctist.",
+                key: 0,
             },
             {
-                "username": "Jim Corey",
-                "univserity": "UCLA",
-                "course": "PHYSICS 101",
-                "title": "Theory of Relativity",
-                "academicTerm": "Spring",
-                "academicYear": 2020,
-                "category": "Essay",
-                "description": "A theory developed by Albert Einstein–the greatest scienctist.",
-                "key": 1,
+                username: "Jim Corey",
+                univserity: "UCLA",
+                course: "PHYSICS 101",
+                title: "Theory of Relativity",
+                academicTerm: "Spring",
+                academicYear: 2020,
+                category: "Essay",
+                description:
+                    "A theory developed by Albert Einstein–the greatest scienctist.",
+                key: 1,
             },
             {
-                "username": "Jim Corey",
-                "univserity": "UCLA",
-                "course": "PHYSICS 101",
-                "title": "Theory of Relativity",
-                "academicTerm": "Spring",
-                "academicYear": 2020,
-                "category": "Essay",
-                "description": "A theory developed by Albert Einstein–the greatest scienctist.",
-                "key": 2,
+                username: "Jim Corey",
+                univserity: "UCLA",
+                course: "PHYSICS 101",
+                title: "Theory of Relativity",
+                academicTerm: "Spring",
+                academicYear: 2020,
+                category: "Essay",
+                description:
+                    "A theory developed by Albert Einstein–the greatest scienctist.",
+                key: 2,
             },
             {
-                "username": "Jim Corey",
-                "univserity": "UCLA",
-                "course": "PHYSICS 101",
-                "title": "Theory of Relativity",
-                "academicTerm": "Spring",
-                "academicYear": 2020,
-                "category": "Essay",
-                "description": "A theory developed by Albert Einstein–the greatest scienctist.",
-                "key": 3,
+                username: "Jim Corey",
+                univserity: "UCLA",
+                course: "PHYSICS 101",
+                title: "Theory of Relativity",
+                academicTerm: "Spring",
+                academicYear: 2020,
+                category: "Essay",
+                description:
+                    "A theory developed by Albert Einstein–the greatest scienctist.",
+                key: 3,
             },
             {
-                "username": "Brad Pitt",
-                "univserity": "UCLA",
-                "course": "PHYSICS 101",
-                "title": "Theory of Relativity",
-                "academicTerm": "Spring",
-                "academicYear": 2020,
-                "category": "Essay",
-                "description": "A theory developed by Albert Einstein–the greatest scienctist.",
-                "key": 4,
+                username: "Brad Pitt",
+                univserity: "UCLA",
+                course: "PHYSICS 101",
+                title: "Theory of Relativity",
+                academicTerm: "Spring",
+                academicYear: 2020,
+                category: "Essay",
+                description:
+                    "A theory developed by Albert Einstein–the greatest scienctist.",
+                key: 4,
             },
         ],
         currentDocument: null,
@@ -78,7 +83,6 @@ const DocumentsProvider = (props) => {
         //             console.log(result)
         //         }
         //     );
-
         //     // const res = await fetch(
         //     //     "https://my-json-server.typicode.com/shrentseng/my_json_server/Posts"
         //     // );
@@ -92,26 +96,57 @@ const DocumentsProvider = (props) => {
     };
 
     const addDocument = async (new_document) => {
-
-        fetch('/home/document', {
+        fetch("/home/document", {
             method: "POST",
-            headers: { 
+            headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(new_document)
+            body: JSON.stringify(new_document),
         }).then((res) => {
-            console.log(res)
-        })
+            console.log(res);
+        });
     };
 
     const setCurrentDocument = async (id) => {
         //get document data
-        console.log(id)
-    }
+        //console.log(id);
+    };
 
-    const downloadDocument = async () => {
-        //fetch document
-    }
+    const downloadDocument = async (id) => {
+        try {
+            // const response = await fetch("");
+            // const blob = await response.blob();
+            const obj = { hello: "world" };
+            const blob = new Blob([JSON.stringify(obj, null, 2)], {
+                type: "application/json",
+            });
+            console.log(blob)
+            let url = window.URL.createObjectURL(blob);
+            let a = document.createElement("a");
+            a.href = url;
+            a.download = "employees.json";
+            a.click();
+            window.URL.revokeObjectURL(url);
+        } catch (err) {
+            console.log("downloadDocument");
+            console.log(err);
+        }
+    };
+
+    const uploadDocument = async (document) => {
+        console.log(document);
+        try {
+            fetch("upload", {
+                method: "POST",
+                body: document,
+            }).then((res) => {
+                console.log(res);
+            });
+        } catch (err) {
+            console.log("uploadDocument");
+            console.log(err);
+        }
+    };
 
     return (
         <DocumentsContext.Provider
@@ -122,6 +157,7 @@ const DocumentsProvider = (props) => {
                 addDocument: addDocument,
                 setCurrentDocument: setCurrentDocument,
                 downloadDocument: downloadDocument,
+                uploadDocument: uploadDocument,
             }}
         >
             {props.children}

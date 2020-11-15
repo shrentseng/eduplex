@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { useDropzone } from "react-dropzone";
 import { Typography } from "@material-ui/core";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Enter from "../../assets/enter.svg";
+import DocumentsContext from "../../context/document/documentsContext";
+import UserContext from "../../context/user/userContext";
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -81,7 +83,8 @@ const useStyles = makeStyles(() => ({
 
 const DocumentUpload = () => {
     const classes = useStyles();
-
+    const userContext = useContext(UserContext);
+    const documentsContext = useContext(DocumentsContext);
     const [formData, setFormData] = useState({
         username: "",
         university: "",
@@ -108,7 +111,19 @@ const DocumentUpload = () => {
     ));
 
     const handleSubmit = () => {
-        console.log(acceptedFiles);
+        console.log(acceptedFiles[0]);
+        const formData = new FormData();
+        formData.append("originalFile", acceptedFiles[0]);
+        formData.append("userID", userContext.userID);
+        formData.append("title", "test");
+        formData.append("courseID", "0");
+        formData.append("universityID", "0");
+        formData.append("academicYear", "2010");
+        formData.append("semester", "Fall");
+        formData.append("type", "assignment");
+        formData.append("description", "testing");
+        formData.append("anonymous", "0");
+        documentsContext.uploadDocument(formData);
         //fetch POST
     };
 
@@ -175,7 +190,10 @@ const DocumentUpload = () => {
                         className={classes.submit}
                         onClick={handleSubmit}
                     >
-                        <img src={Enter} style={{ height: '20px', margin: "10px" }} />
+                        <img
+                            src={Enter}
+                            style={{ height: "20px", margin: "10px" }}
+                        />
                         Submit
                     </button>
                 </form>

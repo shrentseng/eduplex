@@ -27,27 +27,27 @@ const addFeed = (feed, state) => {
     };
 };
 
-const handleLike = (id, state) => {
+const handleLike = ({ PostID, active }, state) => {
     let newFeeds = state.feeds.map((feed) => {
-        if (feed.PostID === id) {
+        if (feed.PostID === PostID) {
             let newFeed = { ...feed };
-            newFeed.Likes++;
+            newFeed.Likes += active ? 1 : -1;
             return newFeed;
         }
         return feed;
     });
-    
+
     return {
         ...state,
         feeds: newFeeds,
     };
 };
 
-const handleDislike = (id, state) => {
+const handleDislike = ({ PostID, active }, state) => {
     let newFeeds = state.feeds.map((feed) => {
-        if (feed.PostID === id) {
+        if (feed.PostID === PostID) {
             let newFeed = { ...feed };
-            newFeed.Unlikes++;
+            newFeed.Unlikes += active ? 1 : -1;
             return newFeed;
         }
         return feed;
@@ -61,14 +61,14 @@ const handleDislike = (id, state) => {
 const addComment = (comment, state) => {
     let newFeeds = state.feeds.map((feed) => {
         if (feed.PostID === comment.PostID) {
-            console.log(comment.Message)
+            console.log(comment.Message);
             let newFeed = { ...feed };
             newFeed.ChildComments = [...newFeed.ChildComments, comment];
             return newFeed;
         }
         return feed;
     });
-    console.log(newFeeds)
+    console.log(newFeeds);
     return {
         ...state,
         feeds: newFeeds,

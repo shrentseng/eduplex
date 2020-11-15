@@ -72,10 +72,10 @@ const Head = () => {
                 <Typography className={classes.subTitle}>
                     Past Exam: Midterm
                 </Typography>
-                <button className={classes.save}>Save</button>
-                <button className={classes.download} onClick={handleDownload}>
+                <Button className={classes.save}>Save</Button>
+                <Button className={classes.download} onClick={handleDownload}>
                     Download
-                </button>
+                </Button>
             </Paper>
         </div>
     );

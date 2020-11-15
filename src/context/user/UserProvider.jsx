@@ -5,6 +5,8 @@ import userReducer from "./userReducer";
 const UserProvider = (props) => {
     const initialState = {
         userID: 1,
+        postsLiked: [],
+        postsDisliked: [],
         loading: true,
     };
 
@@ -30,12 +32,35 @@ const UserProvider = (props) => {
         dispatch({ type: "SET_USER", payload: userID });
     };
 
+    const handleLikePost = async (PostID, active) => {
+        try {
+            dispatch({
+                type: "HANDLE_LIKE_POST",
+                payload: { PostID, active },
+            });
+        } catch (err) {}
+        return "done";
+    };
+
+    const handleDislikePost = async (PostID, active) => {
+        try {
+            dispatch({
+                type: "HANDLE_DISLIKE_POST",
+                payload: { PostID, active },
+            });
+        } catch (err) {}
+    };
+
     return (
         <UserContext.Provider
             value={{
                 userID: state.userID,
+                postsLiked: state.postsLiked,
+                postsDisliked: state.postsDisliked,
                 loading: state.loading,
                 signIn: signIn,
+                handleLikePost: handleLikePost,
+                handleDislikePost: handleDislikePost,
             }}
         >
             {props.children}

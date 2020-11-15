@@ -12,8 +12,25 @@ const RegisterProvider = (props) => {
 
     const createAccount = async () => {
         //fetch POST
-        setTimeout(function(){ console.log(state.userData); }, 3000);
-        
+        console.log(state.userData)
+        try {
+            fetch("register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(state.userData),
+            }).then((res) => {
+                if (res.status == 201) {
+                    console.log(res)
+                } else {
+                    console.log(res.status);
+                }
+            });
+        } catch (err) {
+            console.log("create Account");
+            console.log(err);
+        }
     };
 
     return (

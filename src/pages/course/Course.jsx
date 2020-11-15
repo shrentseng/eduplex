@@ -53,9 +53,7 @@ const useStyles = makeStyles(() => ({
 const Course = (props) => {
     const classes = useStyles();
     const courseContext = useContext(CourseContext)
-    console.log(props)
     const courseURL = props.course;
-    console.log(courseURL)
 
     return (
         <ThemeProvider theme={theme_course}>

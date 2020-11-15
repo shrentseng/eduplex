@@ -49,13 +49,13 @@ const useStyles = makeStyles((theme) => ({
 const AddCourse = () => {
     const classes = useStyles();
     const [searchField, setSearch] = useState("");
-    const universitySelectedRef = useRef(null);
+    const universitySelectedRef = useRef();
     
     // const userContext = useContext(UserContext);
     const courseContext = useContext(CourseContext);
 
     useEffect(() => {
-        //console.log(universitySelectedRef.current)
+        console.log(universitySelectedRef.current)
         courseContext.getCoursesByUniversity(universitySelectedRef.current);
     }, [universitySelectedRef.current]);
 
