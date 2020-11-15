@@ -113,15 +113,23 @@ const DocumentsProvider = (props) => {
     };
 
     const downloadDocument = async (id) => {
-        //fetch document
         try {
-            fetch('viewdoc/download?documentID=D2230924035')
-            .then((res) => {
-                console.log(res)
-            })
+            // const response = await fetch("");
+            // const blob = await response.blob();
+            const obj = { hello: "world" };
+            const blob = new Blob([JSON.stringify(obj, null, 2)], {
+                type: "application/json",
+            });
+            console.log(blob)
+            let url = window.URL.createObjectURL(blob);
+            let a = document.createElement("a");
+            a.href = url;
+            a.download = "employees.json";
+            a.click();
+            window.URL.revokeObjectURL(url);
         } catch (err) {
-            console.log("downloadDocument")
-            console.log(err)
+            console.log("downloadDocument");
+            console.log(err);
         }
     };
 

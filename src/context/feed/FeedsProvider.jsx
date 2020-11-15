@@ -4,7 +4,20 @@ import feedsReducer from "./feedsReducer";
 
 const FeedsProvider = (props) => {
     const initialState = {
-        feeds: [],
+        feeds: [
+            {
+                PostID: 1,
+                Message: "test",
+                CourseID: 1,
+                UserID: 1,
+                FirstName: "Shren",
+                LastName: "Tseng",
+                CourseName: "course",
+                ChildComments: [],
+                Likes: 0,
+                Unlikes: 0,
+            },
+        ],
         loading: true,
     };
 
@@ -13,14 +26,12 @@ const FeedsProvider = (props) => {
     const getFeeds = async () => {
         try {
             dispatch({ type: "SENDING_REQUEST" });
-            fetch('/home/feed?userID=1')
-            .then(res => res.json())
-            .then(
-                (result) => {
-                    dispatch({type: "SET_FEEDS", payload: result})
-                    console.log(result)
-                }
-            );
+            fetch("/home/feed?userID=1")
+                .then((res) => res.json())
+                .then((result) => {
+                    dispatch({ type: "SET_FEEDS", payload: result });
+                    console.log(result);
+                });
         } catch (err) {
             console.log("get feeds");
             console.log(err);
@@ -49,31 +60,31 @@ const FeedsProvider = (props) => {
         });
     };
 
-    const handleLike = async (id) => {
+    const handleLike = async (PostID, active) => {
         try {
-            dispatch({ type: "HANDLE_LIKE", payload: id });
-            fetch("/home/likes", {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    userID: 1,
-                    postID: id,
-                    undo: 0,
-                }),
-            }).then((res) => {
-                console.log(res);
-                console.log(id);
-            });
+            dispatch({ type: "HANDLE_LIKE", payload: { PostID, active } });
+            // fetch("/home/likes", {
+            //     method: "PUT",
+            //     headers: {
+            //         "Content-Type": "application/json",
+            //     },
+            //     body: JSON.stringify({
+            //         userID: 1,
+            //         postID: id,
+            //         undo: 0,
+            //     }),
+            // }).then((res) => {
+            //     console.log(res);
+            //     console.log(id);
+            // });
         } catch (err) {
             console.log("handle like");
             console.log(err);
         }
     };
-    const handleDislike = async (id) => {
+    const handleDislike = async (PostID, active) => {
         try {
-            dispatch({ type: "HANDLE_DISLIKE", payload: id });
+            dispatch({ type: "HANDLE_DISLIKE", payload: { PostID, active } });
             //fetch POST
         } catch (err) {
             console.log("handle like");
@@ -81,21 +92,17 @@ const FeedsProvider = (props) => {
         }
     };
 
-    const getCommentsByPostID = async (PostID) => {
-        
-    }
+    const getCommentsByPostID = async (PostID) => {};
 
     const addComment = async (comment) => {
         try {
-            dispatch({type: "ADD_COMMENT", payload: comment})
+            dispatch({ type: "ADD_COMMENT", payload: comment });
         } catch (err) {}
     };
 
-    
-
     const addReply = async (reply) => {
         try {
-            dispatch({type: "ADD_REPLY", payload: reply})
+            dispatch({ type: "ADD_REPLY", payload: reply });
         } catch (err) {}
     };
 
@@ -111,7 +118,6 @@ const FeedsProvider = (props) => {
                 addComment: addComment,
                 addReply: addReply,
                 getCommentsByPostID: getCommentsByPostID,
-
             }}
         >
             {props.children}
