@@ -60,6 +60,19 @@ const CourseProvider = (props) => {
         }
     };
 
+    const deleteCourse = async (index) => {
+        try {
+            fetch("mycourse", {
+                method: "DELETE",
+                body: initialState.myCourses[index],
+            })
+            getMyCourses();
+        } catch(err){
+            console.log("Delete courses");
+            console.log(err);
+        }
+    }
+
     return (
         <courseContext.Provider
             value={{
@@ -67,6 +80,7 @@ const CourseProvider = (props) => {
                 myCourses: state.myCourses,
                 getMyCourses: getMyCourses,
                 addCourse: addCourse,
+                deleteCourse: deleteCourse,
                 getCoursesByUniversity: getCoursesByUniversity,
             }}
         >
