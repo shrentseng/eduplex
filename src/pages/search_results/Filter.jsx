@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, forwardRef, useImperativeHandle } from "react";
 import { MenuItem, Select, Typography } from "@material-ui/core";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 
@@ -39,18 +39,22 @@ const options = [
     { id: 4, label: "Unversity of California Irvine" },
 ];
 
-const CurrentUniversity = ({ universitySelectedRef }) => {
+const CurrentUniversity = forwardRef((props, universitySelectedRef) => {
     const classes = useStyles();
-    const [university, setUniversity] = useState("");
-    useEffect(() => {
-        //console.log('hi')
-        universitySelectedRef.current = university;
-        //console.log(universitySelectedRef.current);
-    }, [university]);
+    const [university, setUniversity] = useState();
+    // useEffect(() => {
+    //     universitySelectedRef.current = university;
+    // }, [university]);
+
+
+    useImperativeHandle(universitySelectedRef, () => ({
+        university
+    }));
 
     const handleSelectChange = (event) => {
         event.preventDefault();
         setUniversity(event.target.value);
+        console.log(university)
     };
 
     return (
@@ -74,6 +78,6 @@ const CurrentUniversity = ({ universitySelectedRef }) => {
             </div>
         </div>
     );
-};
+});
 
 export default CurrentUniversity;
