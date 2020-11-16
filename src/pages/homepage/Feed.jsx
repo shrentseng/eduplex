@@ -5,8 +5,10 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import bookmark from "../../assets/bookmark.svg";
-import like from "../../assets/like.svg";
-import dislike from "../../assets/dislike.svg";
+import Like from "../../assets/like.svg";
+import Dislike from "../../assets/dislike.svg";
+import Liked from "../../assets/liked.svg";
+import Disliked from "../../assets/disliked.svg";
 import comment from "../../assets/comment.svg";
 import share from "../../assets/share.svg";
 import report from "../../assets/report.svg";
@@ -50,9 +52,6 @@ const useStyles = makeStyles(() => ({
     footerItem: {
         height: "1.5em",
     },
-    imgActive: {
-        backgroundColor: "#0088D7",
-    },
 }));
 
 const Feed = (props) => {
@@ -60,28 +59,34 @@ const Feed = (props) => {
     const userContext = useContext(UserContext);
     const feedsContext = useContext(FeedsContext);
     const [isExpand, setIsExpand] = useState(false);
-    const [hasLiked, setHasLiked] = useState(null);
-    const [hasDisliked, setHasDisLiked] = useState(null);
+    const [likeImg, setLikeImg] = useState(null);
+    const [dislikeImg, setDislikeImg] = useState(null);
 
     useEffect(() => {
-        console.log("use effect", userContext.postsLiked);
+        //console.log("use effect", userContext.postsLiked);
         if (userContext.postsLiked.includes(props.PostID)) {
-            setHasLiked(classes.imgActive);
-            setHasDisLiked(null)
+            setLikeImg(Liked)
+            setDislikeImg(Dislike)
+            //setHasLiked(classes.imgActive);
+            //setHasDisLiked(null)
         } else if (userContext.postsDisliked.includes(props.PostID)) {
-            setHasDisLiked(classes.imgActive);
-            setHasLiked(null)
+            setLikeImg(Like)
+            setDislikeImg(Disliked)
+            //setHasDisLiked(classes.imgActive);
+            //setHasLiked(null)
         } else {
-            setHasLiked(null)
-            setHasDisLiked(null)
+            setLikeImg(Like)
+            setDislikeImg(Dislike)
+            //setHasLiked(null)
+            //setHasDisLiked(null)
         }
     }, [userContext.postsLiked, userContext.postsDisliked]);
 
     const handleLike = () => {
-        if (!hasLiked) {
+        if (likeImg == Like) {
             feedsContext.handleLike(props.PostID, true);
             userContext.handleLikePost(props.PostID, true);
-            if (hasDisliked) {
+            if (dislikeImg == Disliked) {
                 feedsContext.handleDislike(props.PostID, false);
                 userContext.handleDislikePost(props.PostID, false);
             }
@@ -89,13 +94,13 @@ const Feed = (props) => {
     };
 
     const handleDislike = () => {
-        if (!hasDisliked) {
+        if (dislikeImg == Dislike) {
             feedsContext.handleDislike(props.PostID, true);
             userContext.handleDislikePost(props.PostID, true);
-            if (hasLiked) {
+            if (likeImg == Liked) {
                 feedsContext.handleLike(props.PostID, false);
                 userContext.handleLikePost(props.PostID, false);
-                console.log("posts liked", userContext.postsLiked);
+                //console.log("posts liked", userContext.postsLiked);
             }
         }
     };
@@ -144,18 +149,18 @@ const Feed = (props) => {
                 <div className={classes.footer}>
                     <div>
                         <img
-                            className={`${classes.footerItem} ${hasLiked}`}
+                            className={classes.footerItem}
                             style={{ marginRight: "1em" }}
-                            src={like}
+                            src={likeImg}
                             onClick={handleLike}
                         />
                         <Typography display="inline">{props.Likes}</Typography>
                     </div>
                     <div>
                         <img
-                            className={`${classes.footerItem} ${hasDisliked}`}
+                            className={classes.footerItem}
                             style={{ marginRight: "1em" }}
-                            src={dislike}
+                            src={dislikeImg}
                             onClick={handleDislike}
                         />
                         <Typography display="inline">
