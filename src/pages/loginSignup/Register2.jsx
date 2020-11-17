@@ -82,13 +82,13 @@ const Register2 = ({ addStep, minusStep }) => {
                     //value={formik.university}
                     name="university"
                 >
-                    <MenuItem value={"UCLA"} key={1}>
+                    <MenuItem value={1} key={0}>
                         UCLA
                     </MenuItem>
-                    <MenuItem value={"Berkeley"} key={2}>
+                    <MenuItem value={2} key={1}>
                         Berkeley
                     </MenuItem>
-                    <MenuItem value={"USC"} key={3}>
+                    <MenuItem value={3} key={2}>
                         USC
                     </MenuItem>
                 </MySelect>
@@ -105,13 +105,13 @@ const Register2 = ({ addStep, minusStep }) => {
                     //value={major}
                     name="major"
                 >
-                    <MenuItem value={"10"} key={1}>
+                    <MenuItem value={10} key={1}>
                         Math
                     </MenuItem>
-                    <MenuItem value={"20"} key={2}>
+                    <MenuItem value={20} key={2}>
                         Biology
                     </MenuItem>
-                    <MenuItem value={"30"} key={3}>
+                    <MenuItem value={30} key={3}>
                         Literature
                     </MenuItem>
                 </MySelect>
@@ -134,13 +134,13 @@ const Register2 = ({ addStep, minusStep }) => {
                     <MenuItem value="" key={0}>
                         <em>None</em>
                     </MenuItem>
-                    <MenuItem value={"10"} key={1}>
+                    <MenuItem value={0} key={1}>
                         Stats
                     </MenuItem>
-                    <MenuItem value={"20"} key={2}>
+                    <MenuItem value={1} key={2}>
                         Math
                     </MenuItem>
-                    <MenuItem value={"30"} key={3}>
+                    <MenuItem value={2} key={3}>
                         Music
                     </MenuItem>
                 </MySelect>

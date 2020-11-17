@@ -4,7 +4,7 @@ import Select from 'react-select';
 import Paper from '@material-ui/core/Paper';
 import Typography from "@material-ui/core/Typography";
 import Avatar from '@material-ui/core/Avatar';
-import exclude from '../../assets/Exclude.svg';
+import exclude from '../../assets/exclude.svg';
 import anonymous from '../../assets/anonymous.svg';
 import FeedsContext from '../../context/feed/feedsContext';
 import UserContext from '../../context/user/userContext'

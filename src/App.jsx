@@ -85,7 +85,7 @@ class App extends Component {
                                 )}
                                 <div className={classes.page} id="page">
                                     <Switch>
-                                        <Route exact path="/">
+                                        <Route exact path={["/", "/Homepage"]}>
                                             <ThemeProvider
                                                 theme={theme_homepage}
                                             >
