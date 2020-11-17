@@ -71,25 +71,27 @@ function SideBar({ courses }) {
             return null;
         } else {
             return myCourses.map((university, i) => {
-                return university.Courses.map((course, i) => {
+                let length = university.Courses.length;
+                let course = university.Courses
+                for (let i = 0; i < length; ++i) {
                     return (
                         <div key={i}>
                             <NavLink
                                 activeClassName={classes.active}
-                                to={`/Courses/${course.CourseNumber}`}
+                                to={`/Courses/${course[i].CourseNumber}`}
                             >
                                 <ListItem
                                     button
                                     className={`${classes.nested} ${classes.button}`}
                                 >
                                     <Typography variant="h3">
-                                        {course.CourseNumber}
+                                        {course[i].CourseNumber}
                                     </Typography>
                                 </ListItem>
                             </NavLink>
                         </div>
                     );
-                });
+                }
             });
         }
     };
