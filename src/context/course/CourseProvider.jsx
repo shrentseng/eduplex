@@ -6,7 +6,7 @@ const CourseProvider = (props) => {
     const initialState = {
         courses: [],
         myCourses: [],
-        currentUniversity: "",
+        currentUniversity: 0,
         loading: false,
     };
     const [state, dispatch] = useReducer(courseReducer, initialState);
