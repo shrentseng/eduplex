@@ -39,22 +39,17 @@ const options = [
     { id: 4, label: "Unversity of California Irvine" },
 ];
 
-const CurrentUniversity = forwardRef((props, universitySelectedRef) => {
+const CurrentUniversity = (props) => {
     const classes = useStyles();
-    const [university, setUniversity] = useState();
+    const [currentUniversity, setCurrent] = useState(null);
+
     // useEffect(() => {
     //     universitySelectedRef.current = university;
     // }, [university]);
 
-
-    useImperativeHandle(universitySelectedRef, () => ({
-        university
-    }));
-
     const handleSelectChange = (event) => {
-        event.preventDefault();
-        setUniversity(event.target.value);
-        console.log(university)
+        setCurrent(event.target.value)
+        props.handleUniversity(event.target.value);
     };
 
     return (
@@ -66,7 +61,7 @@ const CurrentUniversity = forwardRef((props, universitySelectedRef) => {
                 <StyledSelect
                     className={classes.select}
                     variant="outlined"
-                    value={university}
+                    value = {currentUniversity}
                     onChange={handleSelectChange}
                 >
                     {options.map((option, index) => (
@@ -78,6 +73,6 @@ const CurrentUniversity = forwardRef((props, universitySelectedRef) => {
             </div>
         </div>
     );
-});
+};
 
 export default CurrentUniversity;

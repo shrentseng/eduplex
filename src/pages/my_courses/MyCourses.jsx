@@ -30,6 +30,7 @@ function MyCourses() {
     ]);
     const userContext = useContext(UserContext);
     const courseContext = useContext(CourseContext);
+
     useEffect(() => {
         courseContext.getMyCourses(userContext.userID);
     }, []);
@@ -41,7 +42,7 @@ function MyCourses() {
                     <Typography variant="h3">
                         {university.University}
                     </Typography>
-                    <CourseList courses={university.Courses} />
+                    <CourseList courses={university.Courses} university={university.UniversityID}/>
                 </div>
             );
         });

@@ -48,14 +48,20 @@ const useStyles = makeStyles((theme) => ({
 
 const AddCourse = () => {
     const classes = useStyles();
-    const [searchField, setSearch] = useState("");
 
     // const userContext = useContext(UserContext);
     const courseContext = useContext(CourseContext);
 
+    const [searchField, setSearch] = useState("");
+    const [university, setUniversity] = useState(courseContext.currentUniversity);
+
     useEffect(() => {
-        courseContext.getCoursesByUniversity(4);
-    }, []);
+        courseContext.getCoursesByUniversity(university);
+    }, [university]);
+
+    const handleUniversityFilter = (filter) => {
+        setUniversity(filter);
+    }
 
     // console.log(courseContext.courses);
     //const courseList = courseContext.courses;
@@ -96,7 +102,7 @@ const AddCourse = () => {
                 </Typography>
             </div>
             <div>
-                <Filter />
+                <Filter handleUniversity = {handleUniversityFilter}/>
             </div>
             <div>
                 <input
