@@ -6,6 +6,7 @@ const CourseProvider = (props) => {
     const initialState = {
         courses: [],
         myCourses: [],
+        currentUniversity: "",
         loading: false,
     };
     const [state, dispatch] = useReducer(courseReducer, initialState);
@@ -27,7 +28,7 @@ const CourseProvider = (props) => {
     const getCoursesByUniversity = async (UniversityID) => {
         try {
             dispatch({ type: "SENDING_REQUEST" });
-            fetch(`mycourse/addCourse?userID=1&universityID=4`)
+            fetch(`mycourse/addCourse?userID=1&universityID=${UniversityID}`)
                 .then((res) => res.json())
                 .then((result) => {
                     dispatch({ type: "SET_COURSES", payload: result });
@@ -77,14 +78,20 @@ const CourseProvider = (props) => {
         }
     }
 
+    const setCurrentUniversity = async (university) => {
+        dispatch({ type: "SET_CURRENT_UNIVERSITY" , payload: university})
+    }
+
     return (
         <courseContext.Provider
             value={{
                 courses: state.courses,
                 myCourses: state.myCourses,
+                currentUniversity: state.currentUniversity,
                 getMyCourses: getMyCourses,
                 addCourse: addCourse,
                 deleteCourse: deleteCourse,
+                setCurrentUniversity: setCurrentUniversity,
                 getCoursesByUniversity: getCoursesByUniversity,
             }}
         >

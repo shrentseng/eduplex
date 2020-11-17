@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import CourseCard from "./CourseCard";
@@ -6,6 +6,7 @@ import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import Grid from "@material-ui/core/Grid";
 import PlusIcon from "../../assets/plus.png";
+import CourseContext from "../../context/course/courseContext";
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -30,8 +31,9 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
-const CourseList = ({ courses }) => {
+const CourseList = ({ courses, university}) => {
     const classes = useStyles();
+    const courseContext = useContext(CourseContext)
 
     const cardComponent = courses.map((course, i) => {
         return (
@@ -44,6 +46,11 @@ const CourseList = ({ courses }) => {
             </Grid>
         );
     });
+
+    const handleAddCard = () => {
+        courseContext.setCurrentUniversity(university);
+        console.log(university);
+    }
 
     return (
         <div className={classes.root}>
@@ -59,7 +66,7 @@ const CourseList = ({ courses }) => {
                 <Grid item>
                     <Link to="/AddCourse">
                         <CardActionArea>
-                            <Card className={classes.card}>
+                            <Card className={classes.card} onClick={handleAddCard}>
                                 <div className={classes.placeholder}></div>
                                 <img src={PlusIcon} alt="" height="35px" />
                             </Card>
