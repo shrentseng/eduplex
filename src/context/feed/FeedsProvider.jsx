@@ -5,7 +5,7 @@ import feedsReducer from "./feedsReducer";
 const FeedsProvider = (props) => {
     const initialState = {
         feeds: [
-            {
+            /*{
                 PostID: 1,
                 Message: "test",
                 CourseID: 1,
@@ -16,7 +16,7 @@ const FeedsProvider = (props) => {
                 ChildComments: [],
                 Likes: 0,
                 Unlikes: 0,
-            },
+            },*/
         ],
         loading: true,
     };

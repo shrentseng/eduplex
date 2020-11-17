@@ -1,6 +1,8 @@
-import React, { useState, useEffect, forwardRef, useImperativeHandle } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { MenuItem, Select, Typography } from "@material-ui/core";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
+import CourseContext from "../../context/course/courseContext";
+
 
 const StyledSelect = withStyles({
     root: {
@@ -41,14 +43,11 @@ const options = [
 
 const CurrentUniversity = (props) => {
     const classes = useStyles();
-    const [currentUniversity, setCurrent] = useState(null);
-
-    // useEffect(() => {
-    //     universitySelectedRef.current = university;
-    // }, [university]);
+    const courseContext = useContext(CourseContext)
+    const [currentUniversity, setCurrentUniversity] = useState(courseContext.currentUniversity);
 
     const handleSelectChange = (event) => {
-        setCurrent(event.target.value)
+        setCurrentUniversity(event.target.value)
         props.handleUniversity(event.target.value);
     };
 
