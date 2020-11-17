@@ -36,9 +36,7 @@ const CourseList = ({ courses }) => {
     const courseContext = useContext(CourseContext);
 
     const onDeleteCourse = (index) => {
-        /*let temp = [...courses];
-        temp.splice(index, 1);
-        setCourses(temp);*/
+        courseContext.deleteCourse(index)
     };
 
     const cardComponent = courses.map((course, i) => {

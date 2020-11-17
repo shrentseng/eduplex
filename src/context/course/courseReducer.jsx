@@ -27,10 +27,10 @@ const setMyCourses = (my_courses, state) => {
 };
 
 const addCourse = (course, state) => {
-    const newCourse = [...state.myCourses, course];
+    const new_my_courses = [...state.myCourses, course];
     return {
         ...state,
-        myCourses: newCourse,
+        myCourses: new_my_courses,
     };
 };
 
