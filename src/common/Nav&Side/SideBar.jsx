@@ -72,7 +72,7 @@ function SideBar({ courses }) {
         } else {
             return myCourses.map((university, i) => {
                 let length = university.Courses.length;
-                let course = university.Courses
+                let course = university.Courses;
                 for (let i = 0; i < length; ++i) {
                     return (
                         <div key={i}>

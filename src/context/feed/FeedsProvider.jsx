@@ -26,11 +26,10 @@ const FeedsProvider = (props) => {
     const getFeeds = async () => {
         try {
             dispatch({ type: "SENDING_REQUEST" });
-            fetch("/home/feed?userID=1")
-                .then((response) => response.json())
-                .then((result) => {
-                    dispatch({ type: "SET_FEEDS", payload: result });
-                });
+            const response = await fetch("/home/feed?userID=1");
+            const result = await response.json();
+            //console.log(result);
+            dispatch({ type: "SET_FEEDS", payload: result });
         } catch (err) {
             console.log("get feeds");
             console.log(err);
@@ -94,11 +93,11 @@ const FeedsProvider = (props) => {
 
     const getCommentsByPostID = async (PostID) => {
         try {
-            console.log(PostID)
-            const response = await fetch(`home/feed?postID=${PostID}`, {
-                method: "GET",
-            });
-            console.log(response)
+            // const response = await fetch(`home/feed?postID=${PostID}`, {
+            //     method: "GET",
+            // });
+            // const result = await response.json();
+            // console.log(result);
         } catch (err) {}
     };
 
