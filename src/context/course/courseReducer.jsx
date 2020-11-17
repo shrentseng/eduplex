@@ -56,6 +56,13 @@ const deleteCourse = (courseID, state) => {
     };
 };
 
+const setCurrentUniversity = (university, state) => {
+    return {
+        ...state,
+        currentUniversity: university,
+    }
+}
+
 const reducer = (state, action) => {
     switch (action.type) {
         case "SENDING_REQUEST":
@@ -70,6 +77,8 @@ const reducer = (state, action) => {
             return setCourses(action.payload, state);
         case "DELETE_COURSE":
             return deleteCourse(action.payload, state);
+        case "SET_CURRENT_UNIVERSITY":
+            return setCurrentUniversity(action.payload, state)
         default:
             return state;
     }
