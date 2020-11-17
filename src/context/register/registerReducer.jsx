@@ -1,27 +1,25 @@
 function setRegister1(values, state) {
     //cannot use arrow function paras will be undefined
-    let newUserData = { ...state.userData, ...values };
     return {
         ...state,
-        userData: newUserData,
+        userData: { ...state.userData, ...values },
     };
 }
 
 function setRegister2(values, state) {
-    let newUserData = { ...state.userData, ...values };
     return {
         ...state,
-        userData: newUserData,
+        userData: { ...state.userData, ...values },
     };
 }
 
-function setRegister3(course, state) {
-    let newUserData = { ...state.userData, "Course": course };
+const setRegister3 = (course, state) => {
+    console.log(course);
     return {
         ...state,
-        userData: newUserData,
+        userData: { ...state.userData, course: course },
     };
-}
+};
 
 const registerReducer = (state, action) => {
     switch (action.type) {

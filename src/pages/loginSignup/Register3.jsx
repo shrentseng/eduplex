@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+import { useHistory } from "react-router-dom";
 import "./Register.css";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -6,6 +7,7 @@ import FormControl from "@material-ui/core/FormControl";
 import MenuItem from "@material-ui/core/MenuItem";
 import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
+import UserContext from "./../../context/user/userContext";
 import RegisterContext from "./../../context/register/registerContext";
 
 const MySelect = withStyles({
@@ -16,16 +18,24 @@ const MySelect = withStyles({
 })(Select);
 
 const Register3 = ({ minusStep }) => {
+    const userContext = useContext(UserContext);
     const registerContext = useContext(RegisterContext);
-    const [course, setCourse] = React.useState("None");
+    let history = useHistory();
+    const [course, setCourse] = useState(0);
 
     const handleCourse = (event) => {
         setCourse(event.target.value);
     };
 
-    const handleSubmit = () => {
-        registerContext.dispatch({ type: "SET_REGISTER3", payload: course })
-        registerContext.createAccount()
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const status = await registerContext.createAccount(course);
+        if (status === 201) {
+            history.push("/Register");
+            console.log(registerContext.userData);
+        } else {
+            alert("Account creation failed");
+        }
     };
 
     return (
@@ -43,9 +53,9 @@ const Register3 = ({ minusStep }) => {
                     <MenuItem value={"None"}>
                         <em>None</em>
                     </MenuItem>
-                    <MenuItem value={"CS 121"}>CS 121</MenuItem>
-                    <MenuItem value={"CHEM 101"}>CHEM 101</MenuItem>
-                    <MenuItem value={"SCAND 50"}>SCAND 50</MenuItem>
+                    <MenuItem value={0}>CS 121</MenuItem>
+                    <MenuItem value={1}>CHEM 101</MenuItem>
+                    <MenuItem value={2}>SCAND 50</MenuItem>
                 </MySelect>
             </FormControl>
             <div className="form-group row button-group">
@@ -59,15 +69,13 @@ const Register3 = ({ minusStep }) => {
                     </button>
                 </div>
                 <div className="col">
-                    <Link to="/SignIn">
-                        <button
-                            className="btn float-right button-continue"
-                            type="submit"
-                            onClick={handleSubmit}
-                        >
-                            Complete
-                        </button>
-                    </Link>
+                    <button
+                        className="btn float-right button-continue"
+                        type="submit"
+                        onClick={handleSubmit}
+                    >
+                        Complete
+                    </button>
                 </div>
             </div>
         </form>

@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
-import exclude from "../../assets/Exclude.svg";
+import exclude from "../../assets/exclude.svg";
 import avatar from "../../assets/avatar.svg";
 
 import FeedsContext from "../../context/feed/feedsContext";

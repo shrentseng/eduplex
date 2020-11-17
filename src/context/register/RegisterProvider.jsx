@@ -10,27 +10,28 @@ const RegisterProvider = (props) => {
 
     const [state, dispatch] = useReducer(registerReducer, initialState);
 
-    const createAccount = async () => {
+    const createAccount = async (course) => {
         //fetch POST
-        console.log(state.userData)
         try {
-            fetch("register", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(state.userData),
-            }).then((res) => {
-                if (res.status == 201) {
-                    console.log(res)
-                } else {
-                    console.log(res.status);
-                }
-            });
+            dispatch({ type: "SET_REGISTER3", payload: course });
+            // const response = await fetch("register", {
+            //     method: "POST",
+            //     headers: {
+            //         "Content-Type": "application/json",
+            //     },
+            //     body: JSON.stringify({...state.userData, course: course),
+            // });
+            // if (response.status == 201) {
+            //     console.log("account successfully created");
+            // } else {
+            //     console.log(response.status);
+            // }
         } catch (err) {
             console.log("create Account");
             console.log(err);
+            return 201;
         }
+        return 201;
     };
 
     return (

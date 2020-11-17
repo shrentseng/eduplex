@@ -36,9 +36,7 @@ const validate = (values) => {
         "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}$",
         "i"
     );
-    let passwordRegex = new RegExp(
-        "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})"
-    );
+    let passwordRegex = new RegExp("^(?=.*[a-z])(?=.*[0-9])(?=.{8,})");
     if (!values.firstName) {
         errors.firstName = "Required";
     }
