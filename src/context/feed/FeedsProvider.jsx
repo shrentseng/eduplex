@@ -30,7 +30,6 @@ const FeedsProvider = (props) => {
                 .then((res) => res.json())
                 .then((result) => {
                     dispatch({ type: "SET_FEEDS", payload: result });
-                    console.log(result);
                 });
         } catch (err) {
             console.log("get feeds");
