@@ -66,7 +66,7 @@ const DocumentsProvider = (props) => {
                 key: 4,
             },
         ],
-        currentDocument: null,
+        currentDocument: "D12070161190",
         loading: true,
     };
 
@@ -107,24 +107,23 @@ const DocumentsProvider = (props) => {
         });
     };
 
-    const setCurrentDocument = async (id) => {
+    const setCurrentDocument = async (documentID) => {
         //get document data
         //console.log(id);
     };
 
-    const downloadDocument = async (id) => {
+    const downloadDocument = async (documentID) => {
         try {
-            // const response = await fetch("");
-            // const blob = await response.blob();
-            const obj = { hello: "world" };
-            const blob = new Blob([JSON.stringify(obj, null, 2)], {
-                type: "application/json",
-            });
-            console.log(blob)
+            console.log(documentID)
+            const response = await fetch(
+                `viewdoc/download?documentID=${documentID}`
+            );
+            const blob = await response.blob();
+            console.log(blob);
             let url = window.URL.createObjectURL(blob);
             let a = document.createElement("a");
             a.href = url;
-            a.download = "employees.json";
+            a.download = "test.svg";
             a.click();
             window.URL.revokeObjectURL(url);
         } catch (err) {
@@ -153,6 +152,7 @@ const DocumentsProvider = (props) => {
             value={{
                 documents: state.documents,
                 loading: state.loading,
+                currentDocument: state.currentDocument,
                 getDocuments: getDocuments,
                 addDocument: addDocument,
                 setCurrentDocument: setCurrentDocument,

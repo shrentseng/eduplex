@@ -16,8 +16,8 @@ const setCourses = (courses, state) => {
     return {
         ...state,
         courses: courses,
-    }
-}
+    };
+};
 
 const setMyCourses = (my_courses, state) => {
     return {
@@ -27,10 +27,32 @@ const setMyCourses = (my_courses, state) => {
 };
 
 const addCourse = (course, state) => {
-    const new_my_courses = [...state.myCourses, course];
     return {
         ...state,
-        myCourses: new_my_courses,
+        myCourses: [...state.myCourses, course],
+    };
+};
+
+const deleteCourse = (courseID, state) => {
+    const newMyCourses = state.myCourses;
+    console.log(courseID);
+    newMyCourses.map((university) => {
+        let index = -1;
+        university.Courses.map((course, i) => {
+            if (course.CourseID === courseID) {
+                index = i;
+            }
+        });
+        console.log(index);
+        if (index > -1) {
+            university.Courses.splice(index, 1);
+        }
+        return university.Courses;
+    });
+    console.log(newMyCourses);
+    return {
+        ...state,
+        myCourse: newMyCourses,
     };
 };
 
@@ -46,6 +68,8 @@ const reducer = (state, action) => {
             return setMyCourses(action.payload, state);
         case "SET_COURSES":
             return setCourses(action.payload, state);
+        case "DELETE_COURSE":
+            return deleteCourse(action.payload, state);
         default:
             return state;
     }

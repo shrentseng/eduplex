@@ -1,54 +1,65 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
-import IconButton from '@material-ui/core/IconButton';
+import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
+import UserContext from "../../context/user/userContext";
+import CourseContext from "../../context/course/courseContext";
 
 const useStyles = makeStyles(() => ({
-	card: {
-		display: 'grid',
-		placeItems: 'center',
-		width: '11.25rem',
-		height: '11.25rem',
-		border: '2px solid #C4C4C4',
-		boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-		position: 'relative',
-	},
-	deleteButton: {
-		position: 'absolute',
-		top: '0.1rem',
-		right: '0.1rem',
-	},
+    card: {
+        display: "grid",
+        placeItems: "center",
+        width: "11.25rem",
+        height: "11.25rem",
+        border: "2px solid #C4C4C4",
+        boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+        position: "relative",
+    },
+    deleteButton: {
+        position: "absolute",
+        top: "0.1rem",
+        right: "0.1rem",
+    },
 }));
 
 function CourseCard(props) {
-	const classes = useStyles();
+    const classes = useStyles();
     const [isShown, setIsShown] = useState(false);
-    
+    const userContext = useContext(UserContext);
+    const courseContext = useContext(CourseContext);
+    const handleDeleteCourse = () => {
+        courseContext.deleteCourse({
+            userID: userContext.userID,
+            courseID: props.CourseID,
+        });
+    };
+
     return (
         <div>
-            <Card className={classes.card}
+            <Card
+                className={classes.card}
                 onMouseEnter={() => setIsShown(true)}
                 onMouseLeave={() => setIsShown(false)}
-			>		
-				{isShown && (
-					<IconButton className={classes.deleteButton} onClick={(event) => { props.deleteCourse(props.index) }}>
-						<DeleteIcon fontSize="small"/>
-					</IconButton>
-				)}
-				<CardContent>
-					<Typography variant="h5">
-						{props.CourseNumber}
-					</Typography>
-				</CardContent>
+            >
+                {isShown && (
+                    <IconButton
+                        className={classes.deleteButton}
+                        onClick={handleDeleteCourse}
+                    >
+                        <DeleteIcon fontSize="small" />
+                    </IconButton>
+                )}
+                <CardContent>
+                    <Typography variant="h5">{props.CourseNumber}</Typography>
+                </CardContent>
             </Card>
         </div>
     );
 }
 
 export default CourseCard;
-

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useRef } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
 import Courses from "../search_results/Courses.jsx";
@@ -49,17 +49,13 @@ const useStyles = makeStyles((theme) => ({
 const AddCourse = () => {
     const classes = useStyles();
     const [searchField, setSearch] = useState("");
-    const universitySelectedRef = useRef();
-    
+
     // const userContext = useContext(UserContext);
     const courseContext = useContext(CourseContext);
 
     useEffect(() => {
-        console.log(universitySelectedRef.current)
-        courseContext.getCoursesByUniversity(universitySelectedRef.current);
-    }, [universitySelectedRef.current]);
-
-
+        courseContext.getCoursesByUniversity(4);
+    }, []);
 
     // console.log(courseContext.courses);
     //const courseList = courseContext.courses;
@@ -100,7 +96,7 @@ const AddCourse = () => {
                 </Typography>
             </div>
             <div>
-                <Filter universitySelectedRef={universitySelectedRef} />
+                <Filter />
             </div>
             <div>
                 <input

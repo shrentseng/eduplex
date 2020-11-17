@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import CourseCard from "./CourseCard";
@@ -6,7 +6,6 @@ import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import Grid from "@material-ui/core/Grid";
 import PlusIcon from "../../assets/plus.png";
-import CourseContext from "../../context/course/courseContext";
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -33,11 +32,6 @@ const useStyles = makeStyles(() => ({
 
 const CourseList = ({ courses }) => {
     const classes = useStyles();
-    const courseContext = useContext(CourseContext);
-
-    const onDeleteCourse = (index) => {
-        courseContext.deleteCourse(index)
-    };
 
     const cardComponent = courses.map((course, i) => {
         return (
@@ -45,8 +39,7 @@ const CourseList = ({ courses }) => {
                 <CourseCard
                     CourseName={course.CourseName}
                     CourseNumber={course.CourseNumber}
-                    deleteCourse={onDeleteCourse}
-                    id={course.CourseID}
+                    CourseID={course.CourseID}
                 />
             </Grid>
         );

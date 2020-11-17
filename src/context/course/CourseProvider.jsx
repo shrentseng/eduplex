@@ -60,13 +60,17 @@ const CourseProvider = (props) => {
         }
     };
 
-    const deleteCourse = async (index) => {
+    const deleteCourse = async (body) => {
+        console.log(body)
         try {
             fetch("mycourse", {
                 method: "DELETE",
-                body: initialState.myCourses[index],
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(body),
             })
-            getMyCourses();
+            dispatch({ type: "DELETE_COURSE", payload: body.courseID})
         } catch(err){
             console.log("Delete courses");
             console.log(err);

@@ -57,7 +57,7 @@ const Head = () => {
     const classes = useStyles();
     const documentsContext = useContext(DocumentsContext);
     const handleDownload = () => {
-        documentsContext.downloadDocument();
+        documentsContext.downloadDocument(documentsContext.currentDocument);
     };
     return (
         <div>
