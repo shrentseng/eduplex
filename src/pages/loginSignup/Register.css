@@ -3,10 +3,11 @@ form {
 }
 
 .form-center {
+    height: 100vh;
     position: relative;
     display: flex;
     justify-content: center;
-    padding: 190px;
+    margin-top: 70px;
 }
 
 button.button-group {
@@ -18,14 +19,14 @@ button.button-group {
 
 button.button-continue {
     color: #569859;
-    background-color: #D2F0D4;
+    background-color: #d2f0d4;
     width: 120%;
     margin-top: 1em;
 }
 
 button.button-back {
     color: #424242;
-    background-color: #E5E5E5;
+    background-color: #e5e5e5;
     width: 80%;
     margin-top: 1em;
 }

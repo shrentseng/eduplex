@@ -14,7 +14,6 @@ function setRegister2(values, state) {
 }
 
 const setRegister3 = (course, state) => {
-    console.log(course);
     return {
         ...state,
         userData: { ...state.userData, course: course },

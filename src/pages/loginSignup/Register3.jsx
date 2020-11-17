@@ -29,10 +29,10 @@ const Register3 = ({ minusStep }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const status = await registerContext.createAccount(course);
-        if (status === 201) {
-            history.push("/Register");
-            console.log(registerContext.userData);
+        registerContext.dispatch({ type: "SET_REGISTER3", payload: course });
+        const ok = await registerContext.createAccount(course);
+        if (ok) {
+            history.push("/Homepage");
         } else {
             alert("Account creation failed");
         }
@@ -50,11 +50,11 @@ const Register3 = ({ minusStep }) => {
                     onChange={handleCourse}
                     value={course}
                 >
-                    <MenuItem value={"None"}>
+                    <MenuItem value={0}>
                         <em>None</em>
                     </MenuItem>
-                    <MenuItem value={0}>CS 121</MenuItem>
-                    <MenuItem value={1}>CHEM 101</MenuItem>
+                    <MenuItem value={1}>CS 121</MenuItem>
+                    <MenuItem value={2}>CHEM 101</MenuItem>
                     <MenuItem value={2}>SCAND 50</MenuItem>
                 </MySelect>
             </FormControl>

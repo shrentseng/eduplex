@@ -84,22 +84,22 @@ const Feed = (props) => {
 
     const handleLike = () => {
         if (likeImg == Like) {
-            feedsContext.handleLike(props.PostID, true);
-            userContext.handleLikePost(props.PostID, true);
+            feedsContext.handleLike(props.PostID, true, userContext.userID);
+            userContext.handleLikePost(props.PostID, true, userContext.userID);
             if (dislikeImg == Disliked) {
-                feedsContext.handleDislike(props.PostID, false);
-                userContext.handleDislikePost(props.PostID, false);
+                feedsContext.handleDislike(props.PostID, false, userContext.userID);
+                userContext.handleDislikePost(props.PostID, false, userContext.userID);
             }
         }
     };
 
     const handleDislike = () => {
         if (dislikeImg == Dislike) {
-            feedsContext.handleDislike(props.PostID, true);
-            userContext.handleDislikePost(props.PostID, true);
+            feedsContext.handleDislike(props.PostID, true, userContext.userID);
+            userContext.handleDislikePost(props.PostID, true, userContext.userID);
             if (likeImg == Liked) {
-                feedsContext.handleLike(props.PostID, false);
-                userContext.handleLikePost(props.PostID, false);
+                feedsContext.handleLike(props.PostID, false, userContext.userID);
+                userContext.handleLikePost(props.PostID, false, userContext.userID);
                 //console.log("posts liked", userContext.postsLiked);
             }
         }

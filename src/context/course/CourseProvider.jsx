@@ -47,11 +47,11 @@ const CourseProvider = (props) => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(course),
-            }).then((res) => {
-                if (res.status == 201) {
+            }).then((response) => {
+                if (response.ok) {
                     dispatch({ type: "ADD_COURSE", payload: course });
                 } else {
-                    console.log(res.status);
+                    console.log(response.status);
                 }
             });
         } catch (err) {

@@ -66,6 +66,7 @@ const Register2 = ({ addStep, minusStep }) => {
 
     const handleMinor = (event) => {
         //setMinor(event.target.value);
+        formik.handleChange(event);
     };
 
     return (
@@ -131,16 +132,16 @@ const Register2 = ({ addStep, minusStep }) => {
                     //value={minor}
                     name="minor"
                 >
-                    <MenuItem value="" key={0}>
+                    <MenuItem value={0} key={0}>
                         <em>None</em>
                     </MenuItem>
-                    <MenuItem value={0} key={1}>
+                    <MenuItem value={1} key={1}>
                         Stats
                     </MenuItem>
-                    <MenuItem value={1} key={2}>
+                    <MenuItem value={2} key={2}>
                         Math
                     </MenuItem>
-                    <MenuItem value={2} key={3}>
+                    <MenuItem value={3} key={3}>
                         Music
                     </MenuItem>
                 </MySelect>
