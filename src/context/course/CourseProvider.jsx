@@ -79,7 +79,14 @@ const CourseProvider = (props) => {
     }
 
     const setCurrentUniversity = async (university) => {
-        dispatch({ type: "SET_CURRENT_UNIVERSITY" , payload: university})
+        try{
+            dispatch({ type: "SET_CURRENT_UNIVERSITY" , payload: university})
+        }
+        catch(err){
+            console.log("set Current University")
+            console.log(err);
+        }
+        
     }
 
     return (
