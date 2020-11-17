@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { withRouter } from "react-router";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./assets/bootstrap.min.css";
@@ -37,6 +37,8 @@ const styles = {
         display: "flex",
         backgroundColor: "#F7F7F7",
         width: "100%",
+        minHeight: "100vh",
+        height: "100%",
     },
     main: {
         display: "grid",
@@ -61,7 +63,7 @@ class App extends Component {
 
     render() {
         const { classes } = this.props;
-        const hasSidebarReg = new RegExp("/(DocumentPreview|DocumentUpload)");
+        const hasSidebarReg = new RegExp("/(DocumentPreview|DocumentUpload|SignIn|Register)");
         const hasSidebar = !hasSidebarReg.test(this.props.location.pathname);
 
         return (
@@ -71,7 +73,7 @@ class App extends Component {
                         <div className={classes.root}>
                             <Navbar onSearch={this.onSearch} />
                             <div className={classes.main} id="main">
-                                {hasSidebar && (
+                                {hasSidebar ? (
                                     <div
                                         className={classes.sidebar}
                                         id="sidebar"
@@ -82,7 +84,7 @@ class App extends Component {
                                             />
                                         </ThemeProvider>
                                     </div>
-                                )}
+                                ): <div /> }
                                 <div className={classes.page} id="page">
                                     <Switch>
                                         <Route exact path={["/", "/Homepage"]}>

@@ -24,12 +24,27 @@ const UserProvider = (props) => {
     //     }
     // };
 
-    const signIn = async (user) => {
+    const signIn = async (email, password) => {
         dispatch({ type: "LOGGING_IN" });
         //fetching
-        let userID;
+        const body = { email: email, password: password };
+        console.log(body);
+        const response = await fetch("login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(body),
+        });
+        console.log(response);
+        if (response.ok) {
+            console.log("succesfully logged in");
+        } else {
+            console.log(response.status);
+        }
         dispatch({ type: "LOGGED_IN" });
-        dispatch({ type: "SET_USER", payload: userID });
+        return response.ok;
+        //dispatch({ type: "SET_USER", payload: userID });
     };
 
     const handleLikePost = async (PostID, active) => {

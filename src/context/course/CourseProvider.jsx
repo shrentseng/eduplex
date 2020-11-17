@@ -17,10 +17,11 @@ const CourseProvider = (props) => {
             fetch("mycourse?userID=1") //id
                 .then((res) => res.json())
                 .then((result) => {
+                    console.log('get my courses', result)
                     dispatch({ type: "SET_MY_COURSES", payload: result });
                 });
         } catch (err) {
-            console.log("get courses");
+            console.log("get my courses");
             console.log(err);
         }
     };
@@ -29,7 +30,7 @@ const CourseProvider = (props) => {
         try {
             dispatch({ type: "SENDING_REQUEST" });
             fetch(`mycourse/addCourse?userID=1&universityID=${UniversityID}`)
-                .then((res) => res.json())
+                .then((response) => response.json())
                 .then((result) => {
                     dispatch({ type: "SET_COURSES", payload: result });
                 });
@@ -48,11 +49,11 @@ const CourseProvider = (props) => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(course),
-            }).then((res) => {
-                if (res.status == 201) {
+            }).then((response) => {
+                if (response.ok) {
                     dispatch({ type: "ADD_COURSE", payload: course });
                 } else {
-                    console.log(res.status);
+                    console.log(response.status);
                 }
             });
         } catch (err) {

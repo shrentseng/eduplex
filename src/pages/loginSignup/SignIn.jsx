@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
@@ -40,6 +41,11 @@ const MyTextField = withStyles({
 })(TextField);
 
 const useStyles = makeStyles((theme) => ({
+    root: {
+        display: "flex",
+        justifyContent: "center",
+        position: "relative",
+    },
     paper: {
         marginTop: theme.spacing(8),
         display: "flex",
@@ -71,14 +77,27 @@ const theme = createMuiTheme({
 
 export default function SignIn() {
     const classes = useStyles();
+    let history = useHistory();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const userContext = useContext(UserContext);
 
-    const handleSignIn = () => {
-		console.log(email)
-		console.log(password)
-        userContext.signIn();
+    const handleSignIn = async (e) => {
+        e.preventDefault();
+        const ok = await userContext.signIn(email, password);
+        if (ok) {
+            history.push("/Homepage");
+        } else {
+            alert("incorrect email and password");
+        }
+    };
+
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value);
+    };
+
+    const handlePasswordChange = (e) => {
+        setPassword(e.target.value);
     };
 
     return (
@@ -94,7 +113,7 @@ export default function SignIn() {
                 </Typography>
                 <form className={classes.form} noValidate>
                     <MyTextField
-						value={email}
+                        value={email}
                         variant="outlined"
                         margin="normal"
                         required
@@ -103,9 +122,10 @@ export default function SignIn() {
                         label="Email Address"
                         name="email"
                         autoComplete="email"
+                        onChange={handleEmailChange}
                     />
                     <MyTextField
-						value={password}
+                        value={password}
                         variant="outlined"
                         margin="normal"
                         required
@@ -115,6 +135,7 @@ export default function SignIn() {
                         type="password"
                         id="password"
                         autoComplete="current-password"
+                        onChange={handlePasswordChange}
                     />
                     <FormControlLabel
                         control={<Checkbox value="remember" />}
