@@ -11,16 +11,21 @@ function Courses() {
         if (myCourses.length === 0) {
             return null;
         } else {
-            return myCourses.map((university, i) => {
-                return university.Courses.map((course,i)=>{
+            return myCourses.map((university) => {
+                let length = university.Courses.length;
+                let course = university.Courses;
+                for (let i = 0; i < length; ++i) {
                     return (
-                        <Route key={i} path={`/Courses/${course.CourseNumber}`}>
+                        <Route
+                            key={i}
+                            path={`/Courses/${course[i].CourseNumber}`}
+                        >
                             <FeedsProvider>
-                                <Course course={course.CourseNumber} />
+                                <Course course={course[i].CourseNumber} />
                             </FeedsProvider>
                         </Route>
                     );
-                })
+                }
             });
         }
     };
