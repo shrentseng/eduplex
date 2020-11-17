@@ -37,6 +37,7 @@ const styles = {
         display: "flex",
         backgroundColor: "#F7F7F7",
         width: "100%",
+        minHeight: "100vh",
         height: "100%",
     },
     main: {

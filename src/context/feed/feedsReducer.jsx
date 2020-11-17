@@ -1,4 +1,5 @@
 const setFeeds = (my_feeds, state) => {
+    console.log(my_feeds)
     return {
         ...state,
         feeds: my_feeds,

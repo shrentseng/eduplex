@@ -5,18 +5,18 @@ import feedsReducer from "./feedsReducer";
 const FeedsProvider = (props) => {
     const initialState = {
         feeds: [
-            {
-                PostID: 1,
-                Message: "test",
-                CourseID: 1,
-                UserID: 1,
-                FirstName: "Shren",
-                LastName: "Tseng",
-                CourseName: "course",
-                ChildComments: [],
-                Likes: 0,
-                Unlikes: 0,
-            },
+            // {
+            //     PostID: 1,
+            //     Message: "test",
+            //     CourseID: 1,
+            //     UserID: 1,
+            //     FirstName: "Shren",
+            //     LastName: "Tseng",
+            //     CourseName: "course",
+            //     ChildComments: [],
+            //     Likes: 0,
+            //     Unlikes: 0,
+            // },
         ],
         loading: true,
     };
@@ -27,7 +27,7 @@ const FeedsProvider = (props) => {
         try {
             dispatch({ type: "SENDING_REQUEST" });
             fetch("/home/feed?userID=1")
-                .then((res) => res.json())
+                .then((response) => response.json())
                 .then((result) => {
                     dispatch({ type: "SET_FEEDS", payload: result });
                 });
@@ -94,9 +94,11 @@ const FeedsProvider = (props) => {
 
     const getCommentsByPostID = async (PostID) => {
         try {
-            const response = await fetch(`home/feed?post_id=${PostID}`, {
+            console.log(PostID)
+            const response = await fetch(`home/feed?postID=${PostID}`, {
                 method: "GET",
             });
+            console.log(response)
         } catch (err) {}
     };
 
