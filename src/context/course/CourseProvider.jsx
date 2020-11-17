@@ -12,14 +12,13 @@ const CourseProvider = (props) => {
     const [state, dispatch] = useReducer(courseReducer, initialState);
 
     const getMyCourses = async () => {
+        console.log('hi')
         try {
             dispatch({ type: "SENDING_REQUEST" });
-            fetch("mycourse?userID=1") //id
-                .then((res) => res.json())
-                .then((result) => {
-                    console.log('get my courses', result)
-                    dispatch({ type: "SET_MY_COURSES", payload: result });
-                });
+            const response = await fetch("mycourse?userID=1"); //fix id
+            const result = await response.json();
+            console.log("get My Courses", result);
+            dispatch({ type: "SET_MY_COURSES", payload: result });
         } catch (err) {
             console.log("get my courses");
             console.log(err);
@@ -38,7 +37,7 @@ const CourseProvider = (props) => {
             console.log("get courses");
             console.log(err);
         }
-    }
+    };
 
     const addCourse = async (course) => {
         try {
@@ -63,7 +62,7 @@ const CourseProvider = (props) => {
     };
 
     const deleteCourse = async (body) => {
-        console.log(body)
+        console.log(body);
         try {
             fetch("mycourse", {
                 method: "DELETE",
@@ -71,24 +70,22 @@ const CourseProvider = (props) => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(body),
-            })
-            dispatch({ type: "DELETE_COURSE", payload: body.courseID})
-        } catch(err){
+            });
+            dispatch({ type: "DELETE_COURSE", payload: body.courseID });
+        } catch (err) {
             console.log("Delete courses");
             console.log(err);
         }
-    }
+    };
 
     const setCurrentUniversity = async (university) => {
-        try{
-            dispatch({ type: "SET_CURRENT_UNIVERSITY" , payload: university})
-        }
-        catch(err){
-            console.log("set Current University")
+        try {
+            dispatch({ type: "SET_CURRENT_UNIVERSITY", payload: university });
+        } catch (err) {
+            console.log("set Current University");
             console.log(err);
         }
-        
-    }
+    };
 
     return (
         <courseContext.Provider
