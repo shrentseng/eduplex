@@ -1,22 +1,23 @@
 import React, { useReducer } from "react";
+import axios from "axios";
 import FeedsContext from "./feedsContext";
 import feedsReducer from "./feedsReducer";
 
 const FeedsProvider = (props) => {
     const initialState = {
         feeds: [
-            // {
-            //     PostID: 1,
-            //     Message: "test",
-            //     CourseID: 1,
-            //     UserID: 1,
-            //     FirstName: "Shren",
-            //     LastName: "Tseng",
-            //     CourseName: "course",
-            //     ChildComments: [],
-            //     Likes: 0,
-            //     Unlikes: 0,
-            // },
+            {
+                PostID: 1,
+                Message: "test",
+                CourseID: 1,
+                UserID: 1,
+                FirstName: "Shren",
+                LastName: "Tseng",
+                CourseName: "course",
+                ChildComments: [],
+                Likes: 0,
+                Unlikes: 0,
+            },
         ],
         loading: true,
     };
@@ -26,9 +27,14 @@ const FeedsProvider = (props) => {
     const getFeeds = async () => {
         try {
             dispatch({ type: "SENDING_REQUEST" });
-            const response = await fetch("/home/feed?userID=1");
+            const response = await fetch("home/feed?userID=1");
+            //console.log('text', await response.text())
             const result = await response.json();
-            //console.log(result);
+            console.log("feeds", result);
+            // const response = await axios.get("home/feed?userID=1")
+            // console.log(response)
+            // const result = await response.data;
+            // console.log("get My feeds", result);
             dispatch({ type: "SET_FEEDS", payload: result });
         } catch (err) {
             console.log("get feeds");

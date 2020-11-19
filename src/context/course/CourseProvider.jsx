@@ -1,4 +1,5 @@
 import React, { useReducer } from "react";
+import axios from "axios";
 import courseContext from "./courseContext";
 import courseReducer from "./courseReducer";
 
@@ -12,13 +13,16 @@ const CourseProvider = (props) => {
     const [state, dispatch] = useReducer(courseReducer, initialState);
 
     const getMyCourses = async () => {
-        console.log('hi')
         try {
             dispatch({ type: "SENDING_REQUEST" });
-            const response = await fetch("mycourse?userID=1"); //fix id
-            const result = await response.json();
-            console.log("get My Courses", result);
-            dispatch({ type: "SET_MY_COURSES", payload: result });
+            //const response = await fetch("mycourse?userID=1"); //fix id
+            //console.log(response);
+            //const result = await response.json();
+            // const response = await axios.get("mycourse?userID=1")
+            // console.log(response)
+            // const result = await response.data;
+            //console.log("get My Courses", result);
+            //dispatch({ type: "SET_MY_COURSES", payload: result });
         } catch (err) {
             console.log("get my courses");
             console.log(err);

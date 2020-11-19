@@ -12,20 +12,15 @@ function Courses() {
             return null;
         } else {
             return myCourses.map((university) => {
-                let length = university.Courses.length;
-                let course = university.Courses;
-                for (let i = 0; i < length; ++i) {
+                return university.Courses.map((course, i) => {
                     return (
-                        <Route
-                            key={i}
-                            path={`/Courses/${course[i].CourseNumber}`}
-                        >
+                        <Route key={i} path={`/Courses/${course.CourseNumber}`}>
                             <FeedsProvider>
-                                <Course course={course[i].CourseNumber} />
+                                <Course course={course.CourseNumber} />
                             </FeedsProvider>
                         </Route>
                     );
-                }
+                });
             });
         }
     };

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { useDropzone } from "react-dropzone";
+import Dropzone from "react-dropzone";
 import { Typography } from "@material-ui/core";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -10,7 +11,7 @@ import UserContext from "../../context/user/userContext";
 
 const useStyles = makeStyles(() => ({
     root: {
-        width: "100vw",
+        width: "100%",
     },
     upper: {
         display: "flex",
@@ -85,7 +86,7 @@ const DocumentUpload = () => {
     const classes = useStyles();
     const userContext = useContext(UserContext);
     const documentsContext = useContext(DocumentsContext);
-    const [formData, setFormData] = useState({
+    const [userInput, setUserInput] = useState({
         username: "",
         university: "",
         course: "",
@@ -95,11 +96,11 @@ const DocumentUpload = () => {
         academicYear: "",
         category: "",
         description: "",
+        isAnonymous: false,
     });
 
-    const handleDescriptionChange = (event) => {
-        let value = event.target.value;
-        setFormData({ ...formData, description: value });
+    const handleInputChange = (e) => {
+        setUserInput({ ...userInput, [e.target.name]: e.target.value });
     };
 
     const { acceptedFiles, getRootProps, getInputProps } = useDropzone();
@@ -111,18 +112,19 @@ const DocumentUpload = () => {
     ));
 
     const handleSubmit = () => {
+        console.log(userInput);
         console.log(acceptedFiles[0]);
         const formData = new FormData();
         formData.append("originalFile", acceptedFiles[0]);
         formData.append("userID", userContext.userID);
-        formData.append("title", "test");
+        formData.append("title", userInput.title);
         formData.append("courseID", "0");
         formData.append("universityID", "0");
-        formData.append("academicYear", "2010");
-        formData.append("semester", "Fall");
-        formData.append("type", "assignment");
-        formData.append("description", "testing");
-        formData.append("anonymous", "0");
+        formData.append("academicYear", userData.academicYear);
+        formData.append("semester", userData.academicTerm);
+        formData.append("type", userData.category);
+        formData.append("description", userData.description);
+        formData.append("anonymous", userData.isAnonymous);
         documentsContext.uploadDocument(formData);
         //fetch POST
     };
@@ -141,12 +143,16 @@ const DocumentUpload = () => {
                     <Typography variant="h5">University</Typography>
                     <input
                         placeholder="Enter the university name"
-                        value={formData.university}
+                        name="university"
+                        value={userInput.university}
+                        onChange={handleInputChange}
                     />
                     <Typography variant="h5">Course</Typography>
                     <input
                         placeholder="Enter the course name"
-                        value={formData.course}
+                        name="course"
+                        value={userInput.course}
+                        onChange={handleInputChange}
                     />
                     {/* dropzone */}
                     <div>
@@ -157,33 +163,52 @@ const DocumentUpload = () => {
                             </Typography>
                         </div>
                         <aside>
-                            <h4>Files</h4>
+                            <span>
+                                <strong>Files</strong> note: Use ctrl or shift to upload multiple
+                                files
+                            </span>
+
                             <ul>{files}</ul>
                         </aside>
                     </div>
 
                     {/* end dropzone */}
                     <Typography variant="h5">Title</Typography>
-                    <input placeholder="Title" value={formData.title} />
+                    <input
+                        placeholder="Title"
+                        name="title"
+                        value={userInput.title}
+                        onChange={handleInputChange}
+                    />
                     <Typography variant="h5">Academic Year</Typography>
                     <input
                         placeholder="Academic Year"
-                        value={formData.academicYear}
+                        name="academicYear"
+                        value={userInput.academicYear}
+                        onChange={handleInputChange}
                     />
                     <Typography variant="h5">Category</Typography>
-                    <input placeholder="Category" value={formData.category} />
+                    <input
+                        placeholder="Category"
+                        name="category"
+                        value={userInput.category}
+                        onChange={handleInputChange}
+                    />
                     <Typography variant="h5">Description</Typography>
                     <textarea
                         className={classes.description}
-                        value={formData.description}
-                        onChange={handleDescriptionChange}
+                        name="description"
+                        value={userInput.description}
+                        onChange={handleInputChange}
                     />
                     <br />
                     <FormControlLabel
-                        value="anonymous"
+                        name="anonymous"
+                        value={userInput.isAnonymous}
                         control={<Checkbox color="primary" />}
                         label="Make upload anonymous"
                         labelPlacement="end"
+                        onChange={handleInputChange}
                     />
                     <button
                         type="button"

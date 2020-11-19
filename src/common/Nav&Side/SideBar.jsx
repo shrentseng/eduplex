@@ -56,7 +56,7 @@ const useStyles = makeStyles({
     },
 });
 
-function SideBar({ courses }) {
+function SideBar() {
     const classes = useStyles();
     //fecth courses data
     const userContext = useContext(UserContext);
@@ -71,27 +71,25 @@ function SideBar({ courses }) {
             return null;
         } else {
             return myCourses.map((university, i) => {
-                let length = university.Courses.length;
-                let course = university.Courses;
-                for (let i = 0; i < length; ++i) {
+                return university.Courses.map((course, i) => {
                     return (
                         <div key={i}>
                             <NavLink
                                 activeClassName={classes.active}
-                                to={`/Courses/${course[i].CourseNumber}`}
+                                to={`/Courses/${course.CourseNumber}`}
                             >
                                 <ListItem
                                     button
                                     className={`${classes.nested} ${classes.button}`}
                                 >
                                     <Typography variant="h3">
-                                        {course[i].CourseNumber}
+                                        {course.CourseNumber}
                                     </Typography>
                                 </ListItem>
                             </NavLink>
                         </div>
                     );
-                }
+                });
             });
         }
     };
