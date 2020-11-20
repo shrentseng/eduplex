@@ -1,9 +1,8 @@
 import React, { useEffect, useReducer, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Feeds from "./Feeds";
-import Post from "./Post";
-import FeedsProvider from "../../context/feed/FeedsProvider";
+import PostFeeds from "./PostFeeds";
 import FeedsContext from "../../context/feed/feedsContext";
+
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -17,11 +16,16 @@ const useStyles = makeStyles(() => ({
 
 const Homepage = () => {
     const classes = useStyles();
+    const feedsContext = useContext(FeedsContext);
+    
+    useEffect(() => {
+        console.log("homepage")
+        feedsContext.getFeeds();
+    }, []);
 
     return (
         <div className={classes.root}>
-            <Post />
-            <Feeds />
+           <PostFeeds /> 
         </div>
     )
 }

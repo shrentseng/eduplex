@@ -84,13 +84,12 @@ const options = [
     { value: "4", label: "Others" },
 ];
 
-function CourseButtons({ course, pathname }) {
+function CourseButtons({ CourseNumber }) {
     const classes = useStyles();
     let history = useHistory();
     let location = useLocation();
     const [selectClassName, setSelectClassName] = useState(null);
-    const courseURL = course;
-    console.log(courseURL);
+    const courseURL = CourseNumber.replace(/\s+/g, "");
 
     useEffect(() => {
         if (location.pathname === `/Courses/${courseURL}/Documents`) {
@@ -98,7 +97,7 @@ function CourseButtons({ course, pathname }) {
         } else {
             setSelectClassName(null);
         }
-    }, [history, location, classes.selectActive, courseURL]);
+    }, [history, location, classes.selectActive]);
 
     const handleSelectChange = (option) => {
         history.push(`/Courses/${courseURL}/Documents`);

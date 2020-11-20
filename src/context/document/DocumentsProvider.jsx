@@ -95,6 +95,19 @@ const DocumentsProvider = (props) => {
         // }
     };
 
+    const getDocumentsByCourse = (courseID) => {
+        try {
+            // dispatch({ type: "SENDING_REQUEST" });
+            // const response = await fetch("");
+            // const result = await response.json();
+            // dispatch({ type: "REQUEST_FINISHED" });
+            // dispatch({ type: "SET_FEEDS", payload: result });
+        } catch (err) {
+            console.error("get document by course err")
+        }
+
+    }
+
     const addDocument = async (new_document) => {
         fetch("/home/document", {
             method: "POST",
@@ -154,6 +167,7 @@ const DocumentsProvider = (props) => {
                 loading: state.loading,
                 currentDocument: state.currentDocument,
                 getDocuments: getDocuments,
+                getDocumentsByCourse: getDocumentsByCourse,
                 addDocument: addDocument,
                 setCurrentDocument: setCurrentDocument,
                 downloadDocument: downloadDocument,

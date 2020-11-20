@@ -120,11 +120,11 @@ const DocumentUpload = () => {
         formData.append("title", userInput.title);
         formData.append("courseID", "0");
         formData.append("universityID", "0");
-        formData.append("academicYear", userData.academicYear);
-        formData.append("semester", userData.academicTerm);
-        formData.append("type", userData.category);
-        formData.append("description", userData.description);
-        formData.append("anonymous", userData.isAnonymous);
+        formData.append("academicYear", userInput.academicYear);
+        formData.append("semester", userInput.academicTerm);
+        formData.append("type", userInput.category);
+        formData.append("description", userInput.description);
+        formData.append("anonymous", userInput.isAnonymous);
         documentsContext.uploadDocument(formData);
         //fetch POST
     };

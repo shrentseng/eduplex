@@ -56,7 +56,7 @@ const useStyles = makeStyles({
         display: "grid",
         gridTemplateColumns:
             "minmax(14rem, 1fr) minmax(27rem, 6fr) minmax(18rem, 2fr)",
-    }
+    },
 });
 
 const App = () => {
@@ -75,94 +75,97 @@ const App = () => {
 
     return (
         <UserProvider>
-            <CourseProvider>
-                <DocumentsProvider>
-                    <div className={classes.root}>
-                        <Navbar />
-                        <div className={mainStyle} id="main">
-                            {hasSidebar ? (
-                                <div className={classes.sidebar} id="sidebar">
-                                    <ThemeProvider theme={theme_sidebar}>
-                                        <SideBar />
-                                    </ThemeProvider>
-                                </div>
-                            ) : (
-                                <div />
-                            )}
-                            <div className={classes.page} id="page">
-                                <Switch>
-                                    <Route exact path={["/", "/Homepage"]}>
-                                        <ThemeProvider theme={theme_homepage}>
-                                            <FeedsProvider>
+            <FeedsProvider>
+                <CourseProvider>
+                    <DocumentsProvider>
+                        <div className={classes.root}>
+                            <Navbar />
+                            <div className={mainStyle} id="main">
+                                {hasSidebar ? (
+                                    <div
+                                        className={classes.sidebar}
+                                        id="sidebar"
+                                    >
+                                        <ThemeProvider theme={theme_sidebar}>
+                                            <SideBar />
+                                        </ThemeProvider>
+                                    </div>
+                                ) : (
+                                    <div />
+                                )}
+                                <div className={classes.page} id="page">
+                                    <Switch>
+                                        <Route exact path={["/", "/Homepage"]}>
+                                            <ThemeProvider
+                                                theme={theme_homepage}
+                                            >
                                                 <Homepage />
-                                            </FeedsProvider>
-                                        </ThemeProvider>
-                                    </Route>
-                                    <Route path="/SignIn">
-                                        <SignIn />
-                                    </Route>
-                                    <Route path="/Register">
-                                        <Register />
-                                    </Route>
-                                    <Route path="/Courses">
-                                        <Courses />
-                                    </Route>
-                                    <Route path="/Profile">
-                                        <FeedsProvider>
+                                            </ThemeProvider>
+                                        </Route>
+                                        <Route path="/SignIn">
+                                            <SignIn />
+                                        </Route>
+                                        <Route path="/Register">
+                                            <Register />
+                                        </Route>
+                                        <Route path="/Courses">
+                                            <Courses />
+                                        </Route>
+                                        <Route path="/Profile">
                                             <Profile />
-                                        </FeedsProvider>
-                                    </Route>
-                                    <Route path="/EditProfile">
-                                        <EditProfile />
-                                    </Route>
-                                    <Route path="/MyCourses">
-                                        <MyCourse />
-                                    </Route>
-                                    <Route path="/AddCourse">
-                                        <AddCourse />
-                                    </Route>
-                                    <Route path="/CourseResults">
-                                        <CourseResults />
-                                    </Route>
-                                    <Route path="/DocumentResults">
-                                        <DocumentResults />
-                                    </Route>
-                                    <Route path="/DocumentUpload">
-                                        <ThemeProvider
-                                            theme={theme_document_upload}
-                                        >
-                                            <DocumentUpload />
-                                        </ThemeProvider>
-                                    </Route>
-                                    <Route path="/DocumentPreview">
-                                        <DocumentPreview />
-                                    </Route>
-                                    <Route path="/EduPoints">
-                                        <EduPoints />
-                                    </Route>
-                                </Switch>
-                            </div>
-                            {location.pathname == "/" && (
-                                <div id="rightPannel">
-                                    <Route>
-                                        <ThemeProvider
-                                            theme={theme_leaderboard}
-                                        >
-                                            <RightPannel />
-                                        </ThemeProvider>
-                                    </Route>
-                                    <Route path="/DocumentPreview">
-                                        <DocumentPreview />
-                                    </Route>
-                                    <Route path="/EduPoints">
-                                        <EduPoints />
-                                    </Route>
+                                        </Route>
+                                        <Route path="/EditProfile">
+                                            <EditProfile />
+                                        </Route>
+                                        <Route path="/MyCourses">
+                                            <MyCourse />
+                                        </Route>
+                                        <Route path="/AddCourse">
+                                            <AddCourse />
+                                        </Route>
+                                        <Route path="/CourseResults">
+                                            <CourseResults />
+                                        </Route>
+                                        <Route path="/DocumentResults">
+                                            <DocumentResults />
+                                        </Route>
+                                        <Route path="/DocumentUpload">
+                                            <ThemeProvider
+                                                theme={theme_document_upload}
+                                            >
+                                                <DocumentUpload />
+                                            </ThemeProvider>
+                                        </Route>
+                                        <Route path="/DocumentPreview">
+                                            <DocumentPreview />
+                                        </Route>
+                                        <Route path="/EduPoints">
+                                            <EduPoints />
+                                        </Route>
+                                    </Switch>
                                 </div>
-                            )}
+                                {location.pathname == "/" && (
+                                    <div id="rightPannel">
+                                        <Route>
+                                            <ThemeProvider
+                                                theme={theme_leaderboard}
+                                            >
+                                                <RightPannel />
+                                            </ThemeProvider>
+                                        </Route>
+                                        <Route path="/DocumentPreview">
+                                            <DocumentPreview />
+                                        </Route>
+                                        <Route path="/EduPoints">
+                                            <EduPoints />
+                                        </Route>
+                                    </div>
+                                )}
+                            </div>
                         </div>
-                    </div>
-                </DocumentsProvider>
-            </CourseProvider>
+                    </DocumentsProvider>
+                </CourseProvider>
+            </FeedsProvider>
         </UserProvider>
     );
 };
