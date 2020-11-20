@@ -35,7 +35,6 @@ const addCourse = (course, state) => {
 
 const deleteCourse = (courseID, state) => {
     const newMyCourses = state.myCourses;
-    console.log(courseID);
     newMyCourses.map((university) => {
         let index = -1;
         university.Courses.map((course, i) => {
@@ -43,13 +42,11 @@ const deleteCourse = (courseID, state) => {
                 index = i;
             }
         });
-        console.log(index);
         if (index > -1) {
             university.Courses.splice(index, 1);
         }
         return university.Courses;
     });
-    console.log(newMyCourses);
     return {
         ...state,
         myCourse: newMyCourses,

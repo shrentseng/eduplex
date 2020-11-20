@@ -1,4 +1,5 @@
 import React, { useReducer } from "react";
+import axios from "axios";
 import FeedsContext from "./feedsContext";
 import feedsReducer from "./feedsReducer";
 
@@ -26,15 +27,32 @@ const FeedsProvider = (props) => {
     const getFeeds = async () => {
         try {
             dispatch({ type: "SENDING_REQUEST" });
-            const response = await fetch("/home/feed?userID=1");
+            const response = await fetch("home/feed?userID=1");
+            //console.log('text', await response.text())
             const result = await response.json();
-            //console.log(result);
+            //console.log("feeds", result);
+            // const response = await axios.get("home/feed?userID=1")
+            // console.log(response)
+            // const result = await response.data;
+            // console.log("get My feeds", result);
             dispatch({ type: "SET_FEEDS", payload: result });
+        } catch (err) {
+            console.error("get feeds err");
+        }
+    };
+
+    const getFeedsByCourse = async (courseID) => {
+        try {
+            dispatch({ type: "SENDING_REQUEST" });
+            // const response = await fetch("home/feed?userID=1");
+            // const result = await response.json();
+            // console.log("feeds", result);
+            //dispatch({ type: "SET_FEEDS", payload: result });
         } catch (err) {
             console.log("get feeds");
             console.log(err);
         }
-    };
+    }
 
     const addFeed = async (new_feed) => {
         let feedForDb = {
@@ -119,12 +137,14 @@ const FeedsProvider = (props) => {
                 feeds: state.feeds,
                 loading: state.loading,
                 getFeeds: getFeeds,
+                getFeedsByCourse: getFeedsByCourse,
                 addFeed: addFeed,
                 handleLike: handleLike,
                 handleDislike: handleDislike,
                 addComment: addComment,
                 addReply: addReply,
                 getCommentsByPostID: getCommentsByPostID,
+                
             }}
         >
             {props.children}

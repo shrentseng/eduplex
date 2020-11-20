@@ -1,8 +1,14 @@
-import React, { Component, Fragment } from "react";
+import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    useLocation,
+    useHistory,
+} from "react-router-dom";
 import "./assets/bootstrap.min.css";
-import { withStyles } from "@material-ui/core/styles";
+import { withStyles, makeStyles } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/core/styles";
 import {
     theme_document_upload,
@@ -32,7 +38,7 @@ import FeedsProvider from "./context/feed/FeedsProvider";
 import CourseProvider from "./context/course/CourseProvider";
 import DocumentsProvider from "./context/document/DocumentsProvider";
 
-const styles = {
+const useStyles = makeStyles({
     root: {
         display: "flex",
         backgroundColor: "#F7F7F7",
@@ -41,59 +47,59 @@ const styles = {
         height: "100%",
     },
     main: {
-        display: "grid",
-        gridTemplateColumns:
-            "minmax(14rem, 1fr) minmax(27rem, 6fr) minmax(18rem, 2fr)",
         width: "100%",
         marginTop: "3.7rem", //height of navbar
     },
-};
+    mainWithSidebar: {
+        width: "100%",
+        marginTop: "3.7rem", //height of navbar
+        display: "grid",
+        gridTemplateColumns:
+            "minmax(14rem, 1fr) minmax(27rem, 6fr) minmax(18rem, 2fr)",
+    },
+});
 
-class App extends Component {
-    constructor() {
-        super();
-        this.state = {
-            searchValue: "",
-            courses: ["Course 1", "Course 2"],
-        };
+const App = () => {
+    const classes = useStyles();
+    let location = useLocation();
+    let mainStyle = classes.main;
+    const hasSidebarReg = new RegExp(
+        "/(DocumentPreview|DocumentUpload|SignIn|Register)"
+    );
+    const hasSidebar = !hasSidebarReg.test(location.pathname);
+    if (hasSidebar) {
+        mainStyle = classes.mainWithSidebar;
+    } else {
+        mainStyle = classes.main;
     }
-    onSearch = (content) => {
-        this.setState({ searchValue: content });
-    };
 
-    render() {
-        const { classes } = this.props;
-        const hasSidebarReg = new RegExp("/(DocumentPreview|DocumentUpload|SignIn|Register)");
-        const hasSidebar = !hasSidebarReg.test(this.props.location.pathname);
-
-        return (
-            <UserProvider>
+    return (
+        <UserProvider>
+            <FeedsProvider>
                 <CourseProvider>
                     <DocumentsProvider>
                         <div className={classes.root}>
-                            <Navbar onSearch={this.onSearch} />
-                            <div className={classes.main} id="main">
+                            <Navbar />
+                            <div className={mainStyle} id="main">
                                 {hasSidebar ? (
                                     <div
                                         className={classes.sidebar}
                                         id="sidebar"
                                     >
                                         <ThemeProvider theme={theme_sidebar}>
-                                            <SideBar
-                                                courses={this.state.courses}
-                                            />
+                                            <SideBar />
                                         </ThemeProvider>
                                     </div>
-                                ): <div /> }
+                                ) : (
+                                    <div />
+                                )}
                                 <div className={classes.page} id="page">
                                     <Switch>
                                         <Route exact path={["/", "/Homepage"]}>
                                             <ThemeProvider
                                                 theme={theme_homepage}
                                             >
-                                                <FeedsProvider>
-                                                    <Homepage />
-                                                </FeedsProvider>
+                                                <Homepage />
                                             </ThemeProvider>
                                         </Route>
                                         <Route path="/SignIn">
@@ -106,9 +112,7 @@ class App extends Component {
                                             <Courses />
                                         </Route>
                                         <Route path="/Profile">
-                                            <FeedsProvider>
-                                                <Profile />
-                                            </FeedsProvider>
+                                            <Profile />
                                         </Route>
                                         <Route path="/EditProfile">
                                             <EditProfile />
@@ -120,18 +124,10 @@ class App extends Component {
                                             <AddCourse />
                                         </Route>
                                         <Route path="/CourseResults">
-                                            <CourseResults
-                                                searchValue={
-                                                    this.state.searchValue
-                                                }
-                                            />
+                                            <CourseResults />
                                         </Route>
                                         <Route path="/DocumentResults">
-                                            <DocumentResults
-                                                searchValue={
-                                                    this.state.searchValue
-                                                }
-                                            />
+                                            <DocumentResults />
                                         </Route>
                                         <Route path="/DocumentUpload">
                                             <ThemeProvider
@@ -148,7 +144,7 @@ class App extends Component {
                                         </Route>
                                     </Switch>
                                 </div>
-                                {this.props.location.pathname == "/" && (
+                                {location.pathname == "/" && (
                                     <div id="rightPannel">
                                         <Route>
                                             <ThemeProvider
@@ -169,9 +165,9 @@ class App extends Component {
                         </div>
                     </DocumentsProvider>
                 </CourseProvider>
-            </UserProvider>
-        );
-    }
-}
+            </FeedsProvider>
+        </UserProvider>
+    );
+};
 
-export default withRouter(withStyles(styles)(App));
+export default withRouter(App);
