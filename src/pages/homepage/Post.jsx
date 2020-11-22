@@ -124,7 +124,6 @@ const Post = ()  => {
                         >
                         </Select>
                     </div>
-                    
                     <div>
                         <textarea className={classes.post} type="text" placeholder="Start a discussion... " value={content} onChange={event => setContent(event.target.value)}/>
                     </div>

@@ -59,6 +59,7 @@ const Head = () => {
     const handleDownload = () => {
         documentsContext.downloadDocument(documentsContext.currentDocument);
     };
+    
     return (
         <div>
             <Paper
@@ -67,10 +68,10 @@ const Head = () => {
                 className={classes.titlePaper}
             >
                 <Typography className={classes.docName}>
-                    Document Title Lorem Ipsum Dolor Sit Amet
+                    {documentsContext.currentDocument.Title}
                 </Typography>
                 <Typography className={classes.subTitle}>
-                    Past Exam: Midterm
+                    {/*SubTitle*/}
                 </Typography>
                 <Button className={classes.save}>Save</Button>
                 <Button className={classes.download} onClick={handleDownload}>

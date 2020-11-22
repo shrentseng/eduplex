@@ -1,8 +1,9 @@
-import React from "react";
+import React, {useContext, useState} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, Paper, Typography } from "@material-ui/core";
-import SimilarComments from "./SimilarComments.jsx";
+import DocumentComments from "./DocumentComments.jsx";
 import SimilarDocuments from "./SimilarDocuments.jsx";
+import DocumentContext from "../../context/document/documentsContext"
 
 const useStyles = makeStyles(() => ({
     paper: {
@@ -53,6 +54,24 @@ const useStyles = makeStyles(() => ({
 
 const SideBar = () => {
     const classes = useStyles();
+    const documentContext = useContext(DocumentContext);
+    const [liked, setLiked] = useState(null);
+    const [disableYes, setDisableYes] = useState(false);
+    const [disableNo, setDisableNo] = useState(false);
+
+   function handleHelpful(helpful){
+        if(helpful)
+        {
+            setLiked(true);
+            setDisableNo(true);
+        }
+        else if(!helpful)
+        {
+            setLiked(false);
+            setDisableYes(true);
+        }
+    };
+
     return (
         <div>
             <div className={classes.university}>
@@ -67,7 +86,7 @@ const SideBar = () => {
                         University
                     </Typography>
                     <Typography style={{ color: "#0088D7" }}>
-                        University of California Los Angeles
+                        {documentContext.currentDocument.UniversityName}
                     </Typography>
                 </Paper>
             </div>
@@ -83,7 +102,7 @@ const SideBar = () => {
                         Course Name
                     </Typography>
                     <Typography style={{ color: "#0088D7" }}>
-                        Introduction to Computer Science
+                        {documentContext.currentDocument.CourseName}
                     </Typography>
                 </Paper>
             </div>
@@ -103,7 +122,7 @@ const SideBar = () => {
                         <Typography
                             style={{ fontSize: "0.7em", color: "#0088D7" }}
                         >
-                            Oscar Cheng
+                            {documentContext.currentDocument.UserName}
                         </Typography>
                     </div>
                 </Paper>
@@ -121,10 +140,7 @@ const SideBar = () => {
                         Description
                     </Typography>
                     <Typography style={{ fontSize: "0.7em", color: "#504F4F" }}>
-                        Lorem, ipsum dolor sit amet consectetur adipisicing
-                        elit. Sed, illum sunt perspiciatis dolore cumque, itaque
-                        ex, in non officiis a amet? Recusandae earum quibusdam
-                        commodi dolorem quos tempore ducimus necessitatibus?
+                        {documentContext.currentDocument.Description}
                     </Typography>
                 </Paper>
             </div>
@@ -142,6 +158,7 @@ const SideBar = () => {
                             Helpful?
                         </Typography>
                         <Button
+                            disabled={disableYes}
                             style={{
                                 width: "6em",
                                 height: "2em",
@@ -150,10 +167,12 @@ const SideBar = () => {
                                 borderColor: "#C4C4C4",
                                 borderRadius: 3,
                             }}
+                            onClick={()=>handleHelpful(true)}
                         >
                             Yes
                         </Button>
                         <Button
+                            disabled={disableNo}
                             style={{
                                 width: "6em",
                                 height: "2em",
@@ -162,6 +181,7 @@ const SideBar = () => {
                                 borderColor: "#C4C4C4",
                                 borderRadius: 3,
                             }}
+                            onClick={()=>handleHelpful(false)}
                         >
                             No
                         </Button>
@@ -172,7 +192,7 @@ const SideBar = () => {
                 <Paper
                     square={true}
                     className={classes.paper}
-                    style={{ justifyContent: "left" }}
+                    style={{ justifyContent: "left", height: "41.8rem",}}
                 >
                     <Typography
                         style={{
@@ -184,7 +204,7 @@ const SideBar = () => {
                     >
                         Comments
                     </Typography>
-                    <SimilarComments />
+                    <DocumentComments />
                     <Typography
                         style={{
                             marginRight: "1.5rem",

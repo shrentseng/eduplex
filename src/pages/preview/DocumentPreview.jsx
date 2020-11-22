@@ -44,8 +44,11 @@ const useStyles = makeStyles(() => ({
 
 const DocumentPreview = () => {
     const classes = useStyles();
+    
     const [sideColumn, setSideColumn] = React.useState("2");
     const [pdfColumn, setPDFColumn] = React.useState("2");
+
+    /*
     const [arrow, setArrow] = React.useState("<<");
     const setColumn = (event) => {
         if (sideColumn === "2" && pdfColumn === "2") {
@@ -58,6 +61,8 @@ const DocumentPreview = () => {
             setArrow("<<");
         }
     };
+    */
+   
     const renderSideBar = () => {
         if (sideColumn === "2" && pdfColumn === "2") {
             return <SideBar />;
@@ -80,16 +85,18 @@ const DocumentPreview = () => {
             <div className={classes.pdf} style={{ gridColumnStart: pdfColumn }}>
                 <PDFViewer backend={PDFJSBackend} src="/myPDF.pdf" />
             </div>
-            <div className={classes.pdf} style={{ gridColumnStart: pdfColumn }}>
+        </div>
+    );
+};
+
+export default DocumentPreview;
+
+
+/*<div className={classes.pdf} style={{ gridColumnStart: pdfColumn }}>
                 <Typography
                     className={classes.collapseExtend}
                     onClick={(event) => setColumn(event)}
                 >
                     {arrow}
                 </Typography>
-            </div>
-        </div>
-    );
-};
-
-export default DocumentPreview;
+</div>*/
