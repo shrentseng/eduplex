@@ -6,67 +6,63 @@ const DocumentsProvider = (props) => {
     const initialState = {
         documents: [
             {
-                username: "Jim Corey",
-                univserity: "UCLA",
-                course: "PHYSICS 101",
-                title: "Theory of Relativity",
-                academicTerm: "Spring",
-                academicYear: 2020,
-                category: "Essay",
-                description:
-                    "A theory developed by Albert Einstein–the greatest scienctist.",
-                key: 0,
+                CourseName: "PHYSICS 101",
+                Title: "Theory of Relativity",
+                Description: "theory developed by Albert Einstein–the greatest scienctist.",
+                UserName: "Jim Corey",
+                UniversityName: "University of California, Los Angeles",
+                DownloadTimes : "Spring",
+                Like: 5,
+                Unlike: 1,
+                Comment:[
+                    {
+                    UserName: "Oscar",
+                    Content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, deleniti dolorum."
+                    },
+                ],
+                key:0,
             },
             {
-                username: "Jim Corey",
-                univserity: "UCLA",
-                course: "PHYSICS 101",
-                title: "Theory of Relativity",
-                academicTerm: "Spring",
-                academicYear: 2020,
-                category: "Essay",
-                description:
-                    "A theory developed by Albert Einstein–the greatest scienctist.",
-                key: 1,
-            },
-            {
-                username: "Jim Corey",
-                univserity: "UCLA",
-                course: "PHYSICS 101",
-                title: "Theory of Relativity",
-                academicTerm: "Spring",
-                academicYear: 2020,
-                category: "Essay",
-                description:
-                    "A theory developed by Albert Einstein–the greatest scienctist.",
-                key: 2,
-            },
-            {
-                username: "Jim Corey",
-                univserity: "UCLA",
-                course: "PHYSICS 101",
-                title: "Theory of Relativity",
-                academicTerm: "Spring",
-                academicYear: 2020,
-                category: "Essay",
-                description:
-                    "A theory developed by Albert Einstein–the greatest scienctist.",
-                key: 3,
-            },
-            {
-                username: "Brad Pitt",
-                univserity: "UCLA",
-                course: "PHYSICS 101",
-                title: "Theory of Relativity",
-                academicTerm: "Spring",
-                academicYear: 2020,
-                category: "Essay",
-                description:
-                    "A theory developed by Albert Einstein–the greatest scienctist.",
-                key: 4,
+                CourseName: "MATH 61",
+                Title: "Discrete Math Midterm 1 ",
+                Description: "Review on Discrete Math",
+                UserName: "Jim Corey",
+                UniversityName: "University of California, Los Angeles",
+                DownloadTimes : "Spring",
+                Like: 3,
+                Unlike: 2,
+                Comment:[
+                    {
+                    UserName: "Oscar",
+                    Content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, deleniti dolorum."
+                    },
+                    {
+                    UserName: "Morris", 
+                    Content: " Quas fuga beatae consequatur at ratione, culpa praesentium illo laudantium est perspiciatis odio, in placeat dignissimos quos tempore quaerat!"
+                    },
+                    {
+                    UserName: "Shren", 
+                    Content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, deleniti dolorum.",
+                    },
+                ],
+                key:1,
             },
         ],
-        currentDocument: "D12070161190",
+        currentDocument: 
+            {
+                CourseName:"",
+                Title: "",
+                Description: "",
+                UserName: "",
+                UniversityName: "",
+                DownloadTimes : "",
+                FrontPage: "",
+                Like: 0,
+                Unlike: 0,
+                Comment:[],
+                key:null,
+            },
+        currentSimilarDocuments: [],
         loading: true,
     };
 
@@ -75,7 +71,7 @@ const DocumentsProvider = (props) => {
     const getDocuments = async () => {
         // try {
         //     dispatch({ type: "SENDING_REQUEST" });
-        //     fetch('/home/feed?userID=1')
+        //     fetch(`/viewdoc?user=?documentID=${state.currentDocument.key}`)
         //     .then(res => res.json())
         //     .then(
         //         (result) => {
@@ -101,7 +97,7 @@ const DocumentsProvider = (props) => {
             // const response = await fetch("");
             // const result = await response.json();
             // dispatch({ type: "REQUEST_FINISHED" });
-            // dispatch({ type: "SET_FEEDS", payload: result });
+            // dispatch({ type: "SET_COURSE_DOCUMENTS", payload: result });
         } catch (err) {
             console.error("get document by course err")
         }
@@ -120,10 +116,55 @@ const DocumentsProvider = (props) => {
         });
     };
 
-    const setCurrentDocument = async (documentID) => {
-        //get document data
-        //console.log(id);
+    const setCurrentDocument = async (document) => {
+        try {
+            dispatch({ type: "SET_CURRENT_DOCUMENT", payload: document})
+        }
+        catch(err)
+        {
+            console.log("setCurrentDocument");
+            console.log(err);
+        }
     };
+
+    const addComment = async (new_comment) => {
+        dispatch({ type: "ADD_COMMENT", payload: new_comment });
+        /*
+        try{
+        fetch("viewdoc?user_id=?document_id=?", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(new_comment)
+        }).then((response) => {
+            if (response.ok) {
+                dispatch({ type: "ADD_COMMENT", payload: new_comment });
+            } else {
+                console.log(response.status);
+            }
+        });
+        }
+        catch(err){
+            console.log("getSimilarDocuments")
+            console.log(err)
+        }
+        */
+    }
+
+    const getSimilarDocuments = async () => {
+        /*try{
+            fetch(`viewdoc/similar?user=?document_id=?`)
+            .then(
+                (result) => {
+                dispatch({type: "SET_SIMILAR_DOCUMENTS", payload: result})
+            });
+        }
+        catch(err){
+            console.log("getSimilarDocuments")
+            console.log(err)
+        }*/
+    }
 
     const downloadDocument = async (documentID) => {
         try {
@@ -166,12 +207,15 @@ const DocumentsProvider = (props) => {
                 documents: state.documents,
                 loading: state.loading,
                 currentDocument: state.currentDocument,
+                currentSimilarDocuments: state.currentSimilarDocuments,
                 getDocuments: getDocuments,
                 getDocumentsByCourse: getDocumentsByCourse,
                 addDocument: addDocument,
                 setCurrentDocument: setCurrentDocument,
                 downloadDocument: downloadDocument,
                 uploadDocument: uploadDocument,
+                addComment: addComment,
+                getSimilarDocuments: getSimilarDocuments
             }}
         >
             {props.children}
