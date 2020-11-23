@@ -68,7 +68,7 @@ const Head = () => {
                 className={classes.titlePaper}
             >
                 <Typography className={classes.docName}>
-                    {documentsContext.currentDocument.Title}
+                    {documentsContext.currentDocument.title}
                 </Typography>
                 <Typography className={classes.subTitle}>
                     {/*SubTitle*/}

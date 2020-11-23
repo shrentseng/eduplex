@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import exclude from "../../assets/exclude.svg";
 import avatar from "../../assets/avatar.svg";
-
+import UserContext from "../../context/user/userContext"
 import FeedsContext from "../../context/feed/feedsContext";
 
 const useStyles = makeStyles((theme) => ({
@@ -33,12 +33,14 @@ const CommentPost = ({ postID, isFocused }) => {
     const classes = useStyles();
     const [context, setContext] = useState("");
     const feedsContext = useContext(FeedsContext);
+    const userContext = useContext(UserContext);
 
     const onCreateComment = (context) => {
         const newComment = {
             username: "Shren", //get from id
             message: context,
             postID: postID,
+            userID: userContext.userID,
         };
         feedsContext.addComment(newComment);
         setContext("");

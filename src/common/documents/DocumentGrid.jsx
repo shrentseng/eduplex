@@ -3,6 +3,7 @@ import { Route, Switch, useLocation, useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import GetAppIcon from "@material-ui/icons/GetApp";
 import DocumentsContext from "../../context/document/documentsContext";
+import CourseContext from "../../context/course/courseContext";
 
 const useStyles = makeStyles({
     root: {
@@ -42,14 +43,19 @@ function DocumentsGrid({ document }) {
 
     let location = useLocation();
     let history = useHistory();
+    const courseContext = useContext(CourseContext)
     const documentsContext = useContext(DocumentsContext);
     const [isHovered, setIsHovered] = useState(false);
 
     useEffect(() => {}, [location, history]);
 
+    
+
     const handleDocumentPreview = () => {
+        documentsContext.setCurrentInfo(document)
+        //documentsContext.setCurrentComments()
+        //documentsContext.setSimilarDocuments()
         history.push("/DocumentPreview");
-        documentsContext.setCurrentDocument(document);
     };
 
     return (

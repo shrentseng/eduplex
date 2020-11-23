@@ -4,6 +4,7 @@ import { Button, Paper, Typography } from "@material-ui/core";
 import DocumentComments from "./DocumentComments.jsx";
 import SimilarDocuments from "./SimilarDocuments.jsx";
 import DocumentContext from "../../context/document/documentsContext"
+import CourseContext from "../../context/course/courseContext"
 
 const useStyles = makeStyles(() => ({
     paper: {
@@ -55,6 +56,7 @@ const useStyles = makeStyles(() => ({
 const SideBar = () => {
     const classes = useStyles();
     const documentContext = useContext(DocumentContext);
+    const courseContext = useContext(CourseContext);
     const [liked, setLiked] = useState(null);
     const [disableYes, setDisableYes] = useState(false);
     const [disableNo, setDisableNo] = useState(false);
@@ -86,7 +88,7 @@ const SideBar = () => {
                         University
                     </Typography>
                     <Typography style={{ color: "#0088D7" }}>
-                        {documentContext.currentDocument.UniversityName}
+                        {documentContext.currentDocument.universityName}
                     </Typography>
                 </Paper>
             </div>
@@ -102,7 +104,7 @@ const SideBar = () => {
                         Course Name
                     </Typography>
                     <Typography style={{ color: "#0088D7" }}>
-                        {documentContext.currentDocument.CourseName}
+                        {documentContext.currentDocument.courseName}
                     </Typography>
                 </Paper>
             </div>
@@ -122,7 +124,7 @@ const SideBar = () => {
                         <Typography
                             style={{ fontSize: "0.7em", color: "#0088D7" }}
                         >
-                            {documentContext.currentDocument.UserName}
+                            {documentContext.currentDocument.userName}
                         </Typography>
                     </div>
                 </Paper>
@@ -140,7 +142,7 @@ const SideBar = () => {
                         Description
                     </Typography>
                     <Typography style={{ fontSize: "0.7em", color: "#504F4F" }}>
-                        {documentContext.currentDocument.Description}
+                        {documentContext.currentDocument.description}
                     </Typography>
                 </Paper>
             </div>
