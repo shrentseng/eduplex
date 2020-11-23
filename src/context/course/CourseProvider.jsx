@@ -6,6 +6,7 @@ const CourseProvider = (props) => {
     const initialState = {
         courses: [],
         myCourses: [],
+        currentUniversity: 0,
         loading: false,
     };
     const [state, dispatch] = useReducer(courseReducer, initialState);
@@ -13,23 +14,24 @@ const CourseProvider = (props) => {
     const getMyCourses = async () => {
         try {
             dispatch({ type: "SENDING_REQUEST" });
-            fetch("mycourse?userID=1") //id
-                .then((res) => res.json())
-                .then((result) => {
-                    console.log(result);
-                    dispatch({ type: "SET_MY_COURSES", payload: result });
-                });
+            const response = await fetch("mycourse?userID=1"); //fix id
+            //console.log(response);
+            const result = await response.json();
+            // const response = await axios.get("mycourse?userID=1")
+            // console.log(response)
+            // const result = await response.data;
+            console.log("get My Courses", result);
+            dispatch({ type: "SET_MY_COURSES", payload: result });
         } catch (err) {
-            console.log("get courses");
-            console.log(err);
+            console.error("get my courses err");
         }
     };
 
     const getCoursesByUniversity = async (UniversityID) => {
         try {
             dispatch({ type: "SENDING_REQUEST" });
-            fetch(`mycourse/addCourse?userID=1&universityID=4`)
-                .then((res) => res.json())
+            fetch(`mycourse/addCourse?userID=1&universityID=${UniversityID}`)
+                .then((response) => response.json())
                 .then((result) => {
                     dispatch({ type: "SET_COURSES", payload: result });
                 });
@@ -48,15 +50,41 @@ const CourseProvider = (props) => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(course),
-            }).then((res) => {
-                if (res.status == 201) {
+            }).then((response) => {
+                if (response.ok) {
                     dispatch({ type: "ADD_COURSE", payload: course });
                 } else {
-                    console.log(res.status);
+                    console.log(response.status);
                 }
             });
         } catch (err) {
             console.log("add courses");
+            console.log(err);
+        }
+    };
+
+    const deleteCourse = async (body) => {
+        console.log(body);
+        try {
+            fetch("mycourse", {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(body),
+            });
+            dispatch({ type: "DELETE_COURSE", payload: body.courseID });
+        } catch (err) {
+            console.log("Delete courses");
+            console.log(err);
+        }
+    };
+
+    const setCurrentUniversity = async (university) => {
+        try {
+            dispatch({ type: "SET_CURRENT_UNIVERSITY", payload: university });
+        } catch (err) {
+            console.log("set Current University");
             console.log(err);
         }
     };
@@ -66,8 +94,11 @@ const CourseProvider = (props) => {
             value={{
                 courses: state.courses,
                 myCourses: state.myCourses,
+                currentUniversity: state.currentUniversity,
                 getMyCourses: getMyCourses,
                 addCourse: addCourse,
+                deleteCourse: deleteCourse,
+                setCurrentUniversity: setCurrentUniversity,
                 getCoursesByUniversity: getCoursesByUniversity,
             }}
         >

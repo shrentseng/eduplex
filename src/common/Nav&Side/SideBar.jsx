@@ -56,13 +56,14 @@ const useStyles = makeStyles({
     },
 });
 
-function SideBar({ courses }) {
+function SideBar() {
     const classes = useStyles();
     //fecth courses data
     const userContext = useContext(UserContext);
     const courseContext = useContext(CourseContext);
 
     useEffect(() => {
+        console.log("sidebar")
         courseContext.getMyCourses(userContext.userID);
     }, []);
 
@@ -72,11 +73,12 @@ function SideBar({ courses }) {
         } else {
             return myCourses.map((university, i) => {
                 return university.Courses.map((course, i) => {
+                    const courseURL = course.CourseNumber.replace(/\s+/g, '')
                     return (
                         <div key={i}>
                             <NavLink
                                 activeClassName={classes.active}
-                                to={`/Courses/${course.CourseNumber}`}
+                                to={`/Courses/${courseURL}`}
                             >
                                 <ListItem
                                     button

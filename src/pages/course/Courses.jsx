@@ -4,28 +4,29 @@ import FeedsProvider from "../../context/feed/FeedsProvider";
 import CourseContext from "../../context/course/courseContext";
 import Course from "./Course";
 
-function Courses() {
+const Courses = () => {
     const courseContext = useContext(CourseContext);
-    console.log(courseContext.myCourses);
     const courseList = (myCourses) => {
         if (myCourses.length === 0) {
             return null;
         } else {
-            return myCourses.map((university, i) => {
-                return university.Courses.map((course,i)=>{
+            return myCourses.map((university) => {
+                return university.Courses.map((course, i) => {
+                    const courseURL = course.CourseNumber.replace(/\s+/g, "");
                     return (
-                        <Route key={i} path={`/Courses/${course.CourseNumber}`}>
-                            <FeedsProvider>
-                                <Course course={course.CourseNumber} />
-                            </FeedsProvider>
+                        <Route key={i} path={`/Courses/${courseURL}`}>
+                            <Course
+                                CourseNumber={course.CourseNumber}
+                                CourseID={course.CourseID}
+                            />
                         </Route>
                     );
-                })
+                });
             });
         }
     };
 
     return <Switch>{courseList(courseContext.myCourses)}</Switch>;
-}
+};
 
 export default Courses;

@@ -28,21 +28,19 @@ const Course = (props) => {
     const [join, setJoin] = React.useState("Join");
     const [color, setColor] = React.useState("#0088D7");
     const classes = useStyles();
-    const userContext = useContext(UserContext)
+    const userContext = useContext(UserContext);
     const courseContext = useContext(CourseContext);
 
     const handleJoin = () => {
         //let add = true;
-        if (courseContext.myCourses.length === 0) {
-            setJoin("Joined");
-            setColor("#C4C4C4");
-            const course = {
-                userID: userContext.userID,
-                courseID: props.CourseID,
-            };
-            courseContext.addCourse(course);
-            //add = false;
-        }
+        setJoin("Joined");
+        setColor("#C4C4C4");
+        const course = {
+            userID: userContext.userID,
+            courseID: props.CourseID,
+        };
+        courseContext.addCourse(course);
+        //add = false;
         // } else {
         //     courseContext.myCourses.map((currentCourse) => {
         //         if (currentCourse.number === course.number) {

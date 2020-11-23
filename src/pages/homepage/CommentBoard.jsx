@@ -78,13 +78,21 @@ const CommentBoard = (props) => {
     const feedsContext = useContext(FeedsContext);
 
     useEffect(() => {
-        //fetch props.PostID
-        feedsContext.getCommentsByPostID(props.PostID);
-        setComments(
-            feedsContext.feeds.find((feed) => feed.PostID === props.PostID)
-                .ChildComments
-        );
-    }, [feedsContext.feeds, feedsContext.ChildComments, props.PostID]);
+        let didCancel = false;
+        async function getComments() {
+            const response = await fetch(`/home/feed?postID=${props.postID}`);
+            const result = await response.json();
+            setComments(result);
+            console.log(result);
+            if (!didCancel) {
+                console.log(response);
+            }
+        }
+        getComments();
+        return () => {
+            didCancel = true;
+        };
+    }, [props.postID]);
 
     const renderComment = () => {
         if (comments.length === 0) {
@@ -94,9 +102,9 @@ const CommentBoard = (props) => {
                 return (
                     <AccordionDetails className={classes.accDetails}>
                         <Comment
-                            context={comment.Message}
-                            key={comment.PostID}
-                            username={comment.username}
+                            context={comment.message}
+                            key={comment.postID}
+                            username={comment.firstName + comment.lastName}
                         />
                     </AccordionDetails>
                 );
@@ -119,7 +127,7 @@ const CommentBoard = (props) => {
                     <AccordionSummary>
                         <CommentPost
                             className={classes.heading}
-                            PostID={props.PostID}
+                            postID={props.postID}
                             // createComment={onCreateComment}
                         />
                     </AccordionSummary>

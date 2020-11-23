@@ -64,19 +64,19 @@ const Feed = (props) => {
 
     useEffect(() => {
         //console.log("use effect", userContext.postsLiked);
-        if (userContext.postsLiked.includes(props.PostID)) {
-            setLikeImg(Liked)
-            setDislikeImg(Dislike)
+        if (userContext.postsLiked.includes(props.postID)) {
+            setLikeImg(Liked);
+            setDislikeImg(Dislike);
             //setHasLiked(classes.imgActive);
             //setHasDisLiked(null)
-        } else if (userContext.postsDisliked.includes(props.PostID)) {
-            setLikeImg(Like)
-            setDislikeImg(Disliked)
+        } else if (userContext.postsDisliked.includes(props.postID)) {
+            setLikeImg(Like);
+            setDislikeImg(Disliked);
             //setHasDisLiked(classes.imgActive);
             //setHasLiked(null)
         } else {
-            setLikeImg(Like)
-            setDislikeImg(Dislike)
+            setLikeImg(Like);
+            setDislikeImg(Dislike);
             //setHasLiked(null)
             //setHasDisLiked(null)
         }
@@ -84,22 +84,42 @@ const Feed = (props) => {
 
     const handleLike = () => {
         if (likeImg == Like) {
-            feedsContext.handleLike(props.PostID, true);
-            userContext.handleLikePost(props.PostID, true);
+            feedsContext.handleLike(props.postID, true, userContext.userID);
+            userContext.handleLikePost(props.postID, true, userContext.userID);
             if (dislikeImg == Disliked) {
-                feedsContext.handleDislike(props.PostID, false);
-                userContext.handleDislikePost(props.PostID, false);
+                feedsContext.handleDislike(
+                    props.postID,
+                    false,
+                    userContext.userID
+                );
+                userContext.handleDislikePost(
+                    props.postID,
+                    false,
+                    userContext.userID
+                );
             }
         }
     };
 
     const handleDislike = () => {
         if (dislikeImg == Dislike) {
-            feedsContext.handleDislike(props.PostID, true);
-            userContext.handleDislikePost(props.PostID, true);
+            feedsContext.handleDislike(props.postID, true, userContext.userID);
+            userContext.handleDislikePost(
+                props.postID,
+                true,
+                userContext.userID
+            );
             if (likeImg == Liked) {
-                feedsContext.handleLike(props.PostID, false);
-                userContext.handleLikePost(props.PostID, false);
+                feedsContext.handleLike(
+                    props.postID,
+                    false,
+                    userContext.userID
+                );
+                userContext.handleLikePost(
+                    props.postID,
+                    false,
+                    userContext.userID
+                );
                 //console.log("posts liked", userContext.postsLiked);
             }
         }
@@ -125,7 +145,7 @@ const Feed = (props) => {
                         <div style={{ display: "flex", alignItems: "center" }}>
                             {/* username */}
                             <Typography variant="h5">
-                                {props.Username}
+                                {props.username}
                             </Typography>
                             {/* date */}
                             <Typography
@@ -137,14 +157,14 @@ const Feed = (props) => {
                             <Typography variant="h6">{"5 mins ago"}</Typography>
                         </div>
                         {/* posted in */}
-                        <Typography variant="h6">{`Posted in ${props.CourseName} `}</Typography>
+                        <Typography variant="h6">{`Posted in ${props.courseName} `}</Typography>
                     </div>
                     {/* <div className={classes.headerItem} style={{marginLeft: 'auto'}}>
                         <img className={classes.bookmark} src={bookmark} />
                     </div> */}
                 </div>
                 <Typography className={classes.body} variant="body1">
-                    {props.Message}
+                    {props.message}
                 </Typography>
                 <div className={classes.footer}>
                     <div>
@@ -154,7 +174,7 @@ const Feed = (props) => {
                             src={likeImg}
                             onClick={handleLike}
                         />
-                        <Typography display="inline">{props.Likes}</Typography>
+                        <Typography display="inline">{props.likes}</Typography>
                     </div>
                     <div>
                         <img
@@ -164,7 +184,7 @@ const Feed = (props) => {
                             onClick={handleDislike}
                         />
                         <Typography display="inline">
-                            {props.Unlikes}
+                            {props.unlikes}
                         </Typography>
                     </div>
                     <div>
@@ -175,7 +195,7 @@ const Feed = (props) => {
                             onClick={onToggleExpand}
                         />
                         <Typography display="inline">
-                            {props.ChildComments.length}
+                            {props.childComments.length}
                         </Typography>
                     </div>
                     <div>
@@ -184,7 +204,7 @@ const Feed = (props) => {
                 </div>
             </Paper>
             <CommentBoard
-                PostID={props.PostID}
+                postID={props.postID}
                 isExpand={isExpand}
                 setExpandTrue={onSetExpandTrue}
             />

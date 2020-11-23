@@ -75,7 +75,7 @@ const options = [
     { value: 3, label: 'Course 3' },
 ]
 
-const Post = ( {createPost} ) => {
+const Post = ()  => {
     const userContext = useContext(UserContext) 
     const feedsContext = useContext(FeedsContext);
     
@@ -124,7 +124,6 @@ const Post = ( {createPost} ) => {
                         >
                         </Select>
                     </div>
-                    
                     <div>
                         <textarea className={classes.post} type="text" placeholder="Start a discussion... " value={content} onChange={event => setContent(event.target.value)}/>
                     </div>

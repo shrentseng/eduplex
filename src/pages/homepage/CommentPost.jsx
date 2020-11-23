@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const CommentPost = ({ PostID, isFocused }) => {
+const CommentPost = ({ postID, isFocused }) => {
     const classes = useStyles();
     const [context, setContext] = useState("");
     const feedsContext = useContext(FeedsContext);
@@ -37,8 +37,8 @@ const CommentPost = ({ PostID, isFocused }) => {
     const onCreateComment = (context) => {
         const newComment = {
             username: "Shren", //get from id
-            Message: context,
-            PostID: PostID,
+            message: context,
+            postID: postID,
         };
         feedsContext.addComment(newComment);
         setContext("");

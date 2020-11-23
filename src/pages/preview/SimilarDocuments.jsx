@@ -1,25 +1,21 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import SimpleDoc from './SimpleDocument.jsx'
+import DocumentContext from '../../context/document/documentsContext'
 
-const documents = [
-    {"docName":"Theory of Relativity"},
-    {"docName":"Pride and Prejudice"},
-    {"docName":"Alexander the Great"},
-    {"docName":"Calculus III"}
-]
 
-const renderDoc = () =>{
+const renderDoc = (documents) =>{
     return documents.map((details) => {
         return <SimpleDoc
-            name={details.docName}
+            name={details.Title}
             />
-    })
-}
-const SimilarDocuments = () => {
+    }
+)}
 
+const SimilarDocuments = () => {
+    const documentContext = useContext(DocumentContext)
     return(
         <div>
-            {renderDoc()}
+            {renderDoc(documentContext.currentSimilarDocuments)}
         </div>
     )
 }

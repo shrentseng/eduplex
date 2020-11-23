@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, {useContext} from "react";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import CourseCard from "./CourseCard";
@@ -31,15 +31,9 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
-const CourseList = ({ courses }) => {
+const CourseList = ({ courses, university}) => {
     const classes = useStyles();
-    const courseContext = useContext(CourseContext);
-
-    const onDeleteCourse = (index) => {
-        /*let temp = [...courses];
-        temp.splice(index, 1);
-        setCourses(temp);*/
-    };
+    const courseContext = useContext(CourseContext)
 
     const cardComponent = courses.map((course, i) => {
         return (
@@ -47,12 +41,16 @@ const CourseList = ({ courses }) => {
                 <CourseCard
                     CourseName={course.CourseName}
                     CourseNumber={course.CourseNumber}
-                    deleteCourse={onDeleteCourse}
-                    id={course.CourseID}
+                    CourseID={course.CourseID}
                 />
             </Grid>
         );
     });
+
+    const handleAddCard = () => {
+        courseContext.setCurrentUniversity(university);
+        console.log(university);
+    }
 
     return (
         <div className={classes.root}>
@@ -68,7 +66,7 @@ const CourseList = ({ courses }) => {
                 <Grid item>
                     <Link to="/AddCourse">
                         <CardActionArea>
-                            <Card className={classes.card}>
+                            <Card className={classes.card} onClick={handleAddCard}>
                                 <div className={classes.placeholder}></div>
                                 <img src={PlusIcon} alt="" height="35px" />
                             </Card>

@@ -1,7 +1,8 @@
-const setDocuments = (my_documents, state) => {
+const setCourseDocuments = (course_documents, state) => {
+    console.log(course_documents);
     return {
         ...state,
-        feeds: my_documents,
+        documents: course_documents,
     };
 };
 
@@ -27,25 +28,60 @@ const addDocument = (document, state) => {
     };
 };
 
-const setCurrentDocument = (id, state) => {
-    return { 
+const setCurrentDocument = (document, state) => {
+    return {
         ...state,
-        currentDocument: id,
-    }
-}
+        currentDocument: document,
+    };
+};
+
+const addComment = (comment, state) => {
+    let new_comments = [
+        ...state.currentDocument.Comment,
+        { UserName: "Oscar", Content: comment.Message },
+    ];
+    let new_current_document = {
+        CourseName: state.currentDocument.CourseName,
+        Title: state.currentDocument.Title,
+        Description: state.currentDocument.Description,
+        UserName: state.currentDocument.UserName,
+        UniversityName: state.currentDocument.UniversityName,
+        DownloadTimes: state.currentDocument.DownloadTimes,
+        FrontPage: state.currentDocument.FrontPage,
+        Like: state.currentDocument.Like,
+        Unlike: state.currentDocument.Unlike,
+        Comment: new_comments,
+        key: state.currentDocument.key,
+    };
+    return {
+        ...state,
+        currentDocument: new_current_document,
+    };
+};
+
+const setSimilarDocuments = (similarDocuments, state) => {
+    return {
+        ...state,
+        currentSimilarDocuments: similarDocuments,
+    };
+};
 
 const reducer = (state, action) => {
     switch (action.type) {
-        case "SET_DOCUMENTS":
-            return setDocuments(action.payload, state);
+        case "SET_COURSE_DOCUMENTS":
+            return setCourseDocuments(action.payload, state);
         case "SENDING_REQUEST":
             return sendingRequest(state);
         case "REQUEST_FINISHED":
             return requestFinished(state);
         case "ADD_DOCUMENT":
             return addDocument(action.payload, state);
-        case "setCurrentDocument":
+        case "SET_CURRENT_DOCUMENT":
             return setCurrentDocument(action.payload, state);
+        case "ADD_COMMENT":
+            return addComment(action.payload, state);
+        case "SET_SIMILAR_DOCUMENTS":
+            return setSimilarDocuments(action.payload, state);
         default:
             return state;
     }

@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Route, Switch, useLocation, useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
 import GetAppIcon from "@material-ui/icons/GetApp";
 import DocumentsContext from "../../context/document/documentsContext";
 
@@ -38,7 +37,7 @@ const useStyles = makeStyles({
     },
 });
 
-function DocumentsGrid({ document, previewURL }) {
+function DocumentsGrid({ document }) {
     const classes = useStyles();
 
     let location = useLocation();
@@ -46,13 +45,11 @@ function DocumentsGrid({ document, previewURL }) {
     const documentsContext = useContext(DocumentsContext);
     const [isHovered, setIsHovered] = useState(false);
 
-    useEffect(() => {
+    useEffect(() => {}, [location, history]);
 
-    }, [location, history])
-
-    const handleDocumentPreview = (id) => {
+    const handleDocumentPreview = () => {
         history.push("/DocumentPreview");
-        documentsContext.setCurrentDocument(id);
+        documentsContext.setCurrentDocument(document);
     };
 
     return (
@@ -72,7 +69,7 @@ function DocumentsGrid({ document, previewURL }) {
                         }}
                     >
                         <button
-                            onClick={(e) =>handleDocumentPreview(document.key)}
+                            onClick={(e) => handleDocumentPreview()}
                             className={classes.previewButton}
                         >
                             <span>Preview</span>
@@ -85,7 +82,7 @@ function DocumentsGrid({ document, previewURL }) {
             {/* document title */}
             <div>
                 <h5>{document.title}</h5>
-                <h6>{document.course}</h6>
+                {/* <h6>{document.courseName}</h6> */}
             </div>
         </div>
     );
