@@ -1,5 +1,4 @@
 import React, { useReducer } from "react";
-import axios from "axios";
 import FeedsContext from "./feedsContext";
 import feedsReducer from "./feedsReducer";
 
@@ -27,7 +26,7 @@ const FeedsProvider = (props) => {
     const getFeeds = async () => {
         try {
             dispatch({ type: "SENDING_REQUEST" });
-            const response = await fetch("home/feed?userID=1");
+            const response = await fetch("/home/feed?userID=1");
             //console.log('text', await response.text())
             const result = await response.json();
             //console.log("feeds", result);
@@ -41,18 +40,21 @@ const FeedsProvider = (props) => {
         }
     };
 
-    const getFeedsByCourse = async (courseID) => {
+    const getFeedsByCourse = async (userID, courseID) => {
         try {
             dispatch({ type: "SENDING_REQUEST" });
-            // const response = await fetch("home/feed?userID=1");
-            // const result = await response.json();
-            // console.log("feeds", result);
-            //dispatch({ type: "SET_FEEDS", payload: result });
+            console.log(userID, courseID);
+            const response = await fetch(
+                `/course/discussion?userID=${userID}&courseID=${courseID}`
+            );
+            const result = await response.json();
+            console.log("feeds", result.posts);
+            dispatch({ type: "SET_FEEDS", payload: result.posts });
         } catch (err) {
             console.log("get feeds");
             console.log(err);
         }
-    }
+    };
 
     const addFeed = async (new_feed) => {
         let feedForDb = {
@@ -144,7 +146,6 @@ const FeedsProvider = (props) => {
                 addComment: addComment,
                 addReply: addReply,
                 getCommentsByPostID: getCommentsByPostID,
-                
             }}
         >
             {props.children}

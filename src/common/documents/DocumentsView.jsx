@@ -9,7 +9,6 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import DocumentGrid from "./DocumentGrid";
 import DocumentList from "./DocumentList";
-import DocumentPreview from "../../pages/preview/DocumentPreview";
 import DocumentsContext from "../../context/document/documentsContext";
 
 const useStyles = makeStyles({
@@ -20,44 +19,35 @@ const useStyles = makeStyles({
     },
 });
 
-function DocumentsGrid({ isGrid }) {
+function DocumentsView({ isGrid }) {
     const classes = useStyles();
-    let location = useLocation();
     const View = isGrid ? DocumentGrid : DocumentList;
-
     const documentsContext = useContext(DocumentsContext);
-    const [documents, setDocuments] = useState([]);
-    const previewRegex = new RegExp("/.*DocumentPreview.*");
-    const isPreviewing = false//previewRegex.test(location.pathname) ? true : false;
+    //const [documents, setDocuments] = useState(documents);
+    // const previewRegex = new RegExp("/.*DocumentPreview.*");
+    // const isPreviewing = false; //previewRegex.test(location.pathname) ? true : false;
 
-    const previewURL = `${location.pathname}/DocumentPreview`;
+    // const previewURL = `${location.pathname}/DocumentPreview`;
 
-    useEffect(() => {
-        setDocuments(documentsContext.documents);
-    }, []);
-
+    useEffect(() => {}, []);
 
     const renderDocuments = (documents) => {
         if (documents.length === 0) {
             return <div>No documents</div>;
         } else {
             return documents.map((document) => {
-                return (
-                    <View document={document} previewURL={previewURL} />
-                );
+                return <View document={document} />;
             });
         }
     };
 
     return (
         <div>
-            {isPreviewing ? (
-                <DocumentPreview />
-            ) : (
-                <div className={classes.root}>{renderDocuments(documents)}</div>
-            )}
+            <div className={classes.root}>
+                {renderDocuments(documentsContext.documents)}
+            </div>
         </div>
     );
 }
 
-export default DocumentsGrid;
+export default DocumentsView;

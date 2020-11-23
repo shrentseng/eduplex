@@ -8,6 +8,7 @@ import { theme_homepage, theme_course } from "../../common/theme";
 import PostFeeds from "../homepage/PostFeeds";
 import CourseButtons from "./CourseButtons";
 import Documents from "../../common/documents/Documents";
+import UserContext from "../../context/user/userContext";
 import CourseContext from "../../context/course/courseContext";
 import FeedsContext from "../../context/feed/feedsContext";
 import DocumentsContext from "../../context/document/documentsContext";
@@ -53,14 +54,15 @@ const useStyles = makeStyles(() => ({
 
 const Course = ({ CourseNumber, CourseID }) => {
     const classes = useStyles();
+    const userContext = useContext(UserContext);
     const documentsContext = useContext(DocumentsContext);
     const feedsContext = useContext(FeedsContext);
+    const courseURL = CourseNumber.replace(/\s+/g, "");
     useEffect(() => {
         console.log("course");
-        documentsContext.getDocumentsByCourse(CourseID);
-        feedsContext.getFeedsByCourse(CourseID);
-    }, []);
-    const courseURL = CourseNumber.replace(/\s+/g, "");
+        documentsContext.getDocumentsByCourse(userContext.userID, CourseID);
+        feedsContext.getFeedsByCourse(userContext.userID, CourseID);
+    }, [courseURL]);
     return (
         <ThemeProvider theme={theme_course}>
             <div className={classes.root}>
@@ -87,7 +89,7 @@ const Course = ({ CourseNumber, CourseID }) => {
                             className={classes.search}
                             placeholder="Search in Documents"
                         />
-                        <Documents />
+                        <Documents documents={documentsContext.documents} />
                     </Route>
                 </Switch>
             </div>

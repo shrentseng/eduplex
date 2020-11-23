@@ -1,4 +1,5 @@
 const setCourseDocuments = (course_documents, state) => {
+    console.log(course_documents);
     return {
         ...state,
         documents: course_documents,
@@ -28,39 +29,42 @@ const addDocument = (document, state) => {
 };
 
 const setCurrentDocument = (document, state) => {
-    return { 
+    return {
         ...state,
         currentDocument: document,
-    }
-}
+    };
+};
 
 const addComment = (comment, state) => {
-    let new_comments = [...state.currentDocument.Comment,{UserName:"Oscar", Content:comment.Message }]
+    let new_comments = [
+        ...state.currentDocument.Comment,
+        { UserName: "Oscar", Content: comment.Message },
+    ];
     let new_current_document = {
-        CourseName:state.currentDocument.CourseName,
+        CourseName: state.currentDocument.CourseName,
         Title: state.currentDocument.Title,
         Description: state.currentDocument.Description,
         UserName: state.currentDocument.UserName,
         UniversityName: state.currentDocument.UniversityName,
-        DownloadTimes : state.currentDocument.DownloadTimes,
+        DownloadTimes: state.currentDocument.DownloadTimes,
         FrontPage: state.currentDocument.FrontPage,
         Like: state.currentDocument.Like,
         Unlike: state.currentDocument.Unlike,
-        Comment:new_comments,
+        Comment: new_comments,
         key: state.currentDocument.key,
-    }
+    };
     return {
         ...state,
         currentDocument: new_current_document,
     };
-} 
+};
 
 const setSimilarDocuments = (similarDocuments, state) => {
     return {
         ...state,
         currentSimilarDocuments: similarDocuments,
-    }
-}
+    };
+};
 
 const reducer = (state, action) => {
     switch (action.type) {

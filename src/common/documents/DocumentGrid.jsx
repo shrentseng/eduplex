@@ -3,7 +3,6 @@ import { Route, Switch, useLocation, useHistory } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import GetAppIcon from "@material-ui/icons/GetApp";
 import DocumentsContext from "../../context/document/documentsContext";
-import DocumentPreview from "../../pages/preview/DocumentPreview"
 
 const useStyles = makeStyles({
     root: {
@@ -38,7 +37,7 @@ const useStyles = makeStyles({
     },
 });
 
-function DocumentsGrid({ document, previewURL }) {
+function DocumentsGrid({ document }) {
     const classes = useStyles();
 
     let location = useLocation();
@@ -46,9 +45,7 @@ function DocumentsGrid({ document, previewURL }) {
     const documentsContext = useContext(DocumentsContext);
     const [isHovered, setIsHovered] = useState(false);
 
-    useEffect(() => {
-
-    }, [location, history])
+    useEffect(() => {}, [location, history]);
 
     const handleDocumentPreview = () => {
         history.push("/DocumentPreview");
@@ -72,7 +69,7 @@ function DocumentsGrid({ document, previewURL }) {
                         }}
                     >
                         <button
-                            onClick={(e) =>handleDocumentPreview()}
+                            onClick={(e) => handleDocumentPreview()}
                             className={classes.previewButton}
                         >
                             <span>Preview</span>
@@ -84,8 +81,8 @@ function DocumentsGrid({ document, previewURL }) {
             </div>
             {/* document title */}
             <div>
-                <h5>{document.Title}</h5>
-                <h6>{document.CourseName}</h6>
+                <h5>{document.title}</h5>
+                {/* <h6>{document.courseName}</h6> */}
             </div>
         </div>
     );

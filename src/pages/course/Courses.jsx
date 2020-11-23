@@ -12,12 +12,13 @@ const Courses = () => {
         } else {
             return myCourses.map((university) => {
                 return university.Courses.map((course, i) => {
-                    const courseURL = course.CourseNumber.replace(/\s+/g, '')
+                    const courseURL = course.CourseNumber.replace(/\s+/g, "");
                     return (
                         <Route key={i} path={`/Courses/${courseURL}`}>
-                            <FeedsProvider>
-                                <Course CourseNumber={course.CourseNumber} CourseID={course.CourseID}/>
-                            </FeedsProvider>
+                            <Course
+                                CourseNumber={course.CourseNumber}
+                                CourseID={course.CourseID}
+                            />
                         </Route>
                     );
                 });
@@ -26,6 +27,6 @@ const Courses = () => {
     };
 
     return <Switch>{courseList(courseContext.myCourses)}</Switch>;
-}
+};
 
 export default Courses;

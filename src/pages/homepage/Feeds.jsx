@@ -5,7 +5,7 @@ import FeedsContext from "../../context/feed/feedsContext";
 const Feeds = () => {
     //useContext
     const feedsContext = useContext(FeedsContext);
-    
+
     useEffect(() => {
         feedsContext.getFeeds();
     }, []);
@@ -14,20 +14,23 @@ const Feeds = () => {
         if (feeds.length === 0) {
             return <div>No Feed</div>;
         } else {
-            return feeds.slice(0).reverse().map((feed) => {
-                return (
-                    <Feed
-                        Username={feed.FirstName + " " + feed.LastName}
-                        Message={feed.Message}
-                        Likes={feed.Likes}
-                        Unlikes={feed.Unlikes}
-                        ChildComments={feed.ChildComments}
-                        key={feed.PostID}
-                        PostID={feed.PostID}
-                        CourseName={feed.CourseName}
-                    />
-                );
-            });
+            return feeds
+                .slice(0)
+                .reverse()
+                .map((feed) => {
+                    return (
+                        <Feed
+                            username={feed.firstName + " " + feed.lastName}
+                            message={feed.message}
+                            likes={feed.likes}
+                            unlikes={feed.unlikes}
+                            childComments={feed.childComments}
+                            key={feed.postID}
+                            postID={feed.postID}
+                            courseName={feed.courseName}
+                        />
+                    );
+                });
         }
     };
     return <div>{renderFeeds(feedsContext.feeds)}</div>;

@@ -5,63 +5,62 @@ import documentsReducer from "./documentsReducer";
 const DocumentsProvider = (props) => {
     const initialState = {
         documents: [
-            {
-                CourseName: "PHYSICS 101",
-                Title: "Theory of Relativity",
-                Description: "theory developed by Albert Einstein–the greatest scienctist.",
-                UserName: "Jim Corey",
-                UniversityName: "University of California, Los Angeles",
-                DownloadTimes : "Spring",
-                Like: 5,
-                Unlike: 1,
-                Comment:[
-                    {
-                    UserName: "Oscar",
-                    Content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, deleniti dolorum."
-                    },
-                ],
-                key:0,
-            },
-            {
-                CourseName: "MATH 61",
-                Title: "Discrete Math Midterm 1 ",
-                Description: "Review on Discrete Math",
-                UserName: "Jim Corey",
-                UniversityName: "University of California, Los Angeles",
-                DownloadTimes : "Spring",
-                Like: 3,
-                Unlike: 2,
-                Comment:[
-                    {
-                    UserName: "Oscar",
-                    Content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, deleniti dolorum."
-                    },
-                    {
-                    UserName: "Morris", 
-                    Content: " Quas fuga beatae consequatur at ratione, culpa praesentium illo laudantium est perspiciatis odio, in placeat dignissimos quos tempore quaerat!"
-                    },
-                    {
-                    UserName: "Shren", 
-                    Content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, deleniti dolorum.",
-                    },
-                ],
-                key:1,
-            },
+            // {
+            //     CourseName: "PHYSICS 101",
+            //     Title: "Theory of Relativity",
+            //     Description: "theory developed by Albert Einstein–the greatest scienctist.",
+            //     UserName: "Jim Corey",
+            //     UniversityName: "University of California, Los Angeles",
+            //     DownloadTimes : "Spring",
+            //     Like: 5,
+            //     Unlike: 1,
+            //     Comment:[
+            //         {
+            //         UserName: "Oscar",
+            //         Content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, deleniti dolorum."
+            //         },
+            //     ],
+            //     key:0,
+            // },
+            // {
+            //     CourseName: "MATH 61",
+            //     Title: "Discrete Math Midterm 1 ",
+            //     Description: "Review on Discrete Math",
+            //     UserName: "Jim Corey",
+            //     UniversityName: "University of California, Los Angeles",
+            //     DownloadTimes : "Spring",
+            //     Like: 3,
+            //     Unlike: 2,
+            //     Comment:[
+            //         {
+            //         UserName: "Oscar",
+            //         Content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, deleniti dolorum."
+            //         },
+            //         {
+            //         UserName: "Morris",
+            //         Content: " Quas fuga beatae consequatur at ratione, culpa praesentium illo laudantium est perspiciatis odio, in placeat dignissimos quos tempore quaerat!"
+            //         },
+            //         {
+            //         UserName: "Shren",
+            //         Content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, deleniti dolorum.",
+            //         },
+            //     ],
+            //     key:1,
+            // },
         ],
-        currentDocument: 
-            {
-                CourseName:"",
-                Title: "",
-                Description: "",
-                UserName: "",
-                UniversityName: "",
-                DownloadTimes : "",
-                FrontPage: "",
-                Like: 0,
-                Unlike: 0,
-                Comment:[],
-                key:null,
-            },
+        currentDocument: {
+            CourseName: "",
+            Title: "",
+            Description: "",
+            UserName: "",
+            UniversityName: "",
+            DownloadTimes: "",
+            FrontPage: "",
+            Like: 0,
+            Unlike: 0,
+            Comment: [],
+            key: null,
+        },
         currentSimilarDocuments: [],
         loading: true,
     };
@@ -91,18 +90,20 @@ const DocumentsProvider = (props) => {
         // }
     };
 
-    const getDocumentsByCourse = (courseID) => {
+    const getDocumentsByCourse = async (userID, courseID) => {
         try {
-            // dispatch({ type: "SENDING_REQUEST" });
-            // const response = await fetch("");
-            // const result = await response.json();
-            // dispatch({ type: "REQUEST_FINISHED" });
-            // dispatch({ type: "SET_COURSE_DOCUMENTS", payload: result });
+            dispatch({ type: "SENDING_REQUEST" });
+            const response = await fetch(
+                `/course/document?userID=${userID}&courseID=${courseID}`
+            );
+            const result = await response.json();
+            console.log(result);
+            dispatch({ type: "REQUEST_FINISHED" });
+            dispatch({ type: "SET_COURSE_DOCUMENTS", payload: result });
         } catch (err) {
-            console.error("get document by course err")
+            console.error("get document by course err");
         }
-
-    }
+    };
 
     const addDocument = async (new_document) => {
         fetch("/home/document", {
@@ -118,10 +119,8 @@ const DocumentsProvider = (props) => {
 
     const setCurrentDocument = async (document) => {
         try {
-            dispatch({ type: "SET_CURRENT_DOCUMENT", payload: document})
-        }
-        catch(err)
-        {
+            dispatch({ type: "SET_CURRENT_DOCUMENT", payload: document });
+        } catch (err) {
             console.log("setCurrentDocument");
             console.log(err);
         }
@@ -150,7 +149,7 @@ const DocumentsProvider = (props) => {
             console.log(err)
         }
         */
-    }
+    };
 
     const getSimilarDocuments = async () => {
         /*try{
@@ -164,11 +163,11 @@ const DocumentsProvider = (props) => {
             console.log("getSimilarDocuments")
             console.log(err)
         }*/
-    }
+    };
 
     const downloadDocument = async (documentID) => {
         try {
-            console.log(documentID)
+            console.log(documentID);
             const response = await fetch(
                 `viewdoc/download?documentID=${documentID}`
             );
@@ -215,7 +214,7 @@ const DocumentsProvider = (props) => {
                 downloadDocument: downloadDocument,
                 uploadDocument: uploadDocument,
                 addComment: addComment,
-                getSimilarDocuments: getSimilarDocuments
+                getSimilarDocuments: getSimilarDocuments,
             }}
         >
             {props.children}
