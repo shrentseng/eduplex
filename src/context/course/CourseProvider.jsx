@@ -16,6 +16,7 @@ const CourseProvider = (props) => {
             fetch("mycourse?userID=1") //id
                 .then((res) => res.json())
                 .then((result) => {
+                    console.log(result);
                     dispatch({ type: "SET_MY_COURSES", payload: result });
                 });
         } catch (err) {
@@ -36,7 +37,7 @@ const CourseProvider = (props) => {
             console.log("get courses");
             console.log(err);
         }
-    }
+    };
 
     const addCourse = async (course) => {
         try {
