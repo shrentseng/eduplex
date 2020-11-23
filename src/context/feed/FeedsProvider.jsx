@@ -121,9 +121,29 @@ const FeedsProvider = (props) => {
         } catch (err) {}
     };
 
-    const addComment = async (comment) => {
+    const addComment = async (new_comment) => {
+        console.log(new_comment)
+        let feedForDb = {
+            postID: new_comment.postID,
+            message: new_comment.message,
+            userID: new_comment.userID,
+        };
+
+        dispatch({ type: "ADD_COMMENT", payload: new_comment });
+
         try {
-            dispatch({ type: "ADD_COMMENT", payload: comment });
+            const response = await fetch(
+                "/home/feed", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(feedForDb),
+                });
+            if(response.ok)
+            {
+                //dispatch({ type: "ADD_COMMENT", payload: new_comment });
+            }
         } catch (err) {}
     };
 

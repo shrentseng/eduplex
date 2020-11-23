@@ -48,8 +48,9 @@ const DocumentsProvider = (props) => {
             //     key:1,
             // },
         ],
+        
         currentDocument: {
-            CourseName: "",
+            /*CourseName: "",
             Title: "",
             Description: "",
             UserName: "",
@@ -59,8 +60,9 @@ const DocumentsProvider = (props) => {
             Like: 0,
             Unlike: 0,
             Comment: [],
-            key: null,
+            key: null,*/
         },
+        currentComments: [],
         currentSimilarDocuments: [],
         loading: true,
     };
@@ -117,13 +119,46 @@ const DocumentsProvider = (props) => {
         });
     };
 
-    const setCurrentDocument = async (document) => {
+    const setCurrentInfo = async (document) => {
+        console.log(document)
         try {
-            dispatch({ type: "SET_CURRENT_DOCUMENT", payload: document });
+            const response = await fetch(`/viewdoc?documentID=${document.documentID}`);
+            const result = await response.json();
+            console.log(result)
+            dispatch({ type: "SET_CURRENT_INFO", payload: result });
+
         } catch (err) {
-            console.log("setCurrentDocument");
+            console.log("setCurrentInfo");
             console.log(err);
         }
+    };
+
+    const getCurrentComments = async (documentID) => {
+        /*try
+        {
+            const response = await fetch(`viewdoc/comments?documentID=${documentID}`);
+            const result = await response.json();
+            dispatch({ type: "SET_CURRENT_COMMENTS", payload: result})
+        }
+        catch(err)
+        {
+            console.log("setCurrentComments")
+            console.log(err)
+        }*/
+    }
+
+    const getSimilarDocuments = async () => {
+        /*try{
+            fetch(`viewdoc/similar?user=?document_id=?`)
+            .then(
+                (result) => {
+                dispatch({type: "SET_SIMILAR_DOCUMENTS", payload: result})
+            });
+        }
+        catch(err){
+            console.log("getSimilarDocuments")
+            console.log(err)
+        }*/
     };
 
     const addComment = async (new_comment) => {
@@ -149,20 +184,6 @@ const DocumentsProvider = (props) => {
             console.log(err)
         }
         */
-    };
-
-    const getSimilarDocuments = async () => {
-        /*try{
-            fetch(`viewdoc/similar?user=?document_id=?`)
-            .then(
-                (result) => {
-                dispatch({type: "SET_SIMILAR_DOCUMENTS", payload: result})
-            });
-        }
-        catch(err){
-            console.log("getSimilarDocuments")
-            console.log(err)
-        }*/
     };
 
     const downloadDocument = async (documentID) => {
@@ -206,13 +227,15 @@ const DocumentsProvider = (props) => {
                 documents: state.documents,
                 loading: state.loading,
                 currentDocument: state.currentDocument,
+                currentComments: state.currentComments,
                 currentSimilarDocuments: state.currentSimilarDocuments,
                 getDocuments: getDocuments,
                 getDocumentsByCourse: getDocumentsByCourse,
                 addDocument: addDocument,
-                setCurrentDocument: setCurrentDocument,
+                setCurrentInfo: setCurrentInfo,
                 downloadDocument: downloadDocument,
                 uploadDocument: uploadDocument,
+                getCurrentComments: getCurrentComments,
                 addComment: addComment,
                 getSimilarDocuments: getSimilarDocuments,
             }}

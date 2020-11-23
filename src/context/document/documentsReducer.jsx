@@ -28,10 +28,10 @@ const addDocument = (document, state) => {
     };
 };
 
-const setCurrentDocument = (document, state) => {
+const setCurrentInfo = (info, state) => {
     return {
         ...state,
-        currentDocument: document,
+        currentDocument: info,
     };
 };
 
@@ -66,6 +66,13 @@ const setSimilarDocuments = (similarDocuments, state) => {
     };
 };
 
+const setCurrentComments = (comments, state) => {
+    return {
+        ...state,
+        currentComments: comments,
+    };
+}
+
 const reducer = (state, action) => {
     switch (action.type) {
         case "SET_COURSE_DOCUMENTS":
@@ -76,12 +83,14 @@ const reducer = (state, action) => {
             return requestFinished(state);
         case "ADD_DOCUMENT":
             return addDocument(action.payload, state);
-        case "SET_CURRENT_DOCUMENT":
-            return setCurrentDocument(action.payload, state);
+        case "SET_CURRENT_INFO":
+            return setCurrentInfo(action.payload, state);
         case "ADD_COMMENT":
             return addComment(action.payload, state);
         case "SET_SIMILAR_DOCUMENTS":
             return setSimilarDocuments(action.payload, state);
+        case "SET_CURRENT_COMMENTS":
+            return setCurrentComments(action.payload, state);
         default:
             return state;
     }

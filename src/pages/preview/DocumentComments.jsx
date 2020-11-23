@@ -10,7 +10,8 @@ const DocumentComments = () => {
     const [content, setContent] = useState("");
 
     const renderComments = (comments) => {
-        return comments.map((details, i) => {
+        console.log(documentsContext.currentDocument)
+        /*return comments.map((details, i) => {
             if (i < 2) {
                 return (
                     <SimpleComment
@@ -20,7 +21,7 @@ const DocumentComments = () => {
                     />
                 );
             }
-        });
+        });*/
     };
     const onKeyPress = (e) => {
         if (e.keyCode === 13 && e.target.value) {

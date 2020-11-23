@@ -15,12 +15,7 @@ const CourseProvider = (props) => {
         try {
             dispatch({ type: "SENDING_REQUEST" });
             const response = await fetch("mycourse?userID=1"); //fix id
-            //console.log(response);
             const result = await response.json();
-            // const response = await axios.get("mycourse?userID=1")
-            // console.log(response)
-            // const result = await response.data;
-            console.log("get My Courses", result);
             dispatch({ type: "SET_MY_COURSES", payload: result });
         } catch (err) {
             console.error("get my courses err");
