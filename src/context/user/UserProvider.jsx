@@ -4,7 +4,7 @@ import userReducer from "./userReducer";
 
 const UserProvider = (props) => {
     const initialState = {
-        userID: 1,
+        userID: -1,
         postsLiked: [],
         postsDisliked: [],
         loading: true,

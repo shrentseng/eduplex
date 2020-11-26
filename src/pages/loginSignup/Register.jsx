@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Register1 from "./Register1";
 import Register2 from "./Register2";
 import Register3 from "./Register3";
-import SignIn from "./SignIn";
 import "./Register.css";
 import RegisterProvider from "../../context/register/RegisterProvider";
 

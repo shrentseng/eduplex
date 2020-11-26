@@ -1,27 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { withRouter } from "react-router";
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    useLocation,
-    useHistory,
+  Switch,
+  Route,
+  useLocation,
 } from "react-router-dom";
 import "./assets/bootstrap.min.css";
-import { withStyles, makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/core/styles";
 import {
-    theme_document_upload,
-    theme_sidebar,
-    theme_homepage,
-    theme_leaderboard,
+  theme_document_upload,
+  theme_sidebar,
+  theme_homepage,
+  theme_leaderboard,
 } from "./common/theme";
 import Register from "./pages/loginSignup/Register";
 import Navbar from "./common/Nav&Side/Navbar";
 import SignIn from "./pages/loginSignup/SignIn";
 import Homepage from "./pages/homepage/Homepage";
 import SideBar from "./common/Nav&Side/SideBar";
-import Course from "./pages/course/Course";
 import Profile from "./pages/profile/Profile";
 import MyCourse from "./pages/my_courses/MyCourses";
 import CourseResults from "./pages/search_results/CourseResults";
@@ -39,135 +36,126 @@ import CourseProvider from "./context/course/CourseProvider";
 import DocumentsProvider from "./context/document/DocumentsProvider";
 
 const useStyles = makeStyles({
-    root: {
-        display: "flex",
-        backgroundColor: "#F7F7F7",
-        width: "100%",
-        minHeight: "100vh",
-        height: "100%",
-    },
-    main: {
-        width: "100%",
-        marginTop: "3.7rem", //height of navbar
-    },
-    mainWithSidebar: {
-        width: "100%",
-        marginTop: "3.7rem", //height of navbar
-        display: "grid",
-        gridTemplateColumns:
-            "minmax(14rem, 1fr) minmax(27rem, 6fr) minmax(18rem, 2fr)",
-    },
+  root: {
+    display: "flex",
+    backgroundColor: "#F7F7F7",
+    width: "100%",
+    minHeight: "100vh",
+    height: "100%",
+  },
+  main: {
+    width: "100%",
+    marginTop: "3.7rem", //height of navbar
+  },
+  mainWithSidebar: {
+    width: "100%",
+    marginTop: "3.7rem", //height of navbar
+    display: "grid",
+    gridTemplateColumns:
+      "minmax(14rem, 1fr) minmax(27rem, 6fr) minmax(18rem, 2fr)",
+  },
 });
 
 const App = () => {
-    const classes = useStyles();
-    let location = useLocation();
-    let mainStyle = classes.main;
-    const hasSidebarReg = new RegExp(
-        "/(DocumentPreview|DocumentUpload|SignIn|Register)"
-    );
-    const hasSidebar = !hasSidebarReg.test(location.pathname);
-    if (hasSidebar) {
-        mainStyle = classes.mainWithSidebar;
-    } else {
-        mainStyle = classes.main;
-    }
+  const classes = useStyles();
+  let location = useLocation();
+  let mainStyle = classes.main;
+  const hasSidebarReg = new RegExp(
+    "/(DocumentPreview|DocumentUpload|SignIn|Register)"
+  );
+  const hasSidebar = !hasSidebarReg.test(location.pathname);
+  if (hasSidebar) {
+    mainStyle = classes.mainWithSidebar;
+  } else {
+    mainStyle = classes.main;
+  }
 
-    return (
-        <UserProvider>
-            <FeedsProvider>
-                <CourseProvider>
-                    <DocumentsProvider>
-                        <div className={classes.root}>
-                            <Navbar />
-                            <div className={mainStyle} id="main">
-                                {hasSidebar ? (
-                                    <div
-                                        className={classes.sidebar}
-                                        id="sidebar"
-                                    >
-                                        <ThemeProvider theme={theme_sidebar}>
-                                            <SideBar />
-                                        </ThemeProvider>
-                                    </div>
-                                ) : (
-                                    <div />
-                                )}
-                                <div className={classes.page} id="page">
-                                    <Switch>
-                                        <Route exact path={["/", "/Homepage"]}>
-                                            <ThemeProvider
-                                                theme={theme_homepage}
-                                            >
-                                                <Homepage />
-                                            </ThemeProvider>
-                                        </Route>
-                                        <Route path="/SignIn">
-                                            <SignIn />
-                                        </Route>
-                                        <Route path="/Register">
-                                            <Register />
-                                        </Route>
-                                        <Route path="/Courses">
-                                            <Courses />
-                                        </Route>
-                                        <Route path="/Profile">
-                                            <Profile />
-                                        </Route>
-                                        <Route path="/EditProfile">
-                                            <EditProfile />
-                                        </Route>
-                                        <Route path="/MyCourses">
-                                            <MyCourse />
-                                        </Route>
-                                        <Route path="/AddCourse">
-                                            <AddCourse />
-                                        </Route>
-                                        <Route path="/CourseResults">
-                                            <CourseResults />
-                                        </Route>
-                                        <Route path="/DocumentResults">
-                                            <DocumentResults />
-                                        </Route>
-                                        <Route path="/DocumentUpload">
-                                            <ThemeProvider
-                                                theme={theme_document_upload}
-                                            >
-                                                <DocumentUpload />
-                                            </ThemeProvider>
-                                        </Route>
-                                        <Route path="/DocumentPreview">
-                                            <DocumentPreview />
-                                        </Route>
-                                        <Route path="/EduPoints">
-                                            <EduPoints />
-                                        </Route>
-                                    </Switch>
-                                </div>
-                                {location.pathname == "/" && (
-                                    <div id="rightPannel">
-                                        <Route>
-                                            <ThemeProvider
-                                                theme={theme_leaderboard}
-                                            >
-                                                <RightPannel />
-                                            </ThemeProvider>
-                                        </Route>
-                                        <Route path="/DocumentPreview">
-                                            <DocumentPreview />
-                                        </Route>
-                                        <Route path="/EduPoints">
-                                            <EduPoints />
-                                        </Route>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                    </DocumentsProvider>
-                </CourseProvider>
-            </FeedsProvider>
-        </UserProvider>
-    );
+  return (
+    <UserProvider>
+      <FeedsProvider>
+        <CourseProvider>
+          <DocumentsProvider>
+            <div className={classes.root}>
+              <Navbar />
+              <div className={mainStyle} id="main">
+                {hasSidebar ? (
+                  <div className={classes.sidebar} id="sidebar">
+                    <ThemeProvider theme={theme_sidebar}>
+                      <SideBar />
+                    </ThemeProvider>
+                  </div>
+                ) : (
+                  <div />
+                )}
+                <div className={classes.page} id="page">
+                  <Switch>
+                    <Route exact path={["/", "/Homepage"]}>
+                      <ThemeProvider theme={theme_homepage}>
+                        <Homepage />
+                      </ThemeProvider>
+                    </Route>
+                    <Route path="/SignIn">
+                      <SignIn />
+                    </Route>
+                    <Route path="/Register">
+                      <Register />
+                    </Route>
+                    <Route path="/Courses">
+                      <Courses />
+                    </Route>
+                    <Route path="/Profile">
+                      <Profile />
+                    </Route>
+                    <Route path="/EditProfile">
+                      <EditProfile />
+                    </Route>
+                    <Route path="/MyCourses">
+                      <MyCourse />
+                    </Route>
+                    <Route path="/AddCourse">
+                      <AddCourse />
+                    </Route>
+                    <Route path="/CourseResults">
+                      <CourseResults />
+                    </Route>
+                    <Route path="/DocumentResults">
+                      <DocumentResults />
+                    </Route>
+                    <Route path="/DocumentUpload">
+                      <ThemeProvider theme={theme_document_upload}>
+                        <DocumentUpload />
+                      </ThemeProvider>
+                    </Route>
+                    <Route path="/DocumentPreview">
+                      <DocumentPreview />
+                    </Route>
+                    <Route path="/EduPoints">
+                      <EduPoints />
+                    </Route>
+                  </Switch>
+                </div>
+                {location.pathname === "/" && (
+                  <div id="rightPannel">
+                    <Route>
+                      <ThemeProvider theme={theme_leaderboard}>
+                        <RightPannel />
+                      </ThemeProvider>
+                    </Route>
+                    <Route path="/DocumentPreview">
+                      <DocumentPreview />
+                    </Route>
+                    <Route path="/EduPoints">
+                      <EduPoints />
+                    </Route>
+                  </div>
+                )}
+              </div>
+            </div>
+          </DocumentsProvider>
+        </CourseProvider>
+      </FeedsProvider>
+    </UserProvider>
+  );
 };
 
 export default withRouter(App);
