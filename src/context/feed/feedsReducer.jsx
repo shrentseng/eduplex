@@ -66,6 +66,7 @@ const addComment = (comment, state) => {
         }
         return feed;
     });
+    console.log(newFeeds)
     return {
         ...state,
         feeds: newFeeds,

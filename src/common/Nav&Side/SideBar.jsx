@@ -57,7 +57,7 @@ const useStyles = makeStyles({
     },
 });
 
-function SideBar() {
+const SideBar  = () => {
     const classes = useStyles();
     const [newsfeedIcon, setNewsfeedIcon] = useState(NewsfeedIcon);
     const [courseIcon, setCourseIcon] = useState(MyCoursesIcon);
