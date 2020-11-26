@@ -60,14 +60,13 @@ const handleDislike = ({ postID, active }, state) => {
 const addComment = (comment, state) => {
     let newFeeds = state.feeds.map((feed) => {
         if (feed.postID === comment.postID) {
-            console.log(comment.message);
             let newFeed = { ...feed };
             newFeed.childComments = [...newFeed.childComments, comment];
             return newFeed;
         }
         return feed;
     });
-    console.log(newFeeds);
+    console.log(newFeeds)
     return {
         ...state,
         feeds: newFeeds,

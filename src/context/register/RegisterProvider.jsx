@@ -36,8 +36,7 @@ const RegisterProvider = (props) => {
             }
             return response.ok;
         } catch (err) {
-            console.log("create Account");
-            console.log(err);
+            console.error("create Account", err);
             return err.status;
         }
     };

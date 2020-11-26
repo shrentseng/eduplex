@@ -59,7 +59,6 @@ const Course = ({ CourseNumber, CourseID }) => {
     const feedsContext = useContext(FeedsContext);
     const courseURL = CourseNumber.replace(/\s+/g, "");
     useEffect(() => {
-        console.log("course");
         documentsContext.getDocumentsByCourse(userContext.userID, CourseID);
         feedsContext.getFeedsByCourse(userContext.userID, CourseID);
     }, [courseURL]);

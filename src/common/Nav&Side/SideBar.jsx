@@ -1,13 +1,14 @@
-import React, { useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import NewsfeedIcon from "../../assets/newsfeed.svg";
 import MyCoursesIcon from "../../assets/myCourses.svg";
+import NewsfeedIconActive from "../../assets/newsfeedActive.svg";
+import MyCoursesIconActive from "../../assets/myCoursesActive.svg";
 import UserContext from "../../context/user/userContext";
 import CourseContext from "../../context/course/courseContext";
 
@@ -56,9 +57,10 @@ const useStyles = makeStyles({
     },
 });
 
-function SideBar() {
+const SideBar  = () => {
     const classes = useStyles();
-    //fecth courses data
+    const [newsfeedIcon, setNewsfeedIcon] = useState(NewsfeedIcon);
+    const [courseIcon, setCourseIcon] = useState(MyCoursesIcon);
     const userContext = useContext(UserContext);
     const courseContext = useContext(CourseContext);
 
@@ -100,18 +102,32 @@ function SideBar() {
         <div className={classes.root}>
             <div className={classes.toolbar} />
             <List className={classes.list}>
-                <NavLink to="/" exact activeClassName={classes.active}>
+                <NavLink to="/" exact activeClassName={classes.active}
+                    isActive={(match) => {
+                        match ? 
+                        setNewsfeedIcon(NewsfeedIconActive) :
+                        setNewsfeedIcon(NewsfeedIcon)
+                        return match
+                    }}
+                >
                     <ListItem button className={classes.button}>
                         <ListItemIcon className={classes.icon}>
-                            <img src={NewsfeedIcon} alt="" height="100%" />
+                            <img src={newsfeedIcon} alt="" height="100%" />
                         </ListItemIcon>
                         <Typography variant="h2">Newsfeed</Typography>
                     </ListItem>
                 </NavLink>
-                <NavLink to="/MyCourses" exact activeClassName={classes.active}>
+                <NavLink to="/MyCourses" exact activeClassName={classes.active}
+                    isActive={(match) => {
+                        match ? 
+                        setCourseIcon(MyCoursesIconActive) :
+                        setCourseIcon(MyCoursesIcon)
+                        return match
+                    }}
+                >
                     <ListItem button className={classes.button}>
                         <ListItemIcon className={classes.icon}>
-                            <img src={MyCoursesIcon} alt="" height="100%" />
+                            <img src={courseIcon} alt="" height="100%" />
                         </ListItemIcon>
                         <Typography variant="h2">My Courses</Typography>
                     </ListItem>

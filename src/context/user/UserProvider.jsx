@@ -4,7 +4,7 @@ import userReducer from "./userReducer";
 
 const UserProvider = (props) => {
     const initialState = {
-        userID: -1,
+        userID: 1,
         postsLiked: [],
         postsDisliked: [],
         loading: true,
@@ -28,7 +28,6 @@ const UserProvider = (props) => {
         dispatch({ type: "LOGGING_IN" });
         //fetching
         const body = { email: email, password: password };
-        console.log(body);
         const response = await fetch("login", {
             method: "POST",
             headers: {
@@ -36,7 +35,6 @@ const UserProvider = (props) => {
             },
             body: JSON.stringify(body),
         });
-        console.log(response);
         if (response.ok) {
             console.log("succesfully logged in");
         } else {

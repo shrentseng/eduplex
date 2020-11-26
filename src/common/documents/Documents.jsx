@@ -58,8 +58,6 @@ const Documents = () => {
     const [documents, setDocuments] = useState([]);
 
     useEffect(() => {
-        //console.log(documentsContext);
-        //setDocuments(temp);
     }, []);
 
     const handleSelectChange = () => {};
