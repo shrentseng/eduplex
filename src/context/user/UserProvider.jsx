@@ -47,21 +47,21 @@ const UserProvider = (props) => {
         //dispatch({ type: "SET_USER", payload: userID });
     };
 
-    const handleLikePost = async (PostID, active) => {
+    const handleLikePost = async (postID, active) => {
         try {
             dispatch({
                 type: "HANDLE_LIKE_POST",
-                payload: { PostID, active },
+                payload: { postID, active },
             });
         } catch (err) {}
         return "done";
     };
 
-    const handleDislikePost = async (PostID, active) => {
+    const handleDislikePost = async (postID, active) => {
         try {
             dispatch({
                 type: "HANDLE_DISLIKE_POST",
-                payload: { PostID, active },
+                payload: { postID, active },
             });
         } catch (err) {}
     };

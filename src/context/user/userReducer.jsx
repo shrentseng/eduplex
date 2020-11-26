@@ -7,16 +7,16 @@ function setUser(userID, state) {
     };
 }
 
-const handleLikePost = ({ PostID, active }, state) => {
+const handleLikePost = ({ postID, active }, state) => {
     if (active) {
         //todo: prevent multiple likes, check if PostID is in the array
         return {
             ...state,
-            postsLiked: [...state.postsLiked, PostID],
+            postsLiked: [...state.postsLiked, postID],
         };
     } else {
         const newPostsLiked = state.postsLiked;
-        const index = newPostsLiked.indexOf(PostID);
+        const index = newPostsLiked.indexOf(postID);
         if (index > -1) {
             newPostsLiked.splice(index, 1);
         }
@@ -26,16 +26,16 @@ const handleLikePost = ({ PostID, active }, state) => {
         };
     }
 };
-const handleDislikePost = ({ PostID, active }, state) => {
+const handleDislikePost = ({ postID, active }, state) => {
     if (active) {
         //todo: prevent multiple dislikes, check if PostID is in the array
         return {
             ...state,
-            postsDisliked: [...state.postsDisliked, PostID],
+            postsDisliked: [...state.postsDisliked, postID],
         };
     } else {
         const newPostsDisliked = state.postsDisliked;
-        const index = newPostsDisliked.indexOf(PostID);
+        const index = newPostsDisliked.indexOf(postID);
         if (index > -1) {
             newPostsDisliked.splice(index, 1);
         }
@@ -45,7 +45,6 @@ const handleDislikePost = ({ PostID, active }, state) => {
         };
     }
 };
-
 
 export default (state, action) => {
     switch (action.type) {
