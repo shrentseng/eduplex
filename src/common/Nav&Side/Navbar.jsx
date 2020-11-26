@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import Select from "react-select";
 import { makeStyles } from "@material-ui/core/styles";
@@ -11,6 +11,8 @@ import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 
 import AvatarNavbar from "./AvatarNavbar";
+
+import UserContext from "./../../context/user/userContext";
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -118,10 +120,10 @@ const options = [
     { value: 2, label: "Discussion" },
 ];
 
-function Navbar({ onSearch }) {
+const Navbar = ({ onSearch }) => {
     const classes = useStyles();
     let history = useHistory();
-
+    const userContext = useContext(UserContext);
     const [selected, setSelected] = useState();
     const [searchValue, setSearchValue] = useState("");
 
@@ -144,10 +146,8 @@ function Navbar({ onSearch }) {
         setSearchValue(event.target.value);
     };
 
-    const searchFunc = (event) => {};
-
-    return (
-        <AppBar className={classes.root}>
+    const renderNavbar = () => {
+        return (
             <div className={classes.grid}>
                 <div className={classes.logo}>
                     {/* //logo */}
@@ -200,8 +200,31 @@ function Navbar({ onSearch }) {
                     <AvatarNavbar />
                 </div>
             </div>
+        );
+    };
+
+    const renderLogo = () => {
+        return (
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%'}}>
+                <img
+                    style={{ height: "36px", margin: "0.25rem" }}
+                    src={Logo}
+                    alt=""
+                />
+                <img
+                    style={{ height: "36px", margin: "0.25rem" }}
+                    src={LogoWord}
+                    alt=""
+                />
+            </div>
+        );
+	};
+	
+    return (
+        <AppBar className={classes.root}>
+            {userContext.userID !== -1 ? renderNavbar() : renderLogo() }
         </AppBar>
     );
-}
+};
 
 export default Navbar;

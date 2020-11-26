@@ -1,7 +1,7 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import { Paper, Typography } from "@material-ui/core";
-import SmallDoc from "../../assets/smallDoc.svg";
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles';
+import { Paper, Typography } from '@material-ui/core'
+import SmallDoc from '../../assets/smallDoc.svg'
 
 const useStyles = makeStyles(() => ({
     root: {
