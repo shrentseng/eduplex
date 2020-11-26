@@ -86,7 +86,7 @@ export default function SignIn() {
         e.preventDefault();
         const ok = await userContext.signIn(email, password);
         if (ok) {
-            history.push("/Homepage");
+            history.push("/");
         } else {
             alert("incorrect email and password");
         }

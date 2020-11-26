@@ -24,10 +24,6 @@ const useStyles = makeStyles(() => ({
 
 function MyCourses() {
     const classes = useStyles();
-    const [colleges, setColleges] = useState([
-        "University of California, Los Angeles",
-        "University Of California: Berkeley",
-    ]);
     const userContext = useContext(UserContext);
     const courseContext = useContext(CourseContext);
 

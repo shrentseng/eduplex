@@ -31,8 +31,7 @@ const CourseProvider = (props) => {
                     dispatch({ type: "SET_COURSES", payload: result });
                 });
         } catch (err) {
-            console.log("get courses");
-            console.log(err);
+            console.error("get courses err", err);
         }
     };
 
@@ -49,17 +48,15 @@ const CourseProvider = (props) => {
                 if (response.ok) {
                     dispatch({ type: "ADD_COURSE", payload: course });
                 } else {
-                    console.log(response.status);
+                    console.error(response.status);
                 }
             });
         } catch (err) {
-            console.log("add courses");
-            console.log(err);
+            console.error("add courses", err);
         }
     };
 
     const deleteCourse = async (body) => {
-        console.log(body);
         try {
             fetch("mycourse", {
                 method: "DELETE",
@@ -70,8 +67,7 @@ const CourseProvider = (props) => {
             });
             dispatch({ type: "DELETE_COURSE", payload: body.courseID });
         } catch (err) {
-            console.log("Delete courses");
-            console.log(err);
+            console.error("Delete courses", err);
         }
     };
 
@@ -79,8 +75,7 @@ const CourseProvider = (props) => {
         try {
             dispatch({ type: "SET_CURRENT_UNIVERSITY", payload: university });
         } catch (err) {
-            console.log("set Current University");
-            console.log(err);
+            console.error("set Current University", err);
         }
     };
 

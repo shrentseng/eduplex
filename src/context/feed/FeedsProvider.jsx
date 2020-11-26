@@ -43,16 +43,13 @@ const FeedsProvider = (props) => {
     const getFeedsByCourse = async (userID, courseID) => {
         try {
             dispatch({ type: "SENDING_REQUEST" });
-            console.log(userID, courseID);
             const response = await fetch(
                 `/course/discussion?userID=${userID}&courseID=${courseID}`
             );
             const result = await response.json();
-            console.log("feeds", result.posts);
             dispatch({ type: "SET_FEEDS", payload: result.posts });
         } catch (err) {
-            console.log("get feeds");
-            console.log(err);
+            console.error("get feeds", err);
         }
     };
 
@@ -63,7 +60,6 @@ const FeedsProvider = (props) => {
             courseID: new_feed.courseID,
             userID: new_feed.userID,
         };
-        console.log(feedForDb);
         fetch("/home/feed", {
             method: "POST",
             headers: {
@@ -74,7 +70,7 @@ const FeedsProvider = (props) => {
             if (response.ok) {
                 dispatch({ type: "ADD_FEED", payload: new_feed });
             } else {
-                console.log(response.status);
+                console.error(response.status);
             }
         });
     };
@@ -86,7 +82,6 @@ const FeedsProvider = (props) => {
                 postID: postID,
                 undo: +!active,
             };
-            console.log(body);
             dispatch({ type: "HANDLE_LIKE", payload: { postID, active } });
             fetch("/home/likes", {
                 method: "PUT",
@@ -98,8 +93,7 @@ const FeedsProvider = (props) => {
                 console.log(response);
             });
         } catch (err) {
-            console.log("handle like");
-            console.log(err);
+            console.error("handle like", err);
         }
     };
     const handleDislike = async (postID, active) => {
@@ -107,8 +101,7 @@ const FeedsProvider = (props) => {
             dispatch({ type: "HANDLE_DISLIKE", payload: { postID, active } });
             //fetch POST
         } catch (err) {
-            console.log("handle like");
-            console.log(err);
+            console.error("handle like", err);
         }
     };
 

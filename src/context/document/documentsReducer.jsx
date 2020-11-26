@@ -1,5 +1,4 @@
 const setCourseDocuments = (course_documents, state) => {
-    console.log(course_documents);
     return {
         ...state,
         documents: course_documents,

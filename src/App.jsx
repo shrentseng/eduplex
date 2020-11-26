@@ -89,7 +89,7 @@ const App = () => {
                 )}
                 <div className={classes.page} id="page">
                   <Switch>
-                    <Route exact path={["/", "/Homepage"]}>
+                    <Route exact path={"/"}>
                       <ThemeProvider theme={theme_homepage}>
                         <Homepage />
                       </ThemeProvider>
