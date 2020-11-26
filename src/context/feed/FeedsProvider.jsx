@@ -59,10 +59,11 @@ const FeedsProvider = (props) => {
     const addFeed = async (new_feed) => {
         let feedForDb = {
             postID: new_feed.postID,
-            message: new_feed.content,
-            courseID: new_feed.course,
+            message: new_feed.message,
+            courseID: new_feed.courseID,
             userID: new_feed.userID,
         };
+        console.log(feedForDb);
         fetch("/home/feed", {
             method: "POST",
             headers: {
@@ -78,15 +79,15 @@ const FeedsProvider = (props) => {
         });
     };
 
-    const handleLike = async (PostID, active, userID) => {
+    const handleLike = async (postID, active, userID) => {
         try {
             const body = {
                 userID: userID,
-                postID: PostID,
+                postID: postID,
                 undo: +!active,
             };
             console.log(body);
-            dispatch({ type: "HANDLE_LIKE", payload: { PostID, active } });
+            dispatch({ type: "HANDLE_LIKE", payload: { postID, active } });
             fetch("/home/likes", {
                 method: "PUT",
                 headers: {
@@ -101,9 +102,9 @@ const FeedsProvider = (props) => {
             console.log(err);
         }
     };
-    const handleDislike = async (PostID, active) => {
+    const handleDislike = async (postID, active) => {
         try {
-            dispatch({ type: "HANDLE_DISLIKE", payload: { PostID, active } });
+            dispatch({ type: "HANDLE_DISLIKE", payload: { postID, active } });
             //fetch POST
         } catch (err) {
             console.log("handle like");
@@ -111,7 +112,7 @@ const FeedsProvider = (props) => {
         }
     };
 
-    const getCommentsByPostID = async (PostID) => {
+    const getCommentsByPostID = async (postID) => {
         try {
             // const response = await fetch(`home/feed?postID=${PostID}`, {
             //     method: "GET",
@@ -122,7 +123,6 @@ const FeedsProvider = (props) => {
     };
 
     const addComment = async (new_comment) => {
-        console.log(new_comment)
         let feedForDb = {
             postID: new_comment.postID,
             message: new_comment.message,
@@ -132,16 +132,14 @@ const FeedsProvider = (props) => {
         dispatch({ type: "ADD_COMMENT", payload: new_comment });
 
         try {
-            const response = await fetch(
-                "/home/feed", {
+            const response = await fetch("/home/feed", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(feedForDb),
-                });
-            if(response.ok)
-            {
+            });
+            if (response.ok) {
                 //dispatch({ type: "ADD_COMMENT", payload: new_comment });
             }
         } catch (err) {}
