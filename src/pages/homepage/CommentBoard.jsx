@@ -83,9 +83,6 @@ const CommentBoard = (props) => {
             const response = await fetch(`/home/feed?postID=${props.postID}`);
             const result = await response.json();
             setComments(result);
-            /*if (!didCancel) {
-                console.log(response);
-            }*/
         }
         getComments();
         return () => {

@@ -36,7 +36,6 @@ const handleLike = ({ postID, active }, state) => {
         }
         return feed;
     });
-
     return {
         ...state,
         feeds: newFeeds,
