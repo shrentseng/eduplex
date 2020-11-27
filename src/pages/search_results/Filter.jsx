@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { MenuItem, Select, Typography } from "@material-ui/core";
+import FormControl from "@material-ui/core/FormControl";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import CourseContext from "../../context/course/courseContext";
 
-
 const StyledSelect = withStyles({
     root: {
-        width: "15rem",
+        width: "18rem",
         padding: "0.2rem",
         paddingLeft: "1rem",
     },
@@ -36,19 +36,26 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const options = [
-    { id: 1, label: "Unversity of California Berkeley" },
-    { id: 0, label: "Unversity of California Los Angeles" },
-    { id: 4, label: "Unversity of California Irvine" },
+    { university: "Unversity of California Berkeley", universityID: 1 },
+    { university: "Unversity of California Los Angeles", universityID: 0 },
+    { university: "Unversity of California Irvine", universityID: 4 },
 ];
 
-const CurrentUniversity = (props) => {
+const Filter = () => {
     const classes = useStyles();
-    const courseContext = useContext(CourseContext)
-    const [currentUniversity, setCurrentUniversity] = useState(courseContext.currentUniversity);
+    const courseContext = useContext(CourseContext);
+
+    // const [currentUniversity, setCurrentUniversity] = useState(
+    //     courseContext.currentUniversity
+    // );
+
 
     const handleSelectChange = (event) => {
-        setCurrentUniversity(event.target.value)
-        props.handleUniversity(event.target.value);
+        courseContext.dispatch({
+            type: "SET_CURRENT_UNIVERSITY",
+            payload: event.target.value,
+        });
+        //setCurrentUniversity(event.target.value);
     };
 
     return (
@@ -57,21 +64,24 @@ const CurrentUniversity = (props) => {
                 <Typography className={classes.currentUni}>
                     Current University:
                 </Typography>
-                <StyledSelect
-                    className={classes.select}
-                    variant="outlined"
-                    value = {currentUniversity}
-                    onChange={handleSelectChange}
-                >
-                    {options.map((option, index) => (
-                        <MenuItem key={index} value={option.id}>
-                            {option.label}
-                        </MenuItem>
-                    ))}
-                </StyledSelect>
+                <FormControl>
+                    <StyledSelect
+                        className={classes.select}
+                        variant="outlined"
+                        //defaultValue={courseContext.currentUniversity}
+                        //value={courseContext.currentUniversity}
+                        onChange={handleSelectChange}
+                    >
+                        {options.map((option, index) => (
+                            <MenuItem key={index} value={option}>
+                                {option.university}
+                            </MenuItem>
+                        ))}
+                    </StyledSelect>
+                </FormControl>
             </div>
         </div>
     );
 };
 
-export default CurrentUniversity;
+export default Filter;

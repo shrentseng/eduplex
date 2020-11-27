@@ -53,15 +53,17 @@ const AddCourse = () => {
     const courseContext = useContext(CourseContext);
 
     const [searchField, setSearch] = useState("");
-    const [university, setUniversity] = useState(courseContext.currentUniversity);
+    // const [selectedUniversity, setSelectedUniversity] = useState(
+    //     courseContext.currentUniversity
+    // );
 
     useEffect(() => {
-        courseContext.getCoursesByUniversity(university);
-    }, [university]);
+        courseContext.getCoursesByUniversity(courseContext.currentUniversity.universityID);
+    }, [courseContext.currentUniversity]);
 
-    const handleUniversityFilter = (filter) => {
-        setUniversity(filter);
-    }
+    // const handleUniversityFilter = (university) => { // university is an object with university and universityID
+    //     //setSelectedUniversity(university);
+    // };
 
     // console.log(courseContext.courses);
     //const courseList = courseContext.courses;
@@ -102,7 +104,7 @@ const AddCourse = () => {
                 </Typography>
             </div>
             <div>
-                <Filter handleUniversity = {handleUniversityFilter}/>
+                <Filter />
             </div>
             <div>
                 <input

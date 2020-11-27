@@ -6,7 +6,7 @@ const CourseProvider = (props) => {
     const initialState = {
         courses: [],
         myCourses: [],
-        currentUniversity: 0,
+        currentUniversity: { university: "", universityID: -1 }, //{university: , universityID: }
         loading: false,
     };
     const [state, dispatch] = useReducer(courseReducer, initialState);
@@ -18,7 +18,7 @@ const CourseProvider = (props) => {
             const result = await response.json();
             dispatch({ type: "SET_MY_COURSES", payload: result });
         } catch (err) {
-            console.log("hihi")
+            console.log("hihi");
             console.error("get my courses err");
         }
     };
@@ -72,24 +72,25 @@ const CourseProvider = (props) => {
         }
     };
 
-    const setCurrentUniversity = async (university) => {
-        try {
-            dispatch({ type: "SET_CURRENT_UNIVERSITY", payload: university });
-        } catch (err) {
-            console.error("set Current University", err);
-        }
-    };
+    // const setCurrentUniversity = (university) => {
+    //     try {
+    //         dispatch({ type: "SET_CURRENT_UNIVERSITY", payload: university });
+    //     } catch (err) {
+    //         console.error("set Current University", err);
+    //     }
+    // };
 
     return (
         <courseContext.Provider
             value={{
+                dispatch: dispatch,
                 courses: state.courses,
                 myCourses: state.myCourses,
                 currentUniversity: state.currentUniversity,
                 getMyCourses: getMyCourses,
                 addCourse: addCourse,
                 deleteCourse: deleteCourse,
-                setCurrentUniversity: setCurrentUniversity,
+                //setCurrentUniversity: setCurrentUniversity,
                 getCoursesByUniversity: getCoursesByUniversity,
             }}
         >

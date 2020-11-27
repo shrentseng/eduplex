@@ -28,7 +28,7 @@ function MyCourses() {
     const courseContext = useContext(CourseContext);
 
     useEffect(() => {
-        console.log('mycourses')
+        console.log("mycourses");
     }, [courseContext.myCourses]);
 
     const renderColleges = () => {
@@ -38,7 +38,11 @@ function MyCourses() {
                     <Typography variant="h3">
                         {university.University}
                     </Typography>
-                    <CourseList courses={university.Courses} university={university.UniversityID}/>
+                    <CourseList
+                        courses={university.Courses}
+                        university={university.University}
+                        universityID={university.UniversityID}
+                    />
                 </div>
             );
         });
