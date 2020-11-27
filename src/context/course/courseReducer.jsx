@@ -26,30 +26,57 @@ const setMyCourses = (my_courses, state) => {
     };
 };
 
-const addCourse = (course, state) => {
-    return {
-        ...state,
-        myCourses: [...state.myCourses, course],
-    };
+const addCourse = (courseForContext, state) => {
+    const newUniversity = state.myCourses.find((university) => {
+        return university.UniversityID === courseForContext.universityID;
+    });
+    if (newUniversity === undefined) {
+        return {
+            ...state,
+            myCourses: [
+                ...state.myCourses,
+                {
+                    university: courseForContext.university,
+                    universityID: courseForContext.universityID,
+                    Courses: [...courseForContext.course],
+                },
+            ],
+        };
+    } else {
+        const newMyCourses = state.myCourses.map((university) => {
+            if (university.UniversityID === courseForContext.universityID) {
+                return {
+                    ...university,
+                    Courses: [...university.Courses, courseForContext.course],
+                };
+            }
+            return university;
+        });
+        return {
+            ...state,
+            myCourses: newMyCourses,
+        };
+    }
 };
 
 const deleteCourse = (courseID, state) => {
-    const newMyCourses = state.myCourses;
-    newMyCourses.map((university) => {
+    const newMyCourses = state.myCourses.map((university) => {
         let index = -1;
         university.Courses.map((course, i) => {
             if (course.CourseID === courseID) {
                 index = i;
             }
         });
-        if (index > -1) {
-            university.Courses.splice(index, 1);
+        if (index !== -1) {
+            let newCourses = [...university.Courses];
+            newCourses.splice(index, 1);
+            return { ...university, Courses: newCourses };
         }
-        return university.Courses;
+        return university;
     });
     return {
         ...state,
-        myCourse: newMyCourses,
+        myCourses: newMyCourses,
     };
 };
 
@@ -57,8 +84,8 @@ const setCurrentUniversity = (university, state) => {
     return {
         ...state,
         currentUniversity: university,
-    }
-}
+    };
+};
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -75,7 +102,7 @@ const reducer = (state, action) => {
         case "DELETE_COURSE":
             return deleteCourse(action.payload, state);
         case "SET_CURRENT_UNIVERSITY":
-            return setCurrentUniversity(action.payload, state)
+            return setCurrentUniversity(action.payload, state);
         default:
             return state;
     }

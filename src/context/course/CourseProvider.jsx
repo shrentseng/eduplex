@@ -6,18 +6,20 @@ const CourseProvider = (props) => {
     const initialState = {
         courses: [],
         myCourses: [],
-        currentUniversity: 0,
+        currentUniversity: { university: "", universityID: -1 }, //{university: , universityID: }
         loading: false,
     };
     const [state, dispatch] = useReducer(courseReducer, initialState);
 
-    const getMyCourses = async () => {
+    const getMyCourses = async (userID) => {
+        console.log("hi")
         try {
             dispatch({ type: "SENDING_REQUEST" });
-            const response = await fetch("mycourse?userID=1"); //fix id
+            const response = await fetch(`/mycourse?userID=${userID}`); //fix id
             const result = await response.json();
             dispatch({ type: "SET_MY_COURSES", payload: result });
         } catch (err) {
+            console.log("hihi");
             console.error("get my courses err");
         }
     };
@@ -25,7 +27,7 @@ const CourseProvider = (props) => {
     const getCoursesByUniversity = async (UniversityID) => {
         try {
             dispatch({ type: "SENDING_REQUEST" });
-            fetch(`mycourse/addCourse?userID=1&universityID=${UniversityID}`)
+            fetch(`/mycourse/addCourse?userID=1&universityID=${UniversityID}`)
                 .then((response) => response.json())
                 .then((result) => {
                     dispatch({ type: "SET_COURSES", payload: result });
@@ -35,18 +37,18 @@ const CourseProvider = (props) => {
         }
     };
 
-    const addCourse = async (course) => {
+    const addCourse = async (courseForDb, courseForContext) => {
         try {
             dispatch({ type: "SENDING_REQUEST" });
-            fetch("mycourse", {
+            fetch("/mycourse", {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(course),
+                body: JSON.stringify(courseForDb),
             }).then((response) => {
                 if (response.ok) {
-                    dispatch({ type: "ADD_COURSE", payload: course });
+                    dispatch({ type: "ADD_COURSE", payload: courseForContext });
                 } else {
                     console.error(response.status);
                 }
@@ -58,7 +60,7 @@ const CourseProvider = (props) => {
 
     const deleteCourse = async (body) => {
         try {
-            fetch("mycourse", {
+            fetch("/mycourse", {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
@@ -71,24 +73,25 @@ const CourseProvider = (props) => {
         }
     };
 
-    const setCurrentUniversity = async (university) => {
-        try {
-            dispatch({ type: "SET_CURRENT_UNIVERSITY", payload: university });
-        } catch (err) {
-            console.error("set Current University", err);
-        }
-    };
+    // const setCurrentUniversity = (university) => {
+    //     try {
+    //         dispatch({ type: "SET_CURRENT_UNIVERSITY", payload: university });
+    //     } catch (err) {
+    //         console.error("set Current University", err);
+    //     }
+    // };
 
     return (
         <courseContext.Provider
             value={{
+                dispatch: dispatch,
                 courses: state.courses,
                 myCourses: state.myCourses,
                 currentUniversity: state.currentUniversity,
                 getMyCourses: getMyCourses,
                 addCourse: addCourse,
                 deleteCourse: deleteCourse,
-                setCurrentUniversity: setCurrentUniversity,
+                //setCurrentUniversity: setCurrentUniversity,
                 getCoursesByUniversity: getCoursesByUniversity,
             }}
         >

@@ -35,11 +35,17 @@ const Course = (props) => {
         //let add = true;
         setJoin("Joined");
         setColor("#C4C4C4");
-        const course = {
+        const courseForDb = {
             userID: userContext.userID,
             courseID: props.CourseID,
         };
-        courseContext.addCourse(course);
+        const courseForContext = {
+            course: props,
+            universityID: courseContext.currentUniversity.universityID,
+            university: courseContext.currentUniversity.universityID,
+        };
+
+        courseContext.addCourse(courseForDb, courseForContext);
         //add = false;
         // } else {
         //     courseContext.myCourses.map((currentCourse) => {

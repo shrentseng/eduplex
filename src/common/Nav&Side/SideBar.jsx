@@ -70,6 +70,7 @@ const SideBar  = () => {
     }, []);
 
     const courseList = (myCourses) => {
+        console.log(myCourses)
         if (myCourses.length === 0) {
             return null;
         } else {

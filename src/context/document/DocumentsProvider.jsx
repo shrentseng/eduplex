@@ -161,7 +161,7 @@ const DocumentsProvider = (props) => {
         dispatch({ type: "ADD_COMMENT", payload: new_comment });
         /*
         try{
-        fetch("viewdoc?user_id=?document_id=?", {
+        fetch("/viewdoc?user_id=?document_id=?", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -185,7 +185,7 @@ const DocumentsProvider = (props) => {
     const downloadDocument = async (documentID) => {
         try {
             const response = await fetch(
-                `viewdoc/download?documentID=${documentID}`
+                `/viewdoc/download?documentID=${documentID}`
             );
             const blob = await response.blob();
             let url = window.URL.createObjectURL(blob);
@@ -201,7 +201,7 @@ const DocumentsProvider = (props) => {
 
     const uploadDocument = async (document) => {
         try {
-            fetch("upload", {
+            fetch("/upload", {
                 method: "POST",
                 body: document,
             }).then((res) => {
