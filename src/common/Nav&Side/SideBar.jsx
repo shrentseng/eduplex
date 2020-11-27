@@ -67,7 +67,7 @@ const SideBar  = () => {
     useEffect(() => {
         console.log("sidebar")
         courseContext.getMyCourses(userContext.userID);
-    }, []);
+    }, [userContext.userID]);
 
     const courseList = (myCourses) => {
         if (myCourses.length === 0) {

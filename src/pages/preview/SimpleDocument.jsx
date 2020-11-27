@@ -1,7 +1,7 @@
-import React from 'react'
-import { makeStyles } from '@material-ui/core/styles';
-import { Paper, Typography } from '@material-ui/core'
-import SmallDoc from '../../assets/smallDoc.svg'
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import { Paper, Typography } from "@material-ui/core";
+import SmallDoc from "../../assets/smallDoc.svg";
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -29,7 +29,7 @@ const SimpleDocument = (props) => {
     return (
         <div className={classes.root}>
             <Paper variant="outlined" className={classes.paper}>
-                <img className={classes.image} src={SmallDoc} />
+                <img className={classes.image} src={SmallDoc} alt="smallDoc" />
                 <Typography className={classes.title}>{props.name}</Typography>
             </Paper>
         </div>

@@ -11,13 +11,14 @@ const CourseProvider = (props) => {
     };
     const [state, dispatch] = useReducer(courseReducer, initialState);
 
-    const getMyCourses = async () => {
+    const getMyCourses = async (userID) => {
         try {
             dispatch({ type: "SENDING_REQUEST" });
-            const response = await fetch("mycourse?userID=1"); //fix id
+            const response = await fetch(`/mycourse?userID=${userID}`); //fix id
             const result = await response.json();
             dispatch({ type: "SET_MY_COURSES", payload: result });
         } catch (err) {
+            console.log("hihi")
             console.error("get my courses err");
         }
     };
@@ -25,7 +26,7 @@ const CourseProvider = (props) => {
     const getCoursesByUniversity = async (UniversityID) => {
         try {
             dispatch({ type: "SENDING_REQUEST" });
-            fetch(`mycourse/addCourse?userID=1&universityID=${UniversityID}`)
+            fetch(`/mycourse/addCourse?userID=1&universityID=${UniversityID}`)
                 .then((response) => response.json())
                 .then((result) => {
                     dispatch({ type: "SET_COURSES", payload: result });
@@ -38,7 +39,7 @@ const CourseProvider = (props) => {
     const addCourse = async (course) => {
         try {
             dispatch({ type: "SENDING_REQUEST" });
-            fetch("mycourse", {
+            fetch("/mycourse", {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -58,7 +59,7 @@ const CourseProvider = (props) => {
 
     const deleteCourse = async (body) => {
         try {
-            fetch("mycourse", {
+            fetch("/mycourse", {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
