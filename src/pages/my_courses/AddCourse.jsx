@@ -58,7 +58,9 @@ const AddCourse = () => {
     // );
 
     useEffect(() => {
-        courseContext.getCoursesByUniversity(courseContext.currentUniversity.universityID);
+        courseContext.getCoursesByUniversity(
+            courseContext.currentUniversity.universityID
+        );
     }, [courseContext.currentUniversity]);
 
     // const handleUniversityFilter = (university) => { // university is an object with university and universityID

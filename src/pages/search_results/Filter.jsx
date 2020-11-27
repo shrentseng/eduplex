@@ -49,7 +49,6 @@ const Filter = () => {
     //     courseContext.currentUniversity
     // );
 
-
     const handleSelectChange = (event) => {
         courseContext.dispatch({
             type: "SET_CURRENT_UNIVERSITY",

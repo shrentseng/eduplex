@@ -12,6 +12,7 @@ const CourseProvider = (props) => {
     const [state, dispatch] = useReducer(courseReducer, initialState);
 
     const getMyCourses = async (userID) => {
+        console.log("hi")
         try {
             dispatch({ type: "SENDING_REQUEST" });
             const response = await fetch(`/mycourse?userID=${userID}`); //fix id
@@ -36,7 +37,7 @@ const CourseProvider = (props) => {
         }
     };
 
-    const addCourse = async (course) => {
+    const addCourse = async (courseForDb, courseForContext) => {
         try {
             dispatch({ type: "SENDING_REQUEST" });
             fetch("/mycourse", {
@@ -44,10 +45,10 @@ const CourseProvider = (props) => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(course),
+                body: JSON.stringify(courseForDb),
             }).then((response) => {
                 if (response.ok) {
-                    dispatch({ type: "ADD_COURSE", payload: course });
+                    dispatch({ type: "ADD_COURSE", payload: courseForContext });
                 } else {
                     console.error(response.status);
                 }

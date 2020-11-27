@@ -10,7 +10,7 @@ const Courses = () => {
     const courseContext = useContext(CourseContext);
     
     useEffect(() => {
-        console.log("sidebar")
+        console.log("courses")
         courseContext.getMyCourses(userContext.userID);
     }, [userContext.userID]);
 
