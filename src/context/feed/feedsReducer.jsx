@@ -57,16 +57,32 @@ const handleDislike = ({ postID, active }, state) => {
     };
 };
 
+const setComments = ({ postID, my_comments }, state) => {
+    let newFeeds = state.feeds.map((feed) => {
+        if (feed.postID === postID) {
+            return {
+                ...feed,
+                comments: my_comments,
+            };
+        }
+        return feed;
+    });
+    return {
+        ...state,
+        feeds: newFeeds,
+    };
+};
+
 const addComment = (comment, state) => {
     let newFeeds = state.feeds.map((feed) => {
         if (feed.postID === comment.postID) {
             let newFeed = { ...feed };
-            newFeed.childComments = [...newFeed.childComments, comment];
+            newFeed.comments = [...newFeed.comments, comment];
             return newFeed;
         }
         return feed;
     });
-    console.log(newFeeds)
+    console.log(newFeeds);
     return {
         ...state,
         feeds: newFeeds,
@@ -89,6 +105,8 @@ const feedsReducer = (state, action) => {
             return handleLike(action.payload, state);
         case "HANDLE_DISLIKE":
             return handleDislike(action.payload, state);
+        case "SET_COMMENTS":
+            return setComments(action.payload, state);
         case "ADD_COMMENT":
             return addComment(action.payload, state);
         case "ADD_REPLY":

@@ -6,16 +6,17 @@ const FeedsProvider = (props) => {
     const initialState = {
         feeds: [
             // {
-            //     PostID: 1,
-            //     Message: "test",
-            //     CourseID: 1,
-            //     UserID: 1,
-            //     FirstName: "Shren",
-            //     LastName: "Tseng",
-            //     CourseName: "course",
-            //     ChildComments: [],
-            //     Likes: 0,
-            //     Unlikes: 0,
+            //     postID: 1,
+            //     message: "test",
+            //     courseID: 1,
+            //     userID: 1,
+            //     firstName: "Shren",
+            //     lastName: "Tseng",
+            //     courseName: "course",
+            //     childComments: [], //stores comments id
+            //     comments: [], //stores comments content 
+            //     likes: 0,
+            //     unlikes: 0,
             // },
         ],
         loading: true,
@@ -27,13 +28,7 @@ const FeedsProvider = (props) => {
         try {
             dispatch({ type: "SENDING_REQUEST" });
             const response = await fetch("/home/feed?userID=1");
-            //console.log('text', await response.text())
             const result = await response.json();
-            //console.log("feeds", result);
-            // const response = await axios.get("home/feed?userID=1")
-            // console.log(response)
-            // const result = await response.data;
-            // console.log("get My feeds", result);
             dispatch({ type: "SET_FEEDS", payload: result });
         } catch (err) {
             console.error("get feeds err");
@@ -107,12 +102,14 @@ const FeedsProvider = (props) => {
 
     const getCommentsByPostID = async (postID) => {
         try {
-            // const response = await fetch(`home/feed?postID=${PostID}`, {
-            //     method: "GET",
-            // });
-            // const result = await response.json();
-            // console.log(result);
-        } catch (err) {}
+            const response = await fetch(`home/feed?postID=${postID}`, {
+                method: "GET",
+            });
+            const result = await response.json();
+            dispatch({ type: "SET_COMMENTS", payload: { postID, my_comments: result } });
+        } catch (err) {
+            console.error("get comments by post id", err)
+        }
     };
 
     const addComment = async (new_comment) => {
@@ -121,8 +118,6 @@ const FeedsProvider = (props) => {
             message: new_comment.message,
             userID: new_comment.userID,
         };
-
-        dispatch({ type: "ADD_COMMENT", payload: new_comment });
 
         try {
             const response = await fetch("/home/feed", {
@@ -133,7 +128,7 @@ const FeedsProvider = (props) => {
                 body: JSON.stringify(feedForDb),
             });
             if (response.ok) {
-                //dispatch({ type: "ADD_COMMENT", payload: new_comment });
+                dispatch({ type: "ADD_COMMENT", payload: new_comment });
             }
         } catch (err) {}
     };
@@ -154,9 +149,9 @@ const FeedsProvider = (props) => {
                 addFeed: addFeed,
                 handleLike: handleLike,
                 handleDislike: handleDislike,
+                getCommentsByPostID: getCommentsByPostID,
                 addComment: addComment,
                 addReply: addReply,
-                getCommentsByPostID: getCommentsByPostID,
             }}
         >
             {props.children}
