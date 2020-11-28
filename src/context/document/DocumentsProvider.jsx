@@ -165,7 +165,6 @@ const DocumentsProvider = (props) => {
 
     const addComment = async (new_comment) => {
         console.log(new_comment)
-
         dispatch({ type: "ADD_COMMENT", payload: new_comment });
         try{
         fetch("/viewdoc/comments", {
