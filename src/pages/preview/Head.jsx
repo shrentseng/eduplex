@@ -57,7 +57,7 @@ const Head = () => {
     const classes = useStyles();
     const documentsContext = useContext(DocumentsContext);
     const handleDownload = () => {
-        documentsContext.downloadDocument(documentsContext.currentDocument);
+        documentsContext.downloadDocument(documentsContext.currentInfo);
     };
     
     return (
@@ -68,7 +68,7 @@ const Head = () => {
                 className={classes.titlePaper}
             >
                 <Typography className={classes.docName}>
-                    {documentsContext.currentDocument.title}
+                    {documentsContext.currentInfo.title}
                 </Typography>
                 <Typography className={classes.subTitle}>
                     {/*SubTitle*/}

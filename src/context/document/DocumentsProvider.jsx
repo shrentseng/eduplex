@@ -49,7 +49,7 @@ const DocumentsProvider = (props) => {
             // },
         ],
         
-        currentDocument: {
+        currentInfo: {
             /*CourseName: "",
             Title: "",
             Description: "",
@@ -64,6 +64,7 @@ const DocumentsProvider = (props) => {
         },
         currentComments: [],
         currentSimilarDocuments: [],
+        currentURL: "",
         loading: true,
     };
 
@@ -120,9 +121,13 @@ const DocumentsProvider = (props) => {
 
     const setCurrentInfo = async (document) => {
         try {
-            const response = await fetch(`/viewdoc?documentID=${document.documentID}`);
-            const result = await response.json();
-            dispatch({ type: "SET_CURRENT_INFO", payload: result });
+            const response1 = await fetch(`/viewdoc?documentID=${document.documentID}`);
+            const result1 = await response1.json();
+            const response2 = await fetch(`/viewdoc/download?documentID=${document.documentID}`)
+            const blob = await response2.blob();
+            let url = window.URL.createObjectURL(blob);
+            dispatch({ type: "SET_CURRENT_INFO", payload: result1 });
+            dispatch({ type: "SET_CURRENT_URL", payload: url});
 
         } catch (err) {
             console.error("setCurrentInfo", err);
@@ -130,17 +135,18 @@ const DocumentsProvider = (props) => {
     };
 
     const getCurrentComments = async (documentID) => {
-        /*try
+        try
         {
-            const response = await fetch(`viewdoc/comments?documentID=${documentID}`);
+            const response = await fetch(`/viewdoc/comments?documentID=${documentID}`);
             const result = await response.json();
             dispatch({ type: "SET_CURRENT_COMMENTS", payload: result})
+            console.log(result)
         }
         catch(err)
         {
             console.log("setCurrentComments")
             console.log(err)
-        }*/
+        }
     }
 
     const getSimilarDocuments = async () => {
@@ -158,10 +164,10 @@ const DocumentsProvider = (props) => {
     };
 
     const addComment = async (new_comment) => {
+        console.log(new_comment)
         dispatch({ type: "ADD_COMMENT", payload: new_comment });
-        /*
         try{
-        fetch("/viewdoc?user_id=?document_id=?", {
+        fetch("/viewdoc/comments", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -179,7 +185,6 @@ const DocumentsProvider = (props) => {
             console.log("getSimilarDocuments")
             console.log(err)
         }
-        */
     };
 
     const downloadDocument = async (documentID) => {
@@ -217,9 +222,10 @@ const DocumentsProvider = (props) => {
             value={{
                 documents: state.documents,
                 loading: state.loading,
-                currentDocument: state.currentDocument,
+                currentInfo: state.currentInfo,
                 currentComments: state.currentComments,
                 currentSimilarDocuments: state.currentSimilarDocuments,
+                currentURL: state.currentURL,
                 getDocuments: getDocuments,
                 getDocumentsByCourse: getDocumentsByCourse,
                 addDocument: addDocument,

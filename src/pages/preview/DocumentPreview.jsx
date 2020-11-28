@@ -5,8 +5,7 @@ import Head from "./Head.jsx";
 import PDFViewer from "./PDFViewer.jsx";
 import PDFJSBackend from "./PDFJs.jsx";
 import { Typography } from "@material-ui/core";
-
-import DocumentsContext from "../../context/document/documentsContext";
+import DocumentsContext from "../../context/document/documentsContext"
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -50,7 +49,6 @@ const DocumentPreview = () => {
     const [sideColumn, setSideColumn] = React.useState("2");
     const [pdfColumn, setPDFColumn] = React.useState("2");
 
-
     /*
     const [arrow, setArrow] = React.useState("<<");
     const setColumn = (event) => {
@@ -86,7 +84,7 @@ const DocumentPreview = () => {
                 {renderSideBar()}
             </div>
             <div className={classes.pdf} style={{ gridColumnStart: pdfColumn }}>
-                <PDFViewer backend={PDFJSBackend} src="/myPDF.pdf" />
+                <PDFViewer backend={PDFJSBackend} src={documentsContext.currentURL} />
             </div>
         </div>
     );

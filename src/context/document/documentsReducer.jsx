@@ -30,31 +30,15 @@ const addDocument = (document, state) => {
 const setCurrentInfo = (info, state) => {
     return {
         ...state,
-        currentDocument: info,
+        currentInfo: info,
     };
 };
 
 const addComment = (comment, state) => {
-    let new_comments = [
-        ...state.currentDocument.Comment,
-        { UserName: "Oscar", Content: comment.Message },
-    ];
-    let new_current_document = {
-        CourseName: state.currentDocument.CourseName,
-        Title: state.currentDocument.Title,
-        Description: state.currentDocument.Description,
-        UserName: state.currentDocument.UserName,
-        UniversityName: state.currentDocument.UniversityName,
-        DownloadTimes: state.currentDocument.DownloadTimes,
-        FrontPage: state.currentDocument.FrontPage,
-        Like: state.currentDocument.Like,
-        Unlike: state.currentDocument.Unlike,
-        Comment: new_comments,
-        key: state.currentDocument.key,
-    };
+    let new_comments = [...state.currentComments,comment];
     return {
         ...state,
-        currentDocument: new_current_document,
+        currentComments: new_comments,
     };
 };
 
@@ -70,6 +54,13 @@ const setCurrentComments = (comments, state) => {
         ...state,
         currentComments: comments,
     };
+}
+
+const setCurrentURL = (url, state) => {
+    return{
+        ...state,
+        currentURL: url,
+    }
 }
 
 const reducer = (state, action) => {
@@ -90,6 +81,8 @@ const reducer = (state, action) => {
             return setSimilarDocuments(action.payload, state);
         case "SET_CURRENT_COMMENTS":
             return setCurrentComments(action.payload, state);
+        case "SET_CURRENT_URL":
+            return setCurrentURL(action.payload, state);
         default:
             return state;
     }

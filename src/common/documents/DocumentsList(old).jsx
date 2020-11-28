@@ -8,7 +8,7 @@ function Documents() {
     const [documents, setDocuments] = useState([]);
 
     const handleDocumentPreview = (id) => {
-        documentsContext.setCurrentDocument(id);
+        documentsContext.setCurrentInfo(id);
     };
 
     useEffect(() => {

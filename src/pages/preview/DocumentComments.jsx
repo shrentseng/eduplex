@@ -15,8 +15,9 @@ const DocumentComments = () => {
             if (i < 2) {
                 return (
                     <SimpleComment
-                        username={details.UserName}
-                        content={details.Content}
+                        firstName={details.firstName}
+                        lastName={details.lastName}
+                        content={details.message}
                         key={i}
                     />
                 );
@@ -26,9 +27,9 @@ const DocumentComments = () => {
     const onKeyPress = (e) => {
         if (e.keyCode === 13 && e.target.value) {
             documentsContext.addComment({
-                User_id: userContext.userID,
-                Document_id: documentsContext.currentDocument.key,
-                Message: content,
+                userID: userContext.userID,
+                documentID: documentsContext.currentInfo.documentID,
+                message: content,
             });
             setContent("");
         }
@@ -36,7 +37,7 @@ const DocumentComments = () => {
 
     return (
         <div>
-            {renderComments(documentsContext.currentDocument.Comment)}
+            {renderComments(documentsContext.currentComments)}
             <div>
                 <TextField
                     variant="outlined"
