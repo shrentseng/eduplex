@@ -6,28 +6,26 @@ const CourseProvider = (props) => {
     const initialState = {
         courses: [],
         myCourses: [],
-        currentUniversity: { university: "", universityID: -1 }, //{university: , universityID: }
+        currentUniversity: { universityName: "", universityID: -1 }, //{university: , universityID: }
         loading: false,
     };
     const [state, dispatch] = useReducer(courseReducer, initialState);
 
     const getMyCourses = async (userID) => {
-        console.log("hi")
         try {
             dispatch({ type: "SENDING_REQUEST" });
             const response = await fetch(`/mycourse?userID=${userID}`); //fix id
             const result = await response.json();
             dispatch({ type: "SET_MY_COURSES", payload: result });
         } catch (err) {
-            console.log("hihi");
             console.error("get my courses err");
         }
     };
 
-    const getCoursesByUniversity = async (UniversityID) => {
+    const getCoursesByUniversity = async (universityID) => {
         try {
             dispatch({ type: "SENDING_REQUEST" });
-            fetch(`/mycourse/addCourse?userID=1&universityID=${UniversityID}`)
+            fetch(`/mycourse/addCourse?userID=1&universityID=${universityID}`)
                 .then((response) => response.json())
                 .then((result) => {
                     dispatch({ type: "SET_COURSES", payload: result });
@@ -91,7 +89,6 @@ const CourseProvider = (props) => {
                 getMyCourses: getMyCourses,
                 addCourse: addCourse,
                 deleteCourse: deleteCourse,
-                //setCurrentUniversity: setCurrentUniversity,
                 getCoursesByUniversity: getCoursesByUniversity,
             }}
         >

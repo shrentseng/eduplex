@@ -37,12 +37,12 @@ const Course = (props) => {
         setColor("#C4C4C4");
         const courseForDb = {
             userID: userContext.userID,
-            courseID: props.CourseID,
+            courseID: props.courseID,
         };
+
         const courseForContext = {
-            course: props,
-            universityID: courseContext.currentUniversity.universityID,
-            university: courseContext.currentUniversity.universityID,
+            ...props,
+            ...courseContext.currentUniversity,
         };
 
         courseContext.addCourse(courseForDb, courseForContext);
@@ -65,10 +65,10 @@ const Course = (props) => {
         <div className={classes.root}>
             <Paper elevation={0} className={classes.course}>
                 <Typography className="col-3" style={{ margin: "1em" }}>
-                    {props.CourseNumber}
+                    {props.courseNumber}
                 </Typography>
                 <Typography style={{ margin: "1em" }}>
-                    {props.CourseName}
+                    {props.courseName}
                 </Typography>
             </Paper>
             <Button

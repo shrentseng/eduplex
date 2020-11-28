@@ -27,22 +27,33 @@ function MyCourses() {
     const userContext = useContext(UserContext);
     const courseContext = useContext(CourseContext);
 
+    const [universitiesName, setUniversitiesName] = useState({});
+    //const universities = {};
     useEffect(() => {
+        let newUniversitiesName = {};
         console.log("mycourses");
+        for (let course of courseContext.myCourses) {
+            let university = course.universityName;
+            if (university in newUniversitiesName) {
+                newUniversitiesName[university].courses.push(course);
+            } else {
+                newUniversitiesName[university] = {
+                    courses: [course],
+                };
+            }
+        }
+        setUniversitiesName(newUniversitiesName);
     }, [courseContext.myCourses]);
 
     const renderColleges = () => {
-        return courseContext.myCourses.map((university) => {
+        if (universitiesName === undefined || universitiesName === null) {
+            return;
+        }
+        return Object.keys(universitiesName).map((universityName) => {
             return (
                 <div className={classes.college}>
-                    <Typography variant="h3">
-                        {university.University}
-                    </Typography>
-                    <CourseList
-                        courses={university.Courses}
-                        university={university.University}
-                        universityID={university.UniversityID}
-                    />
+                    <Typography variant="h3">{universityName}</Typography>
+                    <CourseList courses={universitiesName[universityName].courses} />
                 </div>
             );
         });

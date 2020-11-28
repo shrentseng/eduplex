@@ -74,15 +74,19 @@ const setComments = ({ postID, my_comments }, state) => {
 };
 
 const addComment = (comment, state) => {
+    console.log(comment)
     let newFeeds = state.feeds.map((feed) => {
         if (feed.postID === comment.postID) {
             let newFeed = { ...feed };
-            newFeed.comments = [...newFeed.comments, comment];
+            if (newFeed.comments === undefined) {
+                newFeed.comments = [comment]
+            } else {
+                newFeed.comments = [...newFeed.comments, comment];
+            }
             return newFeed;
         }
         return feed;
     });
-    console.log(newFeeds);
     return {
         ...state,
         feeds: newFeeds,

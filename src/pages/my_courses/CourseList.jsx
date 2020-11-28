@@ -31,17 +31,16 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
-const CourseList = ({ courses, university, universityID }) => {
+const CourseList = ({ courses }) => {
     const classes = useStyles();
     const courseContext = useContext(CourseContext);
-
     const cardComponent = courses.map((course, i) => {
         return (
-            <Grid item key={course.CourseID}>
+            <Grid item key={course.courseID}>
                 <CourseCard
-                    CourseName={course.CourseName}
-                    CourseNumber={course.CourseNumber}
-                    CourseID={course.CourseID}
+                    courseName={course.courseName}
+                    courseNumber={course.courseNumber}
+                    courseID={course.courseID}
                 />
             </Grid>
         );
@@ -50,7 +49,7 @@ const CourseList = ({ courses, university, universityID }) => {
     const handleAddCard = () => {
         courseContext.dispatch({
             type: "SET_CURRENT_UNIVERSITY",
-            payload: { university: university, universityID: universityID },
+            payload: { universityName: courses[0].universityName, universityID: courses[0].universityID },
         });
     };
 

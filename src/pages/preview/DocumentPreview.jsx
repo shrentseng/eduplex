@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import SideBar from "./SideBar.jsx";
 import Head from "./Head.jsx";
 import PDFViewer from "./PDFViewer.jsx";
 import PDFJSBackend from "./PDFJs.jsx";
 import { Typography } from "@material-ui/core";
+
+import DocumentsContext from "../../context/document/documentsContext";
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -44,9 +46,10 @@ const useStyles = makeStyles(() => ({
 
 const DocumentPreview = () => {
     const classes = useStyles();
-    
+    const documentsContext = useContext(DocumentsContext);
     const [sideColumn, setSideColumn] = React.useState("2");
     const [pdfColumn, setPDFColumn] = React.useState("2");
+
 
     /*
     const [arrow, setArrow] = React.useState("<<");
@@ -62,7 +65,7 @@ const DocumentPreview = () => {
         }
     };
     */
-   
+
     const renderSideBar = () => {
         if (sideColumn === "2" && pdfColumn === "2") {
             return <SideBar />;
@@ -90,7 +93,6 @@ const DocumentPreview = () => {
 };
 
 export default DocumentPreview;
-
 
 /*<div className={classes.pdf} style={{ gridColumnStart: pdfColumn }}>
                 <Typography
