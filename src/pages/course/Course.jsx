@@ -52,12 +52,12 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
-const Course = ({ CourseNumber, CourseID }) => {
+const Course = ({ courseNumber, CourseID }) => {
     const classes = useStyles();
     const userContext = useContext(UserContext);
     const documentsContext = useContext(DocumentsContext);
     const feedsContext = useContext(FeedsContext);
-    const courseURL = CourseNumber.replace(/\s+/g, "");
+    const courseURL = courseNumber.replace(/\s+/g, "");
     useEffect(() => {
         documentsContext.getDocumentsByCourse(userContext.userID, CourseID);
         feedsContext.getFeedsByCourse(userContext.userID, CourseID);
@@ -66,12 +66,12 @@ const Course = ({ CourseNumber, CourseID }) => {
         <ThemeProvider theme={theme_course}>
             <div className={classes.root}>
                 <div style={{ margin: "2rem" }}>
-                    <Typography variant="h2">{CourseNumber}</Typography>
+                    <Typography variant="h2">{courseNumber}</Typography>
                     <div className={classes.join}>
                         <AddCircleOutlineIcon style={{ color: "#0088D7" }} />
                         <Typography variant="h4">Join Course</Typography>
                     </div>
-                    <CourseButtons CourseNumber={CourseNumber} />
+                    <CourseButtons courseNumber={courseNumber} />
                 </div>
                 <Switch>
                     <Route exact path={`/Courses/${courseURL}`}>

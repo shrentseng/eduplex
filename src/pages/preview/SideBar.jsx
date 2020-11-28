@@ -1,10 +1,10 @@
-import React, {useContext, useState} from "react";
+import React, { useContext, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, Paper, Typography } from "@material-ui/core";
 import DocumentComments from "./DocumentComments.jsx";
 import SimilarDocuments from "./SimilarDocuments.jsx";
-import DocumentContext from "../../context/document/documentsContext"
-import CourseContext from "../../context/course/courseContext"
+import DocumentsContext from "../../context/document/documentsContext";
+import CourseContext from "../../context/course/courseContext";
 
 const useStyles = makeStyles(() => ({
     paper: {
@@ -55,25 +55,21 @@ const useStyles = makeStyles(() => ({
 
 const SideBar = () => {
     const classes = useStyles();
-    const documentContext = useContext(DocumentContext);
+    const documentsContext = useContext(DocumentsContext);
     const courseContext = useContext(CourseContext);
     const [liked, setLiked] = useState(null);
     const [disableYes, setDisableYes] = useState(false);
     const [disableNo, setDisableNo] = useState(false);
 
-   function handleHelpful(helpful){
-        if(helpful)
-        {
+    function handleHelpful(helpful) {
+        if (helpful) {
             setLiked(true);
             setDisableNo(true);
-        }
-        else if(!helpful)
-        {
+        } else if (!helpful) {
             setLiked(false);
             setDisableYes(true);
         }
-    };
-
+    }
     return (
         <div>
             <div className={classes.university}>
@@ -88,7 +84,7 @@ const SideBar = () => {
                         University
                     </Typography>
                     <Typography style={{ color: "#0088D7" }}>
-                        {documentContext.currentInfo.universityName}
+                        {documentsContext.currentInfo.universityName}
                     </Typography>
                 </Paper>
             </div>
@@ -169,7 +165,7 @@ const SideBar = () => {
                                 borderColor: "#C4C4C4",
                                 borderRadius: 3,
                             }}
-                            onClick={()=>handleHelpful(true)}
+                            onClick={() => handleHelpful(true)}
                         >
                             Yes
                         </Button>
@@ -183,7 +179,7 @@ const SideBar = () => {
                                 borderColor: "#C4C4C4",
                                 borderRadius: 3,
                             }}
-                            onClick={()=>handleHelpful(false)}
+                            onClick={() => handleHelpful(false)}
                         >
                             No
                         </Button>
@@ -194,7 +190,7 @@ const SideBar = () => {
                 <Paper
                     square={true}
                     className={classes.paper}
-                    style={{ justifyContent: "left", height: "41.8rem",}}
+                    style={{ justifyContent: "left", height: "41.8rem" }}
                 >
                     <Typography
                         style={{

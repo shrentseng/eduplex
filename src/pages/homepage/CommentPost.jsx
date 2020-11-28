@@ -37,7 +37,8 @@ const CommentPost = ({ postID, isFocused }) => {
 
     const onCreateComment = (context) => {
         const newComment = {
-            username: "Shren", //get from id
+            firstName: "Shren", //get from id
+            lastName: "Tseng",
             message: context,
             postID: postID,
             userID: userContext.userID,

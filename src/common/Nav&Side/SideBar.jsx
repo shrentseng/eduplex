@@ -57,7 +57,7 @@ const useStyles = makeStyles({
     },
 });
 
-const SideBar  = () => {
+const SideBar = () => {
     const classes = useStyles();
     const [newsfeedIcon, setNewsfeedIcon] = useState(NewsfeedIcon);
     const [courseIcon, setCourseIcon] = useState(MyCoursesIcon);
@@ -65,7 +65,7 @@ const SideBar  = () => {
     const courseContext = useContext(CourseContext);
 
     useEffect(() => {
-        console.log("sidebar")
+        console.log("sidebar");
         courseContext.getMyCourses(userContext.userID);
     }, []);
 
@@ -73,27 +73,25 @@ const SideBar  = () => {
         if (myCourses.length === 0) {
             return null;
         } else {
-            return myCourses.map((university, i) => {
-                return university.Courses.map((course, i) => {
-                    const courseURL = course.CourseNumber.replace(/\s+/g, '')
-                    return (
-                        <div key={i}>
-                            <NavLink
-                                activeClassName={classes.active}
-                                to={`/Courses/${courseURL}`}
+            return myCourses.map((course, i) => {
+                const courseURL = course.courseNumber.replace(/\s+/g, "");
+                return (
+                    <div key={i}>
+                        <NavLink
+                            activeClassName={classes.active}
+                            to={`/Courses/${courseURL}`}
+                        >
+                            <ListItem
+                                button
+                                className={`${classes.nested} ${classes.button}`}
                             >
-                                <ListItem
-                                    button
-                                    className={`${classes.nested} ${classes.button}`}
-                                >
-                                    <Typography variant="h3">
-                                        {course.CourseNumber}
-                                    </Typography>
-                                </ListItem>
-                            </NavLink>
-                        </div>
-                    );
-                });
+                                <Typography variant="h3">
+                                    {course.courseNumber}
+                                </Typography>
+                            </ListItem>
+                        </NavLink>
+                    </div>
+                );
             });
         }
     };
@@ -102,12 +100,15 @@ const SideBar  = () => {
         <div className={classes.root}>
             <div className={classes.toolbar} />
             <List className={classes.list}>
-                <NavLink to="/" exact activeClassName={classes.active}
+                <NavLink
+                    to="/"
+                    exact
+                    activeClassName={classes.active}
                     isActive={(match) => {
-                        match ? 
-                        setNewsfeedIcon(NewsfeedIconActive) :
-                        setNewsfeedIcon(NewsfeedIcon)
-                        return match
+                        match
+                            ? setNewsfeedIcon(NewsfeedIconActive)
+                            : setNewsfeedIcon(NewsfeedIcon);
+                        return match;
                     }}
                 >
                     <ListItem button className={classes.button}>
@@ -117,12 +118,15 @@ const SideBar  = () => {
                         <Typography variant="h2">Newsfeed</Typography>
                     </ListItem>
                 </NavLink>
-                <NavLink to="/MyCourses" exact activeClassName={classes.active}
+                <NavLink
+                    to="/MyCourses"
+                    exact
+                    activeClassName={classes.active}
                     isActive={(match) => {
-                        match ? 
-                        setCourseIcon(MyCoursesIconActive) :
-                        setCourseIcon(MyCoursesIcon)
-                        return match
+                        match
+                            ? setCourseIcon(MyCoursesIconActive)
+                            : setCourseIcon(MyCoursesIcon);
+                        return match;
                     }}
                 >
                     <ListItem button className={classes.button}>
@@ -138,6 +142,6 @@ const SideBar  = () => {
             </List>
         </div>
     );
-}
+};
 
 export default SideBar;

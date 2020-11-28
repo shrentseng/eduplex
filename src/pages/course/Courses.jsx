@@ -8,9 +8,9 @@ import Course from "./Course";
 const Courses = () => {
     const userContext = useContext(UserContext);
     const courseContext = useContext(CourseContext);
-    
+
     useEffect(() => {
-        console.log("courses")
+        console.log("courses");
         courseContext.getMyCourses(userContext.userID);
     }, [userContext.userID]);
 
@@ -18,18 +18,16 @@ const Courses = () => {
         if (myCourses.length === 0) {
             return null;
         } else {
-            return myCourses.map((university) => {
-                return university.Courses.map((course, i) => {
-                    const courseURL = course.CourseNumber.replace(/\s+/g, "");
-                    return (
-                        <Route key={i} path={`/Courses/${courseURL}`}>
-                            <Course
-                                CourseNumber={course.CourseNumber}
-                                CourseID={course.CourseID}
-                            />
-                        </Route>
-                    );
-                });
+            return myCourses.map((course, i) => {
+                const courseURL = course.courseNumber.replace(/\s+/g, "");
+                return (
+                    <Route key={i} path={`/Courses/${courseURL}`}>
+                        <Course
+                            courseNumber={course.courseNumber}
+                            courseID={course.courseID}
+                        />
+                    </Route>
+                );
             });
         }
     };

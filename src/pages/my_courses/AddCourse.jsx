@@ -53,7 +53,7 @@ const AddCourse = () => {
     const courseContext = useContext(CourseContext);
 
     const [searchField, setSearch] = useState("");
-    // const [selectedUniversity, setSelectedUniversity] = useState(
+    // const [university, setUniversity] = useState(
     //     courseContext.currentUniversity
     // );
 
