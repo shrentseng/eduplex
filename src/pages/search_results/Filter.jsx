@@ -36,25 +36,23 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const options = [
-    { university: "Unversity of California Berkeley", universityID: 1 },
-    { university: "Unversity of California Los Angeles", universityID: 0 },
-    { university: "Unversity of California Irvine", universityID: 4 },
+    { universityName: "Unversity of California Berkeley", universityID: 1 },
+    { universityName: "Unversity of California Los Angeles", universityID: 0 },
+    { universityName: "Unversity of California Irvine", universityID: 4 },
 ];
 
 const Filter = () => {
     const classes = useStyles();
     const courseContext = useContext(CourseContext);
 
-    // const [currentUniversity, setCurrentUniversity] = useState(
-    //     courseContext.currentUniversity
-    // );
-
     const handleSelectChange = (event) => {
+        const option = options.find(ele => {
+            return ele.universityID === event.target.value
+        })
         courseContext.dispatch({
             type: "SET_CURRENT_UNIVERSITY",
-            payload: event.target.value,
+            payload: option,
         });
-        //setCurrentUniversity(event.target.value);
     };
 
     return (
@@ -68,14 +66,14 @@ const Filter = () => {
                         className={classes.select}
                         variant="outlined"
                         //defaultValue={courseContext.currentUniversity}
-                        //value={courseContext.currentUniversity}
+                        value={courseContext.currentUniversity.universityID}
                         onChange={handleSelectChange}
                     >
-                        {options.map((option, index) => (
-                            <MenuItem key={index} value={option}>
-                                {option.university}
+                        {options.map((option, index) => 
+                            <MenuItem key={index} value={option.universityID}>
+                                {option.universityName}
                             </MenuItem>
-                        ))}
+                        )}
                     </StyledSelect>
                 </FormControl>
             </div>

@@ -27,52 +27,16 @@ const setMyCourses = (my_courses, state) => {
 };
 
 const addCourse = (courseForContext, state) => {
-    const newUniversity = state.myCourses.find((university) => {
-        return university.UniversityID === courseForContext.universityID;
-    });
-    if (newUniversity === undefined) {
-        return {
-            ...state,
-            myCourses: [
-                ...state.myCourses,
-                {
-                    university: courseForContext.university,
-                    universityID: courseForContext.universityID,
-                    Courses: [...courseForContext.course],
-                },
-            ],
-        };
-    } else {
-        const newMyCourses = state.myCourses.map((university) => {
-            if (university.UniversityID === courseForContext.universityID) {
-                return {
-                    ...university,
-                    Courses: [...university.Courses, courseForContext.course],
-                };
-            }
-            return university;
-        });
-        return {
-            ...state,
-            myCourses: newMyCourses,
-        };
-    }
+    return {
+        ...state,
+        myCourses: [...state.myCourses, courseForContext],
+    };
+    
 };
 
 const deleteCourse = (courseID, state) => {
-    const newMyCourses = state.myCourses.map((university) => {
-        let index = -1;
-        university.Courses.map((course, i) => {
-            if (course.CourseID === courseID) {
-                index = i;
-            }
-        });
-        if (index !== -1) {
-            let newCourses = [...university.Courses];
-            newCourses.splice(index, 1);
-            return { ...university, Courses: newCourses };
-        }
-        return university;
+    const newMyCourses = state.myCourses.filter((course) => {
+        return course.courseID !== courseID;
     });
     return {
         ...state,

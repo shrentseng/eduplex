@@ -57,7 +57,7 @@ function CourseCard(props) {
     const handleDeleteCourse = () => {
         courseContext.deleteCourse({
             userID: userContext.userID,
-            courseID: props.CourseID,
+            courseID: props.courseID,
         });
     };
 
@@ -93,7 +93,7 @@ function CourseCard(props) {
                     </IconButton>
                 )}
                 <CardContent>
-                    <Typography variant="h5">{props.CourseNumber}</Typography>
+                    <Typography variant="h5">{props.courseNumber}</Typography>
                 </CardContent>
             </Card>
             <Modal

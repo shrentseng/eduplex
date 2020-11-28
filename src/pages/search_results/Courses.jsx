@@ -5,10 +5,10 @@ const Courses = ({ courses }) => {
     return courses.map((course) => {
         return (
             <Course
-                CourseName={course.CourseName}
-                CourseNumber={course.CourseNumber}
-                key={course.CourseID}
-                CourseID={course.CourseID}
+                courseName={course.courseName}
+                courseNumber={course.courseNumber}
+                key={course.courseID}
+                courseID={course.courseID}
             />
         );
     });
