@@ -52,15 +52,15 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
-const Course = ({ courseNumber, CourseID }) => {
+const Course = ({ courseNumber, courseID }) => {
     const classes = useStyles();
     const userContext = useContext(UserContext);
     const documentsContext = useContext(DocumentsContext);
     const feedsContext = useContext(FeedsContext);
     const courseURL = courseNumber.replace(/\s+/g, "");
     useEffect(() => {
-        documentsContext.getDocumentsByCourse(userContext.userID, CourseID);
-        feedsContext.getFeedsByCourse(userContext.userID, CourseID);
+        documentsContext.getDocumentsByCourse(userContext.userID, courseID);
+        feedsContext.getFeedsByCourse(userContext.userID, courseID);
     }, [courseURL]);
     return (
         <ThemeProvider theme={theme_course}>
