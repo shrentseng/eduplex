@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import Paper from "@material-ui/core/Paper";
-import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import bookmark from "../../assets/bookmark.svg";
 import Like from "../../assets/like.svg";
@@ -11,7 +10,6 @@ import Liked from "../../assets/liked.svg";
 import Disliked from "../../assets/disliked.svg";
 import comment from "../../assets/comment.svg";
 import share from "../../assets/share.svg";
-import report from "../../assets/report.svg";
 import avatar from "../../assets/avatar.svg";
 import CommentBoard from "./CommentBoard.jsx";
 import UserContext from "../../context/user/userContext";
@@ -83,10 +81,10 @@ const Feed = (props) => {
     }, [userContext.postsLiked, userContext.postsDisliked]);
 
     const handleLike = () => {
-        if (likeImg == Like) {
+        if (likeImg === Like) {
             feedsContext.handleLike(props.postID, true, userContext.userID);
             userContext.handleLikePost(props.postID, true, userContext.userID);
-            if (dislikeImg == Disliked) {
+            if (dislikeImg === Disliked) {
                 feedsContext.handleDislike(
                     props.postID,
                     false,
@@ -102,14 +100,14 @@ const Feed = (props) => {
     };
 
     const handleDislike = () => {
-        if (dislikeImg == Dislike) {
+        if (dislikeImg === Dislike) {
             feedsContext.handleDislike(props.postID, true, userContext.userID);
             userContext.handleDislikePost(
                 props.postID,
                 true,
                 userContext.userID
             );
-            if (likeImg == Liked) {
+            if (likeImg === Liked) {
                 feedsContext.handleLike(
                     props.postID,
                     false,
@@ -173,6 +171,7 @@ const Feed = (props) => {
                             style={{ marginRight: "1em" }}
                             src={likeImg}
                             onClick={handleLike}
+                            alt="like button"
                         />
                         <Typography display="inline">{props.likes}</Typography>
                     </div>
@@ -182,6 +181,7 @@ const Feed = (props) => {
                             style={{ marginRight: "1em" }}
                             src={dislikeImg}
                             onClick={handleDislike}
+                            alt="dislike button"
                         />
                         <Typography display="inline">
                             {props.unlikes}
@@ -193,13 +193,18 @@ const Feed = (props) => {
                             style={{ marginRight: "1em" }}
                             src={comment}
                             onClick={onToggleExpand}
+                            alt="comment"
                         />
                         <Typography display="inline">
                             {props.childComments.length}
                         </Typography>
                     </div>
                     <div>
-                        <img className={classes.footerItem} src={share} />
+                        <img
+                            className={classes.footerItem}
+                            src={share}
+                            alt="share"
+                        />
                     </div>
                 </div>
             </Paper>

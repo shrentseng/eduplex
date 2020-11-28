@@ -74,27 +74,26 @@ const AccordionDetails = withStyles((theme) => ({
 
 const CommentBoard = (props) => {
     const classes = useStyles();
-    const [comments, setComments] = useState([]);
+    //const [comments, setComments] = useState([]);
     const feedsContext = useContext(FeedsContext);
 
     useEffect(() => {
-        let didCancel = false;
-        async function getComments() {
-            const response = await fetch(`/home/feed?postID=${props.postID}`);
-            const result = await response.json();
-            setComments(result);
-            /*if (!didCancel) {
-                console.log(response);
-            }*/
-        }
-        getComments();
-        return () => {
-            didCancel = true;
-        };
+        feedsContext.getCommentsByPostID(props.postID);
+        // let didCancel = false;
+        // async function getComments() {
+        //     const response = await fetch(`/home/feed?postID=${props.postID}`);
+        //     const result = await response.json();
+        //     setComments(result);
+        // }
+        // getComments();
+        // return () => {
+        //     didCancel = true;
+        // };
     }, [props.postID]);
 
     const renderComment = () => {
-        if (comments.length === 0) {
+        const comments = feedsContext.feeds.find( feed => feed.postID === props.postID ).comments
+        if ((comments === undefined) || (comments.length === 0)) {
             return <div>No Comment</div>;
         } else {
             return comments.map((comment) => {
@@ -131,7 +130,7 @@ const CommentBoard = (props) => {
                         />
                     </AccordionSummary>
                     <hr className={classes.lineSeparate} />
-                    {renderComment(comments)}
+                    {renderComment()}
                 </Accordion>
             </Paper>
         </div>

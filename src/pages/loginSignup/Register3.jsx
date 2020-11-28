@@ -32,7 +32,7 @@ const Register3 = ({ minusStep }) => {
         registerContext.dispatch({ type: "SET_REGISTER3", payload: course });
         const ok = await registerContext.createAccount(course);
         if (ok) {
-            history.push("/Homepage");
+            history.push("/");
         } else {
             alert("Account creation failed");
         }

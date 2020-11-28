@@ -99,7 +99,6 @@ const DocumentsProvider = (props) => {
                 `/course/document?userID=${userID}&courseID=${courseID}`
             );
             const result = await response.json();
-            console.log(result);
             dispatch({ type: "REQUEST_FINISHED" });
             dispatch({ type: "SET_COURSE_DOCUMENTS", payload: result });
         } catch (err) {
@@ -115,21 +114,18 @@ const DocumentsProvider = (props) => {
             },
             body: JSON.stringify(new_document),
         }).then((res) => {
-            console.log(res);
+            //console.log(res);
         });
     };
 
     const setCurrentInfo = async (document) => {
-        console.log(document)
         try {
             const response = await fetch(`/viewdoc?documentID=${document.documentID}`);
             const result = await response.json();
-            console.log(result)
             dispatch({ type: "SET_CURRENT_INFO", payload: result });
 
         } catch (err) {
-            console.log("setCurrentInfo");
-            console.log(err);
+            console.error("setCurrentInfo", err);
         }
     };
 
@@ -165,7 +161,7 @@ const DocumentsProvider = (props) => {
         dispatch({ type: "ADD_COMMENT", payload: new_comment });
         /*
         try{
-        fetch("viewdoc?user_id=?document_id=?", {
+        fetch("/viewdoc?user_id=?document_id=?", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -188,12 +184,10 @@ const DocumentsProvider = (props) => {
 
     const downloadDocument = async (documentID) => {
         try {
-            console.log(documentID);
             const response = await fetch(
-                `viewdoc/download?documentID=${documentID}`
+                `/viewdoc/download?documentID=${documentID}`
             );
             const blob = await response.blob();
-            console.log(blob);
             let url = window.URL.createObjectURL(blob);
             let a = document.createElement("a");
             a.href = url;
@@ -201,23 +195,20 @@ const DocumentsProvider = (props) => {
             a.click();
             window.URL.revokeObjectURL(url);
         } catch (err) {
-            console.log("downloadDocument");
-            console.log(err);
+            console.error("downloadDocument", err);
         }
     };
 
     const uploadDocument = async (document) => {
-        console.log(document);
         try {
-            fetch("upload", {
+            fetch("/upload", {
                 method: "POST",
                 body: document,
             }).then((res) => {
-                console.log(res);
+                //console.log(res);
             });
         } catch (err) {
-            console.log("uploadDocument");
-            console.log(err);
+            console.error("uploadDocument", err);
         }
     };
 

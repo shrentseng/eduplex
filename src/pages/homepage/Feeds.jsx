@@ -1,11 +1,12 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import Feed from "./Feed";
 import FeedsContext from "../../context/feed/feedsContext";
 
 const Feeds = () => {
     //useContext
+    
     const feedsContext = useContext(FeedsContext);
-
+    
     useEffect(() => {
         feedsContext.getFeeds();
     }, []);

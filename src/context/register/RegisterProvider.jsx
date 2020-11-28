@@ -22,7 +22,7 @@ const RegisterProvider = (props) => {
             enrolledCourses: [course],
         };
         try {
-            const response = await fetch("register", {
+            const response = await fetch("/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -36,8 +36,7 @@ const RegisterProvider = (props) => {
             }
             return response.ok;
         } catch (err) {
-            console.log("create Account");
-            console.log(err);
+            console.error("create Account", err);
             return err.status;
         }
     };

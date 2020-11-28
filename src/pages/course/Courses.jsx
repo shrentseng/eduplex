@@ -1,11 +1,19 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import UserContext from "../../context/user/userContext";
 import FeedsProvider from "../../context/feed/FeedsProvider";
 import CourseContext from "../../context/course/courseContext";
 import Course from "./Course";
 
 const Courses = () => {
+    const userContext = useContext(UserContext);
     const courseContext = useContext(CourseContext);
+    
+    useEffect(() => {
+        console.log("courses")
+        courseContext.getMyCourses(userContext.userID);
+    }, [userContext.userID]);
+
     const courseList = (myCourses) => {
         if (myCourses.length === 0) {
             return null;

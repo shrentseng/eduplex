@@ -112,8 +112,6 @@ const DocumentUpload = () => {
     ));
 
     const handleSubmit = () => {
-        console.log(userInput);
-        console.log(acceptedFiles[0]);
         const formData = new FormData();
         formData.append("originalFile", acceptedFiles[0]);
         formData.append("userID", userContext.userID);

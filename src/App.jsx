@@ -1,14 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { withRouter } from "react-router";
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    useLocation,
-    useHistory,
-} from "react-router-dom";
+import { Switch, Route, useLocation } from "react-router-dom";
 import "./assets/bootstrap.min.css";
-import { withStyles, makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/core/styles";
 import {
     theme_document_upload,
@@ -21,7 +15,6 @@ import Navbar from "./common/Nav&Side/Navbar";
 import SignIn from "./pages/loginSignup/SignIn";
 import Homepage from "./pages/homepage/Homepage";
 import SideBar from "./common/Nav&Side/SideBar";
-import Course from "./pages/course/Course";
 import Profile from "./pages/profile/Profile";
 import MyCourse from "./pages/my_courses/MyCourses";
 import CourseResults from "./pages/search_results/CourseResults";
@@ -95,7 +88,7 @@ const App = () => {
                                 )}
                                 <div className={classes.page} id="page">
                                     <Switch>
-                                        <Route exact path={["/", "/Homepage"]}>
+                                        <Route exact path={"/"}>
                                             <ThemeProvider
                                                 theme={theme_homepage}
                                             >
@@ -144,7 +137,7 @@ const App = () => {
                                         </Route>
                                     </Switch>
                                 </div>
-                                {location.pathname == "/" && (
+                                {location.pathname === "/" && (
                                     <div id="rightPannel">
                                         <Route>
                                             <ThemeProvider

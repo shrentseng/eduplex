@@ -28,15 +28,13 @@ const UserProvider = (props) => {
         dispatch({ type: "LOGGING_IN" });
         //fetching
         const body = { email: email, password: password };
-        console.log(body);
-        const response = await fetch("login", {
+        const response = await fetch("/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(body),
         });
-        console.log(response);
         if (response.ok) {
             console.log("succesfully logged in");
         } else {
@@ -47,21 +45,21 @@ const UserProvider = (props) => {
         //dispatch({ type: "SET_USER", payload: userID });
     };
 
-    const handleLikePost = async (PostID, active) => {
+    const handleLikePost = async (postID, active) => {
         try {
             dispatch({
                 type: "HANDLE_LIKE_POST",
-                payload: { PostID, active },
+                payload: { postID, active },
             });
         } catch (err) {}
         return "done";
     };
 
-    const handleDislikePost = async (PostID, active) => {
+    const handleDislikePost = async (postID, active) => {
         try {
             dispatch({
                 type: "HANDLE_DISLIKE_POST",
-                payload: { PostID, active },
+                payload: { postID, active },
             });
         } catch (err) {}
     };
