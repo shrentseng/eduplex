@@ -36,26 +36,10 @@ const setCurrentInfo = (info, state) => {
 };
 
 const addComment = (comment, state) => {
-    let new_comments = [
-        ...state.currentDocument.Comment,
-        { UserName: "Oscar", Content: comment.Message },
-    ];
-    let new_current_document = {
-        CourseName: state.currentDocument.CourseName,
-        Title: state.currentDocument.Title,
-        Description: state.currentDocument.Description,
-        UserName: state.currentDocument.UserName,
-        UniversityName: state.currentDocument.UniversityName,
-        DownloadTimes: state.currentDocument.DownloadTimes,
-        FrontPage: state.currentDocument.FrontPage,
-        Like: state.currentDocument.Like,
-        Unlike: state.currentDocument.Unlike,
-        Comment: new_comments,
-        key: state.currentDocument.key,
-    };
+    let new_comments = [...state.currentComment,comment];
     return {
         ...state,
-        currentDocument: new_current_document,
+        currentComment: new_comments,
     };
 };
 

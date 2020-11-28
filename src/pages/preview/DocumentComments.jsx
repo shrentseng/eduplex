@@ -26,9 +26,9 @@ const DocumentComments = () => {
     const onKeyPress = (e) => {
         if (e.keyCode === 13 && e.target.value) {
             documentsContext.addComment({
-                User_id: userContext.userID,
-                Document_id: documentsContext.currentDocument.key,
-                Message: content,
+                userID: userContext.userID,
+                documentID: documentsContext.currentDocument.documentID,
+                message: content,
             });
             setContent("");
         }
