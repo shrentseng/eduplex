@@ -49,8 +49,6 @@ const DocumentPreview = () => {
     const [sideColumn, setSideColumn] = React.useState("2");
     const [pdfColumn, setPDFColumn] = React.useState("2");
 
-    const documentsContext = useContext(DocumentsContext);
-
     /*
     const [arrow, setArrow] = React.useState("<<");
     const setColumn = (event) => {

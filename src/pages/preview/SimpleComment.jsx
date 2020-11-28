@@ -32,7 +32,9 @@ const SimpleComment = (props) => {
             <Paper variant="outlined" className={classes.paper}>
                 <div className={classes.userInfo}>
                     <Avatar className={classes.avatar} src={avatar} />
-                    <Typography style={{color:"#365E7D"}}>{props.firstName} {props.lastName}</Typography>
+                    <Typography style={{color:"#365E7D"}}>
+                        {props.firstName} {props.lastName}
+                    </Typography>
                     <Typography variant='h6' style={{margin:'0 0.4em',color:"#8B8B8B"}}>•</Typography>
                     <Typography variant='h6' style={{color:"#8B8B8B"}}>{'5 mins ago'}</Typography>
                 </div>

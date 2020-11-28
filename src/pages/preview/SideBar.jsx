@@ -100,7 +100,7 @@ const SideBar = () => {
                         Course Name
                     </Typography>
                     <Typography style={{ color: "#0088D7" }}>
-                        {documentContext.currentInfo.courseName}
+                        {documentsContext.currentInfo.courseName}
                     </Typography>
                 </Paper>
             </div>
@@ -120,7 +120,7 @@ const SideBar = () => {
                         <Typography
                             style={{ fontSize: "0.7em", color: "#0088D7" }}
                         >
-                            {documentContext.currentInfo.userName}
+                            {documentsContext.currentInfo.userName}
                         </Typography>
                     </div>
                 </Paper>
@@ -138,7 +138,7 @@ const SideBar = () => {
                         Description
                     </Typography>
                     <Typography style={{ fontSize: "0.7em", color: "#504F4F" }}>
-                        {documentContext.currentInfo.description}
+                        {documentsContext.currentInfo.description}
                     </Typography>
                 </Paper>
             </div>
