@@ -52,9 +52,9 @@ function DocumentsGrid({ document }) {
     
 
     const handleDocumentPreview = () => {
-        //documentsContext.setCurrentInfo(document)
-        //documentsContext.getCurrentComments(document.documentID)
-        //documentsContext.setSimilarDocuments()
+        documentsContext.setCurrentInfo(document)
+        documentsContext.getCurrentComments(document.documentID)
+        documentsContext.getSimilarDocuments(document.documentID)
         history.push("/DocumentPreview");
     };
 

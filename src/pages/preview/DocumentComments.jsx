@@ -21,6 +21,9 @@ const DocumentComments = () => {
                     />
                 );
             }
+            else{
+                return(<div/>)
+            }
         });
     };
     const onKeyPress = (e) => {
@@ -43,7 +46,7 @@ const DocumentComments = () => {
                     style={{
                         marginLeft: "0.5rem",
                         marginBottom: "0.5rem",
-                        width: "95%",
+                        width: "94%",
                         height: "120%",
                         borderStyle: "none",
                         borderColor: "Transparent",

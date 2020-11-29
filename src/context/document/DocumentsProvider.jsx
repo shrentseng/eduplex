@@ -135,11 +135,7 @@ const DocumentsProvider = (props) => {
         try {
             const response1 = await fetch(`/viewdoc?documentID=${document.documentID}`);
             const result1 = await response1.json();
-            const response2 = await fetch(`/viewdoc/download?documentID=${document.documentID}`)
-            const blob = await response2.blob();
-            let url = window.URL.createObjectURL(blob);
             dispatch({ type: "SET_CURRENT_INFO", payload: result1 });
-            dispatch({ type: "SET_CURRENT_URL", payload: url});
 
         } catch (err) {
             console.error("setCurrentInfo", err);
@@ -160,18 +156,17 @@ const DocumentsProvider = (props) => {
         }
     }
 
-    const getSimilarDocuments = async () => {
-        /*try{
-            fetch(`viewdoc/similar?user=?document_id=?`)
-            .then(
-                (result) => {
-                dispatch({type: "SET_SIMILAR_DOCUMENTS", payload: result})
-            });
+    const getSimilarDocuments = async (documentID) => {
+        try{
+            const response = await fetch(`/viewdoc/similar?documentID=${documentID}`);
+            const result = await response.json()
+            console.log(result)
+            dispatch({ type: "SET_SIMILAR_DOCUMENTS", payload: result})
         }
         catch(err){
             console.log("getSimilarDocuments")
             console.log(err)
-        }*/
+        }
     };
 
     const addComment = async (new_comment) => {
@@ -200,10 +195,9 @@ const DocumentsProvider = (props) => {
 
     const downloadDocument = async (documentID) => {
         try {
-            const response = await fetch(
-                `/viewdoc/download?documentID=${documentID}`
-            );
+            const response = await fetch(`/viewdoc/download?documentID=${documentID}`);
             const blob = await response.blob();
+            console.log(blob)
             let url = window.URL.createObjectURL(blob);
             let a = document.createElement("a");
             a.href = url;

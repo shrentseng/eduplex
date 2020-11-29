@@ -17,37 +17,37 @@ const useStyles = makeStyles(() => ({
     },
     university: {
         gridColumnStart: "1",
-        gridColumnEnd: "2",
+        gridColumnEnd: "4",
         gridRowStart: "2",
         gridRowEnd: "3",
     },
     course: {
         gridColumnStart: "1",
-        gridColumnEnd: "2",
+        gridColumnEnd: "4",
         gridRowStart: "3",
         gridRowEnd: "4",
     },
     upload: {
         gridColumnStart: "1",
-        gridColumnEnd: "2",
+        gridColumnEnd: "4",
         gridRowStart: "4",
         gridRowEnd: "5",
     },
     description: {
         gridColumnStart: "1",
-        gridColumnEnd: "2",
+        gridColumnEnd: "4",
         gridRowStart: "5",
         gridRowEnd: "6",
     },
     helpful: {
         gridColumnStart: "1",
-        gridColumnEnd: "2",
+        gridColumnEnd: "4",
         gridRowStart: "6",
         gridRowEnd: "7",
     },
     commentDocument: {
         gridColumnStart: "1",
-        gridColumnEnd: "2",
+        gridColumnEnd: "4",
         gridRowStart: "7",
         gridRowEnd: "8",
     },
@@ -73,7 +73,7 @@ const SideBar = () => {
     return (
         <div>
             <div className={classes.university}>
-                <Paper square={true} className={classes.paper}>
+                <div square={true} className={classes.paper}>
                     <Typography
                         style={{
                             fontSize: "0.7em",
@@ -86,10 +86,10 @@ const SideBar = () => {
                     <Typography style={{ color: "#0088D7" }}>
                         {documentsContext.currentInfo.universityName}
                     </Typography>
-                </Paper>
+                </div>
             </div>
             <div className={classes.course}>
-                <Paper square={true} className={classes.paper}>
+                <div square={true} className={classes.paper}>
                     <Typography
                         style={{
                             fontSize: "0.7em",
@@ -102,10 +102,10 @@ const SideBar = () => {
                     <Typography style={{ color: "#0088D7" }}>
                         {documentsContext.currentInfo.courseName}
                     </Typography>
-                </Paper>
+                </div>
             </div>
             <div className={classes.upload}>
-                <Paper square={true} className={classes.paper}>
+                <div square={true} className={classes.paper}>
                     <div style={{ display: "flex", flexDirection: "row" }}>
                         <Typography
                             style={{
@@ -123,10 +123,10 @@ const SideBar = () => {
                             {documentsContext.currentInfo.userName}
                         </Typography>
                     </div>
-                </Paper>
+                </div>
             </div>
             <div className={classes.description}>
-                <Paper square={true} className={classes.paper}>
+                <div square={true} className={classes.paper}>
                     <Typography
                         style={{
                             marginRight: "1.5rem",
@@ -140,10 +140,10 @@ const SideBar = () => {
                     <Typography style={{ fontSize: "0.7em", color: "#504F4F" }}>
                         {documentsContext.currentInfo.description}
                     </Typography>
-                </Paper>
+                </div>
             </div>
             <div className={classes.helpful}>
-                <Paper square={true} className={classes.paper}>
+                <div square={true} className={classes.paper}>
                     <div style={{ display: "flex", flexDirection: "row" }}>
                         <Typography
                             style={{
@@ -184,10 +184,10 @@ const SideBar = () => {
                             No
                         </Button>
                     </div>
-                </Paper>
+                </div>
             </div>
             <div className={classes.commentDocument}>
-                <Paper
+                <div
                     square={true}
                     className={classes.paper}
                     style={{ justifyContent: "left", height: "41.8rem" }}
@@ -214,7 +214,7 @@ const SideBar = () => {
                         Similar Documents
                     </Typography>
                     <SimilarDocuments />
-                </Paper>
+                </div>
             </div>
         </div>
     );
