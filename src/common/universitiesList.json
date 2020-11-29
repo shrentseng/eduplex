@@ -1,0 +1,42 @@
+[
+ {
+   "universityID": "0",
+   "universityName": "University Of California: Los Angeles"
+ },
+ {
+   "universityID": "1",
+   "universityName": "University Of California: Berkeley"
+ },
+ {
+   "universityID": "2",
+   "universityName": "University Of California: Santa Babara"
+ },
+ {
+   "universityID": "3",
+   "universityName": "University Of California: Merced"
+ },
+ {
+   "universityID": "4",
+   "universityName": "University Of California: Irvine"
+ },
+ {
+   "universityID": "5",
+   "universityName": "University Of California: San Diego"
+ },
+ {
+   "universityID": "6",
+   "universityName": "University Of California: Santa Cruz"
+ },
+ {
+   "universityID": "7",
+   "universityName": "University Of California: Davis"
+ },
+ {
+   "universityID": "8",
+   "universityName": "Saint Louis University"
+ },
+ {
+   "universityID": "9",
+   "universityName": "Stanford University"
+ }
+]

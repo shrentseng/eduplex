@@ -36,6 +36,7 @@ const UserProvider = (props) => {
             body: JSON.stringify(body),
         });
         if (response.ok) {
+            console.log(response)
             console.log("succesfully logged in");
         } else {
             console.log(response.status);

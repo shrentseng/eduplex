@@ -30,6 +30,7 @@ function MyCourses() {
     const [universitiesName, setUniversitiesName] = useState({});
     //const universities = {};
     useEffect(() => {
+        
         let newUniversitiesName = {};
         console.log("mycourses");
         for (let course of courseContext.myCourses) {
@@ -49,7 +50,7 @@ function MyCourses() {
         if (universitiesName === undefined || universitiesName === null) {
             return;
         }
-        return Object.keys(universitiesName).map((universityName) => {
+        return Object.keys(universitiesName).sort().map((universityName) => {
             return (
                 <div className={classes.college}>
                     <Typography variant="h3">{universityName}</Typography>
