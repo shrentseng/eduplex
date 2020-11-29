@@ -8,6 +8,7 @@ import exclude from "../../assets/exclude.svg";
 import anonymous from "../../assets/anonymous.svg";
 import FeedsContext from "../../context/feed/feedsContext";
 import UserContext from "../../context/user/userContext";
+import CourseContext from "../../context/course/courseContext";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -78,28 +79,32 @@ const options = [
 const Post = () => {
     const userContext = useContext(UserContext);
     const feedsContext = useContext(FeedsContext);
+    const courseContext = useContext(CourseContext);
 
     const classes = useStyles();
     const [content, setContent] = useState("");
-    const [course, setCourse] = useState("");
+    const [courseID, setCourseID] = useState(-1);
+    const [courseName, setCourseName] = useState("");
 
-    const onCreatePost = (content, course) => {
-        if (content && course) {
-            //console.log(course)
+    const onCreatePost = () => {
+        console.log(courseID)
+        console.log(courseName)
+        if (content && courseName) {
             feedsContext.addFeed({
                 postID: -1,
                 message: content,
-                courseID: course,
+                courseID: courseID,
                 userID: userContext.userID,
                 firstName: "Shren",
                 lastName: "Tseng",
-                courseName: course,
+                courseName: courseName,
                 childComments: [],
                 likes: 0,
                 unlikes: 0,
             });
             setContent("");
-            setCourse("");
+            setCourseID(-1);
+            setCourseName("")
             alert("Submit Successful");
         } else {
             alert(
@@ -109,7 +114,8 @@ const Post = () => {
     };
 
     const handleSelectChange = (event) => {
-        setCourse(event.value);
+        setCourseName(event.courseName)
+        setCourseID(event.courseID);
     };
 
     return (
@@ -119,7 +125,9 @@ const Post = () => {
                     <Select
                         className={classes.select}
                         classNamePrefix="react-select"
-                        options={options}
+                        options={courseContext.myCourses}
+                        getOptionLabel={option => option.courseNumber}
+                        getOptionValue={option => option.courseID}
                         onChange={handleSelectChange}
                     ></Select>
                 </div>
@@ -137,7 +145,7 @@ const Post = () => {
                     <Avatar
                         className={classes.exclude}
                         src={exclude}
-                        onClick={(event) => onCreatePost(content, course)}
+                        onClick={() => onCreatePost()}
                     />
                 </div>
             </Paper>

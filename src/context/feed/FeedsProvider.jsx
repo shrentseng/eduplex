@@ -29,6 +29,7 @@ const FeedsProvider = (props) => {
             dispatch({ type: "SENDING_REQUEST" });
             const response = await fetch("/home/feed?userID=1");
             const result = await response.json();
+            console.log(result)
             dispatch({ type: "SET_FEEDS", payload: result });
         } catch (err) {
             console.error("get feeds err");
@@ -101,6 +102,7 @@ const FeedsProvider = (props) => {
     };
 
     const getCommentsByPostID = async (postID) => {
+        console.log(postID)
         try {
             const response = await fetch(`home/feed?postID=${postID}`, {
                 method: "GET",
