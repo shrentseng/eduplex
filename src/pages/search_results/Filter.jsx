@@ -37,12 +37,6 @@ const useStyles = makeStyles((theme) => ({
 
 const options = require('../../common/universitiesList.json');
 
-// const options = [
-//     { universityName: "Unversity Of California Berkeley", universityID: 1 },
-//     { universityName: "Unversity Of California Los Angeles", universityID: 0 },
-//     { universityName: "Unversity Of California Irvine", universityID: 4 },
-// ];
-
 const Filter = () => {
     const classes = useStyles();
     const courseContext = useContext(CourseContext);

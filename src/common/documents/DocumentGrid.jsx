@@ -52,8 +52,8 @@ function DocumentsGrid({ document }) {
     
 
     const handleDocumentPreview = () => {
-        documentsContext.setCurrentInfo(document)
-        documentsContext.getCurrentComments(document.documentID)
+        //documentsContext.setCurrentInfo(document)
+        //documentsContext.getCurrentComments(document.documentID)
         //documentsContext.setSimilarDocuments()
         history.push("/DocumentPreview");
     };

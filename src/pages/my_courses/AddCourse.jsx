@@ -4,12 +4,11 @@ import { Typography } from "@material-ui/core";
 import Courses from "../search_results/Courses.jsx";
 import FindCourse from "../search_results/FindCourse.jsx";
 import Filter from "../search_results/Filter.jsx";
-import UserContext from "../../context/user/userContext";
 import CourseContext from "../../context/course/courseContext";
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        marginLeft: "4rem",
+        margin: "2rem",
     },
     title: {
         margin: "0.5rem",
@@ -31,54 +30,16 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-/*const courses = [
-    {
-        "coursename": "COMSCI 180",
-        "description": "Complex Programming",
-        "universityID": "UCLA",
-        "key": 0,
-    },
-    {
-        "coursenumber": "PSYCH 115",
-        "coursename": "Behavioral Neuroscience",
-        "universityID": "Berkeley",
-        "key": 1,
-    },
-]*/
-
 const AddCourse = () => {
     const classes = useStyles();
-
-    // const userContext = useContext(UserContext);
     const courseContext = useContext(CourseContext);
-
     const [searchField, setSearch] = useState("");
-    // const [university, setUniversity] = useState(
-    //     courseContext.currentUniversity
-    // );
 
     useEffect(() => {
         courseContext.getCoursesByUniversity(
             courseContext.currentUniversity.universityID
         );
     }, [courseContext.currentUniversity]);
-
-    // const handleUniversityFilter = (university) => { // university is an object with university and universityID
-    //     //setSelectedUniversity(university);
-    // };
-
-    // console.log(courseContext.courses);
-    //const courseList = courseContext.courses;
-    // console.log(courseList)
-
-    // const courseList = courseContext.courses.filter((course) => {
-    //     return (
-    //         course.coursename
-    //             .toLowerCase()
-    //             .includes(searchField.toLowerCase()) ||
-    //         course.description.toLowerCase().includes(searchField.toLowerCase())
-    //     );
-    // });
 
     const renderCourse = (courses) => {
         if (courses.length === 0) {

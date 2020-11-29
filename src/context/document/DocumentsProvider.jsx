@@ -101,11 +101,23 @@ const DocumentsProvider = (props) => {
             );
             const result = await response.json();
             dispatch({ type: "REQUEST_FINISHED" });
-            dispatch({ type: "SET_COURSE_DOCUMENTS", payload: result });
+            dispatch({ type: "SET_DOCUMENTS", payload: result });
         } catch (err) {
             console.error("get document by course err");
         }
     };
+
+    const getDocumentsBySearch = async (searchValue, universityID) => {
+        try {
+            const response = await fetch(
+                `/search/documents?query=${searchValue}&universityID=${0}`
+            );
+            const result = await response.json();
+            dispatch({ type: "SET_DOCUMENTS", payload: result });
+        } catch (err) {
+            console.error("searchDocuments")
+        }
+    }
 
     const addDocument = async (new_document) => {
         fetch("/home/document", {
@@ -234,6 +246,7 @@ const DocumentsProvider = (props) => {
                 getCurrentComments: getCurrentComments,
                 addComment: addComment,
                 getSimilarDocuments: getSimilarDocuments,
+                getDocumentsBySearch: getDocumentsBySearch,
             }}
         >
             {props.children}
