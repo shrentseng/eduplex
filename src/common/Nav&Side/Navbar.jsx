@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import Select from "react-select";
 import { makeStyles } from "@material-ui/core/styles";
@@ -9,10 +9,11 @@ import Logo from "../../assets/epimg.svg";
 import LogoWord from "../../assets/eduPlex.svg";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import NotificationsIcon from "@material-ui/icons/Notifications";
-
 import AvatarNavbar from "./AvatarNavbar";
-
-import UserContext from "./../../context/user/userContext";
+import UserContext from "../../context/user/userContext";
+import CourseContext from "../../context/course/courseContext";
+import DocumentsContext from "../../context/document/documentsContext";
+import FeedsContext from "../../context/feed/feedsContext";
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -120,23 +121,41 @@ const options = [
     { value: 2, label: "Discussion" },
 ];
 
-const Navbar = ({ onSearch }) => {
+const Navbar = () => {
     const classes = useStyles();
     let history = useHistory();
     const userContext = useContext(UserContext);
+    const documentsContext = useContext(DocumentsContext);
+    const courseContext = useContext(CourseContext);
+    const feedsContext = useContext(FeedsContext);
     const [selected, setSelected] = useState();
     const [searchValue, setSearchValue] = useState("");
 
+    useEffect(()=> {
+        let universityID = courseContext.currentUniversity.universityID;
+        if (selected === 0) {
+            history.push("/SearchResults/CourseResults");
+            courseContext.getCoursesBySearch(searchValue, universityID);
+        } else if (selected === 1) {
+            history.push("/SearchResults/DocumentResults");
+            documentsContext.getDocumentsBySearch(searchValue, universityID);
+        } else if (selected === 2) {
+            history.push("/SearchResults/FeedResults");
+            feedsContext.getFeedsBySearch(searchValue, universityID);
+        }
+    }, [courseContext.currentUniversity])
+
     const handleSearch = () => {
         if (selected === 0) {
-            history.push("/CourseResults");
+            history.push("/SearchResults/CourseResults");
+            courseContext.getCoursesBySearch(searchValue);
         } else if (selected === 1) {
-            history.push("/DocumentResults");
+            history.push("/SearchResults/DocumentResults");
+            documentsContext.getDocumentsBySearch(searchValue);
         } else if (selected === 2) {
-            history.push("/");
+            history.push("/SearchResults/FeedResults");
+            feedsContext.getFeedsBySearch(searchValue);
         }
-
-        onSearch(searchValue);
     };
     const handleSelectChange = (event) => {
         setSelected(event.value);
@@ -205,7 +224,14 @@ const Navbar = ({ onSearch }) => {
 
     const renderLogo = () => {
         return (
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%'}}>
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    height: "100%",
+                }}
+            >
                 <img
                     style={{ height: "36px", margin: "0.25rem" }}
                     src={Logo}
@@ -218,11 +244,11 @@ const Navbar = ({ onSearch }) => {
                 />
             </div>
         );
-	};
-	
+    };
+
     return (
         <AppBar className={classes.root}>
-            {userContext.userID !== -1 ? renderNavbar() : renderLogo() }
+            {userContext.userID !== -1 ? renderNavbar() : renderLogo()}
         </AppBar>
     );
 };

@@ -13,12 +13,24 @@ const CourseProvider = (props) => {
 
     const getMyCourses = async (userID) => {
         try {
-            dispatch({ type: "SENDING_REQUEST" });
+            //dispatch({ type: "SENDING_REQUEST" });
             const response = await fetch(`/mycourse?userID=${userID}`); //fix id
             const result = await response.json();
             dispatch({ type: "SET_MY_COURSES", payload: result });
         } catch (err) {
             console.error("get my courses err");
+        }
+    };
+
+    const getCoursesBySearch = async (searchValue, universityID) => {
+        try {
+            const response = await fetch(
+                `/search/courses?query=${searchValue}&universityID=${universityID}`
+            );
+            const result = await response.json();
+            dispatch({ type: "SET_COURSES", payload: result });
+        } catch (err) {
+            console.error("search courses");
         }
     };
 
@@ -90,6 +102,7 @@ const CourseProvider = (props) => {
                 addCourse: addCourse,
                 deleteCourse: deleteCourse,
                 getCoursesByUniversity: getCoursesByUniversity,
+                getCoursesBySearch: getCoursesBySearch,
             }}
         >
             {props.children}

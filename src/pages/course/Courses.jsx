@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import UserContext from "../../context/user/userContext";
-import FeedsProvider from "../../context/feed/FeedsProvider";
 import CourseContext from "../../context/course/courseContext";
 import Course from "./Course";
 
