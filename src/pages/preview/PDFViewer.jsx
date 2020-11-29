@@ -10,7 +10,6 @@ class PDFViewer extends Component {
     componentDidMount() {
         const { src } = this.props;
         const element = this.viewerRef.current;
-
         this.backend.init(src, element);
     }
 

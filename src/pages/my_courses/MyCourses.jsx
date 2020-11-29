@@ -50,8 +50,6 @@ function MyCourses() {
         if (universitiesName === undefined || universitiesName === null) {
             return;
         }
-        console.log('unsorted', Object.keys(universitiesName))
-        console.log('sort', Object.keys(universitiesName).sort())
         return Object.keys(universitiesName).sort().map((universityName) => {
             return (
                 <div className={classes.college}>

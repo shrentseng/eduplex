@@ -140,7 +140,6 @@ const DocumentsProvider = (props) => {
             const response = await fetch(`/viewdoc/comments?documentID=${documentID}`);
             const result = await response.json();
             dispatch({ type: "SET_CURRENT_COMMENTS", payload: result})
-            console.log(result)
         }
         catch(err)
         {
