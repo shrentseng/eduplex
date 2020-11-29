@@ -17,15 +17,14 @@ import Homepage from "./pages/homepage/Homepage";
 import SideBar from "./common/Nav&Side/SideBar";
 import Profile from "./pages/profile/Profile";
 import MyCourse from "./pages/my_courses/MyCourses";
-import CourseResults from "./pages/search_results/CourseResults";
 import EditProfile from "./pages/profile/EditProfile";
-import DocumentResults from "./pages/search_results/DocumentResults";
 import DocumentUpload from "./pages/upload/DocumentUpload";
 import DocumentPreview from "./pages/preview/DocumentPreview";
 import EduPoints from "./pages/edupoints/EduPoints";
 import RightPannel from "./common/leaderboard/RightPanel";
 import AddCourse from "./pages/my_courses/AddCourse";
 import Courses from "./pages/course/Courses";
+import SearchResults from "./pages/search_results/SearchResults";
 import UserProvider from "./context/user/UserProvider";
 import FeedsProvider from "./context/feed/FeedsProvider";
 import CourseProvider from "./context/course/CourseProvider";
@@ -116,11 +115,8 @@ const App = () => {
                                         <Route path="/AddCourse">
                                             <AddCourse />
                                         </Route>
-                                        <Route path="/CourseResults">
-                                            <CourseResults />
-                                        </Route>
-                                        <Route path="/DocumentResults">
-                                            <DocumentResults />
+                                        <Route path="/SearchResults">
+                                            <SearchResults />
                                         </Route>
                                         <Route path="/DocumentUpload">
                                             <ThemeProvider

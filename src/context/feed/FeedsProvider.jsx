@@ -14,7 +14,7 @@ const FeedsProvider = (props) => {
             //     lastName: "Tseng",
             //     courseName: "course",
             //     childComments: [], //stores comments id
-            //     comments: [], //stores comments content 
+            //     comments: [], //stores comments content
             //     likes: 0,
             //     unlikes: 0,
             // },
@@ -45,6 +45,18 @@ const FeedsProvider = (props) => {
             dispatch({ type: "SET_FEEDS", payload: result.posts });
         } catch (err) {
             console.error("get feeds", err);
+        }
+    };
+
+    const getFeedsBySearch = async (searchValue) => {
+        try {
+            const response = await fetch(
+                `/search/discussions?query=${searchValue}&universityID=${0}`
+            );
+            const result = await response.json();
+            dispatch({ type: "SET_FEEDS", payload: result });
+        } catch (err) {
+            console.error("get feeds by search err");
         }
     };
 
@@ -102,13 +114,16 @@ const FeedsProvider = (props) => {
 
     const getCommentsByPostID = async (postID) => {
         try {
-            const response = await fetch(`home/feed?postID=${postID}`, {
+            const response = await fetch(`/home/feed?postID=${postID}`, {
                 method: "GET",
             });
             const result = await response.json();
-            dispatch({ type: "SET_COMMENTS", payload: { postID, my_comments: result } });
+            dispatch({
+                type: "SET_COMMENTS",
+                payload: { postID, my_comments: result },
+            });
         } catch (err) {
-            console.error("get comments by post id", err)
+            console.error("get comments by post id", err);
         }
     };
 
@@ -152,6 +167,7 @@ const FeedsProvider = (props) => {
                 getCommentsByPostID: getCommentsByPostID,
                 addComment: addComment,
                 addReply: addReply,
+                getFeedsBySearch: getFeedsBySearch,
             }}
         >
             {props.children}

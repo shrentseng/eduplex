@@ -1,7 +1,7 @@
-const setCourseDocuments = (course_documents, state) => {
+const setDocuments = (documents, state) => {
     return {
         ...state,
-        documents: course_documents,
+        documents: documents,
     };
 };
 
@@ -65,8 +65,8 @@ const setCurrentURL = (url, state) => {
 
 const reducer = (state, action) => {
     switch (action.type) {
-        case "SET_COURSE_DOCUMENTS":
-            return setCourseDocuments(action.payload, state);
+        case "SET_DOCUMENTS":
+            return setDocuments(action.payload, state);
         case "SENDING_REQUEST":
             return sendingRequest(state);
         case "REQUEST_FINISHED":

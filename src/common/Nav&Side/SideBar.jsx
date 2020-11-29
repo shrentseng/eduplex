@@ -34,7 +34,13 @@ const useStyles = makeStyles({
                 backgroundColor: "#71BA75",
             },
         },
-        "& h2, & h3": {
+        "& h2": {
+            fontFamily: "Raleway",
+            color: "#FFFFFF",
+            fontWeight: "700",
+            fontSize: " 1.2rem",
+        },
+        "& h3": {
             fontFamily: "Raleway",
             color: "#FFFFFF",
             fontWeight: "700",

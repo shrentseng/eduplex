@@ -57,12 +57,12 @@ const reducer = (state, action) => {
             return sendingRequest(state);
         case "REQUEST_FINISHED":
             return requestFinished(state);
-        case "ADD_COURSE":
-            return addCourse(action.payload, state);
-        case "SET_MY_COURSES":
-            return setMyCourses(action.payload, state);
         case "SET_COURSES":
             return setCourses(action.payload, state);
+        case "SET_MY_COURSES":
+            return setMyCourses(action.payload, state);
+        case "ADD_COURSE":
+            return addCourse(action.payload, state);
         case "DELETE_COURSE":
             return deleteCourse(action.payload, state);
         case "SET_CURRENT_UNIVERSITY":
