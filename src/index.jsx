@@ -9,7 +9,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.render(
 	<React.StrictMode>
-		<BrowserRouter>
+		<BrowserRouter basename="/eduplex">
 			<ThemeProvider theme={theme_root}>
 				<App />
 			</ThemeProvider>
