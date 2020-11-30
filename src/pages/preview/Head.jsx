@@ -57,12 +57,12 @@ const Head = () => {
     const classes = useStyles();
     const documentsContext = useContext(DocumentsContext);
     const handleDownload = () => {
-        documentsContext.downloadDocument(documentsContext.currentInfo);
+        documentsContext.downloadDocument(documentsContext.currentInfo.documentID);
     };
     
     return (
         <div>
-            <Paper
+            <div
                 variant="outlined"
                 square={true}
                 className={classes.titlePaper}
@@ -77,7 +77,7 @@ const Head = () => {
                 <Button className={classes.download} onClick={handleDownload}>
                     Download
                 </Button>
-            </Paper>
+            </div>
         </div>
     );
 };

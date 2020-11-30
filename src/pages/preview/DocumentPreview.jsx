@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import SideBar from "./SideBar.jsx";
 import Head from "./Head.jsx";
@@ -10,81 +10,88 @@ import DocumentsContext from "../../context/document/documentsContext"
 const useStyles = makeStyles(() => ({
     root: {
         display: "grid",
-        gridTemplateColumns: "20%",
+        gridTemplateColumns: "1% 16% 1%",
         gridTemplateRows: "8% 8% 8% 5% 14% 6%",
         width: "100vw",
-        height: "100vh",
         minHeight: "100vh",
         background: "#FFFFFF",
     },
     head: {
         gridColumnStart: "1",
-        gridColumnEnd: "3",
+        gridColumnEnd: "5",
         gridRowStart: "1",
         gridRowEnd: "3",
     },
     sideBar: {
         gridColumnStart: "1",
-        gridColumnEnd: "2",
-        gridRowStart: "2",
-        gridRowEnd: "8",
-    },
-    pdf: {
-        gridColumnStart: "2",
         gridColumnEnd: "3",
         gridRowStart: "2",
         gridRowEnd: "8",
     },
-    collapseExtend: {
-        color: "#FFFFFF",
-        marginTop: "2.1rem",
-        marginLeft: "0.5rem",
-        position: "absolute",
+    pdf: {
+        gridColumnStart: "4",
+        gridColumnEnd: "5",
+        gridRowStart: "2",
+        gridRowEnd: "8",
     },
+    arrow: {
+        marginLeft:"0.2rem",
+        gridColumnState: "3",
+        gridColumnEnd: "4",
+        gridRowStart: "2",
+        gridRowEnd: "8",
+    }
 }));
 
 const DocumentPreview = () => {
     const classes = useStyles();
     const documentsContext = useContext(DocumentsContext);
-    const [sideColumn, setSideColumn] = React.useState("2");
-    const [pdfColumn, setPDFColumn] = React.useState("2");
+    const [sideBarEnd, setSideBarEnd] = useState("3");
+    const [pdfStart, setPDFStart] = useState("4");
+    const [arrowStart, setArrowStart] = useState("3");
+    const [arrowEnd, setArrowEnd] = useState("4");
+    const [arrow, setArrow] = useState("<");
 
-    /*
-    const [arrow, setArrow] = React.useState("<<");
-    const setColumn = (event) => {
-        if (sideColumn === "2" && pdfColumn === "2") {
-            setSideColumn("1");
-            setPDFColumn("1");
-            setArrow(">>");
-        } else if (sideColumn === "1" && pdfColumn === "1") {
-            setSideColumn("2");
-            setPDFColumn("2");
-            setArrow("<<");
+    useEffect(() => {
+        console.log("watttup")
+    }, [documentsContext.currentURL]);
+
+    const handleSideBar = () => {
+        if(sideBarEnd === "3" && arrowStart === "3" && pdfStart === "4")
+        {
+            setSideBarEnd("1");
+            setArrowStart("1");
+            setArrowEnd("2");
+            setPDFStart("2");
+            setArrow(">");
+        }
+        else if(sideBarEnd === "1" && arrowStart === "1" && pdfStart === "2")
+        {
+            setSideBarEnd("3");
+            setArrowStart("3");
+            setArrowEnd("4");
+            setPDFStart("4");
+            setArrow("<");
         }
     };
-    */
 
     const renderSideBar = () => {
-        if (sideColumn === "2" && pdfColumn === "2") {
-            return <SideBar />;
-        } else if (sideColumn === "1" && pdfColumn === "1") {
-            return <div></div>;
-        }
+        if(sideBarEnd === "3" && arrowStart === "3" && pdfStart === "4")
+            return(<SideBar />)
     };
-
     return (
         <div className={classes.root}>
             <div className={classes.head}>
                 <Head />
             </div>
-            <div
-                className={classes.sideBar}
-                style={{ gridColumnEnd: sideColumn }}
-            >
+            <div className={classes.sideBar} style={{gridColumnEnd:sideBarEnd}}>
                 {renderSideBar()}
             </div>
-            <div className={classes.pdf} style={{ gridColumnStart: pdfColumn }}>
-                <PDFViewer backend={PDFJSBackend} src={documentsContext.currentURL} />
+            <div className={classes.arrow} style={{gridColumnStart:arrowStart, gridColumnEnd:arrowEnd}} onClick={e => handleSideBar()}>
+                {arrow}
+            </div>
+            <div className={classes.pdf} style={{gridColumnStart:pdfStart}}>
+                <iframe width="100%" height="100%" src={documentsContext.currentURL} />
             </div>
         </div>
     );

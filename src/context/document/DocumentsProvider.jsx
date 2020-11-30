@@ -64,7 +64,7 @@ const DocumentsProvider = (props) => {
         },
         currentComments: [],
         currentSimilarDocuments: [],
-        currentURL: "",
+        currentURL: [],
         loading: true,
     };
 
@@ -131,16 +131,17 @@ const DocumentsProvider = (props) => {
         });
     };
 
-    const setCurrentInfo = async (document) => {
+    const setCurrentInfo = async (doc) => {
         try {
-            const response1 = await fetch(`/viewdoc?documentID=${document.documentID}`);
+            const response1 = await fetch(`/viewdoc?documentID=${doc.documentID}`);
             const result1 = await response1.json();
-            const response2 = await fetch(`/viewdoc/download?documentID=${document.documentID}`)
-            const blob = await response2.blob();
-            let url = window.URL.createObjectURL(blob);
             dispatch({ type: "SET_CURRENT_INFO", payload: result1 });
-            dispatch({ type: "SET_CURRENT_URL", payload: url});
 
+            const response2 = await fetch(`/viewdoc/download?documentID=D83000976962`)
+            const blob = await response2.blob();
+            const file = new Blob([blob], {type: 'application/pdf'})
+            const fileURL = window.URL.createObjectURL(file);
+            dispatch({type:'SET_CURRENT_URL', payload: fileURL})
         } catch (err) {
             console.error("setCurrentInfo", err);
         }
@@ -160,22 +161,19 @@ const DocumentsProvider = (props) => {
         }
     }
 
-    const getSimilarDocuments = async () => {
-        /*try{
-            fetch(`viewdoc/similar?user=?document_id=?`)
-            .then(
-                (result) => {
-                dispatch({type: "SET_SIMILAR_DOCUMENTS", payload: result})
-            });
+    const getSimilarDocuments = async (documentID) => {
+        try{
+            const response = await fetch(`/viewdoc/similar?documentID=D83000976962`);
+            const result = await response.json()
+            dispatch({ type: "SET_SIMILAR_DOCUMENTS", payload: result})
         }
         catch(err){
             console.log("getSimilarDocuments")
             console.log(err)
-        }*/
+        }
     };
 
     const addComment = async (new_comment) => {
-        console.log(new_comment)
         dispatch({ type: "ADD_COMMENT", payload: new_comment });
         try{
         fetch("/viewdoc/comments", {
@@ -193,21 +191,18 @@ const DocumentsProvider = (props) => {
         });
         }
         catch(err){
-            console.log("getSimilarDocuments")
-            console.log(err)
+            console.log("getSimilarDocuments", err)
         }
     };
 
     const downloadDocument = async (documentID) => {
         try {
-            const response = await fetch(
-                `/viewdoc/download?documentID=${documentID}`
-            );
+            const response = await fetch(`/viewdoc/download?documentID=D83000976962`);
             const blob = await response.blob();
             let url = window.URL.createObjectURL(blob);
             let a = document.createElement("a");
             a.href = url;
-            a.download = "test.svg";
+            a.download = "test.pdf";
             a.click();
             window.URL.revokeObjectURL(url);
         } catch (err) {

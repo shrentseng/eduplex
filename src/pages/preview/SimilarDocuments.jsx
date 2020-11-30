@@ -4,9 +4,10 @@ import DocumentContext from '../../context/document/documentsContext'
 
 
 const renderDoc = (documents) =>{
-    return documents.map((details) => {
+    return documents.map((details,i) => {
         return <SimpleDoc
-            name={details.Title}
+            name={details.title}
+            key={i}
             />
     }
 )}
