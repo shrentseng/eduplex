@@ -13,7 +13,7 @@ const useStyles = makeStyles(() => ({
         gridTemplateColumns: "1% 16% 1%",
         gridTemplateRows: "8% 8% 8% 5% 14% 6%",
         width: "100vw",
-        height: "100vh",
+        minHeight: "100vh",
         background: "#FFFFFF",
     },
     head: {
@@ -54,7 +54,7 @@ const DocumentPreview = () => {
 
     useEffect(() => {
         console.log("watttup")
-    }, [documentsContext.currentInfo]);
+    }, [documentsContext.currentURL]);
 
     const handleSideBar = () => {
         if(sideBarEnd === "3" && arrowStart === "3" && pdfStart === "4")
@@ -79,7 +79,6 @@ const DocumentPreview = () => {
         if(sideBarEnd === "3" && arrowStart === "3" && pdfStart === "4")
             return(<SideBar />)
     };
-
     return (
         <div className={classes.root}>
             <div className={classes.head}>
@@ -92,7 +91,7 @@ const DocumentPreview = () => {
                 {arrow}
             </div>
             <div className={classes.pdf} style={{gridColumnStart:pdfStart}}>
-                <PDFViewer backend={PDFJSBackend} src={"http://www.africau.edu/images/default/sample.pdf"} />
+                <iframe width="100%" height="100%" src={documentsContext.currentURL} />
             </div>
         </div>
     );

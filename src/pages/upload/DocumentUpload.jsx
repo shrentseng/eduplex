@@ -113,8 +113,6 @@ const DocumentUpload = () => {
 
     const handleSubmit = () => {
         const formData = new FormData();
-        formData.append("originalFile", acceptedFiles[0]);
-        formData.append("userID", userContext.userID);
         formData.append("title", userInput.title);
         formData.append("courseID", "0");
         formData.append("universityID", "0");
@@ -123,6 +121,8 @@ const DocumentUpload = () => {
         formData.append("type", userInput.category);
         formData.append("description", userInput.description);
         formData.append("anonymous", userInput.isAnonymous);
+        formData.append("userID", userContext.userID);
+        formData.append("originalFile", acceptedFiles[0]);
         documentsContext.uploadDocument(formData);
         //fetch POST
     };

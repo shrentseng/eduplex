@@ -37,8 +37,6 @@ const useStyles = makeStyles(() => ({
         gridRowEnd: "3",
         outline: "solid 1px",
         outlineColor: "#C4C4C4",
-        position:"aboslute",
-
     },
     download: {
         width: "10em",
@@ -52,8 +50,6 @@ const useStyles = makeStyles(() => ({
             background: "#0088D7",
         },
         color: "#FFFFFF",
-        position:"aboslute",
-
     },
 }));
 
