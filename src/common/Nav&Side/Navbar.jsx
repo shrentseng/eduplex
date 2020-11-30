@@ -176,6 +176,7 @@ const Navbar = () => {
                             src={Logo}
                             alt=""
                         />
+                        123
                         <img
                             style={{ height: "28px", margin: "0.25rem" }}
                             src={LogoWord}
