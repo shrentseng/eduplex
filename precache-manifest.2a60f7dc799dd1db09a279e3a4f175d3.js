@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "13427a8ab48ec4e33a1238838f3ea46b",
+    "revision": "324e43d9f982345d9183764787a07984",
     "url": "/eduplex/index.html"
   },
   {
-    "revision": "4a0f90c4ad93fe0deb8b",
+    "revision": "83ddbc650b05ea25f3b8",
     "url": "/eduplex/static/css/main.5f3c732e.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/eduplex/static/js/2.4fc3eebc.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "4a0f90c4ad93fe0deb8b",
-    "url": "/eduplex/static/js/main.be970e46.chunk.js"
+    "revision": "83ddbc650b05ea25f3b8",
+    "url": "/eduplex/static/js/main.9c88438a.chunk.js"
   },
   {
     "revision": "23307447783653eea91f",
