@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/eduplex/static/css/main.5f3c732e.chunk.css",
-    "main.js": "/eduplex/static/js/main.1472072f.chunk.js",
-    "main.js.map": "/eduplex/static/js/main.1472072f.chunk.js.map",
+    "main.js": "/eduplex/static/js/main.be970e46.chunk.js",
+    "main.js.map": "/eduplex/static/js/main.be970e46.chunk.js.map",
     "runtime-main.js": "/eduplex/static/js/runtime-main.258dca11.js",
     "runtime-main.js.map": "/eduplex/static/js/runtime-main.258dca11.js.map",
     "static/js/2.4fc3eebc.chunk.js": "/eduplex/static/js/2.4fc3eebc.chunk.js",
     "static/js/2.4fc3eebc.chunk.js.map": "/eduplex/static/js/2.4fc3eebc.chunk.js.map",
     "index.html": "/eduplex/index.html",
-    "precache-manifest.5a0ca760c64308d70ca425314431b032.js": "/eduplex/precache-manifest.5a0ca760c64308d70ca425314431b032.js",
+    "precache-manifest.0c3f5058d4e0e7c5a15c50fee1404e75.js": "/eduplex/precache-manifest.0c3f5058d4e0e7c5a15c50fee1404e75.js",
     "service-worker.js": "/eduplex/service-worker.js",
     "static/css/main.5f3c732e.chunk.css.map": "/eduplex/static/css/main.5f3c732e.chunk.css.map",
     "static/js/2.4fc3eebc.chunk.js.LICENSE.txt": "/eduplex/static/js/2.4fc3eebc.chunk.js.LICENSE.txt",
@@ -54,6 +54,6 @@
     "static/js/runtime-main.258dca11.js",
     "static/js/2.4fc3eebc.chunk.js",
     "static/css/main.5f3c732e.chunk.css",
-    "static/js/main.1472072f.chunk.js"
+    "static/js/main.be970e46.chunk.js"
   ]
 }
